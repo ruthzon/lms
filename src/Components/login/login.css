@@ -1,0 +1,68 @@
+.login {
+  text-align: left;
+  margin: auto;
+}
+
+.login h1 {
+  color: #ffffff;
+}
+.login p {
+  text-align: center;
+  font: normal normal normal 24px/40px Poppins;
+  letter-spacing: 0px;
+  color: #ffffff;
+}
+.left {
+  background: #43c8b1 0% 0% no-repeat padding-box;
+  width: 100%;
+}
+.left,
+.right {
+  padding: 5%;
+}
+.login .container {
+  display: contents;
+}
+.login a {
+  text-align: right;
+  float: right;
+}
+.pink {
+  color: #f56962;
+}
+.login button {
+  width: 100%;
+  height: 50px;
+}
+.full-size {
+  width: 100%;
+}
+
+.size-70 {
+  width: 60%;
+  margin: auto;
+}
+.login .btn-light {
+  border: 1px solid #cac6d4;
+}
+.or {
+  text-align: center;
+  background-color: #ffffff;
+}
+hr {
+  margin-top: -15px;
+  border-color: #cac6d4;
+  padding: 5px 10px;
+}
+.text-center {
+  text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .left,
+  .right {
+    max-width: 100%;
+    flex: 0 0 100%;
+    padding: 40px;
+  }
+}
