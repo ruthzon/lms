@@ -56,10 +56,13 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/buycourses/:id">
+          <Route path="/buycourse/:id">
             <BuyCoursePage />
           </Route>
-          <Route path="/viewcourses/:id">
+          <Route path="/viewcourse/:id">
+            <ViewCoursePage />
+          </Route>
+          <Route path="/editcourse/:id">
             <ViewCoursePage />
           </Route>
           <Route path="/">

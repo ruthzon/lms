@@ -1,21 +1,13 @@
-import {
-  FaRegStar,
-  FaRegEye,
-  FaRegPlayCircle,
-} from 'react-icons/all';
+import {FaRegStar, FaRegEye, FaRegPlayCircle} from 'react-icons/all';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import { connect } from 'react-redux';
-import {
-  Card,
-  Container,
-  Row,
-  Col,
-} from 'react-bootstrap';
+import React, {useContext} from 'react';
+import {connect} from 'react-redux';
+import {Card, Container, Row, Col} from 'react-bootstrap';
 import './homepage/App.css';
 import {actions} from '../Store/actions';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
+import {UserContext} from './login/userProvider';
 
 const history = createHashHistory();
 const browserHistory = createBrowserHistory();
@@ -32,17 +24,16 @@ const mapDispatchToProps = (dispatch) => ({
   setImage: (image) => dispatch(actions.setImage(image)),
 });
 
-
 // export default connect(
 //   mapStateToProps,
 //   mapDispatchToProps
 // )(
- export default
-  function CourseCard(props) {
+export default function CourseCard(props) {
+  const user = useContext(UserContext);
 
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
-    browserHistory.replace('/viewcourses/' + props.course.id);
+    browserHistory.replace('/viewcourse/' + props.course.id);
     window.location.reload();
     console.log(props);
   };
@@ -56,6 +47,9 @@ const mapDispatchToProps = (dispatch) => ({
       // onPress={() => navigation.navigate('Details')}
       // href="./coursepage/CoursePage.jsx"
     >
+      {user!==null && props.course.user_id === user.uid && (
+        <Card.Text className="text-own">your own course</Card.Text>
+      )}
       <Card.Img
         variant="top"
         className="card-img"
@@ -106,4 +100,3 @@ const mapDispatchToProps = (dispatch) => ({
   );
 }
 // );
-

@@ -20,7 +20,7 @@
 h1 {
   color: var(--unnamed-color-5f5982);
   text-align: left;
-  font: normal normal medium 40px/60px Poppins;
+  font: normal normal normal 40px/60px Poppins;
   letter-spacing: 0px;
   color: #5f5982;
 }
@@ -138,17 +138,18 @@ h3 {
   letter-spacing: 0.32px;
   color: #f68c20;
 }
-.header-view{
-  max-width:  65%;
+.buy-course .card-title {
+  text-align: center;
+}
+.header-view {
+  max-width: 65%;
 }
 .buy-course .list-group-item {
   /* border: 5px; */
   background-color: #fff;
 }
-.margin-view
-{
+.margin-view {
   margin-top: -15%;
-
 }
 .card-list {
   font-size: 0.75rem;
@@ -298,4 +299,50 @@ h3 {
   margin-right: 20px;
   font: normal normal normal 14px/25px Poppins;
   letter-spacing: 0px;
+}
+@media (max-width: 812px) {
+  .coursepage {
+    font-size: smaller;
+  }
+  h1 {
+    font: normal normal normal 24px/40px Poppins;
+  }
+  h3 {
+    font: normal normal normal 18px/24px Poppins;
+  }
+  .content {
+    max-width: 100%;
+  }
+  .header .col-3 {
+    text-align: left;
+    padding: 0;
+  }
+  .discover-in-iphone {
+    display: none;
+  }
+  .header-view {
+    max-width: 100%;
+  }
+  .video {
+    display: block;
+  }
+  .buy-course {
+    margin-top: 0;
+  }
+  .curriculum
+  .list-group {
+    flex-direction: inherit;
+  }
+  .list-group-item .btn-choose {
+    font: normal normal normal 20px/20px Poppins;
+  }
+  .card-img {
+    height: 100px !important;
+    object-fit: cover;
+  }
+  .top-card .discount {
+    font: normal normal normal 16px/35px Poppins;
+    margin-left: -45px;
+    padding: 5px;
+  }
 }

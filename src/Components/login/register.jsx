@@ -13,7 +13,7 @@ import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import firebase from '@firebase/app';
 import 'firebase/auth';
-import { auth, generateUserDocument, signInWithGoogle } from './firebase';
+import {auth, generateUserDocument, signInWithGoogle} from './firebase';
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
@@ -34,6 +34,9 @@ if (!firebase.apps.length) {
 
 const history = createHashHistory();
 const browserHistory = createBrowserHistory();
+const validEmailRegex = RegExp(
+  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+);
 
 const Register = () => {
   const state = {
@@ -41,35 +44,51 @@ const Register = () => {
   };
 
   // const [passwordShown, setPasswordShown] = useState(false);
- 
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [error, setError] = useState(null);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   const nav = () => {
     browserHistory.replace('/');
     window.location.reload();
   };
-  const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
+  const createUserWithEmailAndPasswordHandler = async (
+    event,
+    email,
+    password
+  ) => {
     event.preventDefault();
-    try{
+    if (!validEmailRegex.test(email)) {
+      setEmailError('Email is not valid');
+      return;
+    }
+    if (password.length < 8) {
+      setPasswordError('Password must be at least 8 characters');
+      return;
+    }
+    try {
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       generateUserDocument(user, {displayName});
       nav();
-    }
-    catch(error){
+    } catch (error) {
       setError('Error Signing up with email and password');
     }
 
-    setEmail("");
-    setPassword("");
-    setDisplayName("");
+    setEmail('');
+    setPassword('');
+    setDisplayName('');
   };
   const onChangeHandler = (event) => {
     const {name, value} = event.currentTarget;
     if (name === 'userEmail') {
+      setEmailError('');
       setEmail(value);
     } else if (name === 'userPassword') {
+      setPasswordError('');
       setPassword(value);
     } else if (name === 'displayName') {
       setDisplayName(value);
@@ -119,6 +138,7 @@ const Register = () => {
                     placeholder="Example@leader.codes"
                     onChange={(event) => onChangeHandler(event)}
                   />
+                  <Form.Text className="error">{emailError}</Form.Text>
                   <Form.Text className="text-muted"></Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
@@ -142,6 +162,7 @@ const Register = () => {
                       placeholder="Enter password"
                     />
                   </InputGroup>
+                  <Form.Text className="error">{passwordError}</Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Remember me" />
@@ -165,7 +186,11 @@ const Register = () => {
                   <span className="or">OR</span>
                   <hr />
                 </div>
-                <Button onClick={signInWithGoogle} type="submit" variant="light">
+                <Button
+                  onClick={signInWithGoogle}
+                  type="submit"
+                  variant="light"
+                >
                   <Image src="./img_from_xd/gOOGLE.png"></Image>
                   Sign with Google
                 </Button>

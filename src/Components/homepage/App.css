@@ -26,11 +26,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.nav-item{
+  align-self: center;
+}
 .App-link {
   color: #61dafb;
 }
@@ -42,6 +45,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+.navbar-expand .navbar-nav {
+  margin: auto;
+}
+.text-own{
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  width: -webkit-fill-available;
+  transform: translate(-50%, -50%);
+  /* text-shadow: 2px 2px 5px #f56962; */
+  background-color: #f56962;
+  text-align: center;
+
 }
 .navbar {
   opacity: 1;
@@ -178,8 +195,10 @@ header {
 header img {
   background: transparent 0% 0% no-repeat padding-box;
   opacity: 1;
-  margin-top: 10px;
-  height: 79%;
+  /* margin-top: 10px;
+  height: 79%; */
+  margin-top: 100px;
+  height: -webkit-fill-available;
 }
 .learn {
   font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold)
@@ -380,13 +399,11 @@ form.carousel {
   left: 69%;
   bottom: 100%;
   top: -20px;
-
 }
 .test .carousel-control-next {
   right: 11%;
   bottom: 100%;
   top: -20px;
-
 }
 .carousel-left {
   margin-left: 15px !important;
@@ -583,11 +600,16 @@ section .section-title {
   opacity: 1;
   cursor: pointer;
 }
-.user-img{
-  height: 40px;
+.user-img {
+  height: 25px;
   border-radius: 20px;
+  align-items: center;
+  align-self: center;
 }
-@media (max-width: 768px) {
+.user-nav {
+  float: right;
+}
+@media (max-width: 812px) {
   header img {
     display: none;
   }
@@ -637,7 +659,7 @@ section .section-title {
     flex: 0 0 100%;
     text-align: center;
   }
- 
+
   .learning-platform img {
     display: none;
   }

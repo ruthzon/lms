@@ -40,7 +40,9 @@ const Login = () => {
   const state = {
     type: 'password',
   };
-
+  const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
   // const [passwordShown, setPasswordShown] = useState(false);
   // const googleSignIn = () => {
   //   let base_provider = new firebase.auth.GoogleAuthProvider();
@@ -64,13 +66,26 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const signInWithEmailAndPasswordHandler = (event, email, password) => {
     event.preventDefault();
-    auth.signInWithEmailAndPassword(email, password).catch((error) => {
-      setError('Error signing in with password and email!');
-      console.error('Error signing in with password and email', error);
-    });
+    if (!validEmailRegex.test(email)) {
+      setEmailError('Email is not valid');
+      return;
+    }
+    if (password.length < 8) {
+      setPasswordError('Password must be at least 8 characters');
+      return;
+    }
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => nav())
+      .catch((error) => {
+        setError('Error signing in with password and email!');
+        console.error('Error signing in with password and email', error);
+      });
   };
 
   const onChangeHandler = (event) => {
@@ -88,7 +103,7 @@ const Login = () => {
       type: type === 'text' ? 'password' : 'text',
     }));
   const nav = () => {
-    browserHistory.replace('/home');
+    browserHistory.replace('/');
     window.location.reload();
   };
 
@@ -119,6 +134,7 @@ const Login = () => {
                     placeholder="Example@leader.codes"
                     onChange={(event) => onChangeHandler(event)}
                   />
+                  <Form.Text className="error">{emailError}</Form.Text>
                   <Form.Text className="text-muted"></Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicPassword">
@@ -142,6 +158,7 @@ const Login = () => {
                       onChange={(event) => onChangeHandler(event)}
                     />
                   </InputGroup>
+                  <Form.Text className="error">{passwordError}</Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="Remember me" />

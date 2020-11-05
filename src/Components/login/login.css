@@ -5,6 +5,8 @@
 
 .login h1 {
   color: #ffffff;
+  text-align: center;
+  font-weight: bold;
 }
 .login p {
   text-align: center;
@@ -57,12 +59,18 @@ hr {
 .text-center {
   text-align: center;
 }
-
-@media only screen and (max-width: 1000px) {
+.error{
+  color: brown;
+}
+@media only screen and (max-width: 812px) {
   .left,
   .right {
     max-width: 100%;
     flex: 0 0 100%;
     padding: 40px;
+  }
+  .login
+  h1{
+    font: normal normal normal 40px/60px Poppins;
   }
 }

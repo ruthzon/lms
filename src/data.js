@@ -1,18 +1,33 @@
 import { Category, Course, Student, Partner, Learning } from './classes'
 
 export const Categories = [
-    new Category( "Design", "./img_from_xd/Layer 2.svg", "#EFEFF6"),
-    new Category( "Development", "./img_from_xd/Layer 2-2.svg", "#FEF3E8"),
-    new Category( "IT & Software", "./img_from_xd/monitor.svg", "#DDF7FF"),
-    new Category( "Bussiness", "./img_from_xd/Layer 2-20.svg", "#E6FAEA"),
-    new Category( "Marketing", "./img_from_xd/Layer 2-21.svg", "#EFEFF6"),
-    new Category( "Photpgraghy", "./img_from_xd/Layer 2-3.svg", "#DDF7FF")
+    new Category("Design", "./img_from_xd/Layer 2.svg", "#EFEFF6"),
+    new Category("Development", "./img_from_xd/Layer 2-2.svg", "#FEF3E8"),
+    new Category("IT & Software", "./img_from_xd/monitor.svg", "#DDF7FF"),
+    new Category("Bussiness", "./img_from_xd/Layer 2-20.svg", "#E6FAEA"),
+    new Category("Marketing", "./img_from_xd/Layer 2-21.svg", "#EFEFF6"),
+    new Category("Photpgraghy", "./img_from_xd/Layer 2-3.svg", "#DDF7FF")
 ];
-
+export const ExCourse = new Course(
+    '0',
+    '',
+    'Enter the name of the course here',
+    'Here is a short description of the course and the content that will be taught in it',
+    './img_from_xd/Image 108@2x.png',
+    '??',
+    '??',
+    '??',
+    'Name of the lecturer',
+    './img_from_xd/Rectangle 22.png',
+    'price',
+    'prev price',
+    'Course language'
+)
 export const Courses = [
 
     new Course(
         '1',
+        'Sx9WW4LfAPgyVN1lX2exwRbwNTo2',
         'Everything You Need to Know About Business',
         'Here you will learn about business administration, economics, management and proper business maintenance. ',
         './img_from_xd/105@2x.jpg',
@@ -27,6 +42,7 @@ export const Courses = [
     ),
     new Course(
         '2',
+        'Sx9WW4LfAPgyVN1lX2exwRbwNTo2',
         'Statistics Data Science and Business Analysis',
         'Special lesons, from Dr. Daniel Levin - You must it!!',
         './img_from_xd/Image 109.png',
@@ -41,6 +57,7 @@ export const Courses = [
     ),
     new Course(
         '3',
+        'Sx9WW4LfAPgyVN1lX2exwRbwNTo2',
         'Adobe Masterclass Photoshop, Illustrator, XD & InDesign',
         'Learn graphic design today with Photoshop, Illustrator, Adobe XD, InDesign & more in this Adobe CC Masterclass!',
         './img_from_xd/Image 108@2x.png',
@@ -55,8 +72,9 @@ export const Courses = [
     ),
     new Course(
         '4',
+        'wdkp5D2hROc4XJbBcqdw9C9C7Ox2',
         'Statistics Data Science and Business Analysis',
-        '',
+        'Special course, and amazing lessons, from Dr. Daniel Levin - You must ...',
         './img_from_xd/Image 23.png',
         '4.5 (120)',
         '28,500',
@@ -69,6 +87,7 @@ export const Courses = [
     ),
     new Course(
         '5',
+        'Sx9WW4LfAPgyVN1lX2exwRbwNTo2',
         'Everything You Need to Know About Business',
         'Here you will learn about business administration, economics, management and proper business maintenance. ',
         './img_from_xd/Image 110.png',
@@ -83,6 +102,7 @@ export const Courses = [
     ),
     new Course(
         '6',
+        'bXGxgqHJxDOfKTRHSHBJ6VIl5gr2',
         'Adobe Masterclass Photoshop, Illustrator, XD & InDesign',
         'Learn graphic design today with Photoshop, Illustrator, Adobe XD, InDesign & more in this Adobe CC Masterclass!',
         './img_from_xd/Image 25.png',

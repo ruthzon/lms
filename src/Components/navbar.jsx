@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {FaSearch, FaShoppingCart, FaComment} from 'react-icons/all';
 import React, {useContext} from 'react';
 import './homepage/App.css';
-import {Button, Navbar, Nav, Form, NavDropdown, Image} from 'react-bootstrap';
+import {Button, Navbar, Nav, Form, NavDropdown, Image, NavItem} from 'react-bootstrap';
 import {UserContext} from './login/userProvider';
 import {auth} from './login/firebase';
 // const history = createHashHistory();
@@ -26,78 +26,100 @@ function Navigation() {
           Education{' '}
         </Navbar.Brand>
         <Nav className="mr-auto">
-          <NavDropdown title="Home" id="basic-nav-dropdown">
+          {/* <div className="discover-in-iphone"> */}
+          <NavDropdown className="discover-in-iphone" title="Home" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
             </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Pages" id="basic-nav-dropdown">
+          <NavDropdown className="discover-in-iphone" title="Pages" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"> Action </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
             </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Courses" id="basic-nav-dropdown">
+          <NavDropdown className="discover-in-iphone" title="Courses" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"> Action </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
             </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Features" id="basic-nav-dropdown">
+          <NavDropdown className="discover-in-iphone" title="Features" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"> Action </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
             </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Blog" id="basic-nav-dropdown">
+          <NavDropdown className="discover-in-iphone" title="Blog" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"> Action </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
             </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Shop" id="basic-nav-dropdown">
+          <NavDropdown className="discover-in-iphone" title="Shop" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"> Action </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
             </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
           </NavDropdown>
-        </Nav>
-        <Form inline>
-          <div>
-            <FaSearch color="#707070" />
-            <FaShoppingCart />
-          </div>
-          {user===undefined && (
-            <Button
-              variant="outline-primary"
-              className="register"
-              onClick={() => (window.location.href = '/register')}
-            >
-              Register
-            </Button>
-          )}
-          {user !==null && user!==undefined &&(
-            <>
-            <Image className="user-img" src={user.photoURL}/>
-            <span>{user.displayName}</span>
+          {/* </div> */}
+          {/* <Form inline> */}
+              <NavItem>
+                <FaSearch color="#707070" />
+              </NavItem>
+              <NavItem>
+              <FaShoppingCart color="#707070"/>
+              </NavItem>
+            {user === undefined && (
+              <Button
+                variant="outline-primary"
+                className="register"
+                onClick={() => (window.location.href = '/register')}
+              >
+                Register
+              </Button>
+            )}
+            {user !== null && user !== undefined && (
+              <>
+                <div className="user-nav"></div>
+                <Image className="user-img" src={user.photoURL} />
+                {/* <span>{user.displayName}</span> */}
 
-            <Button
-              variant="outline-primary"
-              className="register"
-              onClick={() => {auth.signOut()}}
-            >
-              Log out
-            </Button>
-            </>
-          )}
-        </Form>
+                <NavDropdown
+                  title={user.displayName.split(' ')[0]}
+                  id="basic-nav-dropdown"
+                >
+                  <NavDropdown.Item href="/editcourse">New course </NavDropdown.Item>
+                  <NavDropdown.Item href="">View my courses</NavDropdown.Item>
+                  <NavDropdown.Item
+                    href="login"
+                    onClick={() => {
+                      auth.signOut();
+                    }}
+                  >
+                    Log Out
+                  </NavDropdown.Item>
+                </NavDropdown>
+                {/* <Button
+                  variant="outline-primary"
+                  className="register"
+                  onClick={() => {
+                    auth.signOut();
+                  }}
+                >
+                  Log out
+                </Button> */}
+              </>
+            )}
+          {/* </Form> */}
+        </Nav>
       </Navbar>
     </>
   );

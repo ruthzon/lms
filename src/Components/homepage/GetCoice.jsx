@@ -20,7 +20,7 @@ function GetChoice(props) {
       <div className="title">
         <Form inline>
           <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic">Design</Dropdown.Toggle>
+            <Dropdown.Toggle  variant="light" id="dropdown-basic">Design</Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
@@ -60,7 +60,7 @@ function WorldSelectionCourse(props) {
       <div className="title">
         <Form inline>
           <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic">Design</Dropdown.Toggle>
+            <Dropdown.Toggle  variant="light" id="dropdown-basic">Design</Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
