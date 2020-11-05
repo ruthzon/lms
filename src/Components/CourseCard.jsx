@@ -68,7 +68,7 @@ export default function CourseCard(props) {
             </Col>
             <Col xs="4" className="align-right">
               <FaRegPlayCircle color="#3E9365" />
-              {props.course.lesion + ' '} Lesion
+              {props.course.lesion + ' '} Lessons
             </Col>
           </Row>
         </Container>

@@ -96,7 +96,7 @@ function Navigation() {
                   title={user.displayName.split(' ')[0]}
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item href="/editcourse">New course </NavDropdown.Item>
+                  <NavDropdown.Item href="/editcourse/0">New course </NavDropdown.Item>
                   <NavDropdown.Item href="">View my courses</NavDropdown.Item>
                   <NavDropdown.Item
                     href="login"

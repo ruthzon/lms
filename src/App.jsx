@@ -23,6 +23,7 @@ import HomePage from './Components/homepage/HomePage';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import ViewCoursePage from './Components/coursepage/ViewCoursePage';
 import BuyCoursePage from './Components/coursepage/BuyCoursePage';
+import EditCoursePage from './Components/coursepage/EditCoursePage';
 import Login from './Components/login/login';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
@@ -63,9 +64,9 @@ function App() {
             <ViewCoursePage />
           </Route>
           <Route path="/editcourse/:id">
-            <ViewCoursePage />
+            <EditCoursePage />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <HomePage />
           </Route>
         </Switch>

@@ -10,35 +10,33 @@ import {
   FaRegClock,
 } from 'react-icons/all';
 import {UserContext} from '../login/userProvider';
-class Header extends Component {
-  constructor(){
-    this.user = useContext(UserContext);
-  }
-  render() {
+function Header(props) {
+  const user = useContext(UserContext);
+
     return (
       <>
         <div className="header">
           <div className="content">
-            {this.user !== null && this.props.data.user_id === this.user.uid && (
-              <p className="text-own">your own course - you may edit <a href={"/editcourse/"+this.props.data.id}> here</a></p>
+            {user !== null && props.data.user_id === user.uid && (
+              <p className="text-own">your own course - you may edit <a href={"/editcourse/"+props.data.id}> here</a></p>
             )}
-            <h1>{this.props.data.name}</h1>
+            <h1>{props.data.name}</h1>
             <br />
-            <div className={this.props.view ? 'header-view' : ''}>
+            <div className={props.view ? 'header-view' : ''}>
               <h3>
                 {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
-                {this.props.data.subtitle}
+                {props.data.subtitle}
               </h3>
               <Container>
                 <Row>
                   <Col xs="3">
                     <FaRegStar color="#F3B23A" />
-                    {this.props.data.stars}
+                    {props.data.stars}
                   </Col>
                   <Col xs="3">
                     <FaRegEye color="#DB4500" />
-                    {/* {this.props.data.views} */}
+                    {/* {props.data.views} */}
                     Enrolled 45 students
                   </Col>
                   <Col xs="3">
@@ -47,7 +45,7 @@ class Header extends Component {
                   </Col>
                   <Col xs="3">
                     <FaRegPlayCircle color="#3E9365" />
-                    {this.props.data.lesion + ' '} Lessons
+                    {props.data.lesion + ' '} Lessons
                   </Col>
                 </Row>
               </Container>
@@ -57,5 +55,5 @@ class Header extends Component {
       </>
     );
   }
-}
+
 export default Header;
