@@ -13,35 +13,38 @@ class Reviews extends Component {
   render() {
     return (
       <>
-        <div className="instructor">
+        <div className="reviews">
           <h3>Student feedback</h3>
 
           <Container>
             <Row>
               <Col md="3">
-                <Image src="./img_from_xd/image 71.png"></Image>
+                <Image src="./img_from_xd/image 74.png"></Image>
               </Col>
               <Col md="9">
-                <p>
-                  CBE brings you courses that are affordable, current,
-                  entertaining and based on practical work experience instead of
-                  theory.
-                </p>
+                <h5>Wynton McCurdy</h5>
+                <h6>16 courses, 10 reviews</h6>
               </Col>
             </Row>
             <Row>
-              <h4>Adobe Certified Instructor & Adobe Certified Expert</h4>
               <p>
-                Effortless comfortable full leather lining eye-catching unique
-                detail to the toe low ‘cut away’ sides clean and sleek. Polished
-                finish elegant court shoe work duty stretchy mid kitten heel
-                this ladylike design slingback strap mid kitten heel this
-                ladylike design. Sharing is who I am, and teaching is where I am
-                at my best, because I’ve been on both sides of that equation,
-                and getting to deliver useful training is my meaningful way to
-                be a part of the creative community.am at my best, because I’ve
-                been on both sides of that equation, and getting to deliver
-                useful training is my meaningful Thanks.
+                Wow, I’ve learnt so much and it has already changed what and how
+                I do things. I can not wait to start the next course.
+              </p>
+            </Row>
+            <Row>
+              <Col md="3">
+                <Image src="./img_from_xd/image 75.png"></Image>
+              </Col>
+              <Col md="9">
+                <h5>Wynton McCurdy</h5>
+                <h6>16 courses, 10 reviews</h6>
+              </Col>
+            </Row>
+            <Row>
+              <p>
+                Wow, I’ve learnt so much and it has already changed what and how
+                I do things. I can not wait to start the next course.
               </p>
             </Row>
           </Container>

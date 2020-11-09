@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import {FaSearch, FaShoppingCart, FaComment} from 'react-icons/all';
 import React, {useContext} from 'react';
 import './homepage/App.css';

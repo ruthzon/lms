@@ -59,7 +59,7 @@ hr {
 .text-center {
   text-align: center;
 }
-.error{
+.error {
   color: brown;
 }
 @media only screen and (max-width: 812px) {
@@ -69,8 +69,7 @@ hr {
     flex: 0 0 100%;
     padding: 40px;
   }
-  .login
-  h1{
+  .login h1 {
     font: normal normal normal 40px/60px Poppins;
   }
 }

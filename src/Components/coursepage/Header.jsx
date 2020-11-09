@@ -19,7 +19,7 @@ function Header(props) {
         <div className="content">
           {user !== null && props.data.user_id === user.uid && (
             <p className="text-own">
-              your own course - you may edit it{' '}
+              your own course - you may edit it
               <a href={'/editcourse/' + props.data.id}> here</a>
             </p>
           )}

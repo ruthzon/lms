@@ -1,5 +1,5 @@
 import {FaRegStar, FaRegEye, FaRegPlayCircle} from 'react-icons/all';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React, {useContext} from 'react';
 import {connect} from 'react-redux';
 import {Card, Container, Row, Col} from 'react-bootstrap';

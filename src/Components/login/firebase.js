@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from 'history';
 
 const browserHistory = createBrowserHistory();
 
@@ -22,8 +22,11 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 
-export const signInWithGoogle =  () => {
-    auth.signInWithPopup(provider).then();
+export const signInWithGoogle = () => {
+    auth.signInWithPopup(provider).then(() => { 
+        const user=generateUserDocument();
+        nav(user.displayName);
+     });
     // nav();
 };
 
@@ -33,7 +36,7 @@ export const generateUserDocument = async (user, additionalData) => {
     const userRef = firestore.doc(`users/${user.uid}`);
     const snapshot = await userRef.get();
     if (!snapshot.exists) {
-        const { email, displayName, photoURL,uid } = user;
+        const { email, displayName, photoURL, uid } = user;
         try {
             await userRef.set({
                 displayName,
@@ -60,7 +63,7 @@ const getUserDocument = async uid => {
         console.error("Error fetching user", error);
     }
 };
-const nav = () => {
-    browserHistory.replace('/');
+const nav = (displayName) => {
+    browserHistory.replace('/'+{displayName});
     window.location.reload();
-  };
+};

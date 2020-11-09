@@ -1,5 +1,5 @@
 import {FaArrowRight, FaArrowLeft} from 'react-icons/all';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from 'react';
 import {Card, CardDeck, Form, Carousel} from 'react-bootstrap';
 import 'react-multi-carousel/lib/styles.css';

@@ -1,5 +1,5 @@
 import { FaSearch} from 'react-icons/all';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {
   Container,

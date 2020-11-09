@@ -197,8 +197,7 @@ h3 {
 .belive img {
   width: inherit;
 }
-.header
-.text-own{
+.header .text-own {
   top: 75px;
 }
 .dropdown-toggle.btn:focus,
@@ -244,6 +243,15 @@ h3 {
 .align-right {
   text-align: right;
 }
+.reviews {
+  text-align: left;
+  font: normal normal normal 16px/25px Poppins;
+  letter-spacing: 0.32px;
+  color: #5f5982;
+  background: #fef0ef 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  padding: 15px;
+}
 .instructor {
   text-align: left;
   font: normal normal normal 16px/25px Poppins;
@@ -254,8 +262,9 @@ h3 {
   padding: 15px;
   display: flex;
 }
+.reviews img,
 .instructor img {
-  width: 100%;
+  width: fit-content;
 }
 .instructor h3 {
   text-align: left;
@@ -267,6 +276,11 @@ h3 {
 .instructor h4,
 .instructor .icons {
   margin: 10px 0;
+}
+.reviews p {
+  font: normal normal normal 16px/30px Poppins;
+  letter-spacing: 0.32px;
+  color: #5f5982;
 }
 .icons {
   font-size: smaller;
@@ -333,8 +347,7 @@ h3 {
   .buy-course {
     margin-top: 0;
   }
-  .curriculum
-  .list-group {
+  .curriculum .list-group {
     flex-direction: inherit;
   }
   .list-group-item .btn-choose {

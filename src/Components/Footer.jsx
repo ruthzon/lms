@@ -1,5 +1,5 @@
 import {FaGoogle, FaTwitter, FaLinkedin, FaFacebook} from 'react-icons/all';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import './homepage/App.css';

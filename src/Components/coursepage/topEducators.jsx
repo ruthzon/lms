@@ -2,7 +2,7 @@ import {
   FaArrowLeft,
   FaArrowRight,
 } from 'react-icons/all';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import {CourseCard, FirstRowCourse, SecondRowCourse} from './homepage/Courses';
 import React, {Component} from 'react';
 import {

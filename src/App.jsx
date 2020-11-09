@@ -1,5 +1,5 @@
 // import 'semantic-ui-css/semantic.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './Components/courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import 'react-native-gesture-handler';
 import React from 'react';
 import './Components/homepage/App.css';
@@ -23,11 +23,12 @@ import HomePage from './Components/homepage/HomePage';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import ViewCoursePage from './Components/coursepage/ViewCoursePage';
 import BuyCoursePage from './Components/coursepage/BuyCoursePage';
-import EditCoursePage from './Components/newcourse/EditCoursePage';
+import EditCoursePage from './Components/courseConfig/EditCoursePage';
 import Login from './Components/login/login';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import Register from './Components/login/register';
+import AddCoursePage from './Components/courseConfig/AddCoursePage';
 
 // import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
@@ -57,15 +58,18 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
+          <Route path="/:name/addcourse">
+            <AddCoursePage />
+          </Route>
           <Route path="/buycourse/:id">
             <BuyCoursePage />
           </Route>
           <Route path="/viewcourse/:id">
             <ViewCoursePage />
           </Route>
-          <Route path="/editcourse/:id">
+          {/* <Route path="/editcourse/:id">
             <EditCoursePage />
-          </Route>
+          </Route> */}
           <Route exact path="/">
             <HomePage />
           </Route>

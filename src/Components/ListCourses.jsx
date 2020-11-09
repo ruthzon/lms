@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {connect} from 'react-redux';
 import './homepage/App.css';
