@@ -1,13 +1,22 @@
 import produce from 'immer';
-import {Course} from '../../classes';
-import {Courses} from '../../data';
+import { Course } from '../classes';
+import { Courses, ExCourse } from '../data';
 import createReducer from './ReducerUtils';
 
+
 const initialState = {
-  course: Courses[0]
+  course: ExCourse
 };
 
 const course = {
+  initialById(state, action) {
+    debugger;
+    console.log(action.payload);    
+    if (action.payload == '0')
+      state.course = ExCourse;
+    else
+      state.course=Courses[action.payload - 1]
+  },
   setName(state, action) {
     state.course.name = action.payload;
   },
@@ -40,6 +49,9 @@ const course = {
   },
   setLanguage(state, action) {
     state.course.language = action.payload;
+  },
+  setDescription(state, action) {
+    state.course.description = action.payload;
   },
 };
 

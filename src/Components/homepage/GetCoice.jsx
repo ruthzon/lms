@@ -42,8 +42,8 @@ function GetChoice(props) {
   );
 }
 
-function WorldSelectionCourse(props) {
-  const {course, setName, setSubtitle, setImage} = props;
+function WorldSelectionCourse() {
+  // const {course, setName, setSubtitle, setImage} = props;
 
   const prev = (
     <button onClick="dispatchDiscreteEvent" className="carousel-left">
@@ -79,12 +79,12 @@ function WorldSelectionCourse(props) {
       >
         <Carousel.Item>
           <CardDeck>
-            <ListCourses data={props.data} i={0} />
+            <ListCourses i={0} />
           </CardDeck>
         </Carousel.Item>
         <Carousel.Item>
           <CardDeck>
-            <ListCourses data={props.data} i={3}/>
+            <ListCourses i={3}/>
           </CardDeck>
         </Carousel.Item>
       </Carousel>

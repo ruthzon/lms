@@ -16,7 +16,7 @@ import {
   // Students as tst,
   Partners as prt,
   Learnings as lrn,
-} from '../../data.js';
+} from '../../Store/data.js';
 
 function HomePage() {
   return (
@@ -25,9 +25,9 @@ function HomePage() {
 
       <Header />
       <Categories data={ctgs} />
-      <GetChoice data={crs} />
+      <GetChoice />
       <LearningPlatform data={lrn} />
-      <WorldSelectionCourse data={crs} />
+      <WorldSelectionCourse />
       <CTA />
       <Testimoinal />
       {/* <Testimoinal data={tst} /> */}

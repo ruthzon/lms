@@ -5,40 +5,36 @@ class Overview extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React',
+      // course: this.props.data,
     };
   }
 
   render() {
+    let data = this.props.data.description;
+    // console.log(this.props.data.description);
+    // console.log(JSON.parse(this.props.data.description));
+    console.log(data);
     return (
       <>
-        
-              <div className="overview">
-                <h5>Course Description</h5>
-                <h6>
-                  See-through delicate embroidered organza blue lining luxury
-                  acetate-mix stretch pleat detailing. Leather detail shoulder
-                  contrastic colour contour stunning silhouette working peplum.
-                  Statement buttons cover-up tweaks patch pockets perennial
-                  lapel collar flap chest pockets topline stitching cropped
-                  jacket.
-                </h6>
-                <h5>Certification</h5>
-                <h6>
-                  Effortless comfortable full leather lining eye-catching unique
-                  detail to the toe low ‘cut-away’ sides clean and sleek.
-                  Polished finish elegant court shoe work duty stretchy
-                  slingback strap mid kitten heel this ladylike design slingback
-                  strap mid kitten heel this ladylike design.
-                </h6>
-                <h5>Who this course is for</h5>
-                <h6>
-                  Anyone interested in learning about business (only practical
-                  concepts that you can use and no boring theory + we won’t
-                  cover business topics that are common sense
-                </h6>
-              </div>
-
+        <div className="overview">
+          {/* {this.props.data.description.Certification} */}
+          {/* {data}
+          {data.map((item, key) => {
+            return (
+              <>
+                <h5>{key}</h5>
+                <h6>{item}</h6>
+                <a>fads</a>
+              </>
+            );
+          })} */}
+          <h5>Course Description</h5>
+          <h6>{data['Course Description']}</h6>
+          <h5>Certification</h5>
+          <h6>{data.Certification}</h6>
+          <h5>Who this course is for</h5>
+          <h6>{data['Who this course is for']}</h6>
+        </div>
       </>
     );
   }

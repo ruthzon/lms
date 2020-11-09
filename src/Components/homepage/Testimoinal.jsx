@@ -38,9 +38,9 @@ class Testimoinal extends Component {
             <Carousel.Item>
               <CardDeck>
                 {/* <RowTests props={this.state.arr} /> */}
-                {this.state.arr.map((item) => {
+                {this.state.arr.map((item, key) => {
                   return (
-                    <Card className="test-card">
+                    <Card key={key} className="test-card">
                       <Card.Body>
                         <Card.Title>
                           <img src={item.image} alt="Student"></img>

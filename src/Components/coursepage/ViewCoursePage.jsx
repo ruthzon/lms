@@ -13,7 +13,7 @@ import BuyCourse from './buyCourseCard';
 import MoreCourses from './moreCourses';
 import {
   Courses as crs,
-} from '../../data.js';
+} from '../../Store/data.js';
 import Belive from './belive';
 import Video from './video';
 import TopEducators from './topEducators';

@@ -13,6 +13,7 @@ class Description extends Component {
     this.state = {
       name: 'React',
       choose: 1,
+      // course: this.props.data
     };
     this.chooseComponent = this.chooseComponent.bind(this);
   }
@@ -48,26 +49,26 @@ class Description extends Component {
       <div className="description content">
 
               <div>
-                <button className={this.state.choose==1?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose1')}>
+                <button className={this.state.choose===1?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose1')}>
                   Overview
                 </button>
-                <button className={this.state.choose==2?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose2')}>
+                <button className={this.state.choose===2?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose2')}>
                   Curriculum
                 </button>
                 
-                <button className={this.state.choose==3?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose3')}>
+                <button className={this.state.choose===3?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose3')}>
                   Instructor
                 </button>
                 
-                <button className={this.state.choose==4?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose4')}>
+                <button className={this.state.choose===4?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose4')}>
                   Reviews
                 </button>
               </div>
               <br />
-              {choose == 1 && <Overview />}
-              {choose == 2 && <Curriculum />}
-              {choose == 3 && <Instructor />}
-              {choose == 4 && <Reviews />}
+              {choose === 1 && <Overview data={this.props.data}/>}
+              {choose === 2 && <Curriculum />}
+              {choose === 3 && <Instructor />}
+              {choose === 4 && <Reviews />}
 
               <br />
       </div>

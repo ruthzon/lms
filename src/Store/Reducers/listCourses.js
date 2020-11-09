@@ -1,23 +1,45 @@
 import produce from 'immer';
-import {Course} from '../../classes';
-import {Courses} from '../../data';
+import { actions } from '../actions';
+import { Course } from '../classes';
+import { Courses } from '../data';
+import store from '../Store';
 import createReducer from './ReducerUtils';
+// debugger;
+// let url = 'http://localhost:8000/courses/';
+// fetch(url)
+//   // .then((res) => res.json())
+//   .then(function (data) {
+//     console.log(data.courses)
+//     store.dispatch(actions.initialCourse(data.courses));
+//   })
+//   //   .then((data) => {
+//   //     console.log(data);
+//   //     // this.setState({courses: data.courses});
+//   //     return{
+//   //       courses: data.Courses
+//   //     } })
+//   .catch((error) => console.log(error));
 
 const initialState = {
   courses: Courses,
+
 };
 
+
 const courses = {
+  initialCourse(state, action) {
+    state.courses = action.payload;
+  },
   addCourse(state, action) {
     state.courses = action.payload;
   },
-  removeCourse(state,action){
-    state.Courses=action.payload;
+  removeCourse(state, action) {
+    state.Courses = action.payload;
   }
 };
 
 export default produce(
-  (state, action) => createReducer(state, action, courses),
+  (state, action) => { createReducer(state, action, courses) },
   initialState
 );
 

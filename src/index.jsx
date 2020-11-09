@@ -1,25 +1,24 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App.jsx';
 import * as serviceWorker from './Components/homepage/serviceWorker';
 import {Provider} from 'react-redux';
-import {createStore, compose} from 'redux';
+// import {createStore, compose} from 'redux';
 // import ReducerUtils from './Store/Reducers/ReducerUtils';
-import store from './Store/Store'
+import store from './Store/Store';
 import UserProvider from './Components/login/userProvider';
 
 // serviceWorker.unregister();
 
 ReactDOM.render(
   <Provider store={store}>
-<UserProvider>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  </UserProvider>
- </Provider>,
+    <UserProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </UserProvider>
+  </Provider>,
 
   document.getElementById('root')
 );

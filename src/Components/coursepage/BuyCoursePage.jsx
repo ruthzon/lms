@@ -29,7 +29,7 @@ import {
   // Students as tst,
   // Partners as prt,
   // Learnings as lrn,
-} from '../../data.js';
+} from '../../Store/data.js';
 import Belive from './belive';
 import TopEducators from './topEducators';
 
@@ -46,7 +46,7 @@ function BuyCoursePage() {
         <BuyCourse data={course} />
         <Header data={course} />
         <Description data={course} />
-        <MoreCourses data={crs} />
+        <MoreCourses />
         <Belive />
         <TopEducators />
       </div>

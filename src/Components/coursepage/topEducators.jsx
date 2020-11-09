@@ -55,7 +55,8 @@ class TopEducators extends Component {
   };
   render() {
     const prev = (
-      <button onClick="dispatchDiscreteEvent" className="carousel-left">
+      // <button onClick={dispatchDiscreteEvent} className="carousel-left">
+      <button className="carousel-left">
         <FaArrowLeft />
       </button>
     );
@@ -71,7 +72,7 @@ class TopEducators extends Component {
           <h3>Top Education offers and deals are listed here</h3>
         </div>
         <Carousel
-          autoPlay="false"
+          autoPlay={false}
           nextIcon={next}
           prevIcon={prev}
           data-interval="false"

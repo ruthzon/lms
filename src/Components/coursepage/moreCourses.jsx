@@ -14,7 +14,7 @@ import {
 } from 'react-bootstrap';
 import '../homepage/App.css';
 
-function MoreCourses(props) {
+function MoreCourses() {
   const prev = (
     <button onClick="dispatchDiscreteEvent" className="carousel-left">
       <FaArrowLeft />
@@ -41,15 +41,15 @@ function MoreCourses(props) {
         </Form>
         <h3>More courses you might like</h3>
       </div>
-      <Carousel autoPlay="false" nextIcon={next} prevIcon={prev} data-interval="false">
+      <Carousel autoPlay={false} nextIcon={next} prevIcon={prev} data-interval="false">
         <Carousel.Item>
           <CardDeck>
-            <ListCourses data={props.data} i={0}/>
+            <ListCourses i={0}/>
           </CardDeck>
         </Carousel.Item>
         <Carousel.Item>
           <CardDeck>
-            <ListCourses data={props.data} i={3}/>
+            <ListCourses i={3}/>
           </CardDeck>
         </Carousel.Item>
       </Carousel>

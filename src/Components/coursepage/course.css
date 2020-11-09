@@ -197,6 +197,10 @@ h3 {
 .belive img {
   width: inherit;
 }
+.header
+.text-own{
+  top: 75px;
+}
 .dropdown-toggle.btn:focus,
 .dropdown-toggle.btn:focus-within,
 .dropdown-toggle.btn:active {

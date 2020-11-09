@@ -9,7 +9,7 @@ function Footer() {
       <Container>
         <Row
           text="center"
-          class="text-center text-xs-center text-sm-left text-md-right"
+          className="text-center text-xs-center text-sm-left text-md-right"
         >
           <Col xs="12" sm="3" md="3">
             <h5>Company</h5>
@@ -33,7 +33,7 @@ function Footer() {
           </Col>
           <Col xs="12" sm="3" md="3">
             <h5>Community</h5>
-            <ul class="list-unstyled quick-links">
+            <ul className="list-unstyled quick-links">
               <li>
                 <a href="">Go Premium</a>
               </li>
@@ -53,7 +53,7 @@ function Footer() {
           </Col>
           <Col xs="12" sm="3" md="3">
             <h5>Teaching</h5>
-            <ul class="list-unstyled quick-links">
+            <ul className="list-unstyled quick-links">
               <li>
                 <a href="">Become a</a>
               </li>
@@ -75,7 +75,7 @@ function Footer() {
           </Col>
           <Col xs="12" sm="3" md="3">
             <h5>Support</h5>
-            <ul class="list-unstyled quick-links">
+            <ul className="list-unstyled quick-links">
               <li>
                 <a href="">Support</a>
               </li>
@@ -96,27 +96,27 @@ function Footer() {
             </ul>
           </Col>
         </Row>
-        <Row class="text-center text-xs-center text-sm-left text-md-left">
+        <Row className="text-center text-xs-center text-sm-left text-md-left">
           <Col xs="12" sm="12" md="12" mt="2">
             <div className="all-right">
               © 2015-2020 Skillfy Education Private Limited. All rights reserved
-              <ul class="list-unstyled list-inline social text-center">
-                <li class="list-inline-item">
+              <ul className="list-unstyled list-inline social text-center">
+                <li className="list-inline-item">
                   <a href="">
                     <FaFacebook />{' '}
                   </a>
                 </li>
-                <li class="list-inline-item">
+                <li className="list-inline-item">
                   <a href="">
                     <FaTwitter />
                   </a>
                 </li>
-                <li class="list-inline-item">
+                <li className="list-inline-item">
                   <a href="">
                     <FaGoogle />
                   </a>
                 </li>
-                <li class="list-inline-item">
+                <li className="list-inline-item">
                   <a href="">
                     <FaLinkedin />
                   </a>
