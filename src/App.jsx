@@ -1,9 +1,9 @@
 // import 'semantic-ui-css/semantic.min.css';
-import './Components/courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import 'react-native-gesture-handler';
 import React from 'react';
-import './Components/homepage/App.css';
-import HomePage from './Components/homepage/HomePage';
+import './ViewComponents/homepage/App.css';
+import HomePage from './ViewComponents/homepage/HomePage';
 // import {GetChoice, WorldSelectionCourse} from './Courses.jsx';
 // import Navigation from '../navbar.jsx';
 // import Header from './Header.jsx';
@@ -21,14 +21,16 @@ import HomePage from './Components/homepage/HomePage';
 //   Learnings as lrn,
 // } from './data.js';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import ViewCoursePage from './Components/coursepage/ViewCoursePage';
-import BuyCoursePage from './Components/coursepage/BuyCoursePage';
-import EditCoursePage from './Components/courseConfig/EditCoursePage';
-import Login from './Components/login/login';
+import ViewCoursePage from './ViewComponents/coursepage/LessonPage';
+// import CoursePage from './ViewComponents/CoursePage';
+// import LessonPage from './courseConfig/LessonPage';
+import Login from './login/login';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
-import Register from './Components/login/register';
-import AddCoursePage from './Components/courseConfig/AddCoursePage';
+import Register from './login/register';
+import AddCoursePage from './ConfigComponents/AddCoursePage';
+import LessonPage from './ViewComponents/coursepage/LessonPage';
+import RouteConfig from './ConfigComponents/RouteConfig'
 
 // import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
@@ -58,18 +60,21 @@ function App() {
           <Route path="/register">
             <Register />
           </Route>
-          <Route path="/:name/addcourse">
+          <Route path="/:name">
+              <RouteConfig />
+          </Route>
+          {/* <Route path="/:name/addcourse">
             <AddCoursePage />
-          </Route>
-          <Route path="/buycourse/:id">
-            <BuyCoursePage />
-          </Route>
-          <Route path="/viewcourse/:id">
-            <ViewCoursePage />
-          </Route>
-          {/* <Route path="/editcourse/:id">
-            <EditCoursePage />
           </Route> */}
+          {/* <Route path="/:course/">
+            <CoursePage />
+          </Route>
+          <Route path="/:course/:lesson/">
+            <LessonPage />
+          </Route>
+         <Route path="course/lesson/:id">
+            <EditCoursePage />
+          </Route> */} 
           <Route exact path="/">
             <HomePage />
           </Route>

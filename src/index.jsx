@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App.jsx';
-import * as serviceWorker from './Components/homepage/serviceWorker';
+import * as serviceWorker from './ViewComponents/homepage/serviceWorker';
 import {Provider} from 'react-redux';
 // import {createStore, compose} from 'redux';
 // import ReducerUtils from './Store/Reducers/ReducerUtils';
 import store from './Store/Store';
-import UserProvider from './Components/login/userProvider';
+import UserProvider from './login/userProvider';
 
 // serviceWorker.unregister();
 
