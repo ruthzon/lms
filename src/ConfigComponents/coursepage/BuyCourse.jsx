@@ -1,19 +1,34 @@
 import React, {Component} from 'react';
 import './course.css';
 import {Card, Col, Button, Image, ListGroup} from 'react-bootstrap';
-class BuyCourse extends Component {
-  render() {
-    let course = this.props.data;
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
+
+const mapDispatchToProps = (dispatch) => ({
+  initialCourse:(course) => dispatch(actions.initialCourse(course))
+})
+
+function mapStateToProps(state) {
+  return {
+    course: state.coursesReducer.course,
+  };
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(function BuyCourse (props) {
+  
+    let course = props.data;
 
     return (
       <div className="buy-course shadow ">
         <Card style={{width: '18rem'}}>
-          {!this.props.view && <Card.Img variant="top" src={course.image} />}
+          {!props.view && <Card.Img variant="top" src={course.image} />}
           <Card.Body>
             <Card.Title>{course.price}</Card.Title>
             <Card.Text>
               <Image src="./img_from_xd/orange clock.svg"></Image>
-              {/* {this.props.course} */}
+              {/* {props.course} */}
               11 Hour left at this price
             </Card.Text>
             <Button variant="primary" block>
@@ -60,7 +75,7 @@ class BuyCourse extends Component {
         </Card>
       </div>
     );
-  }
-}
+  
+});
 
-export default BuyCourse;
+// export default BuyCourse;

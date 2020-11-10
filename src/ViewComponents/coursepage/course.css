@@ -208,6 +208,18 @@ h3 {
   border-color: black;
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
+.btn-danger {
+  color: #fff;
+  background-color: #f56962;
+  border-color: #f56962;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font: normal normal medium 18px/24px Poppins;
+  font-size: 1.25rem;
+  letter-spacing: 0.54px;
+  color: #ffffff;
+  text-align: center;
+}
 .btn-light {
   background-color: transparent;
   border: none;

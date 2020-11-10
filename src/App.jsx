@@ -20,7 +20,7 @@ import HomePage from './ViewComponents/homepage/HomePage';
 //   Partners as prt,
 //   Learnings as lrn,
 // } from './data.js';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
 import ViewCoursePage from './ViewComponents/coursepage/LessonPage';
 // import CoursePage from './ViewComponents/CoursePage';
 // import LessonPage from './courseConfig/LessonPage';
@@ -76,7 +76,8 @@ function App() {
             <EditCoursePage />
           </Route> */} 
           <Route exact path="/">
-            <HomePage />
+            <Redirect to="/login"/>
+            {/* <HomePage /> */}
           </Route>
         </Switch>
       </Router>

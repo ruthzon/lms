@@ -17,42 +17,63 @@ import {
   useParams,
 } from 'react-router-dom';
 import Footer from '../../ViewComponents/Footer';
-import Navigation from '../navbar';
+import Navigation from '../../navbar';
 import Header from './Header';
 import './course.css';
 import Description from './description/description';
-import BuyCourse from './buyCourseCard';
+import BuyCourse from './BuyCourse';
 import MoreCourses from './moreCourses';
 import {
   // Categories as ctgs,
   Courses as crs,
+  ExCourse,
   // Students as tst,
   // Partners as prt,
   // Learnings as lrn,
 } from '../../Store/data.js';
 import Belive from './belive';
 import TopEducators from './topEducators';
+import { actions } from '../../Store/actions';
+import { connect } from 'react-redux';
+const mapDispatchToProps = (dispatch) => ({
+  initialCourse:(course) => dispatch(actions.initialCourse(course))
+})
 
-function CoursePage() {
+function mapStateToProps(state) {
+  return {
+    courses: state.listCoursesReducer.courses,
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(function CoursePage(props) {
   // let {data }= useParams();
   let params = useParams();
-  let course = crs.find((d) => (d.id = params.id));
+  let course = ExCourse;
+
+  if (params.course) 
+  {
+    debugger;
+    console.log(params.course);
+    course = props.courses.find((c) => (c.name = params.course));
+  }
+  props.initialCourse(course)
+  // console.log(params.course);
+  // console.log(course);
+  // console.log(props.courses);
   // const data=JSON.parse(params.data.toString())
   return (
-    <Router>
-      <Navigation />
+    <>
       <div className="coursepage">
-        {/* <BuyCourse course={data}/> */}
-        <BuyCourse data={course} />
-        <Header data={course} />
-        <Description data={course} />
-        <MoreCourses />
-        <Belive />
-        <TopEducators />
+        {course.name}
+        <BuyCourse />
+        {/* <Header /> */}
+        {/* <Description /> */}
+        {/* <MoreCourses /> */}
+        {/* <Belive /> */}
+        {/* <TopEducators /> */}
       </div>
       <Footer />
-    </Router>
+      </>
   );
-}
+})
 
-export default CoursePage;
+// export default CoursePage;

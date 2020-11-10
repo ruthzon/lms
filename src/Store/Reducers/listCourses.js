@@ -27,13 +27,16 @@ const initialState = {
 
 
 const courses = {
-  initialCourse(state, action) {
+  initialCourses(state, action) {
     state.courses = action.payload;
   },
   addCourse(state, action) {
     state.courses = action.payload;
   },
   removeCourse(state, action) {
+    state.Courses = action.payload;
+  },
+  updateCourse(state, action) {
     state.Courses = action.payload;
   }
 };

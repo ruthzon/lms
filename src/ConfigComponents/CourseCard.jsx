@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(function EditCourseCard(props) {
+)(function CourseCard(props) {
   const {id, course, initialById, setName, setSubtitle, setImage} = props;
   initialById(id);
   const user = useContext(UserContext);

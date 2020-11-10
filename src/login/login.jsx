@@ -1,3 +1,4 @@
+import './login.css';
 import React, {useContext, useState} from 'react';
 import {
   Button,
@@ -8,13 +9,13 @@ import {
   Image,
   InputGroup,
 } from 'react-bootstrap';
-import './login.css';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import firebase from '@firebase/app';
 import 'firebase/auth';
 import {auth, signInWithGoogle,nav} from './firebase';
 import { UserContext } from './userProvider';
+
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
@@ -164,7 +165,7 @@ const Login = () => {
                   <Form.Check type="checkbox" label="Remember me" />
                 </Form.Group>
                 <Button
-                  variant="primary"
+                  variant="danger"
                   type="submit"
                   //  onClick={this.nav}
                   onClick={(event) => {

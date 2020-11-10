@@ -9,7 +9,7 @@ import Navigation from '../../navbar';
 import Header from './Header';
 import './course.css';
 import Description from './description/description';
-import BuyCourse from './buyCourseCard';
+import BuyCourse from './BuyCourse';
 import MoreCourses from './moreCourses';
 import {
   Courses as crs,

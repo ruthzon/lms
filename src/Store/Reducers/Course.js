@@ -9,13 +9,16 @@ const initialState = {
 };
 
 const course = {
-  initialById(state, action) {
-    debugger;
-    console.log(action.payload);    
-    if (action.payload == '0')
-      state.course = ExCourse;
-    else
-      state.course=Courses[action.payload - 1]
+  // initialById(state, action) {
+  //   debugger;
+  //   console.log(action.payload);    
+  //   if (action.payload == '0')
+  //     state.course = ExCourse;
+  //   else
+  //     state.course=Courses[action.payload - 1]
+  // },
+  initialCourse(state, action) {
+    state.course = action.payload;
   },
   setName(state, action) {
     state.course.name = action.payload;
