@@ -8,7 +8,7 @@ const initialState = {
   course: ExCourse
 };
 
-const course = {
+const mycourse = {
   // initialById(state, action) {
   //   debugger;
   //   console.log(action.payload);    
@@ -17,11 +17,12 @@ const course = {
   //   else
   //     state.course=Courses[action.payload - 1]
   // },
-  initialCourse(state, action) {
-    state.course = action.payload;
-  },
+  // initialCourse(state, action) {
+  //   state.course = action.payload;
+  // },
   setName(state, action) {
     state.course.name = action.payload;
+    debugger;
   },
   setSubtitle(state, action) {
     state.course.subtitle = action.payload;
@@ -59,6 +60,6 @@ const course = {
 };
 
 export default produce(
-  (state, action) => createReducer(state, action, course),
+  (state, action) => createReducer(state, action, mycourse),
   initialState
 );

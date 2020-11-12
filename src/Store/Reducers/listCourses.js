@@ -26,10 +26,10 @@ const initialState = {
 };
 
 
-const courses = {
-  initialCourses(state, action) {
-    state.courses = action.payload;
-  },
+const mycourses = {
+  // initialCourses(state, action) {
+  //   state.courses = action.payload;
+  // },
   addCourse(state, action) {
     state.courses = action.payload;
   },
@@ -42,7 +42,7 @@ const courses = {
 };
 
 export default produce(
-  (state, action) => { createReducer(state, action, courses) },
+  (state, action) => { createReducer(state, action, mycourses) },
   initialState
 );
 

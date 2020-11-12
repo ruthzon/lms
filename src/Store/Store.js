@@ -4,13 +4,14 @@ import courseReducer from './Reducers/Course'
 import listCoursesReducer from './Reducers/listCourses'
 import { add$ToCompanyName } from './MiddleWares/crud';
 import { actions } from './actions';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const enhancers = compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-const reducer = combineReducers({ listCoursesReducer, courseReducer });
+const reducer = combineReducers({  courseReducer,listCoursesReducer });
 
-const store = createStore(reducer);
+const store = createStore(reducer,composeWithDevTools());
 
 // const store = createStore(reducer,applyMiddleware(add$ToCompanyName));
 window.store = store;

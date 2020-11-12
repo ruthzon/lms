@@ -10,6 +10,9 @@
     border-radius: 80px 0 0 0;
     z-index: 2;
     width: 250px!important;
+    position: fixed;
+    right: 0;
+    top: 30px;
 }
 .container{
     width: 100%;
@@ -18,15 +21,25 @@
     margin-right: auto;
     margin-left: auto;
 }
-.head_config {
+.header-config {
+    position: fixed;
     background: #fff 0 0 no-repeat padding-box;
     opacity: 1;
     box-shadow: 0 3px 6px rgba(0,0,0,.16);
-    z-index: 1;
+    z-index: 2;
+    width: 100%;
 }
 .align-items-center {
     align-items: center!important;
 }
 .d-flex {
     display: flex!important;
+}
+.content-config{
+    width: max-content;
+}
+input{
+    border: none;
+    background-color: transparent;
+    width: -webkit-fill-available;
 }

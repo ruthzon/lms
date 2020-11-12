@@ -23,7 +23,7 @@ export default connect(
   mapDispatchToProps
 )(function RouteConfig(props) {
   let match = useRouteMatch();
-  props.initialCourse(Courses);
+  // props.initialCourse(Courses);
   return (
     <div>
       {/* <Link to={`${match.url}/components`}>Components</Link> */}

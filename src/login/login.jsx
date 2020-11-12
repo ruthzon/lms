@@ -19,19 +19,19 @@ import { UserContext } from './userProvider';
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
-var firebaseConfig = {
-  apiKey: 'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
-  authDomain: 'lms-leader.firebaseapp.com',
-  databaseURL: 'https://lms-leader.firebaseio.com',
-  projectId: 'lms-leader',
-  storageBucket: 'lms-leader.appspot.com',
-  messagingSenderId: '451375116419',
-  appId: '1:451375116419:web:a631ec62e2e0a0304e6bb6',
-  measurementId: 'G-2DZBMG06NZ',
-};
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+// var firebaseConfig = {
+//   apiKey: 'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
+//   authDomain: 'lms-leader.firebaseapp.com',
+//   databaseURL: 'https://lms-leader.firebaseio.com',
+//   projectId: 'lms-leader',
+//   storageBucket: 'lms-leader.appspot.com',
+//   messagingSenderId: '451375116419',
+//   appId: '1:451375116419:web:a631ec62e2e0a0304e6bb6',
+//   measurementId: 'G-2DZBMG06NZ',
+// };
+// if (!firebase.apps.length) {
+//   firebase.initializeApp(firebaseConfig);
+// }
 
 // firebase.initializeApp(firebaseConfig);
 

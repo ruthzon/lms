@@ -33,29 +33,32 @@ import {
 } from '../../Store/data.js';
 import Belive from './belive';
 import TopEducators from './topEducators';
-import { actions } from '../../Store/actions';
-import { connect } from 'react-redux';
+import {actions} from '../../Store/actions';
+import {connect} from 'react-redux';
+import CourseConfig from './CourseConfig';
+import HeaderConfig from '../HeaderConfig';
 const mapDispatchToProps = (dispatch) => ({
-  initialCourse:(course) => dispatch(actions.initialCourse(course))
-})
+  initialCourse: (course) => dispatch(actions.initialCourse(course)),
+});
 
 function mapStateToProps(state) {
   return {
     courses: state.listCoursesReducer.courses,
   };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(function CoursePage(props) {
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(function CoursePage(props) {
   // let {data }= useParams();
   let params = useParams();
   let course = ExCourse;
 
-  if (params.course) 
-  {
-    debugger;
+  if (params.course) {
     console.log(params.course);
     course = props.courses.find((c) => (c.name = params.course));
   }
-  props.initialCourse(course)
+  // props.initialCourse(course);
   // console.log(params.course);
   // console.log(course);
   // console.log(props.courses);
@@ -63,17 +66,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(function CoursePage(
   return (
     <>
       <div className="coursepage">
-        {course.name}
-        <BuyCourse />
-        {/* <Header /> */}
-        {/* <Description /> */}
-        {/* <MoreCourses /> */}
-        {/* <Belive /> */}
-        {/* <TopEducators /> */}
+        <HeaderConfig />
+        <CourseConfig />
+        <div className="content-config">
+          {/* <BuyCourse /> */}
+          <Header />
+          {/* <Description /> */}
+          {/* <MoreCourses /> */}
+          {/* <Belive /> */}
+          {/* <TopEducators /> */}
+          {/* <Footer /> */}
+        </div>
       </div>
-      <Footer />
-      </>
+    </>
   );
-})
+});
 
 // export default CoursePage;
