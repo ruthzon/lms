@@ -1,6 +1,6 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import './App.css';
+import '../../ViewComponents/homepage/App.css';
 import {Card, CardDeck, Form} from 'react-bootstrap';
 import { Component } from 'react';
 

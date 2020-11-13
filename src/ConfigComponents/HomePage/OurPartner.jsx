@@ -8,7 +8,7 @@ import {
   Form,
   Image
 } from 'react-bootstrap';
-import './App.css';
+import '../../ViewComponents/homepage/App.css';
 
 function OurPartner(props) {
   return (

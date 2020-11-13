@@ -3,7 +3,7 @@ import {FaArrowRight, FaArrowLeft} from 'react-icons/all';
 import React, {Component} from 'react';
 import {Card, CardDeck, Form, Carousel} from 'react-bootstrap';
 import 'react-multi-carousel/lib/styles.css';
-import './App.css';
+import '../../ViewComponents/homepage/App.css';
 
 class Testimoinal extends Component {
   state = {arr: []};

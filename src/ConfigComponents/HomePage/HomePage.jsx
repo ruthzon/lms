@@ -1,6 +1,6 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import './App.css';
+import '../../ViewComponents/homepage/App.css';
 import {GetChoice, WorldSelectionCourse} from './GetCoice.jsx';
 import Navigation from '../../navbar.jsx';
 import Header from './Header.jsx';

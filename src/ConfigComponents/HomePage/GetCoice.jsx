@@ -11,7 +11,7 @@ import {
   Carousel,
   Form
 } from 'react-bootstrap';
-import './App.css';
+import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
 
 function GetChoice(props) {

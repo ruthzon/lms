@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../course.css';
+import '../../../ViewComponents/coursepage/course.css';
 import {Image, ListGroup, Button} from 'react-bootstrap';
 
 class Curriculum extends Component {

@@ -12,7 +12,7 @@ import {
   Dropdown,
   Carousel,
 } from 'react-bootstrap';
-import '../homepage/App.css';
+import '../../ViewComponents/homepage/App.css';
 
 function MoreCourses() {
   const prev = (

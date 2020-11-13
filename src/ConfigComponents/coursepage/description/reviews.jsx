@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Container, Image, Row} from 'react-bootstrap';
-import '../course.css';
+import '../../../ViewComponents/coursepage/course.css';
 
 class Reviews extends Component {
   constructor() {

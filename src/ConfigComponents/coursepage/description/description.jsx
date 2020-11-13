@@ -5,7 +5,7 @@ import Curriculum from './curriculum';
 import Reviews from './reviews';
 import Instructor from './instructor';
 import {Button} from 'react-bootstrap';
-import '../course.css';
+import '../../../ViewComponents/coursepage/course.css';
 
 class Description extends Component {
   constructor() {

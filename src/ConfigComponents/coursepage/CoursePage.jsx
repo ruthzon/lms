@@ -19,7 +19,7 @@ import {
 import Footer from '../../ViewComponents/Footer';
 import Navigation from '../../navbar';
 import Header from './Header';
-import './course.css';
+import '../../ViewComponents/coursepage/course.css';
 import Description from './description/description';
 import BuyCourse from './BuyCourse';
 import MoreCourses from './moreCourses';
@@ -37,6 +37,7 @@ import {actions} from '../../Store/actions';
 import {connect} from 'react-redux';
 import CourseConfig from './CourseConfig';
 import HeaderConfig from '../HeaderConfig';
+import Video from '../coursepage/video';
 const mapDispatchToProps = (dispatch) => ({
   initialCourse: (course) => dispatch(actions.initialCourse(course)),
 });
@@ -71,7 +72,8 @@ export default connect(
         <div className="content-config">
           {/* <BuyCourse /> */}
           <Header />
-          {/* <Description /> */}
+          {/* <help/> */}
+          <Description />
           {/* <MoreCourses /> */}
           {/* <Belive /> */}
           {/* <TopEducators /> */}

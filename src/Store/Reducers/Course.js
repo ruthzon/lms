@@ -57,6 +57,15 @@ const mycourse = {
   setDescription(state, action) {
     state.course.description = action.payload;
   },
+  setHowIsFor(state, action) {
+    state.course.description['Certification'] = action.payload;
+  },
+  setCertification(state, action) {
+    state.course.description['Who this course is for'] = action.payload;
+  },
+  setCourseDescription(state, action) {
+    state.course.description['Course Description'] = action.payload;
+  },
 };
 
 export default produce(

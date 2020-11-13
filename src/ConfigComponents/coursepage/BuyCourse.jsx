@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './course.css';
+import '../../ViewComponents/coursepage/course.css';
 import {Card, Col, Button, Image, ListGroup} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';

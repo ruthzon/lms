@@ -8,7 +8,7 @@ import {
   InputGroup,
   FormControl,
 } from 'react-bootstrap';
-import './App.css';
+import '../../ViewComponents/homepage/App.css';
 
 function Header() {
   return (

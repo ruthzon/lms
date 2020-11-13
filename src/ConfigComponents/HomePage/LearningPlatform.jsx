@@ -1,7 +1,7 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Container, Row, Col, Image} from 'react-bootstrap';
-import './App.css';
+import '../../ViewComponents/homepage/App.css';
 
 function LearningPlatform(props) {
   return (

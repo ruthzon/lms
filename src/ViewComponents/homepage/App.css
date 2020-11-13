@@ -263,7 +263,7 @@ header img {
   max-width: 53px;
   height: 53px;
 }
-.btn-primary {
+/* .btn-primary {
   color: #5f5982;
   background-color: transparent;
   border: none;
@@ -272,7 +272,7 @@ header img {
   text-align: left;
   font: normal normal normal 18px/24px Poppins;
   letter-spacing: 0px;
-}
+} */
 .dropdown-toggle.btn:hover {
   color: black;
   background-color: transparent;

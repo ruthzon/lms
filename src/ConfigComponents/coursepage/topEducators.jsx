@@ -11,8 +11,8 @@ import {
   Image,
   Carousel,
 } from 'react-bootstrap';
-import '../homepage/App.css';
-import './course.css';
+import '../../ViewComponents/homepage/App.css';
+import '../../ViewComponents/coursepage/course.css';
 // impore './'
 class TopEducators extends Component {
   // state = {arr: []};

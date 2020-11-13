@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import './course.css';
+import '../../ViewComponents/coursepage/course.css';
 import {Row, Col, Container} from 'react-bootstrap';
 import {
   FaRegStar,
@@ -25,15 +25,16 @@ import '../configurator.css';
 //   };
 // }
 
-const mapStateToProps = (state) => ({
-  course: state.courseReducer.course
-})
+function mapStateToProps(state) {
+  return {
+    course: state.courseReducer.course,
+  };
+}
 
-const mapDispatchToProps =(dispatch)=>( {
+const mapDispatchToProps = (dispatch) => ({
   setName: (data) => dispatch(actions.setName(data)),
   setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
 });
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -52,19 +53,19 @@ export default connect(
             </p>
           )} */}
           <h1>
-            <input
+            <textarea
               value={props.course.name}
               onChange={(e) => props.setName(e.target.value)}
               type="text"
             />
-            {props.course.name}
+            {/* {props.course.name} */}
           </h1>
           <br />
           <div className={props.view ? 'header-view' : ''}>
             <h3>
               {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
-              <input
+              <textarea
                 value={props.course.subtitle}
                 onChange={(e) => props.setSubtitle(e.target.value)}
                 type="text"
@@ -80,11 +81,11 @@ export default connect(
                 <Col xs="3">
                   <FaRegEye color="#DB4500" />
                   {/* {course.views} */}
-                  Enrolled 45 students
+                  Enrolled ?? students
                 </Col>
                 <Col xs="3">
                   <FaRegClock />
-                  Duration 10 week
+                  Duration ?? weeks
                 </Col>
                 <Col xs="3">
                   <FaRegPlayCircle color="#3E9365" />

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Col, Row, Container, Image} from 'react-bootstrap';
-import './course.css';
+import '../../ViewComponents/coursepage/course.css';
 
 class Belive extends Component {
   render() {

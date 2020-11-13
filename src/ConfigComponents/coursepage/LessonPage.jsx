@@ -7,7 +7,7 @@ import {
 import Footer from '../../ViewComponents/Footer';
 import Navigation from '../../navbar';
 import Header from './Header';
-import './course.css';
+import '../../ViewComponents/coursepage/course.css';
 import Description from './description/description';
 import BuyCourse from './BuyCourse';
 import MoreCourses from './moreCourses';

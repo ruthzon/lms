@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Container, Col, Image} from 'react-bootstrap';
-import '../course.css';
+import '../../../ViewComponents/coursepage/course.css';
 import {FaRegStar, FaRegEye, FaRegPlayCircle} from 'react-icons/all';
 class Instructor extends Component {
   constructor() {

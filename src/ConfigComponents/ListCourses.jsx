@@ -1,7 +1,7 @@
 // import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {connect} from 'react-redux';
-import './homepage/App.css';
+import '../ViewComponents/homepage/App.css';
 import CourseCard from './CourseCard';
 import store from '../Store/Store';
 import { actions } from '../Store/actions';
