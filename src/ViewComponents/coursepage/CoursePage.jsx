@@ -17,7 +17,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import Footer from '../Footer';
-import Navigation from '../navbar';
+import Navigation from '../../navbar';
 import Header from './Header';
 import './course.css';
 import Description from './description/description';

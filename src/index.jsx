@@ -12,13 +12,13 @@ import UserProvider from './login/userProvider';
 // serviceWorker.unregister();
 
 ReactDOM.render(
-  <Provider store={store}>
-    <UserProvider>
-      <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      {/* <UserProvider> */}
         <App />
-      </React.StrictMode>
-    </UserProvider>
-  </Provider>,
+      {/* </UserProvider> */}
+    </Provider>
+  </React.StrictMode>,
 
   document.getElementById('root')
 );

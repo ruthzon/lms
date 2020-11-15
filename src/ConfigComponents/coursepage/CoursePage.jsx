@@ -66,12 +66,12 @@ export default connect(
   // const data=JSON.parse(params.data.toString())
   return (
     <>
-      <div className="coursepage">
+      <div className="coursepage coursepageconf">
         <HeaderConfig />
         <CourseConfig />
         <div className="content-config">
-          {/* <BuyCourse /> */}
-          <Header />
+          <Header /> 
+          <BuyCourse />
           {/* <help/> */}
           <Description />
           {/* <MoreCourses /> */}

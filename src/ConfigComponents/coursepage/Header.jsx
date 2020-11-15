@@ -32,8 +32,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setName: (data) => dispatch(actions.setName(data)),
-  setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
+  setName: (name) => dispatch(actions.setName(name)),
+  setSubtitle: (sub) => dispatch(actions.setSubtitle(sub)),
 });
 export default connect(
   mapStateToProps,
@@ -41,7 +41,7 @@ export default connect(
 )(function Header(props) {
   // const user = useContext(UserContext);
   // const {course, setName, setSubtitle} = props;
-
+  let prev=Object.assign({}, props.course)
   return (
     <>
       <div className="header">
@@ -74,23 +74,23 @@ export default connect(
             </h3>
             <Container>
               <Row>
-                <Col xs="3">
+                {props.course.show.stars&& <Col xs="3">
                   <FaRegStar color="#F3B23A" />
                   {props.course.stars}
-                </Col>
-                <Col xs="3">
+                </Col>}
+                {props.course.show.students&& <Col xs="3">
                   <FaRegEye color="#DB4500" />
                   {/* {course.views} */}
                   Enrolled ?? students
-                </Col>
-                <Col xs="3">
+                </Col>}
+                {props.course.show.weeks&&  <Col xs="3">
                   <FaRegClock />
                   Duration ?? weeks
-                </Col>
-                <Col xs="3">
+                </Col>}
+                {props.course.show.lessons&& <Col xs="3">
                   <FaRegPlayCircle color="#3E9365" />
-                  {props.course.lesion + ' '} Lessons
-                </Col>
+                  {props.course.lessons + ' '} Lessons
+                </Col>}
               </Row>
             </Container>
           </div>

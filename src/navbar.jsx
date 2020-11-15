@@ -86,7 +86,7 @@ function Navigation() {
                 Register
               </Button>
             )}
-            {user !== null && user !== undefined && (
+            {user !== null && user !== undefined && !user.displayName&&(
               <>
                 <div className="user-nav"></div>
                 <Image className="user-img" src={user.photoURL} />

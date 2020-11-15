@@ -25,6 +25,7 @@ class Overview extends Component {
 
   render() {
     let data = this.props.course.description;
+    let course=this.props.course;
     // console.log(this.props.data.description);
     // console.log(JSON.parse(this.props.data.description));
     console.log(data);
@@ -42,19 +43,19 @@ class Overview extends Component {
               </>
             );
           })} */}
-          {data['Course Description'] && (
+          {course.show['Course Description'] && (
             <>
               <h5>Course Description</h5>
               <h6><textarea onChange={(e) => this.props.setCourseDescription(e.target.value)} value={data['Course Description']}></textarea></h6>
             </>
           )}
-          {data['Certification'] && (
+          {course.show['Certification'] && (
             <>
               <h5>Certification</h5>
               <h6><textarea onChange={(e) => this.props.setCertification(e.target.value)} value={data.Certification}></textarea></h6>
             </>
           )}
-          {data['Who this course is for'] && (
+          {course.show['Who this course is for']&& (
             <>
               <h5>Who this course is for</h5>
               <h6><textarea onChange={(e) => this.props.setHowIsFor(e.target.value)} value={data['Who this course is for']}></textarea></h6>

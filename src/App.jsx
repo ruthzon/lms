@@ -31,6 +31,8 @@ import Register from './login/register';
 import AddCoursePage from './ConfigComponents/AddCoursePage';
 import LessonPage from './ViewComponents/coursepage/LessonPage';
 import RouteConfig from './ConfigComponents/RouteConfig'
+import Help from './Help';
+import CoursePage from './ViewComponents/coursepage/CoursePage';
 
 // import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
@@ -54,12 +56,18 @@ function App() {
 
       <Router>
         <Switch>
+        {/* <Route path="/help">
+            <Help />
+          </Route> */}
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/register">
             <Register />
           </Route>
+          {/* <Route path="/course">
+            <CoursePage />
+          </Route> */}
           <Route path="/:name">
               <RouteConfig />
           </Route>

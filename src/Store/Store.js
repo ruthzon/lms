@@ -6,9 +6,9 @@ import { add$ToCompanyName } from './MiddleWares/crud';
 import { actions } from './actions';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const enhancers = compose(
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+// const enhancers = compose(
+//     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// );
 const reducer = combineReducers({  courseReducer,listCoursesReducer });
 
 const store = createStore(reducer,composeWithDevTools());
