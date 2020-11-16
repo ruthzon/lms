@@ -11,6 +11,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  addCourse:(data)=>dispatch(actions.addCourse(data)),
   setName: (data) => dispatch(actions.setName(data)),
   setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
   showHowIsFor: () => dispatch(actions.showHowIsFor()),
@@ -20,24 +21,35 @@ const mapDispatchToProps = (dispatch) => ({
   showStudents: () => dispatch(actions.showStudents()),
   showWeeks: () => dispatch(actions.showWeeks()),
   showLessons: () => dispatch(actions.showLessons()),
-  showCertificate:(data)=>dispatch(actions.showCertificate(data)),
-  showAccess:(data)=>dispatch(actions.showAccess(data)),
-  showUse:(data)=>dispatch(actions.showUse(data)),
-  showLanguage:(data)=>dispatch(actions.showLanguage(data)),
-  setLinkedin:(data)=>dispatch(actions.setLinkedin(data)),
-  setInstegram:(data)=>dispatch(actions.setInstegram(data)),
-  setFacebook:(data)=>dispatch(actions.setFacebook(data)),
-  setTwitter:(data)=>dispatch(actions.setTwitter(data)),
-  setReddit:(data)=>dispatch(actions.setReddit(data)),
-  setYoutube:(data)=>dispatch(actions.setYoutube(data)),
-  setWhatsapp:(data)=>dispatch(actions.setWhatsapp(data)),
-  showLinkedin:()=>dispatch(actions.showLinkedin()),
-  showInstegram:()=>dispatch(actions.showInstegram()),
-  showFacebook:()=>dispatch(actions.showFacebook()),
-  showTwitter:()=>dispatch(actions.showTwitter()),
-  showReddit:()=>dispatch(actions.showReddit()),
-  showYoutube:()=>dispatch(actions.showYoutube()),
-  showWhatsapp:()=>dispatch(actions.showWhatsapp()),
+  showCertificate: (data) => dispatch(actions.showCertificate(data)),
+  showAccess: (data) => dispatch(actions.showAccess(data)),
+  showUse: (data) => dispatch(actions.showUse(data)),
+  showLanguage: (data) => dispatch(actions.showLanguage(data)),
+  setLinkedin: (data) => dispatch(actions.setLinkedin(data)),
+  setInstegram: (data) => dispatch(actions.setInstegram(data)),
+  setFacebook: (data) => dispatch(actions.setFacebook(data)),
+  setTwitter: (data) => dispatch(actions.setTwitter(data)),
+  setReddit: (data) => dispatch(actions.setReddit(data)),
+  setYoutube: (data) => dispatch(actions.setYoutube(data)),
+  setWhatsapp: (data) => dispatch(actions.setWhatsapp(data)),
+  setColorTopEducators: (data) => dispatch(actions.setColorTopEducators(data)),
+  setColorMoreCourses: (data) => dispatch(actions.setColorMoreCourses(data)),
+  setColorBuyCourse: (data) => dispatch(actions.setColorBuyCourse(data)),
+  setColorHeader: (data) => dispatch(actions.setColorHeader(data)),
+  setColorBelive: (data) => dispatch(actions.setColorBelive(data)),
+  setColorName: (data) => dispatch(actions.setColorName(data)),
+  setColorSubtitle: (data) => dispatch(actions.setColorSubtitle(data)),
+  showLinkedin: () => dispatch(actions.showLinkedin()),
+  showInstegram: () => dispatch(actions.showInstegram()),
+  showFacebook: () => dispatch(actions.showFacebook()),
+  showTwitter: () => dispatch(actions.showTwitter()),
+  showReddit: () => dispatch(actions.showReddit()),
+  showYoutube: () => dispatch(actions.showYoutube()),
+  showWhatsapp: () => dispatch(actions.showWhatsapp()),
+  showCourseFooter: () => dispatch(actions.showCourseFooter()),
+  showTopEducarors: () => dispatch(actions.showTopEducarors()),
+  showBelive: () => dispatch(actions.showBelive()),
+  showMoreCourses: () => dispatch(actions.showMoreCourses()),
 });
 
 export default connect(
@@ -100,7 +112,7 @@ export default connect(
             </label>
           </div>
         </div>
-        
+
         <button onClick={() => handleChoose(2)}>Course description</button>
         <div className={choose === 2 ? 'display' : 'cover'}>
           <div>
@@ -140,7 +152,7 @@ export default connect(
 
         <button onClick={() => handleChoose(3)}>Course card</button>
         <div className={choose === 3 ? 'display' : 'cover'}>
-        <div>
+          <div>
             Language
             <label class="switch">
               <input
@@ -195,7 +207,14 @@ export default connect(
               />
               <span class="slider round"></span>
             </label>
-            {props.course.show.share.instegram&&<input placeholder="instegram" onChange={e=>props.setInstegram(e.target.value)} value={props.course.share.instegram}/>}
+            {props.course.show.share.instegram && (
+              <input
+              type="text"
+                placeholder="instegram"
+                onChange={(e) => props.setInstegram(e.target.value)}
+                value={props.course.share.instegram}
+              />
+            )}
           </div>
           <div>
             Facebook
@@ -207,7 +226,14 @@ export default connect(
               />
               <span class="slider round"></span>
             </label>
-            {props.course.show.share.facebook&&<input placeholder="facebook" onChange={e=>props.setFacebook(e.target.value)} value={props.course.share.facebook}/>}
+            {props.course.show.share.facebook && (
+              <input
+              type="text"
+                placeholder="facebook"
+                onChange={(e) => props.setFacebook(e.target.value)}
+                value={props.course.share.facebook}
+              />
+            )}
           </div>
           <div>
             Whatsapp
@@ -219,7 +245,14 @@ export default connect(
               />
               <span class="slider round"></span>
             </label>
-            {props.course.show.share.whatsapp&&<input placeholder="whatsapp" onChange={e=>props.setWhatsapp(e.target.value)} value={props.course.share.whatsapp}/>}
+            {props.course.show.share.whatsapp && (
+              <input
+              type="text"
+                placeholder="whatsapp"
+                onChange={(e) => props.setWhatsapp(e.target.value)}
+                value={props.course.share.whatsapp}
+              />
+            )}
           </div>
           <div>
             Twitter
@@ -231,7 +264,14 @@ export default connect(
               />
               <span class="slider round"></span>
             </label>
-            {props.course.show.share.twitter&&<input placeholder="twitter" onChange={e=>props.setTwitter(e.target.value)} value={props.course.share.twitter}/>}
+            {props.course.show.share.twitter && (
+              <input
+              type="text"
+                placeholder="twitter"
+                onChange={(e) => props.setTwitter(e.target.value)}
+                value={props.course.share.twitter}
+              />
+            )}
           </div>
           <div>
             Youtube
@@ -243,7 +283,14 @@ export default connect(
               />
               <span class="slider round"></span>
             </label>
-            {props.course.show.share.youtube&&<input placeholder="youtube" onChange={e=>props.setYoutube(e.target.value)} value={props.course.share.youtube}/>}
+            {props.course.show.share.youtube && (
+              <input
+              type="text"
+                placeholder="youtube"
+                onChange={(e) => props.setYoutube(e.target.value)}
+                value={props.course.share.youtube}
+              />
+            )}
           </div>
           <div>
             Reddit
@@ -255,15 +302,127 @@ export default connect(
               />
               <span class="slider round"></span>
             </label>
-            {props.course.show.share.reddit&&<input placeholder="reddit" onChange={e=>props.setReddit(e.target.value)} value={props.course.share.reddit}/>}
+            {props.course.show.share.reddit && (
+              <input
+              type="text"
+                placeholder="reddit"
+                onChange={(e) => props.setReddit(e.target.value)}
+                value={props.course.share.reddit}
+              />
+            )}
           </div>
         </div>
-        
-        <button onClick={() => handleChoose(4)}>Styles</button>
-        <div className={choose === 4 ? 'display' : 'cover'}>dsafaa</div>
-        
+
+        <button onClick={() => handleChoose(4)}>More sections</button>
+        <div className={choose === 4 ? 'display' : 'cover'}>
+          <div>
+            More courses
+            <label class="switch">
+              <input
+                type="checkbox"
+                onClick={props.showMoreCourses}
+                checked={props.course.show.more.more_courses}
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            I belibe...
+            <label class="switch">
+              <input
+                type="checkbox"
+                onClick={props.showBelive}
+                checked={props.course.show.more.belive}
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            Top educators
+            <label class="switch">
+              <input
+                type="checkbox"
+                onClick={props.showTopEducarors}
+                checked={props.course.show.more.top_educators}
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            Footer
+            <label class="switch">
+              <input
+                type="checkbox"
+                onClick={props.showCourseFooter}
+                checked={props.course.show.more.footer}
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <button onClick={() => handleChoose(5)}>Colors</button>
+        <div className={choose === 5 ? 'display' : 'cover'}>
+        <div>
+            Header backgroud
+              <input
+                type="color"
+                value={props.course.colors.header}
+                onChange={e=>props.setColorHeader(e.target.value)}
+              />
+          </div>
+          <div>
+            Title
+              <input
+                type="color"
+                value={props.course.colors.name}
+                onChange={e=>props.setColorName(e.target.value)}
+              />
+          </div>
+          <div>
+            Subtitle
+              <input
+                type="color"
+                value={props.course.colors.subtitle}
+                onChange={e=>props.setColorSubtitle(e.target.value)}
+              />
+          </div>
+          <div>
+            Buy course button
+              <input
+                type="color"
+                value={props.course.colors.buy_course}
+                onChange={e=>props.setColorBuyCourse(e.target.value)}
+              />
+          </div>
+          <div>
+            More courses
+              <input
+                type="color"
+                value={props.course.colors.more_courses}
+                onChange={e=>props.setColorMoreCourses(e.target.value)}
+              />
+          </div>
+          <div>
+            I belive
+              <input
+                type="color"
+                value={props.course.colors.belive}
+                onChange={e=>props.setColorBelive(e.target.value)}
+              />
+          </div>
+          <div>
+            Top education
+              <input
+                type="color"
+                value={props.course.colors.top_educators}
+                onChange={e=>props.setColorTopEducators(e.target.value)}
+              />
+          </div>
+        </div>
+
         <div className="config-footer">
-          <Button variant="primary">save as draft</Button>
+          <Button variant="primary" onClick={()=>props.addCourse(props.course)}>save as draft</Button>
         </div>
       </div>
     </>

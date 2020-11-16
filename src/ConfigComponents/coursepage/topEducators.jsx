@@ -13,7 +13,15 @@ import {
 } from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import '../../ViewComponents/coursepage/course.css';
+import { connect } from 'react-redux';
 // impore './'
+
+function mapStateToProps(state) {
+  return {
+    course: state.courseReducer.course,
+  };
+}
+
 class TopEducators extends Component {
   // state = {arr: []};
   // componentDidMount() {
@@ -66,7 +74,7 @@ class TopEducators extends Component {
       </button>
     );
     return (
-      <section id="top">
+      <section id="top"  style={{backgroundColor: this.props.course.colors.top_educators}}>
         <div className="title">
           <button>View all</button>
           <h3>Top Education offers and deals are listed here</h3>
@@ -131,4 +139,9 @@ class TopEducators extends Component {
     );
   }
 }
-export default TopEducators;
+
+export default connect(
+  mapStateToProps,
+  null
+)(TopEducators);
+// export default TopEducators;

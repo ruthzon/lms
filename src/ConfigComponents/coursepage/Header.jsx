@@ -41,10 +41,13 @@ export default connect(
 )(function Header(props) {
   // const user = useContext(UserContext);
   // const {course, setName, setSubtitle} = props;
-  let prev=Object.assign({}, props.course)
+  let prev = Object.assign({}, props.course);
   return (
     <>
-      <div className="header">
+      <div
+        className="header"
+        style={{backgroundColor: props.course.colors.header}}
+      >
         <div className="content">
           {/* {user !== null && course.user_id === user.uid && (
             <p className="text-own">
@@ -55,6 +58,7 @@ export default connect(
           <h1>
             <textarea
               value={props.course.name}
+              style={{color: props.course.colors.name}}
               onChange={(e) => props.setName(e.target.value)}
               type="text"
             />
@@ -66,6 +70,7 @@ export default connect(
               {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
               <textarea
+                style={{color: props.course.colors.subtitle}}
                 value={props.course.subtitle}
                 onChange={(e) => props.setSubtitle(e.target.value)}
                 type="text"
@@ -74,23 +79,31 @@ export default connect(
             </h3>
             <Container>
               <Row>
-                {props.course.show.stars&& <Col xs="3">
-                  <FaRegStar color="#F3B23A" />
-                  {props.course.stars}
-                </Col>}
-                {props.course.show.students&& <Col xs="3">
-                  <FaRegEye color="#DB4500" />
-                  {/* {course.views} */}
-                  Enrolled ?? students
-                </Col>}
-                {props.course.show.weeks&&  <Col xs="3">
-                  <FaRegClock />
-                  Duration ?? weeks
-                </Col>}
-                {props.course.show.lessons&& <Col xs="3">
-                  <FaRegPlayCircle color="#3E9365" />
-                  {props.course.lessons + ' '} Lessons
-                </Col>}
+                {props.course.show.stars && (
+                  <Col xs="3">
+                    <FaRegStar color="#F3B23A" />
+                    {props.course.stars}
+                  </Col>
+                )}
+                {props.course.show.students && (
+                  <Col xs="3">
+                    <FaRegEye color="#DB4500" />
+                    {/* {course.views} */}
+                    Enrolled ?? students
+                  </Col>
+                )}
+                {props.course.show.weeks && (
+                  <Col xs="3">
+                    <FaRegClock />
+                    Duration ?? weeks
+                  </Col>
+                )}
+                {props.course.show.lessons && (
+                  <Col xs="3">
+                    <FaRegPlayCircle color="#3E9365" />
+                    {props.course.lessons + ' '} Lessons
+                  </Col>
+                )}
               </Row>
             </Container>
           </div>

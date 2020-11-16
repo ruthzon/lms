@@ -21,20 +21,21 @@ import createReducer from './ReducerUtils';
 //   .catch((error) => console.log(error));
 
 const initialState = {
-  courses: Courses,
+  courses: [
+
+  ],
 
 };
-
 
 const mycourses = {
   // initialCourses(state, action) {
   //   state.courses = action.payload;
   // },
   addCourse(state, action) {
-    state.courses = action.payload;
+    state.courses.push(action.payload);
   },
   removeCourse(state, action) {
-    state.Courses = action.payload;
+    state.Courses=state.Courses.filter((x)=>x!=action.payload) ;
   },
   updateCourse(state, action) {
     state.Courses = action.payload;

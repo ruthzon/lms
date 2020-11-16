@@ -22,6 +22,7 @@ const initialState = {
     use:'Use on desktop, tablet & mobile',
     access:'Full lifetime access',
     certificate:'Certificate of Completion',
+    
     share:{
       instegram:'',
       facebook:'',
@@ -30,6 +31,11 @@ const initialState = {
       linkedin:'',
       youtube:'',
       reddit:'',
+    },
+    belive:{
+      text:'I believe in lifelong learning and Skillfy is a great place to learn from experts. I’ve learned a lot and recommend it to all my friends.',
+      auther:'Riaz Surti | Hearthy Foods',
+      image:'./img_from_xd/image 116.png',
     },
     description: {
       "Course Description": "See-through delicate embroidered organza blue lining luxury acetate-mix stretch pleat detailing. Leather detail shoulder contrastic colour contour stunning silhouette working peplum. Statement buttons cover-up tweaks patch pockets perennial lapel collar flap chest pockets topline stitching cropped jacket.",
@@ -47,6 +53,12 @@ const initialState = {
       students:true,
       weeks:true,
       lessons:true,
+      more:{
+        more_courses:true,
+        belive:true,
+        top_educators:true,
+        footer:true,
+      },
       share:{
         instegram:true,
         facebook:true,
@@ -60,6 +72,15 @@ const initialState = {
       "Course Description": true,
       "Certification": true,
       "Who this course is for": true,
+    },
+    colors:{
+      header: '#FEF0EF',
+      name:'#5F5982',
+      subtitle:'#5F5982',
+      buy_course:'#F56962',
+      more_courses:'#EFEFF6',
+      belive:'#FEF0EF',
+      top_educators:'#EFEFF6'
     }
   }
 };
@@ -152,7 +173,36 @@ const mycourse = {
   setReddit (state, action){
     state.course.share.reddit = action.payload;
   },
-
+  setBeliveText (state, action){
+    state.course.belive.text = action.payload;
+  },
+  setBeliveAuther (state, action){
+    state.course.belive.auther = action.payload;
+  },
+  setBeliveImage (state, action){
+    state.course.belive.image = action.payload;
+  },
+  setColorHeader (state, action){
+    state.course.colors.header = action.payload;
+  },
+  setColorName (state, action){
+    state.course.colors.name = action.payload;
+  },
+  setColorSubtitle (state, action){
+    state.course.colors.subtitle = action.payload;
+  },
+  setColorBelive (state, action){
+    state.course.colors.belive = action.payload;
+  },
+  setColorBuyCourse (state, action){
+    state.course.colors.buy_course = action.payload;
+  },
+  setColorMoreCourses (state, action){
+    state.course.colors.more_courses = action.payload;
+  },
+  setColorTopEducators (state, action){
+    state.course.colors.top_educators = action.payload;
+  },
   // Showwwwww
   showHowIsFor(state) {
     state.course.show['Who this course is for'] = !state.course.show['Who this course is for'];
@@ -217,6 +267,19 @@ const mycourse = {
   showReddit (state){
     state.course.show.share.reddit = !state.course.show.share.reddit;
   },
+  showMoreCourses(state){
+    state.course.show.more.more_courses=!state.course.show.more.more_courses;
+  },
+  showBelive(state){
+    state.course.show.more.belive=!state.course.show.more.belive;
+  },
+  showTopEducarors(state){
+    state.course.show.more.top_educators=!state.course.show.more.top_educators;
+  },
+  showCourseFooter(state){
+    state.course.show.more.footer=!state.course.show.more.footer;
+  },
+
 
 };
 

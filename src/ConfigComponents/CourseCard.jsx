@@ -9,12 +9,13 @@ import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import {UserContext} from '../login/userProvider';
 import './configurator.css'
+import { useRouteMatch } from 'react-router-dom';
 const history = createHashHistory();
 const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
   return {
-    course: state.courseReducer.course,
+    courses: state.listCoursesReducer.course,
   };
 }
 
@@ -29,13 +30,16 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function CourseCard(props) {
-  const {id, course, initialById, setName, setSubtitle, setImage} = props;
-  initialById(id);
+  // const {id, course, initialById, setName, setSubtitle, setImage} = props;
+  // initialById(id);
+  let name=props.name;
+  // let match = useRouteMatch();
+  let course=props.course;
   const user = useContext(UserContext);
 
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
-    browserHistory.replace('/viewcourse/' + course.id);
+    // browserHistory.replace(`${match.path} / ${course.name}`);
     window.location.reload();
     console.log(props);
   };
@@ -59,7 +63,7 @@ export default connect(
             </Col>
             <Col xs="4" className="align-right">
               <FaRegPlayCircle color="#3E9365" />
-              {course.lesion + ' '} Lessons
+              {course.lessons} Lessons
             </Col>
           </Row>
         </Container>

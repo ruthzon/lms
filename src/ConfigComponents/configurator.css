@@ -85,7 +85,7 @@ input:checked + .slider:before {
   color: #fff;
   font-size: 14px;
   overflow-y: auto;
-    padding-bottom: 110px;
+  padding-bottom: 110px;
 }
 .container {
   width: 100%;
@@ -131,12 +131,13 @@ input:checked + .slider:before {
   top: 70px;
   /* display: inline-block; */
 }
-textarea,
-input {
+.coursepageconf textarea,
+.coursepageconf input {
   border: none;
   background-color: transparent;
   /* width: -webkit-fill-available; */
   resize: none;
+  overflow-y: hidden;
 }
 .display {
   display: inline;
@@ -165,16 +166,48 @@ textarea {
 }
 .coursepageconf .content.description,
 .coursepageconf .content .overview,
-.coursepageconf  .content .curriculum {
+.coursepageconf .content .curriculum {
   margin-left: 0;
 }
 
-.coursepageconf
-.buy-course
-.card-img-top{
+.coursepageconf .buy-course .card-img-top {
   height: 200px;
 }
-.config 
-input{
+.config input[type=text] {
   border-bottom: 1px solid #fff;
+}
+.config input[type=color]{
+  float: right;
+}
+.coursepageconf .overview textarea {
+  height: 180px;
+  font-size: 12pt;
+  overflow-y: hidden;
+}
+.beliveconf textarea {
+  height: 180px;
+  font-size: 14pt;
+  overflow-y: hidden;
+}
+
+.file-upload {
+  /* height:100px;
+	width:100px;
+	margin:40px auto;
+	border:1px solid #f0c0d0;
+	border-radius:100px; */
+  overflow: hidden;
+  /* position:relative; */
+}
+.file-upload input {
+  opacity: 0;
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  left: 0;
+  /* -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);   */
+}
+.file-upload img {
+  width: 100%;
 }

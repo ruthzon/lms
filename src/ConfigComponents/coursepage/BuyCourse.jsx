@@ -18,6 +18,7 @@ function mapStateToProps(state) {
     course: state.courseReducer.course,
   };
 }
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -48,7 +49,7 @@ export default connect(
               11 Hour left at this price
             </Card.Text>
           )}
-          <Button variant="primary" block>
+          <Button variant="primary" block  style={{backgroundColor: course.colors.buy_course}}>
             Buy Now
           </Button>
           <ListGroup className="card-list" variant="flush">

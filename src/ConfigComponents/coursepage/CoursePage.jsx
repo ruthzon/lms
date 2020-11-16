@@ -45,6 +45,7 @@ const mapDispatchToProps = (dispatch) => ({
 function mapStateToProps(state) {
   return {
     courses: state.listCoursesReducer.courses,
+    course: state.courseReducer.course
   };
 }
 export default connect(
@@ -70,14 +71,14 @@ export default connect(
         <HeaderConfig />
         <CourseConfig />
         <div className="content-config">
-          <Header /> 
+          <Header />
           <BuyCourse />
           {/* <help/> */}
           <Description />
-          {/* <MoreCourses /> */}
-          {/* <Belive /> */}
-          {/* <TopEducators /> */}
-          {/* <Footer /> */}
+          {props.course.show.more.more_courses && <MoreCourses />}
+          {props.course.show.more.belive && <Belive />}
+          {props.course.show.more.top_educators && <TopEducators />}
+          {props.course.show.more.footer && <Footer />}
         </div>
       </div>
     </>
