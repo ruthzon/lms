@@ -1,7 +1,8 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../../ViewComponents/homepage/App.css';
-import {GetChoice, WorldSelectionCourse} from './GetCoice.jsx';
+import GetChoice from './GetCoice.jsx';
+import WorldSelectionCourse from './WorldSelectionCourse';
 import Navigation from '../../navbar.jsx';
 import Header from './Header.jsx';
 import Categories from './Categories';
@@ -21,18 +22,19 @@ import {
 function HomePage() {
   return (
     <>
-      <Navigation />
-
-      <Header />
-      <Categories data={ctgs} />
-      <GetChoice />
-      <LearningPlatform data={lrn} />
-      <WorldSelectionCourse />
-      <CTA />
-      <Testimoinal />
-      {/* <Testimoinal data={tst} /> */}
-      <OurPartner data={prt} />
-      <Footer />
+      <div className="homeconf">
+        <Navigation />
+        <Header />
+        <Categories data={ctgs} />
+        <GetChoice />
+        <LearningPlatform data={lrn} />
+        <WorldSelectionCourse />
+        <CTA />
+        <Testimoinal />
+        {/* <Testimoinal data={tst} /> */}
+        <OurPartner data={prt} />
+        <Footer />
+      </div>
     </>
   );
 }

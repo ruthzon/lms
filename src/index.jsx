@@ -14,9 +14,9 @@ import UserProvider from './login/userProvider';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <UserProvider> */}
+      <UserProvider>
         <App />
-      {/* </UserProvider> */}
+      </UserProvider>
     </Provider>
   </React.StrictMode>,
 

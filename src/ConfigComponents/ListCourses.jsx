@@ -20,11 +20,11 @@ const mapStateToProps = (state) => {
 //   }
 //   return listCourses;
 // }
-export default connect(
-  mapStateToProps,
-  null
-)(
-  // export default
+// export default connect(
+//   mapStateToProps,
+//   null
+// )(
+  export default
   function RowCourse(props) {
     const listCourses = [];
     let i = props.i;
@@ -34,4 +34,4 @@ export default connect(
     }
     return listCourses;
   }
-);
+// );

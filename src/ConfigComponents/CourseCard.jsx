@@ -32,7 +32,6 @@ export default connect(
 )(function CourseCard(props) {
   // const {id, course, initialById, setName, setSubtitle, setImage} = props;
   // initialById(id);
-  let name=props.name;
   // let match = useRouteMatch();
   let course=props.course;
   const user = useContext(UserContext);

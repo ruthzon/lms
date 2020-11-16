@@ -131,6 +131,8 @@ input:checked + .slider:before {
   top: 70px;
   /* display: inline-block; */
 }
+.homeconf input,
+.homeconf textarea,
 .coursepageconf textarea,
 .coursepageconf input {
   border: none;
@@ -210,4 +212,10 @@ textarea {
 }
 .file-upload img {
   width: 100%;
+}
+header textarea{
+  color: white;
+}
+.search-bar{
+  background-color: #FFFFFF;
 }

@@ -31,7 +31,7 @@ class Belive extends Component {
     let {course, setBeliveAuther, setBeliveImage, setBeliveText} = this.props;
     return (
       <>
-        <div className="belive beliveconf"  style={{backgroundColor: course.colors.header}}>
+        <div className="belive beliveconf"  style={{backgroundColor: course.colors.belive}}>
           <Container>
             <Row>
               <Col md="6">

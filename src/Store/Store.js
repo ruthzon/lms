@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import courseReducer from './Reducers/Course'
+import schoolReducer from './Reducers/School'
 // import companyReducer from './Reducers/Company'
 import listCoursesReducer from './Reducers/listCourses'
 import { add$ToCompanyName } from './MiddleWares/crud';
@@ -9,7 +10,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // const enhancers = compose(
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // );
-const reducer = combineReducers({  courseReducer,listCoursesReducer });
+const reducer = combineReducers({  courseReducer,listCoursesReducer ,schoolReducer});
 
 const store = createStore(reducer,composeWithDevTools());
 

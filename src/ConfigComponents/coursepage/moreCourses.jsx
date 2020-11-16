@@ -6,17 +6,36 @@ import React from 'react';
 import {CardDeck, Form, Dropdown, Carousel} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import {connect} from 'react-redux';
+import {Courses} from '../../Store/data';
 
 function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
+    courses: state.listCoursesReducer.courses,
   };
 }
-
+function CarouserlItem(props) {
+  const listItems = [];
+  let times = props.len % 3 === 0 ? props.len / 3 : props.len / 3 + 1;
+  for (let i = 0; i < times; i++) {
+    listItems.push(
+      <Carousel.Item>
+        <CardDeck>
+          <ListCourses i={i * 3} courses={props.courses}/>
+        </CardDeck>
+      </Carousel.Item>
+    );
+  }
+  // debugger;
+  return listItems;
+}
 export default connect(
   mapStateToProps,
   null
 )(function MoreCourses(props) {
+  let courses = props.courses;
+  // if (props.courses.length == 0) courses = Courses;
+
   const prev = (
     <button onClick="dispatchDiscreteEvent" className="carousel-left">
       <FaArrowLeft />
@@ -54,16 +73,13 @@ export default connect(
         prevIcon={prev}
         data-interval="false"
       >
-        <Carousel.Item>
-          <CardDeck>
-            <ListCourses i={0} />
-          </CardDeck>
-        </Carousel.Item>
-        <Carousel.Item>
+        <CarouserlItem len={courses.length} courses={courses} />
+
+        {/* <Carousel.Item>
           <CardDeck>
             <ListCourses i={3} />
           </CardDeck>
-        </Carousel.Item>
+        </Carousel.Item> */}
       </Carousel>
     </section>
   );

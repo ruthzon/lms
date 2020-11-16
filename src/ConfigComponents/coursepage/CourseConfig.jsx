@@ -1,8 +1,12 @@
 import React, {Component, useState} from 'react';
 import {Button, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {useRouteMatch} from 'react-router-dom';
 import {actions} from '../../Store/actions';
 import '../configurator.css';
+import {createBrowserHistory} from 'history';
+
+const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
   return {
@@ -11,7 +15,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addCourse:(data)=>dispatch(actions.addCourse(data)),
+  addCourse: (data) => dispatch(actions.addCourse(data)),
   setName: (data) => dispatch(actions.setName(data)),
   setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
   showHowIsFor: () => dispatch(actions.showHowIsFor()),
@@ -56,10 +60,19 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function CourseConfig(props) {
+  let match = useRouteMatch();
+
   const [choose, setChoose] = useState(0);
   const handleChoose = (click) => {
     if (choose === click) setChoose(0);
     else setChoose(click);
+  };
+  const handleSave = () => {
+    props.addCourse(props.course);
+    console.log(match.path);
+    console.log(match.pa);
+    browserHistory.replace('/'+match.params.name);
+    window.location.reload();
   };
   return (
     <>
@@ -209,7 +222,7 @@ export default connect(
             </label>
             {props.course.show.share.instegram && (
               <input
-              type="text"
+                type="text"
                 placeholder="instegram"
                 onChange={(e) => props.setInstegram(e.target.value)}
                 value={props.course.share.instegram}
@@ -228,7 +241,7 @@ export default connect(
             </label>
             {props.course.show.share.facebook && (
               <input
-              type="text"
+                type="text"
                 placeholder="facebook"
                 onChange={(e) => props.setFacebook(e.target.value)}
                 value={props.course.share.facebook}
@@ -247,7 +260,7 @@ export default connect(
             </label>
             {props.course.show.share.whatsapp && (
               <input
-              type="text"
+                type="text"
                 placeholder="whatsapp"
                 onChange={(e) => props.setWhatsapp(e.target.value)}
                 value={props.course.share.whatsapp}
@@ -266,7 +279,7 @@ export default connect(
             </label>
             {props.course.show.share.twitter && (
               <input
-              type="text"
+                type="text"
                 placeholder="twitter"
                 onChange={(e) => props.setTwitter(e.target.value)}
                 value={props.course.share.twitter}
@@ -285,7 +298,7 @@ export default connect(
             </label>
             {props.course.show.share.youtube && (
               <input
-              type="text"
+                type="text"
                 placeholder="youtube"
                 onChange={(e) => props.setYoutube(e.target.value)}
                 value={props.course.share.youtube}
@@ -304,7 +317,7 @@ export default connect(
             </label>
             {props.course.show.share.reddit && (
               <input
-              type="text"
+                type="text"
                 placeholder="reddit"
                 onChange={(e) => props.setReddit(e.target.value)}
                 value={props.course.share.reddit}
@@ -363,66 +376,68 @@ export default connect(
 
         <button onClick={() => handleChoose(5)}>Colors</button>
         <div className={choose === 5 ? 'display' : 'cover'}>
-        <div>
+          <div>
             Header backgroud
-              <input
-                type="color"
-                value={props.course.colors.header}
-                onChange={e=>props.setColorHeader(e.target.value)}
-              />
+            <input
+              type="color"
+              value={props.course.colors.header}
+              onChange={(e) => props.setColorHeader(e.target.value)}
+            />
           </div>
           <div>
             Title
-              <input
-                type="color"
-                value={props.course.colors.name}
-                onChange={e=>props.setColorName(e.target.value)}
-              />
+            <input
+              type="color"
+              value={props.course.colors.name}
+              onChange={(e) => props.setColorName(e.target.value)}
+            />
           </div>
           <div>
             Subtitle
-              <input
-                type="color"
-                value={props.course.colors.subtitle}
-                onChange={e=>props.setColorSubtitle(e.target.value)}
-              />
+            <input
+              type="color"
+              value={props.course.colors.subtitle}
+              onChange={(e) => props.setColorSubtitle(e.target.value)}
+            />
           </div>
           <div>
             Buy course button
-              <input
-                type="color"
-                value={props.course.colors.buy_course}
-                onChange={e=>props.setColorBuyCourse(e.target.value)}
-              />
+            <input
+              type="color"
+              value={props.course.colors.buy_course}
+              onChange={(e) => props.setColorBuyCourse(e.target.value)}
+            />
           </div>
           <div>
             More courses
-              <input
-                type="color"
-                value={props.course.colors.more_courses}
-                onChange={e=>props.setColorMoreCourses(e.target.value)}
-              />
+            <input
+              type="color"
+              value={props.course.colors.more_courses}
+              onChange={(e) => props.setColorMoreCourses(e.target.value)}
+            />
           </div>
           <div>
             I belive
-              <input
-                type="color"
-                value={props.course.colors.belive}
-                onChange={e=>props.setColorBelive(e.target.value)}
-              />
+            <input
+              type="color"
+              value={props.course.colors.belive}
+              onChange={(e) => props.setColorBelive(e.target.value)}
+            />
           </div>
           <div>
             Top education
-              <input
-                type="color"
-                value={props.course.colors.top_educators}
-                onChange={e=>props.setColorTopEducators(e.target.value)}
-              />
+            <input
+              type="color"
+              value={props.course.colors.top_educators}
+              onChange={(e) => props.setColorTopEducators(e.target.value)}
+            />
           </div>
         </div>
 
         <div className="config-footer">
-          <Button variant="primary" onClick={()=>props.addCourse(props.course)}>save as draft</Button>
+          <Button variant="primary" onClick={handleSave}>
+            save as draft
+          </Button>
         </div>
       </div>
     </>
