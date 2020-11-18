@@ -11,8 +11,8 @@ import {
 } from 'react-bootstrap';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
-import firebase from '@firebase/app';
-import 'firebase/auth';
+// import firebase from '@firebase/app';
+// import 'firebase/auth';
 import {auth, signInWithGoogle, nav, checkPremission} from './firebase';
 import {UserContext} from './userProvider';
 import $ from 'jquery';
@@ -112,7 +112,7 @@ const Login = () => {
       type: type === 'text' ? 'password' : 'text',
     }));
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(function (user) {
+    auth.onAuthStateChanged(function (user) {
       let exsistsJwt = document.cookie
         .split(';')
         .filter((s) => s.includes('jwt'));
@@ -122,8 +122,9 @@ const Login = () => {
           auth.currentUser
             .getIdToken(true)
             .then((firebaseToken) => {
+              debugger;
               $.ajax({
-                url: 'https://api.leader.codes/register/getAccessToken',
+                url: 'https://lms.leader.codes/register/getAccessToken',
                 method: 'post',
                 dataType: 'json',
                 contentType: 'application/json',

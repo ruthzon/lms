@@ -4,18 +4,32 @@ import React, {Component} from 'react';
 import {Card, CardDeck, Form, Carousel} from 'react-bootstrap';
 import 'react-multi-carousel/lib/styles.css';
 import '../../ViewComponents/homepage/App.css';
+import {connect} from 'react-redux';
+import {actions} from '../../Store/actions';
+import {handleImageById} from '../handleImage';
+
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  setTestimoinal: (sub) => dispatch(actions.setTestimoinal(sub)),
+  setTestimoinalImage: (sub) => dispatch(actions.setTestimoinalImage(sub)),
+});
 
 class Testimoinal extends Component {
-  state = {arr: []};
-  componentDidMount() {
-    let url = 'http://localhost:8000/students/';
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({arr: data.students});
-      });
-  }
+  // state = {arr: []};
+  // componentDidMount() {
+  //   let url = 'http://localhost:8000/students/';
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       this.setState({arr: data.students});
+  //     });
+  // }
   render() {
     const prev = (
       <button>
@@ -35,9 +49,8 @@ class Testimoinal extends Component {
           </div>
           {/* <CardDeck className="none"></CardDeck> */}
           <Carousel nextIcon={next} prevIcon={prev} data-interval="false">
-            <Carousel.Item>
+            {/* <Carousel.Item>
               <CardDeck>
-                {/* <RowTests props={this.state.arr} /> */}
                 {this.state.arr.map((item, key) => {
                   return (
                     <Card key={key} className="test-card">
@@ -52,18 +65,55 @@ class Testimoinal extends Component {
                   );
                 })}
               </CardDeck>
-            </Carousel.Item>
+            </Carousel.Item> */}
             <Carousel.Item>
               <CardDeck>
-                {this.state.arr.map((item) => {
+                {this.props.school.testimoinal.map((item, key) => {
                   return (
                     <Card className="test-card">
                       <Card.Body>
                         <Card.Title>
-                          <img src={item.image} alt="Student"></img>
-                          {item.name}
+                          <span class="file-upload">
+                            <img src={item.image} alt="Student"></img>
+                            <input
+                              id={'students-image-' + key}
+                              type="file"
+                              accept=".png, .jpg, .jpeg"
+                              onChange={(e) =>
+                                handleImageById(
+                                  e,
+                                  this.props.setTestimoinalImage,
+                                  parseInt(e.target.id.split('-')[2])
+                                )
+                              }
+                            />
+                          </span>
+                          <input
+                            id={'students-name-' + key}
+                            value={item.name}
+                            onChange={(e) =>
+                              this.props.setTestimoinal(
+                                e.target.value,
+                                e.target.id.split('-')[1],
+                                parseInt(e.target.id.split('-')[2])
+                              )
+                            }
+                          />
                         </Card.Title>
-                        <Card.Text>{item.description} </Card.Text>
+                        <Card.Text>
+                          <textarea
+                          className="height-100 font-size-12"
+                            id={'students-description-' + key}
+                            value={item.description}
+                            onChange={(e) =>
+                              this.props.setTestimoinal(
+                                e.target.value,
+                                e.target.id.split('-')[1],
+                                parseInt(e.target.id.split('-')[2])
+                              )
+                            }
+                          />
+                        </Card.Text>
                       </Card.Body>
                     </Card>
                   );
@@ -103,4 +153,5 @@ class Testimoinal extends Component {
 //     return rows;
 //   }
 // }
-export default Testimoinal;
+// export default Testimoinal;
+export default connect(mapStateToProps, mapDispatchToProps)(Testimoinal);

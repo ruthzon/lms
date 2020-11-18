@@ -1,16 +1,25 @@
 import {FaArrowRight, FaArrowLeft} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Image
-} from 'react-bootstrap';
+import {Container, Row, Col, Form, Image} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
+import {actions} from '../../Store/actions';
+import {connect} from 'react-redux';
+import { handleImageById } from '../handleImage';
 
-function OurPartner(props) {
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  setPartners: (sub) => dispatch(actions.setPartners(sub)),
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(function OurPartner(props) {
   return (
     <>
       <section className="partner">
@@ -23,46 +32,44 @@ function OurPartner(props) {
               <FaArrowRight />
             </button>
           </Form>
-          <h3>Trusted by our awesome partners
-          </h3>
+          <h3>Trusted by our awesome partners</h3>
         </div>
         <Container>
           <Row>
-            {/* <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 9.png" rounded />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 11.png" roundedCircle />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 10.png" thumbnail />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 12.png" thumbnail />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 13.png" thumbnail />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 14.png" thumbnail />
-            </Col> */}
-            <RowPartners data={props.data}/>
+            {props.school.partners.map((item, key) => {
+              return (
+                <Col xs={4} md={2} key={key}>
+                  <div class="file-upload">
+                  <Image src={item} thumbnail />
+                    <input
+                      id={'partners-' + key}
+                      type="file"
+                      accept=".png, .jpg, .jpeg"
+                      onChange={(e) =>
+                        handleImageById(
+                          e,
+                          props.setPartners,
+                          parseInt(e.target.id.split('-')[1])
+                        )
+                      }
+                    />
+                  </div>
+                </Col>
+              );
+            })}
+            {/* <RowPartners data={props.data} /> */}
           </Row>
         </Container>
       </section>
     </>
   );
-}
+});
 
-function RowPartners(props) {
-  var rows = [];
-  for (var i = 0; i < props.data.length; i++) {
-    rows.push(            
-    <Col xs={4} md={2}>
-      <Image src={props.data[i].image} thumbnail />
-    </Col>
-    );
-  }
-  return rows;
-}
-export default OurPartner;
+// function RowPartners(props) {
+//   var rows = [];
+//   for (var i = 0; i < props.data.length; i++) {
+//     rows.push();
+//   }
+//   return rows;
+// }
+// export default OurPartner;

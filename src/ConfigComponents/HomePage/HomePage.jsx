@@ -32,7 +32,7 @@ function HomePage() {
         <CTA />
         <Testimoinal />
         {/* <Testimoinal data={tst} /> */}
-        <OurPartner data={prt} />
+        <OurPartner />
         <Footer />
       </div>
     </>

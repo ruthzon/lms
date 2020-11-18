@@ -178,6 +178,7 @@ const mycourse = {
     state.course.belive.auther = action.payload;
   },
   setBeliveImage (state, action){
+    debugger;
     state.course.belive.image = action.payload;
   },
   setColorHeader (state, action){

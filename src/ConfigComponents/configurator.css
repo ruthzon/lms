@@ -155,8 +155,8 @@ input:checked + .slider:before {
 @media only screen and (max-width: 1000px) {
   .homeconf .category-card .card-body {
     display: block;
-    font-size: .75rem;
-    }
+    font-size: 0.75rem;
+  }
 }
 .homeconf .category-card:hover {
   box-shadow: none;
@@ -227,11 +227,19 @@ textarea {
   height: 100%;
   width: 100%;
   left: 0;
+  overflow: hidden;
   /* -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 	filter: alpha(opacity=0);   */
 }
 .file-upload img {
   width: 100%;
+}
+.test-card .file-upload img {
+  width: auto;
+}
+.test-card .file-upload input,
+.category-card .file-upload input{
+  height: auto;
 }
 header textarea {
   color: white;
@@ -250,4 +258,10 @@ header textarea {
 }
 .white {
   color: #fff;
+}
+.font-size-12{
+  font-size: 12pt;
+}
+.font-size-14{
+  font-size: 14pt;
 }

@@ -27,7 +27,7 @@ class CTA extends Component {
       <section className="cta white">
         <h1>
           <input
-          className="white width-webkit"
+            className="white width-webkit"
             id="cta-title"
             value={this.props.school.CTA.title}
             onChange={(e) =>
@@ -35,14 +35,18 @@ class CTA extends Component {
             }
           />
         </h1>
-        <h4><textarea
-        className="white height-100"
-            id="cta-text"
-            value={this.props.school.CTA.text}
-            onChange={(e) =>
-              this.props.setCta([e.target.value, e.target.id.split('-')[1]])
-            }
-          /></h4>
+        <h4>
+          <em>
+            <textarea
+              className="white height-100 font-size-14"
+              id="cta-text"
+              value={this.props.school.CTA.text}
+              onChange={(e) =>
+                this.props.setCta([e.target.value, e.target.id.split('-')[1]])
+              }
+            />
+          </em>
+        </h4>
         <button>Get Started</button>
       </section>
     );

@@ -11,8 +11,8 @@ import {
 import './login.css';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
-import firebase from '@firebase/app';
-import 'firebase/auth';
+// import firebase from '@firebase/app';
+// import 'firebase/auth';
 import $ from 'jquery';
 import {auth, generateUserDocument, signInWithGoogle,checkPremission} from './firebase';
 // var firebase = require('firebase');
@@ -107,16 +107,18 @@ const Register = () => {
       type: type === 'text' ? 'password' : 'text',
     }));
     useEffect(() => {
-      firebase.auth().onAuthStateChanged(function (user) {
-        let exsistsJwt = document.cookie.split(";").filter(s => s.includes('jwt'))
+      let exsistsJwt=document.cookie.split(";").filter(s => s.includes('jwt'))
+
+      auth.onAuthStateChanged(function (user) {
         {
             if (user) {
                 console.log("user: " + user);
                 auth
                     .currentUser.getIdToken(true)
                     .then((firebaseToken) => {
+                      debugger;
                         $.ajax({
-                            url: "https://api.leader.codes/register/getAccessToken",
+                            url: "https://lms.leader.codes/register/getAccessToken",
                             method: "post",
                             dataType: "json",
                             contentType: "application/json",

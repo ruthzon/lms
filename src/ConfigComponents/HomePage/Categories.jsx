@@ -5,6 +5,7 @@ import {Card, CardDeck, Form} from 'react-bootstrap';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
+import {handleImage, handleImageById} from '../handleImage';
 
 function mapStateToProps(state) {
   return {
@@ -13,6 +14,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = (dispatch) => ({
   setCategories: (name) => dispatch(actions.setCategories(name)),
+  setCategoriesImage: (name) => dispatch(actions.setCategoriesImage(name)),
 });
 export default connect(
   mapStateToProps,
@@ -40,12 +42,13 @@ function RowCategories(props) {
     rows.push(
       <Card
         className="category-card"
-        // style={{backgroundColor: props.data.school.categories[i].backcolor}}
+        style={{backgroundColor: props.data.school.categories[i].backcolor}}
       >
         <input
           id={'category-backcolor-' + i}
           type="color"
-          value={{backgroundColor: props.data.school.categories[i].backcolor}}
+          className="border-white"
+          value={props.data.school.categories[i].backcolor}
           onChange={(e) =>
             props.data.setCategories([
               e.target.value,
@@ -54,7 +57,21 @@ function RowCategories(props) {
             ])
           }
         />
-        <Card.Img variant="top" src={props.data.school.categories[i].icon} />
+        <div class="file-upload">
+          <Card.Img variant="top" src={props.data.school.categories[i].icon} />
+          <input
+            id={'category-icon-' + i}
+            type="file"
+            accept=".svg"
+            onChange={(e) =>
+              handleImageById(
+                e,
+                props.data.setCategoriesImage,
+                parseInt(e.target.id.split('-')[2])
+              )
+            }
+          />
+        </div>
         <Card.Body>
           <Card.Title>
             <input

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Col, Row, Container, Image} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
-import {handleImage} from '../handleImage'
+import {handleImage} from '../handleImage';
 import '../../ViewComponents/coursepage/course.css';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -18,12 +18,14 @@ function mapStateToProps(state) {
 }
 
 class Belive extends Component {
-  
   render() {
     let {course, setBeliveAuther, setBeliveImage, setBeliveText} = this.props;
     return (
       <>
-        <div className="belive beliveconf"  style={{backgroundColor: course.colors.belive}}>
+        <div
+          className="belive beliveconf"
+          style={{backgroundColor: course.colors.belive}}
+        >
           <Container>
             <Row>
               <Col md="6">
@@ -48,7 +50,9 @@ class Belive extends Component {
                   <input
                     type="file"
                     accept=".jpg, .png, .jpeg"
-                    onChange={(e) => this.props.setBeliveImage(handleImage(e))}
+                    onChange={async (e) => {
+                      let x = await handleImage(e, setBeliveImage);
+                    }}
                   />
                 </div>
               </Col>

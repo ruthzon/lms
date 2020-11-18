@@ -42,7 +42,7 @@ export default connect(
                   <input
                     type="file"
                     accept=".jpg, .png, .jpeg"
-                    onChange={(e) => props.setLearningImage(handleImage(e))}
+                    onChange={(e) => handleImage(e,props.setLearningImage)}
                   />
                 </div>
             {/* <Image src={props.school.learning.image}></Image> */}

@@ -4,7 +4,7 @@ import "firebase/firestore";
 import { createBrowserHistory } from 'history';
 import { useContext } from "react";
 import { UserContext } from "./userProvider";
-
+import $ from 'jquery'
 const browserHistory = createBrowserHistory();
 
 var firebaseConfig = {
@@ -29,7 +29,7 @@ export const signInWithGoogle = () => {
         console.log(res.user);
         debugger;
         console.log(res.user.displayName);
-        nav(res.user.displayName);
+        // nav(res.user.displayName);
     });
     // nav();
 };
@@ -82,7 +82,7 @@ const getUserDocument = async uid => {
 };
 export const nav = (displayName) => {
     // const name= displayName.replace(/\s/g, '');
-    browserHistory.replace('/' + displayName + '/addcourse');
+    browserHistory.replace('http://localhost:3000/' + displayName + '/addcourse');
     window.location.reload();
 };
 
@@ -94,8 +94,8 @@ export function checkPremission(data) {
         action: "loginCheckPermission",
         token: TokenToString
     };
-    fetch({
-        url: "https://api.leader.codes/register/checkPremission",
+   $.ajax({
+        url: "https://lms.leader.codes/register/checkPermission",
         headers: {
             Authorization: TokenToString
         },
@@ -127,7 +127,8 @@ export function checkPremission(data) {
                 }
                 window.location.href = redirectUrl
             } else {
-                window.location.href = (!data.is_username) ? "https://leader.codes/wizard" : "https://lobby.leader.codes/" + userName
+                // nav(userName);
+                window.location.href = (!data.is_username) ? "https://leader.codes/wizard" : 'http://localhost:3000/' + userName + '/addcourse';
             }
         }
     });

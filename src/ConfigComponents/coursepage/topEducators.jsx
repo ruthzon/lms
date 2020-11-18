@@ -88,10 +88,10 @@ class TopEducators extends Component {
           <Carousel.Item>
             <CardDeck>
               {/* <RowTests props={this.state.arr} /> */}
-              {this.state.arr.map((item) => {
+              {this.state.arr.map((item, key) => {
                 return (
                   <>
-                    <Card className="top-card">
+                    <Card key={key} className="top-card">
                       {/* <Card.ImgOverlay >
                           <Image src={item.bg}></Image>
                         </Card.ImgOverlay> */}

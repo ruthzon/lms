@@ -107,8 +107,16 @@ const myschool = {
     state.school.CTA[action.payload[1]] = action.payload[0];
   },
   setCategories(state, action) {
-    debugger
     state.school.categories[action.payload[2]][action.payload[1]] = action.payload[0];
+  },
+  setCategoriesImage(state, action) {
+    state.school.categories[action.payload[1]].icon = action.payload[0];
+  },
+  setPartners(state, action) {
+    state.school.partners[action.payload[1]] = action.payload[0];
+  },
+  setTestimoinalImage(state, action) {
+    state.school.testimoinal[action.payload[1]].image = action.payload[0];
   },
 
   setColorSchoolHeader(state, action) {

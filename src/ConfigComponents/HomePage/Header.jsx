@@ -3,9 +3,10 @@ import {FaSearch} from 'react-icons/all';
 import React from 'react';
 import {Container, Row, Col, InputGroup, FormControl} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
-import { actions } from '../../Store/actions';
-import { connect } from 'react-redux';
-import '../configurator.css'
+import {actions} from '../../Store/actions';
+import {connect} from 'react-redux';
+import '../configurator.css';
+import { handleImage } from '../handleImage';
 
 function mapStateToProps(state) {
   return {
@@ -30,9 +31,17 @@ export default connect(
         <Container>
           <Row>
             <Col className="middle" md="6">
-              <h1 className="learn"><textarea value={props.school.title} onChange={e=>props.setSchoolTitle(e.target.value)}/> </h1>
+              <h1 className="learn">
+                <textarea
+                  value={props.school.title}
+                  onChange={(e) => props.setSchoolTitle(e.target.value)}
+                />{' '}
+              </h1>
               <h6 className="choose">
-              <textarea value={props.school.subtitle} onChange={e=>props.setSchoolSubtitle(e.target.value)}/>
+                <textarea
+                  value={props.school.subtitle}
+                  onChange={(e) => props.setSchoolSubtitle(e.target.value)}
+                />
               </h6>
               <InputGroup className="mb-2 search-bar">
                 <FormControl
@@ -48,11 +57,18 @@ export default connect(
               </InputGroup>
             </Col>
             <Col md="6">
-              <img
-                src={props.school.image}
-                // src={process.env.PUBLIC_URL + props.school.image}
-                alt="header"
-              ></img>
+              <div class="file-upload">
+                <img
+                  src={props.school.image}
+                  // src={process.env.PUBLIC_URL + props.school.image}
+                  alt="header"
+                ></img>
+                <input
+                  type="file"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={(e) => handleImage( e,props.setSchoolImage,) }
+                />
+              </div>
             </Col>
           </Row>
         </Container>
