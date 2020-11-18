@@ -490,6 +490,7 @@ section .section-title {
   -webkit-transition: 0.5s all ease;
   -moz-transition: 0.5s all ease;
   transition: 0.5s all ease;
+  text-align: left;
 }
 #footer ul.quick-links li a svg {
   margin-right: 5px;

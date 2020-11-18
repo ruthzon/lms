@@ -1,18 +1,51 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { Container, Row, Col, Image} from 'react-bootstrap';
+import {Container, Row, Col, Image} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {actions} from '../../Store/actions';
 import '../../ViewComponents/homepage/App.css';
+import { handleImage } from '../handleImage';
 
-function LearningPlatform(props) {
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
+}
+const mapDispatchToProps = (dispatch) => ({
+  setLearning: (name) => dispatch(actions.setLearning(name)),
+  setLearningImage: (name) => dispatch(actions.setLearningImage(name)),
+  setLearningHeader: (name) => dispatch(actions.setLearningHeader(name)),
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(function LearningPlatform(props) {
   return (
     <section className="learning-platform">
       <div className="title">
-        <h3>We will help you learn what you are passionates about </h3>
+        <h3>
+          <input
+            className="width-webkit"
+            id={'learning-header'}
+            value={props.school.learning.header}
+            onChange={(e) => {
+              props.setLearningHeader(e.target.value);
+            }}
+          />
+        </h3>
       </div>
       <Container>
         <Row>
           <Col xs="6">
-            <Image src="./img_from_xd/Image.png"></Image>
+          <div class="file-upload">
+                  <Image src={props.school.learning.image}></Image>
+                  <input
+                    type="file"
+                    accept=".jpg, .png, .jpeg"
+                    onChange={(e) => props.setLearningImage(handleImage(e))}
+                  />
+                </div>
+            {/* <Image src={props.school.learning.image}></Image> */}
           </Col>
           <Col xs="6" className="lerning">
             {/* <div>
@@ -30,25 +63,71 @@ function LearningPlatform(props) {
               <div  className="header-learning">Find video courses on almost any topic</div>
               <div className="text-learning">Find what you are intersted to learn online and choose what exactly best for you that you really passionate to learn and get to study about it</div>
             </div> */}
-            <RowLearning data={props.data}/>
+            <RowLearning data={props} />
           </Col>
         </Row>
       </Container>
     </section>
   );
-}
+});
 
+function handleHeader(e) {
+  console.log(e.target.velue);
+  debugger;
+}
 function RowLearning(props) {
   var rows = [];
-  for (var i = 0; i < props.data.length; i++) {
-    rows.push(            
-      <div>
-      <span>{props.data[i].id}</span>
-      <div  className="header-learning">{props.data[i].header}</div>
-      <div className="text-learning">{props.data[i].text}</div>
-    </div>
+  for (var i = 0; i < props.data.school.learning.info.length; i++) {
+    rows.push(
+      <div id={'learning-' + i}>
+        <span>
+          <input
+            className="width-webkit"
+            id={'learning-id-' + i}
+            value={props.data.school.learning.info[i].id}
+            onChange={(e) => {
+              props.data.setLearning([
+                e.target.value,
+                e.target.id.split('-')[1],
+                parseInt(e.target.id.split('-')[2]),
+              ]);
+            }}
+          />
+          {/* {props.data.school.learning.info[i].id} */}
+        </span>
+        <div className="header-learning">
+          <input
+            className="width-webkit"
+            id={'learning-header-' + i}
+            value={props.data.school.learning.info[i].header}
+            onChange={(e) => {
+              props.data.setLearning([
+                e.target.value,
+                e.target.id.split('-')[1],
+                parseInt(e.target.id.split('-')[2]),
+              ]);
+            }}
+          />
+        </div>
+
+        <div className="text-learning">
+          <textarea
+            className="height-100"
+            id={'learning-text-' + i}
+            value={props.data.school.learning.info[i].text}
+            onChange={(e) => {
+              props.data.setLearning([
+                e.target.value,
+                e.target.id.split('-')[1],
+                parseInt(e.target.id.split('-')[2]),
+              ]);
+            }}
+          />
+          {/* {props.data.school.learning.info[i].text} */}
+        </div>
+      </div>
     );
   }
   return rows;
 }
-export default LearningPlatform;
+// export default LearningPlatform;

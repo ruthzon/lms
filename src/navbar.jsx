@@ -4,7 +4,7 @@ import React, {useContext} from 'react';
 import './ViewComponents/homepage/App.css';
 import {Button, Navbar, Nav, Form, NavDropdown, Image, NavItem} from 'react-bootstrap';
 import {UserContext} from './login/userProvider';
-import {auth} from './login/firebase';
+import {auth, signOut} from './login/firebase';
 // const history = createHashHistory();
 // const browserHistory = createBrowserHistory();
 
@@ -86,7 +86,7 @@ function Navigation() {
                 Register
               </Button>
             )}
-            {user !== null && user !== undefined && !user.displayName&&(
+            {user !== null && user !== undefined &&(
               <>
                 <div className="user-nav"></div>
                 <Image className="user-img" src={user.photoURL} />
@@ -101,7 +101,7 @@ function Navigation() {
                   <NavDropdown.Item
                     href="login"
                     onClick={() => {
-                      auth.signOut();
+                      signOut();
                     }}
                   >
                     Log Out

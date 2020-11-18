@@ -2,10 +2,22 @@
 import React from 'react';
 import '../../ViewComponents/homepage/App.css';
 import {Card, CardDeck, Form} from 'react-bootstrap';
-import { Component } from 'react';
+import {Component} from 'react';
+import {connect} from 'react-redux';
+import {actions} from '../../Store/actions';
 
-
-function Categories(props) {
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
+}
+const mapDispatchToProps = (dispatch) => ({
+  setCategories: (name) => dispatch(actions.setCategories(name)),
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(function Categories(props) {
   return (
     <>
       <div className="title">
@@ -17,28 +29,58 @@ function Categories(props) {
       <CardDeck className="none"></CardDeck>
       {/* Because the first card deck always align to right. */}
       <CardDeck>
-        <RowCategories data={props.data} />
+        <RowCategories data={props} />
       </CardDeck>
     </>
   );
-}
+});
 function RowCategories(props) {
   var rows = [];
-  for (var i = 0; i < props.data.length; i++) {
-    rows.push(CategoryCard(props.data[i]));
+  for (var i = 0; i < props.data.school.categories.length; i++) {
+    rows.push(
+      <Card
+        className="category-card"
+        // style={{backgroundColor: props.data.school.categories[i].backcolor}}
+      >
+        <input
+          id={'category-backcolor-' + i}
+          type="color"
+          value={{backgroundColor: props.data.school.categories[i].backcolor}}
+          onChange={(e) =>
+            props.data.setCategories([
+              e.target.value,
+              e.target.id.split('-')[1],
+              parseInt(e.target.id.split('-')[2]),
+            ])
+          }
+        />
+        <Card.Img variant="top" src={props.data.school.categories[i].icon} />
+        <Card.Body>
+          <Card.Title>
+            <input
+              className="width-webkit"
+              id={'category-name-' + i}
+              value={props.data.school.categories[i].name}
+              onChange={(e) =>
+                props.data.setCategories([
+                  e.target.value,
+                  e.target.id.split('-')[1],
+                  parseInt(e.target.id.split('-')[2]),
+                ])
+              }
+            />
+          </Card.Title>
+        </Card.Body>
+      </Card>
+    );
   }
   return rows;
 }
 
-function CategoryCard(props) {
-  return (
-    <Card className="category-card" style={{backgroundColor: props.backcolor}}>
-      <Card.Img variant="top" src={props.icon} />
-      <Card.Body >
-        <Card.Title>{props.name}</Card.Title>
-      </Card.Body>
-    </Card>
-  );
-}
+// function CategoryCard(props) {
+//   return (
 
-export default Categories;
+//   );
+// }
+
+// export default Categories;

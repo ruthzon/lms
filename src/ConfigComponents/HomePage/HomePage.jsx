@@ -25,9 +25,9 @@ function HomePage() {
       <div className="homeconf">
         <Navigation />
         <Header />
-        <Categories data={ctgs} />
+        <Categories />
         <GetChoice />
-        <LearningPlatform data={lrn} />
+        <LearningPlatform />
         <WorldSelectionCourse />
         <CTA />
         <Testimoinal />

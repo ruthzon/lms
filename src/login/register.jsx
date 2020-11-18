@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {
   Button,
   Col,
@@ -13,23 +13,24 @@ import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import firebase from '@firebase/app';
 import 'firebase/auth';
-import {auth, generateUserDocument, signInWithGoogle} from './firebase';
+import $ from 'jquery';
+import {auth, generateUserDocument, signInWithGoogle,checkPremission} from './firebase';
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
-var firebaseConfig = {
-  apiKey: 'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
-  authDomain: 'lms-leader.firebaseapp.com',
-  databaseURL: 'https://lms-leader.firebaseio.com',
-  projectId: 'lms-leader',
-  storageBucket: 'lms-leader.appspot.com',
-  messagingSenderId: '451375116419',
-  appId: '1:451375116419:web:a631ec62e2e0a0304e6bb6',
-  measurementId: 'G-2DZBMG06NZ',
-};
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+// var firebaseConfig = {
+//   apiKey: 'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
+//   authDomain: 'lms-leader.firebaseapp.com',
+//   databaseURL: 'https://lms-leader.firebaseio.com',
+//   projectId: 'lms-leader',
+//   storageBucket: 'lms-leader.appspot.com',
+//   messagingSenderId: '451375116419',
+//   appId: '1:451375116419:web:a631ec62e2e0a0304e6bb6',
+//   measurementId: 'G-2DZBMG06NZ',
+// };
+// if (!firebase.apps.length) {
+//   firebase.initializeApp(firebaseConfig);
+// }
 // firebase.initializeApp(firebaseConfig);
 
 const history = createHashHistory();
@@ -105,7 +106,36 @@ const Register = () => {
     this.setState(({type}) => ({
       type: type === 'text' ? 'password' : 'text',
     }));
-
+    useEffect(() => {
+      firebase.auth().onAuthStateChanged(function (user) {
+        let exsistsJwt = document.cookie.split(";").filter(s => s.includes('jwt'))
+        {
+            if (user) {
+                console.log("user: " + user);
+                auth
+                    .currentUser.getIdToken(true)
+                    .then((firebaseToken) => {
+                        $.ajax({
+                            url: "https://api.leader.codes/register/getAccessToken",
+                            method: "post",
+                            dataType: "json",
+                            contentType: "application/json",
+                            data: JSON.stringify({
+                                action: "firebaseloginwithcredentials",
+                                jwt: firebaseToken,
+                            }),
+                            success: function (data) {
+                                checkPremission(data);
+                            },
+                        });
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+            }
+        }
+    });
+  });
   return (
     <>
       <div className="login">

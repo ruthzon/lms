@@ -1,5 +1,5 @@
 import './login.css';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Button,
   Col,
@@ -13,8 +13,9 @@ import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import firebase from '@firebase/app';
 import 'firebase/auth';
-import {auth, signInWithGoogle,nav} from './firebase';
-import { UserContext } from './userProvider';
+import {auth, signInWithGoogle, nav, checkPremission} from './firebase';
+import {UserContext} from './userProvider';
+import $ from 'jquery';
 
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
@@ -37,7 +38,7 @@ import { UserContext } from './userProvider';
 
 const history = createHashHistory();
 const browserHistory = createBrowserHistory();
-  // const user={};
+// const user={};
 
 const Login = () => {
   const user = useContext(UserContext);
@@ -76,6 +77,7 @@ const Login = () => {
 
   const signInWithEmailAndPasswordHandler = (event, email, password) => {
     event.preventDefault();
+
     if (!validEmailRegex.test(email)) {
       setEmailError('Email is not valid');
       return;
@@ -84,13 +86,15 @@ const Login = () => {
       setPasswordError('Password must be at least 8 characters');
       return;
     }
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((res) => nav(res.user.displayName))
-      .catch((error) => {
-        setError('Error signing in with password and email!');
-        console.error('Error signing in with password and email', error);
-      });
+    if (password != '' && email != '') {
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((res) => nav(res.user.displayName))
+        .catch((error) => {
+          setError('Error signing in with password and email!');
+          console.error('Error signing in with password and email', error);
+        });
+    }
   };
 
   const onChangeHandler = (event) => {
@@ -107,7 +111,38 @@ const Login = () => {
     this.setState(({type}) => ({
       type: type === 'text' ? 'password' : 'text',
     }));
-
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      let exsistsJwt = document.cookie
+        .split(';')
+        .filter((s) => s.includes('jwt'));
+      {
+        if (user) {
+          console.log('user: ' + user);
+          auth.currentUser
+            .getIdToken(true)
+            .then((firebaseToken) => {
+              $.ajax({
+                url: 'https://api.leader.codes/register/getAccessToken',
+                method: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                  action: 'firebaseloginwithcredentials',
+                  jwt: firebaseToken,
+                }),
+                success: function (data) {
+                  checkPremission(data);
+                },
+              });
+            })
+            .catch(function (error) {
+              alert(error);
+            });
+        }
+      }
+    });
+  });
   return (
     <>
       {/* <FirebaseAuthProvider firebase={firebase} {...config}> */}

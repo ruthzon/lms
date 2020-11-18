@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Col, Row, Container, Image} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
+import {handleImage} from '../handleImage'
 import '../../ViewComponents/coursepage/course.css';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -17,16 +18,7 @@ function mapStateToProps(state) {
 }
 
 class Belive extends Component {
-  handleImage(e) {
-    let file = e.target.files[0];
-    console.log(file);
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      if (file.size / 1024 / 1024 > 2) alert('File size exceeds 2 MB');
-      else this.props.setBeliveImage(reader.result);
-    };
-  }
+  
   render() {
     let {course, setBeliveAuther, setBeliveImage, setBeliveText} = this.props;
     return (
@@ -56,7 +48,7 @@ class Belive extends Component {
                   <input
                     type="file"
                     accept=".jpg, .png, .jpeg"
-                    onChange={(e) => this.handleImage(e)}
+                    onChange={(e) => this.props.setBeliveImage(handleImage(e))}
                   />
                 </div>
               </Col>

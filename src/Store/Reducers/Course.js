@@ -7,7 +7,6 @@ import createReducer from './ReducerUtils';
 const initialState = {
   course: {
     id: '0',
-    user_id: '',
     name: 'Enter the name of the course here',
     subtitle: 'Here is a short description of the course and the content that will be taught in it',
     image: './img_from_xd/Image 108@2x.png',
@@ -22,7 +21,6 @@ const initialState = {
     use:'Use on desktop, tablet & mobile',
     access:'Full lifetime access',
     certificate:'Certificate of Completion',
-    
     share:{
       instegram:'',
       facebook:'',

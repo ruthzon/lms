@@ -49,7 +49,8 @@ export default connect(
             </Col>
             <Col md="6">
               <img
-                src={process.env.PUBLIC_URL + props.school.image}
+                src={props.school.image}
+                // src={process.env.PUBLIC_URL + props.school.image}
                 alt="header"
               ></img>
             </Col>
