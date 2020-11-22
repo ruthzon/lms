@@ -45,7 +45,8 @@ const mapDispatchToProps = (dispatch) => ({
 function mapStateToProps(state) {
   return {
     courses: state.listCoursesReducer.courses,
-    course: state.courseReducer.course
+    course: state.courseReducer.course,
+    styles: state.stylesReducer.styles
   };
 }
 export default connect(
@@ -67,19 +68,23 @@ export default connect(
   // const data=JSON.parse(params.data.toString())
   return (
     <>
-      <div className="coursepage coursepageconf">
-        {/* <HeaderConfig />
+      <div id="stage" className={props.styles.configurator? "col-md-10 d-flex":"col-md-12 d-flex"}>
+        <div id="landingPage_edit" className="m-auto">
+          <div className="coursepage coursepageconf">
+            {/* <HeaderConfig />
         <CourseConfig /> */}
-        {/* <div className="content-config"> */}
-          <Header />
-          <BuyCourse />
-          {/* <help/> */}
-          <Description />
-          {props.course.show.more.more_courses && <MoreCourses />}
-          {props.course.show.more.belive && <Belive />}
-          {props.course.show.more.top_educators && <TopEducators />}
-          {props.course.show.more.footer && <Footer />}
+            {/* <div className="content-config"> */}
+            <Header />
+            <BuyCourse />
+            {/* <help/> */}
+            <Description />
+            {props.course.show.more.more_courses && <MoreCourses />}
+            {props.course.show.more.belive && <Belive />}
+            {props.course.show.more.top_educators && <TopEducators />}
+            {props.course.show.more.footer && <Footer />}
+          </div>
         </div>
+      </div>
       {/* </div> */}
     </>
   );

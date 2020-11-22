@@ -9,6 +9,14 @@ import Stage from './stage';
 import CourseConfig from '../coursepage/CourseConfig';
 import HomeConfig from '../homepage/HomeConfig';
 
+
+
+function mapStateToProps(state) {
+  return {
+      styles: state.stylesReducer.styles,
+  };
+}
+
 function HomePageFrame(props) {
   // const {jsonPage} =props;
   // const pageStyle={
@@ -18,13 +26,11 @@ function HomePageFrame(props) {
   return (
     <div id="frame">
       <TopFrame />
-      <HomeConfig />
-      <Stage />
+      {props.styles.configurator && <HomeConfig />}
+      <HomePage />
     </div>
   );
 }
-export default connect((state) => {
-//   return {
-//     jsonPage: state.funnel.jsonPage,
-//   };
-})(HomePageFrame);
+export default connect(
+  mapStateToProps,null
+)(HomePageFrame);

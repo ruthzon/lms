@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import courseReducer from './Reducers/Course'
 import schoolReducer from './Reducers/School'
+import stylesReducer from './Reducers/Styles'
 // import companyReducer from './Reducers/Company'
 import listCoursesReducer from './Reducers/listCourses'
 import { getCourses } from './MiddleWares/crud';
@@ -11,7 +12,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // );
 
-const reducer = combineReducers({  courseReducer,listCoursesReducer ,schoolReducer});
+const reducer = combineReducers({  courseReducer,listCoursesReducer ,schoolReducer,stylesReducer});
 
 const store = createStore(reducer,applyMiddleware(getCourses));
 

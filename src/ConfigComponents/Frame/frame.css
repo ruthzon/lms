@@ -85,8 +85,14 @@
   border-radius: 50%;
   width: 20px;
 }
-#thumbtack {
+#thumbtack,
+#menu {
   width: 16px;
+  margin: 3px;
+  cursor: pointer;
+}
+#top_frame_icons{
+  margin:auto;
 }
 .rotateThumbtack {
   transform: rotate(-45deg);

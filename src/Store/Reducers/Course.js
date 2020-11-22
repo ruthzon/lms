@@ -103,7 +103,6 @@ const mycourse = {
   // },
   setName(state, action) {
     state.course.name = action.payload;
-    debugger;
   },
   setSubtitle(state, action) {
     state.course.subtitle = action.payload;

@@ -4,26 +4,37 @@ import './frame.css'
 // import logo from '../../assets/leader_logo.png'
 // import thumbtack from './img_from_xd/thumbtack-solid.svg'
 import $ from 'jquery'
+import { actions } from '../../Store/actions';
 // import { setFlagToggleCon ,setFlagthumbtack} from '../../redux/actions/funnel.action'
 
 
+function mapStateToProps(state) {
+    return {
+        styles: state.stylesReducer.styles,
+    };
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    setConfigurator: () => dispatch(actions.setConfigurator()),
+    setThumbtack: () => dispatch(actions.setThumbtack()),
+});
+
 function Top_frame(props) {
-
-
     return (
         <div id="top_frame" className="row d-flex justify-content-between align-items-right mx-0">
-            <a id="leader_logo" href="https://lobby.leader.codes/" className="d-flex">
-                {/* <img src={logo} id="img_logo" class="m-auto"></img> */}
-                logo
+            <a id="leader_logo" className="d-flex">
+                <img src={'./img_from_xd/leader-logo.png'} id="img_logo" class="m-auto"></img>
+                
             </a>
 
 
-            <div className="mr-3">
-                <img src={'./img_from_xd/thumbtack-solid.svg'} id="thumbtack" className={props.thumbtack?"rotateThumbtack":""} onClick={() => props.changeFlagThumbtack(!props.thumbtack)} />
-
-                <button id="menu2" className="material-icons align-middle pl-2 pointer btn btn-simple" onClick={!props.thumbtack && (() => props.changeFlagConfigurator(!props.flagCon))}>
+            <div id="top_frame_icons" className="mr-3">
+                <img src={'./img_from_xd/thumbtack-solid.svg'} id="thumbtack" className={props.styles.thumbtack ? "rotateThumbtack" : ""} onClick={() => props.setThumbtack()} />
+                <img src={'./img_from_xd/menu.png'} id="menu" className="" onClick={() => props.setConfigurator()} />
+{/* 
+                <button id="menu2" className="material-icons align-middle pl-2 pointer btn btn-simple" onClick={(() => props.setConfigurator())}>
                     menu
-                </button>
+                </button> */}
             </div>
         </div>
     )
@@ -44,5 +55,5 @@ function Top_frame(props) {
 //     }
 // )(Top_frame)
 
-export default connect(null,null)(Top_frame);
+export default connect(mapStateToProps, mapDispatchToProps)(Top_frame);
 

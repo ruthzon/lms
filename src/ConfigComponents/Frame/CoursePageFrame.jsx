@@ -7,7 +7,15 @@ import Configurator from './configurator';
 import TopFrame from './top_frame';
 import Stage from './stage';
 import CourseConfig from '../coursepage/CourseConfig';
+import CoursePage from '../coursepage/CoursePage';
 
+
+
+function mapStateToProps(state) {
+  return {
+      styles: state.stylesReducer.styles,
+  };
+}
 function CoursePageFrame(props) {
   // const {jsonPage} =props;
   // const pageStyle={
@@ -17,13 +25,9 @@ function CoursePageFrame(props) {
   return (
     <div id="frame">
       <TopFrame />
-      <CourseConfig />
-      <Stage />
+      {props.styles.configurator &&<CourseConfig />}
+      <CoursePage />
     </div>
   );
 }
-export default connect((state) => {
-//   return {
-//     jsonPage: state.funnel.jsonPage,
-//   };
-})(CoursePageFrame);
+export default connect(mapStateToProps,null)(CoursePageFrame);

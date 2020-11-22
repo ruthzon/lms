@@ -18,10 +18,25 @@ import {
   Partners as prt,
   Learnings as lrn,
 } from '../../Store/data.js';
+import { connect } from 'react-redux';
+const mapDispatchToProps = (dispatch) => ({
+});
 
-function HomePage() {
+function mapStateToProps(state) {
+  return {
+    styles: state.stylesReducer.styles
+  };
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+function HomePage(props) {
   return (
     <>
+     <div id="stage"  className={props.styles.configurator? "col-md-10 d-flex":"col-md-12 d-flex"}>
+
+<div id="landingPage_edit" className="m-auto">
       <div className="homeconf">
         <Navigation />
         <Header />
@@ -35,8 +50,10 @@ function HomePage() {
         <OurPartner />
         <Footer />
       </div>
+      </div>
+      </div>
     </>
   );
-}
+})
 
-export default HomePage;
+// export default HomePage;
