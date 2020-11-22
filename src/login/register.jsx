@@ -14,7 +14,13 @@ import {createBrowserHistory} from 'history';
 // import firebase from '@firebase/app';
 // import 'firebase/auth';
 import $ from 'jquery';
-import {auth, generateUserDocument, signInWithGoogle,checkPremission} from './firebase';
+import {
+  auth,
+  generateUserDocument,
+  signInWithGoogle,
+  checkPremission,
+  signOut,
+} from './firebase';
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
@@ -60,7 +66,8 @@ const Register = () => {
   const createUserWithEmailAndPasswordHandler = async (
     event,
     email,
-    password
+    password,
+    displayName
   ) => {
     event.preventDefault();
     if (!validEmailRegex.test(email)) {
@@ -74,7 +81,7 @@ const Register = () => {
     try {
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       generateUserDocument(user, {displayName});
-      nav();
+      // nav();
     } catch (error) {
       setError('Error Signing up with email and password');
     }
@@ -106,36 +113,40 @@ const Register = () => {
     this.setState(({type}) => ({
       type: type === 'text' ? 'password' : 'text',
     }));
-    useEffect(() => {
-      let exsistsJwt=document.cookie.split(";").filter(s => s.includes('jwt'))
+  useEffect(() => {
+    // signOut();
 
-      auth.onAuthStateChanged(function (user) {
-        {
-            if (user) {
-                console.log("user: " + user);
-                auth
-                    .currentUser.getIdToken(true)
-                    .then((firebaseToken) => {
-                      debugger;
-                        $.ajax({
-                            url: "https://lms.leader.codes/register/getAccessToken",
-                            method: "post",
-                            dataType: "json",
-                            contentType: "application/json",
-                            data: JSON.stringify({
-                                action: "firebaseloginwithcredentials",
-                                jwt: firebaseToken,
-                            }),
-                            success: function (data) {
-                                checkPremission(data);
-                            },
-                        });
-                    })
-                    .catch(function (error) {
-                        alert(error);
-                    });
-            }
+    // document.cookie = 'jwt' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
+    let exsistsJwt = document.cookie
+      .split(';')
+      .filter((s) => s.includes('jwt'));
+
+    auth.onAuthStateChanged(function (user) {
+      {
+        if (user) {
+          console.log('user: ' + user);
+          auth.currentUser
+            .getIdToken(true)
+            .then((firebaseToken) => {
+              $.ajax({
+                url: 'https://lms.leader.codes/register/getAccessToken',
+                method: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                  action: 'firebaseloginwithcredentials',
+                  jwt: firebaseToken,
+                }),
+                success: function (data) {
+                  checkPremission(data);
+                },
+              });
+            })
+            .catch(function (error) {
+              alert(error);
+            });
         }
+      }
     });
   });
   return (
@@ -207,7 +218,8 @@ const Register = () => {
                     createUserWithEmailAndPasswordHandler(
                       event,
                       email,
-                      password
+                      password,
+                      displayName
                     );
                   }}
                 >

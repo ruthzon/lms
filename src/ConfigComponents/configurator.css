@@ -8,7 +8,7 @@
 }
 .switch {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
   width: 28px;
   height: 14px;
   /* vertical-align: -webkit-baseline-middle;*/
@@ -72,7 +72,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 .config {
-  background: #3a405e;
+  /* background: #3a405e;
   height: 100%;
   border: 1px solid #707070;
   border-radius: 80px 0 0 0;
@@ -85,7 +85,11 @@ input:checked + .slider:before {
   color: #fff;
   font-size: 14px;
   overflow-y: auto;
-  padding-bottom: 110px;
+  padding-bottom: 110px; */
+  color: #bcbccb !important;
+    /* fill: #bcbccb; */
+    font-size:14px;
+    text-align: left;
 }
 .container {
   width: 100%;
@@ -196,6 +200,8 @@ textarea {
   height: 200px;
 }
 .config input[type='text'] {
+  background-color: transparent;
+    border: none;
   border-bottom: 1px solid #fff;
 }
 .config input[type='color'] {
@@ -238,7 +244,7 @@ textarea {
   width: auto;
 }
 .test-card .file-upload input,
-.category-card .file-upload input{
+.category-card .file-upload input {
   height: auto;
 }
 header textarea {
@@ -259,9 +265,14 @@ header textarea {
 .white {
   color: #fff;
 }
-.font-size-12{
+.font-size-12 {
   font-size: 12pt;
 }
-.font-size-14{
+.font-size-14 {
   font-size: 14pt;
+}
+
+.coursepageconf .list-group-item div input {
+  font: normal normal normal 14px/25px Poppins;
+  color: #f68c20;
 }

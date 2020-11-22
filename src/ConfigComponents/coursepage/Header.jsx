@@ -98,10 +98,10 @@ export default connect(
                     Duration ?? weeks
                   </Col>
                 )}
-                {props.course.show.lessons && (
+                {props.course.show.lessons.length>0 && (
                   <Col xs="3">
                     <FaRegPlayCircle color="#3E9365" />
-                    {props.course.lessons + ' '} Lessons
+                    {props.course.lessons.length + ' '} Lessons
                   </Col>
                 )}
               </Row>

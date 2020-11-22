@@ -13,28 +13,15 @@ import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 // import firebase from '@firebase/app';
 // import 'firebase/auth';
-import {auth, signInWithGoogle, nav, checkPremission} from './firebase';
+import {
+  auth,
+  signInWithGoogle,
+  nav,
+  checkPremission,
+  signOut,
+} from './firebase';
 import {UserContext} from './userProvider';
 import $ from 'jquery';
-
-// var firebase = require('firebase');
-// var app = firebase.initializeApp({ ... });
-
-// var firebaseConfig = {
-//   apiKey: 'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
-//   authDomain: 'lms-leader.firebaseapp.com',
-//   databaseURL: 'https://lms-leader.firebaseio.com',
-//   projectId: 'lms-leader',
-//   storageBucket: 'lms-leader.appspot.com',
-//   messagingSenderId: '451375116419',
-//   appId: '1:451375116419:web:a631ec62e2e0a0304e6bb6',
-//   measurementId: 'G-2DZBMG06NZ',
-// };
-// if (!firebase.apps.length) {
-//   firebase.initializeApp(firebaseConfig);
-// }
-
-// firebase.initializeApp(firebaseConfig);
 
 const history = createHashHistory();
 const browserHistory = createBrowserHistory();
@@ -50,24 +37,6 @@ const Login = () => {
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   );
   // const [passwordShown, setPasswordShown] = useState(false);
-  // const googleSignIn = () => {
-  //   let base_provider = new firebase.auth.GoogleAuthProvider();
-  //   firebase
-  //     .auth()
-  //     .signInWithPopup(base_provider)
-  //     .then(function (result) {
-  //       console.log(result);
-  //       console.log('Success..');
-  //       nav();
-  //     })
-  //     .catch(function (err) {
-  //       console.log(err);
-  //       console.log('Failed..');
-  //     });
-
-  //   // firebase.initializeApp(firebaseConfig);
-  //   // firebase.analytics();
-  // };
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -112,6 +81,9 @@ const Login = () => {
       type: type === 'text' ? 'password' : 'text',
     }));
   useEffect(() => {
+    // signOut();
+    // document.cookie = 'jwt' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
+
     auth.onAuthStateChanged(function (user) {
       let exsistsJwt = document.cookie
         .split(';')
@@ -122,7 +94,6 @@ const Login = () => {
           auth.currentUser
             .getIdToken(true)
             .then((firebaseToken) => {
-              debugger;
               $.ajax({
                 url: 'https://lms.leader.codes/register/getAccessToken',
                 method: 'post',

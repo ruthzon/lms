@@ -68,9 +68,9 @@ export default connect(
   return (
     <>
       <div className="coursepage coursepageconf">
-        <HeaderConfig />
-        <CourseConfig />
-        <div className="content-config">
+        {/* <HeaderConfig />
+        <CourseConfig /> */}
+        {/* <div className="content-config"> */}
           <Header />
           <BuyCourse />
           {/* <help/> */}
@@ -80,7 +80,7 @@ export default connect(
           {props.course.show.more.top_educators && <TopEducators />}
           {props.course.show.more.footer && <Footer />}
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 });

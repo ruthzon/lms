@@ -1,7 +1,7 @@
 // import 'semantic-ui-css/semantic.min.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import './ViewComponents/homepage/App.css';
 import HomePage from './ViewComponents/homepage/HomePage';
 // import {GetChoice, WorldSelectionCourse} from './Courses.jsx';
@@ -33,6 +33,8 @@ import LessonPage from './ViewComponents/coursepage/LessonPage';
 import RouteConfig from './ConfigComponents/RouteConfig'
 import Help from './Help';
 import CoursePage from './ViewComponents/coursepage/CoursePage';
+import { signOut } from './login/firebase';
+import Wizard from './login/wizard';
 
 // import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
@@ -44,6 +46,9 @@ const browserHistory = createBrowserHistory();
 
 
 function App() {
+  useEffect(() => {
+    // signOut();
+  });
   return (
     <div className="App">
       {/* <NavigationContainer>
@@ -64,6 +69,9 @@ function App() {
           </Route>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/wizard">
+            <Wizard />
           </Route>
           {/* <Route path="/course">
             <CoursePage />

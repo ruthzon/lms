@@ -12,6 +12,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {actions} from '../Store/actions';
 import {Courses} from '../Store/data';
+import Frame from './Frame/HomePageFrame';
+import HomePageFrame from './Frame/HomePageFrame';
+import CoursePageFrame from './Frame/CoursePageFrame';
 // import CoursePage from './coursepage/coursepage';
 const mapDispatchToProps = (dispatch) => ({
   initialCourses: (courses) => dispatch(actions.initialCourse(courses)),
@@ -29,7 +32,8 @@ export default connect(
       {/* <Link to={`${match.url}/components`}>Components</Link> */}
       <Switch>
         <Route path={`${match.path}/addcourse`}>
-          <CoursePage />
+          {/* <CoursePage /> */}
+          <CoursePageFrame />
         </Route>
         <Route path={`${match.path}/:course/:lesson`}>
           <LessonPage />
@@ -39,7 +43,8 @@ export default connect(
         </Route>
 
         <Route path={match.path}>
-          <HomePage />
+          <HomePageFrame />
+          {/* <HomePage /> */}
         </Route>
       </Switch>
     </div>

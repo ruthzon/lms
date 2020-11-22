@@ -12,7 +12,7 @@ const initialState = {
     image: './img_from_xd/Image 108@2x.png',
     stars: '?? stars',
     views: '?? views',
-    lessons: '?? ',
+    // lessons: '?? ',//!!!
     auther: 'Name of the lecturer',
     auther_image: './img_from_xd/Rectangle 22.png',
     price: 'price',
@@ -79,7 +79,13 @@ const initialState = {
       more_courses:'#EFEFF6',
       belive:'#FEF0EF',
       top_educators:'#EFEFF6'
-    }
+    },
+    //!!!
+    lessons:[
+      {id:1, name:"Everything You Need to Know Business", src:"", time:"Duration 10 weeks"},
+      {id:2, name:"Everything You Need to Know Business", src:"", time:"Duration 10 weeks"},
+      {id:3, name:"Everything You Need to Know Business", src:"", time:"Duration 10 weeks"},
+    ]
   }
 };
 
@@ -178,9 +184,13 @@ const mycourse = {
     state.course.belive.auther = action.payload;
   },
   setBeliveImage (state, action){
-    debugger;
     state.course.belive.image = action.payload;
   },
+  setLessonsProp(state, action) {
+    state.course.lessons[action.payload[2]][action.payload[1]] = action.payload[0];
+  },
+
+
   setColorHeader (state, action){
     state.course.colors.header = action.payload;
   },

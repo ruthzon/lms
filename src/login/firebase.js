@@ -5,6 +5,10 @@ import { createBrowserHistory } from 'history';
 import { useContext } from "react";
 import { UserContext } from "./userProvider";
 import $ from 'jquery'
+import { useCookies } from "react-cookie";
+
+import { withCookies, Cookies } from "react-cookie";
+
 const browserHistory = createBrowserHistory();
 
 var firebaseConfig = {
@@ -30,7 +34,10 @@ export const signInWithGoogle = () => {
         debugger;
         console.log(res.user.displayName);
         // nav(res.user.displayName);
-    });
+    }).catch((err) => {
+        debugger;
+        console.log(err)
+    })
     // nav();
 };
 
@@ -45,7 +52,7 @@ export const signOut = () => {
             console.log("logged out");
             document.cookie = 'jwt' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
         })
-        .catch(function (error) { });
+        .catch(function (error) { console.log(error) });
 }
 export const generateUserDocument = async (user, additionalData) => {
     if (!user) return;
@@ -81,12 +88,15 @@ const getUserDocument = async uid => {
     }
 };
 export const nav = (displayName) => {
+    debugger;
     // const name= displayName.replace(/\s/g, '');
-    browserHistory.replace('http://localhost:3000/' + displayName + '/addcourse');
-    window.location.reload();
+    // browserHistory.replace('/' + displayName + '/addcourse');
+    window.location.href = 'localhost:3000/' + displayName + '/addcourse';
 };
 
 
+let myJwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
+let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
 export function checkPremission(data) {
     let TokenToString = data.accessToken.toString();
@@ -94,7 +104,7 @@ export function checkPremission(data) {
         action: "loginCheckPermission",
         token: TokenToString
     };
-   $.ajax({
+    $.ajax({
         url: "https://lms.leader.codes/register/checkPermission",
         headers: {
             Authorization: TokenToString
@@ -111,7 +121,11 @@ export function checkPremission(data) {
             let noQuotesJwtData = jsonWebToken.split('"').join("");
             let now = new Date();
             now.setMonth(now.getMonth() + 1);
-            document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
+
+            // document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
+            document.cookie = "jwt=" + myJwt + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
+            console.log("cookie" + document.cookie)
+
             const queryString = window.location.search;
 
             const urlParams = new URLSearchParams(queryString);
@@ -127,8 +141,12 @@ export function checkPremission(data) {
                 }
                 window.location.href = redirectUrl
             } else {
+                debugger;
                 // nav(userName);
-                window.location.href = (!data.is_username) ? "https://leader.codes/wizard" : 'http://localhost:3000/' + userName + '/addcourse';
+                if (!data.is_username)
+                    browserHistory.replace('/wizard')
+                window.location.reload()
+                (!data.is_username) ? browserHistory.replace('/wizard') :  window.location.href ='http://localhost:3000/' + userName + '/addcourse';
             }
         }
     });

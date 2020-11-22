@@ -8,14 +8,16 @@ import {Provider} from 'react-redux';
 // import ReducerUtils from './Store/Reducers/ReducerUtils';
 import store from './Store/Store';
 import UserProvider from './login/userProvider';
-
+import {CookiesProvider} from 'react-cookie';
 // serviceWorker.unregister();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <UserProvider>
-        <App />
+        <CookiesProvider>
+          <App />
+        </CookiesProvider>
       </UserProvider>
     </Provider>
   </React.StrictMode>,

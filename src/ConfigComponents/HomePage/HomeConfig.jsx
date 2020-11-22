@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(function CourseConfig(props) {
+)(function HomeConfig(props) {
   let match = useRouteMatch();
 
   const [choose, setChoose] = useState(0);
