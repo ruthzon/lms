@@ -21,7 +21,7 @@ export default connect(
   mapDispatchToProps
 )(function LearningPlatform(props) {
   return (
-    <section className="learning-platform">
+    <section className="learning-platform"  style={{backgroundColor: props.school.colors.learning}}>
       <div className="title">
         <h3>
           <input

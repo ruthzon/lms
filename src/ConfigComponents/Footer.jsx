@@ -2,10 +2,23 @@ import {FaGoogle, FaTwitter, FaLinkedin, FaFacebook} from 'react-icons/all';
 // import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
-import './homepage/App.css';
-function Footer() {
+import '../ViewComponents/homepage/App.css';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
+}
+const mapDispatchToProps = (dispatch) => ({
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+function Footer(props) {
   return (
-    <section id="footer">
+    <section id="footer"  style={{backgroundColor: props.school.colors.footer}}>
       <Container>
         <Row
           text="center"
@@ -129,5 +142,5 @@ function Footer() {
       </Container>
     </section>
   );
-}
-export default Footer;
+})
+// export default Footer;

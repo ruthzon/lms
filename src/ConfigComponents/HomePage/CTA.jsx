@@ -24,7 +24,7 @@ class CTA extends Component {
   // }
   render() {
     return (
-      <section className="cta white">
+      <section className="cta white"  style={{backgroundColor: this.props.school.colors.CTA}}>
         <h1>
           <input
             className="white width-webkit"

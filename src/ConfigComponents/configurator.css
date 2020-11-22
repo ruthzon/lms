@@ -87,9 +87,10 @@ input:checked + .slider:before {
   overflow-y: auto;
   padding-bottom: 110px; */
   color: #bcbccb !important;
-    /* fill: #bcbccb; */
-    font-size:14px;
-    text-align: left;
+  /* fill: #bcbccb; */
+  font-size: 14px;
+  text-align: left;
+  
 }
 .container {
   width: 100%;
@@ -183,6 +184,7 @@ input:checked + .slider:before {
   background-color: #f56962;
   border-color: #f56962;
 }
+
 textarea {
   width: 100%;
 }
@@ -201,11 +203,14 @@ textarea {
 }
 .config input[type='text'] {
   background-color: transparent;
-    border: none;
+  border: none;
   border-bottom: 1px solid #fff;
 }
 .config input[type='color'] {
   float: right;
+  background-color: transparent;
+  border: none;
+  width: 15%;
 }
 .coursepageconf .overview textarea {
   height: 180px;
@@ -271,7 +276,9 @@ header textarea {
 .font-size-14 {
   font-size: 14pt;
 }
-
+.font-size-9{
+  font-size: 9pt;
+}
 .coursepageconf .list-group-item div input {
   font: normal normal normal 14px/25px Poppins;
   color: #f68c20;

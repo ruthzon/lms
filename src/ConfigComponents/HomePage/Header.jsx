@@ -27,18 +27,20 @@ export default connect(
 )(function Header(props) {
   return (
     <>
-      <header>
+      <header  style={{backgroundColor: props.school.colors.header}}>
         <Container>
           <Row>
             <Col className="middle" md="6">
               <h1 className="learn">
                 <textarea
+                 style={{color: props.school.colors.title}}
                   value={props.school.title}
                   onChange={(e) => props.setSchoolTitle(e.target.value)}
-                />{' '}
+                />
               </h1>
               <h6 className="choose">
                 <textarea
+                 style={{color: props.school.colors.subtitle}}
                   value={props.school.subtitle}
                   onChange={(e) => props.setSchoolSubtitle(e.target.value)}
                 />

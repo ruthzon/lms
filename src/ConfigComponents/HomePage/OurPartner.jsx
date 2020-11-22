@@ -22,7 +22,7 @@ export default connect(
 )(function OurPartner(props) {
   return (
     <>
-      <section className="partner">
+      <section className="partner"  style={{backgroundColor: props.school.colors.partners}}>
         <div className="title">
           <Form inline>
             <button>

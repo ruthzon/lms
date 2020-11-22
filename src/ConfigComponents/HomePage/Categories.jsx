@@ -22,17 +22,19 @@ export default connect(
 )(function Categories(props) {
   return (
     <>
-      <div className="title">
-        <Form inline>
-          <button id="see-all">See all Categories</button>
-        </Form>
-        <h3>Choice favourite course from top category</h3>
+      <div style={{backgroundColor: props.school.colors.categories}}>
+        <div className="title">
+          <Form inline>
+            <button id="see-all">See all Categories</button>
+          </Form>
+          <h3>Choice favourite course from top category</h3>
+        </div>
+        <CardDeck className="none"></CardDeck>
+        {/* Because the first card deck always align to right. */}
+        <CardDeck>
+          <RowCategories data={props} />
+        </CardDeck>
       </div>
-      <CardDeck className="none"></CardDeck>
-      {/* Because the first card deck always align to right. */}
-      <CardDeck>
-        <RowCategories data={props} />
-      </CardDeck>
     </>
   );
 });

@@ -43,7 +43,7 @@ class Testimoinal extends Component {
     );
     return (
       <>
-        <section className="test">
+        <section className="test"  style={{backgroundColor: this.props.school.colors.testimoinal}}>
           <div className="title">
             <h3>What our students have to say </h3>
           </div>

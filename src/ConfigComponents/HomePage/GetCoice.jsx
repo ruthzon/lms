@@ -23,7 +23,7 @@ export default connect(
   mapDispatchToProps
 )(function GetChoice(props) {
   return (
-    <section id="choice">
+    <section id="choice"  style={{backgroundColor: props.school.colors.getChoice}}>
       <div className="title">
         <Form inline>
           <Dropdown>

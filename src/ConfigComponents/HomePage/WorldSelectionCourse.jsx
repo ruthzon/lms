@@ -20,6 +20,7 @@ function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
     courses: state.listCoursesReducer.courses,
+    school:state.schoolReducer.school
   };
 }
 
@@ -37,7 +38,7 @@ function WorldSelectionCourse(props) {
     </button>
   );
   return (
-    <section id="world">
+    <section id="world"  style={{backgroundColor: props.school.colors.worldSelection}}>
       <div className="title">
         <Form inline>
           <Dropdown>

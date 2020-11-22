@@ -62,17 +62,21 @@ const initialState = {
       testimoinal: true,
       partners: true,
       footer: true,
+      getChoice: true,//!!!!!!!
+      worldSelection:true,//!!!!!!!
     },
     colors: {
-      header: '#FEF0EF',
-      title: '#5F5982',
-      subtitle: '#5F5982',
-      categories: '#5F5982',
-      CTA: '#F56962',
-      learning: '#EFEFF6',
-      testimoinal: '#FEF0EF',
-      partners: '#EFEFF6',
+      header: '#33333D',
+      title: '#FFFFFF',
+      subtitle: '#FFFFFF',
+      categories: '#FFFFFF',
+      CTA: '#3B3B44',
+      learning: '#FFFFFF',
+      testimoinal: '#EFEFF6',
+      partners: '#FFF',
       footer: '#282834',
+      getChoice: '#EFEFF6',//!!!!!!!
+      worldSelection:'#FEF0EF',//!!!!!!!
     }
 
   }
@@ -154,24 +158,28 @@ const myschool = {
   },
 
   // Showwwwww
-  showTestimoinal(state) {
-    state.school.show.testimoinal = !state.school.show.testimoinal;
+  showSchoolByPart(state, action) {
+    state.school.show[action.payload] = !state.school.show[action.payload];
   },
-  showCategories(state) {
-    state.school.show.categories = !state.school.show.categories;
+  setColorSchoolByPart(state, action) {
+    debugger;
+    state.school.colors[action.payload[1]] = action.payload[0];
   },
-  showCTA(state) {
-    state.school.show.CTA = !state.school.show.CTA;
-  },
-  showLearning(state) {
-    state.school.show.learning = !state.school.show.learning;
-  },
-  showPartners(state) {
-    state.school.show.partners = !state.school.show.partners;
-  },
-  showSchoolFooter(state) {
-    state.school.show.footer = !state.school.show.footer;
-  },
+  // showCategories(state) {
+  //   state.school.show.categories = !state.school.show.categories;
+  // },
+  // showCTA(state) {
+  //   state.school.show.CTA = !state.school.show.CTA;
+  // },
+  // showLearning(state) {
+  //   state.school.show.learning = !state.school.show.learning;
+  // },
+  // showPartners(state) {
+  //   state.school.show.partners = !state.school.show.partners;
+  // },
+  // showSchoolFooter(state) {
+  //   state.school.show.footer = !state.school.show.footer;
+  // },
 
 
 };
