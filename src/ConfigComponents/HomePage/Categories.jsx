@@ -6,6 +6,7 @@ import {Component} from 'react';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
 import {handleImage, handleImageById} from '../handleImage';
+import { FaTrash } from 'react-icons/fa';
 
 function mapStateToProps(state) {
   return {
@@ -74,6 +75,7 @@ function RowCategories(props) {
             }
           />
         </div>
+
         <Card.Body>
           <Card.Title>
             <input

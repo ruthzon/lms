@@ -18,73 +18,99 @@ const initialState = {
     price: 'price',
     prev_price: 'prev price',
     language: 'Course language',
-    use:'Use on desktop, tablet & mobile',
-    access:'Full lifetime access',
-    certificate:'Certificate of Completion',
-    share:{
-      instegram:'',
-      facebook:'',
-      whatsapp:'',
-      twitter:'',
-      linkedin:'',
-      youtube:'',
-      reddit:'',
+    use: 'Use on desktop, tablet & mobile',
+    access: 'Full lifetime access',
+    certificate: 'Certificate of Completion',
+    share: {
+      instegram: '',
+      facebook: '',
+      whatsapp: '',
+      twitter: '',
+      linkedin: '',
+      youtube: '',
+      reddit: '',
     },
-    belive:{
-      text:'I believe in lifelong learning and Skillfy is a great place to learn from experts. I’ve learned a lot and recommend it to all my friends.',
-      auther:'Riaz Surti | Hearthy Foods',
-      image:'./img_from_xd/image 116.png',
+    belive: {
+      text: 'I believe in lifelong learning and Skillfy is a great place to learn from experts. I’ve learned a lot and recommend it to all my friends.',
+      auther: 'Riaz Surti | Hearthy Foods',
+      image: './img_from_xd/image 116.png',
     },
     description: {
       "Course Description": "See-through delicate embroidered organza blue lining luxury acetate-mix stretch pleat detailing. Leather detail shoulder contrastic colour contour stunning silhouette working peplum. Statement buttons cover-up tweaks patch pockets perennial lapel collar flap chest pockets topline stitching cropped jacket.",
       "Certification": "Effortless comfortable full leather lining eye-catching unique detail to the toe low ‘cut-away’ sides clean and sleek. Polished finish elegant court shoe work duty stretch slingback strap mid kitten heel this ladylike design slingback strap mid kitten heel this ladylike design.",
       "Who this course is for": "Anyone interested in learning about business (only practical concepts that you can use and no boring theory + we won’t cover business topics that are common sense"
     },
-    show:{
-      stars:true,
-      views:true,
-      prev_price:true,
-      language:true,
-      use:true,
-      access:true,
-      certificate:true,
-      students:true,
-      weeks:true,
-      lessons:true,
-      more:{
-        more_courses:true,
-        belive:true,
-        top_educators:true,
-        footer:true,
+    show: {
+      stars: true,
+      views: true,
+      prev_price: true,
+      language: true,
+      use: true,
+      access: true,
+      certificate: true,
+      students: true,
+      weeks: true,
+      lessons: true,
+      more: {
+        more_courses: true,
+        belive: true,
+        top_educators: true,
+        footer: true,
       },
-      share:{
-        instegram:true,
-        facebook:true,
-        whatsapp:true,
-        twitter:true,
-        linkedin:true,
-        youtube:true,
-        reddit:true,
+      share: {
+        instegram: true,
+        facebook: true,
+        whatsapp: true,
+        twitter: true,
+        linkedin: true,
+        youtube: true,
+        reddit: true,
       },
       description: true,
       "Course Description": true,
       "Certification": true,
       "Who this course is for": true,
     },
-    colors:{
+    colors: {
       header: '#FEF0EF',
-      name:'#5F5982',
-      subtitle:'#5F5982',
-      buy_course:'#F56962',
-      more_courses:'#EFEFF6',
-      belive:'#FEF0EF',
-      top_educators:'#EFEFF6'
+      name: '#5F5982',
+      subtitle: '#5F5982',
+      buy_course: '#F56962',
+      more_courses: '#EFEFF6',
+      belive: '#FEF0EF',
+      top_educators: '#EFEFF6'
     },
+    top_educators: [
+      {
+        bg: './img_from_xd/path 65.svg',
+        image: './img_from_xd/image 61.png',
+        header: 'Pass above Rs 250.',
+        content: 'Avail 10% off on Testbook',
+        color: '#DF4161',
+        discount: '10',
+      },
+      {
+        bg: './img_from_xd/path 65-1.svg',
+        image: './img_from_xd/image 62.png',
+        header: 'Productivity Course a',
+        content: 'The Complete Personal',
+        color: '#64929F',
+        discount: '58',
+      },
+      {
+        bg: './img_from_xd/path 65-1.svg',
+        image: './img_from_xd/image 63.png',
+        header: 'Up To 58% Off',
+        content: 'Get 12-Month Subscription',
+        color: '#B3A092',
+        discount: '50',
+      },
+    ],
     //!!!
-    lessons:[
-      {id:1, name:"Everything You Need to Know Business", src:"", time:"Duration 10 weeks"},
-      {id:2, name:"Everything You Need to Know Business", src:"", time:"Duration 10 weeks"},
-      {id:3, name:"Everything You Need to Know Business", src:"", time:"Duration 10 weeks"},
+    lessons: [
+      { id: 1, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
+      { id: 2, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
+      { id: 3, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
     ]
   }
 };
@@ -146,69 +172,77 @@ const mycourse = {
   setCourseDescription(state, action) {
     state.course.description['Course Description'] = action.payload;
   },
-  setUse(state, action){
-    state.course.use=action.payload;
+  setUse(state, action) {
+    state.course.use = action.payload;
   },
-  setAccess(state, action){
-    state.course.access= action.payload;
+  setAccess(state, action) {
+    state.course.access = action.payload;
   },
-  setCertificate (state, action){
+  setCertificate(state, action) {
     state.course.certificate = action.payload;
   },
-  setInstegram (state, action){
+  setInstegram(state, action) {
     state.course.share.instegram = action.payload;
   },
-  setFacebook (state, action){
+  setFacebook(state, action) {
     state.course.share.facebook = action.payload;
   },
-  setWhatsapp (state, action){
+  setWhatsapp(state, action) {
     state.course.share.whatsapp = action.payload;
   },
-  setTwitter (state, action){
+  setTwitter(state, action) {
     state.course.share.twitter = action.payload;
   },
-  setLinkedin (state, action){
+  setLinkedin(state, action) {
     state.course.share.linkedin = action.payload;
   },
-  setYoutube (state, action){
+  setYoutube(state, action) {
     state.course.share.youtube = action.payload;
   },
-  setReddit (state, action){
+  setReddit(state, action) {
     state.course.share.reddit = action.payload;
   },
-  setBeliveText (state, action){
+  setBeliveText(state, action) {
     state.course.belive.text = action.payload;
   },
-  setBeliveAuther (state, action){
+  setBeliveAuther(state, action) {
     state.course.belive.auther = action.payload;
   },
-  setBeliveImage (state, action){
+  setBeliveImage(state, action) {
     state.course.belive.image = action.payload;
   },
   setLessonsProp(state, action) {
     state.course.lessons[action.payload[2]][action.payload[1]] = action.payload[0];
   },
+  setTopEducatorsProp(state, action) {
+    //array: [value, prop, index]
+    state.course.top_educators[action.payload[2]][action.payload[1]] = action.payload[0];
+  },
+  setTopEducatorsImage(state, action) {
+    //array: [value, prop, index]
+    state.course.top_educators[action.payload[1]].image = action.payload[0];
+  },
 
 
-  setColorHeader (state, action){
+  setColorHeader(state, action) {
     state.course.colors.header = action.payload;
   },
-  setColorName (state, action){
+  setColorName(state, action) {
     state.course.colors.name = action.payload;
   },
-  setColorSubtitle (state, action){
+  setColorSubtitle(state, action) {
     state.course.colors.subtitle = action.payload;
   },
-  setColorBelive (state, action){
+  setColorBelive(state, action) {
     state.course.colors.belive = action.payload;
   },
-  setColorBuyCourse (state, action){
+  setColorBuyCourse(state, action) {
     state.course.colors.buy_course = action.payload;
   },
-  setColorMoreCourses (state, action){
+  setColorMoreCourses(state, action) {
     state.course.colors.more_courses = action.payload;
   },
-  setColorTopEducators (state, action){
+  setColorTopEducators(state, action) {
     state.course.colors.top_educators = action.payload;
   },
   // Showwwwww
@@ -221,71 +255,71 @@ const mycourse = {
   showCourseDescription(state) {
     state.course.show['Course Description'] = !state.course.show['Course Description'];
   },
-  showStars(state){
-    state.course.show.stars=!state.course.show.stars;
+  showStars(state) {
+    state.course.show.stars = !state.course.show.stars;
   },
-  showViews(state){
-    state.course.show.views=!state.course.show.views;
+  showViews(state) {
+    state.course.show.views = !state.course.show.views;
   },
-  showPrevPrice(state){
-    state.course.show.prev_price=!state.course.show.prev_price;
+  showPrevPrice(state) {
+    state.course.show.prev_price = !state.course.show.prev_price;
   },
-  showDescription(state){
-    state.course.show.description=!state.course.show.description;
+  showDescription(state) {
+    state.course.show.description = !state.course.show.description;
   },
-  showStudents(state){
-    state.course.show.students=!state.course.show.students;
+  showStudents(state) {
+    state.course.show.students = !state.course.show.students;
   },
-  showWeeks(state){
-    state.course.show.weeks=!state.course.show.weeks;
+  showWeeks(state) {
+    state.course.show.weeks = !state.course.show.weeks;
   },
-  showLessons(state){
-    state.course.show.lessons=!state.course.show.lessons;
+  showLessons(state) {
+    state.course.show.lessons = !state.course.show.lessons;
   },
-  showLanguage(state){
-    state.course.show.language=!state.course.show.language;
+  showLanguage(state) {
+    state.course.show.language = !state.course.show.language;
   },
-  showUse(state){
-    state.course.show.use=!state.course.show.use;
+  showUse(state) {
+    state.course.show.use = !state.course.show.use;
   },
-  showAccess(state){
-    state.course.show.access=!state.course.show.access;
+  showAccess(state) {
+    state.course.show.access = !state.course.show.access;
   },
-  showCertificate (state){
-    state.course.show.certificate =!state.course.show.certificate;
+  showCertificate(state) {
+    state.course.show.certificate = !state.course.show.certificate;
   },
-  showInstegram (state){
+  showInstegram(state) {
     state.course.show.share.instegram = !state.course.show.share.instegram;
   },
-  showFacebook (state){
+  showFacebook(state) {
     state.course.show.share.facebook = !state.course.show.share.facebook;
   },
-  showWhatsapp (state){
+  showWhatsapp(state) {
     state.course.show.share.whatsapp = !state.course.show.share.whatsapp;
   },
-  showTwitter (state){
+  showTwitter(state) {
     state.course.show.share.twitter = !state.course.show.share.twitter;
   },
-  showLinkedin (state){
+  showLinkedin(state) {
     state.course.show.share.linkedin = !state.course.show.share.linkedin;
   },
-  showYoutube (state){
-    state.course.show.share.youtube =!state.course.show.share.youtube;
+  showYoutube(state) {
+    state.course.show.share.youtube = !state.course.show.share.youtube;
   },
-  showReddit (state){
+  showReddit(state) {
     state.course.show.share.reddit = !state.course.show.share.reddit;
   },
-  showMoreCourses(state){
-    state.course.show.more.more_courses=!state.course.show.more.more_courses;
+  showMoreCourses(state) {
+    state.course.show.more.more_courses = !state.course.show.more.more_courses;
   },
-  showBelive(state){
-    state.course.show.more.belive=!state.course.show.more.belive;
+  showBelive(state) {
+    state.course.show.more.belive = !state.course.show.more.belive;
   },
-  showTopEducarors(state){
-    state.course.show.more.top_educators=!state.course.show.more.top_educators;
+  showTopEducarors(state) {
+    state.course.show.more.top_educators = !state.course.show.more.top_educators;
   },
-  showCourseFooter(state){
-    state.course.show.more.footer=!state.course.show.more.footer;
+  showCourseFooter(state) {
+    state.course.show.more.footer = !state.course.show.more.footer;
   },
 
 

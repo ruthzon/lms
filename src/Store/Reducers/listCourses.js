@@ -32,7 +32,7 @@ const mycourses = {
   //   state.courses = action.payload;
   // },
   addCourse(state, action) {
-    state.courses.push(action.payload);
+    state.courses=state.courses.push(action.payload);
   },
   removeCourse(state, action) {
     state.Courses=state.Courses.filter((x)=>x!=action.payload) ;

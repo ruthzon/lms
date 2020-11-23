@@ -90,7 +90,6 @@ input:checked + .slider:before {
   /* fill: #bcbccb; */
   font-size: 14px;
   text-align: left;
-  
 }
 .container {
   width: 100%;
@@ -232,6 +231,19 @@ textarea {
   overflow: hidden;
   /* position:relative; */
 }
+.buy-course .file-upload input{
+  height: 200px;
+}
+.test-card .file-upload2 input {
+  left: 0px;
+  height: 50px;
+}
+.file-upload2 input {
+  height: 50%;
+  position: absolute;
+  width: 130px;
+  opacity: 0;
+}
 .file-upload input {
   opacity: 0;
   position: absolute;
@@ -276,10 +288,50 @@ header textarea {
 .font-size-14 {
   font-size: 14pt;
 }
-.font-size-9{
+.font-size-9 {
   font-size: 9pt;
 }
 .coursepageconf .list-group-item div input {
   font: normal normal normal 14px/25px Poppins;
   color: #f68c20;
+}
+.top-card .card-text {
+  font-size: normal normal normal 12px/24px Poppins;
+}
+.btn-plus {
+  width: 15px;
+  height: 15px;
+  border: none;
+}
+.config svg {
+  margin: 0;
+  float: right;
+}
+.trash {
+  height: 40px;
+  display: none;
+}
+.hover-trash:hover .trash {
+  display: block;
+  position: absolute;
+  margin: auto;
+  /* left: 10px; */
+  /* margin-left: 50px; */
+  top: 40px;
+  cursor: pointer;
+}
+.test-card.hover-trash:hover .trash {
+  top: 5px;
+  left: 15px;
+}
+.lerning .hover-trash:hover .trash {
+  top: auto;
+  right: 30px;
+  margin-top: 7px;
+}
+.top-card .card-text {
+  font: normal normal normal 12px/24px Poppins;
+}
+.pointer{
+  cursor: pointer;
 }

@@ -63,7 +63,7 @@ const initialState = {
       partners: true,
       footer: true,
       getChoice: true,//!!!!!!!
-      worldSelection:true,//!!!!!!!
+      worldSelection: true,//!!!!!!!
     },
     colors: {
       header: '#33333D',
@@ -76,7 +76,7 @@ const initialState = {
       partners: '#FFF',
       footer: '#282834',
       getChoice: '#EFEFF6',//!!!!!!!
-      worldSelection:'#FEF0EF',//!!!!!!!
+      worldSelection: '#FEF0EF',//!!!!!!!
     }
 
   }
@@ -122,34 +122,6 @@ const myschool = {
   setTestimoinalImage(state, action) {
     state.school.testimoinal[action.payload[1]].image = action.payload[0];
   },
-
-  setColorSchoolHeader(state, action) {
-    state.school.colors.header = action.payload;
-  },
-  setColorSchoolTitle(state, action) {
-    state.school.colors.title = action.payload;
-  },
-  setColorSchoolSubtitle(state, action) {
-    state.school.colors.subtitle = action.payload;
-  },
-  setColorSchoolCategories(state, action) {
-    state.school.colors.categories = action.payload;
-  },
-  setColorSchoolCTA(state, action) {
-    state.school.colors.CTA = action.payload;
-  },
-  setColorSchoolLearning(state, action) {
-    state.school.colors.learning = action.payload;
-  },
-  setColorSchoolTestimoinal(state, action) {
-    state.school.colors.testimoinal = action.payload;
-  },
-  setColorSchoolPartners(state, action) {
-    state.school.colors.partners = action.payload;
-  },
-  setColorSchoolFooter(state, action) {
-    state.school.colors.footer = action.payload;
-  },
   setCTAText(state, action) {
     state.school.CTA.text = action.payload;
   },
@@ -157,28 +129,32 @@ const myschool = {
     state.school.CTA.title = action.payload;
   },
 
+
+
+
   // Showwwwww
   showSchoolByPart(state, action) {
     state.school.show[action.payload] = !state.school.show[action.payload];
   },
   setColorSchoolByPart(state, action) {
-    debugger;
     state.school.colors[action.payload[1]] = action.payload[0];
   },
-  // showCategories(state) {
-  //   state.school.show.categories = !state.school.show.categories;
-  // },
-  // showCTA(state) {
-  //   state.school.show.CTA = !state.school.show.CTA;
-  // },
-  // showLearning(state) {
-  //   state.school.show.learning = !state.school.show.learning;
-  // },
-  // showPartners(state) {
-  //   state.school.show.partners = !state.school.show.partners;
-  // },
-  // showSchoolFooter(state) {
-  //   state.school.show.footer = !state.school.show.footer;
+  addNewForSection(state, action) {
+    state.school[action.payload[1]] = state.school[action.payload[1]].concat(action.payload[0]);
+  },
+  addNewForLearning(state, action) {
+    state.school.learning.info = state.school.learning.info.concat(action.payload);
+  },
+  deleteFromSection(state, action) {
+    state.school[action.payload[1]] = state.school[action.payload[1]].filter((element,ind) => ind !== action.payload[0]);
+  },
+  deleteFromLearning(state, action) {
+    state.school.learning.info = state.school.learning.info.filter((element,ind) => ind !== action.payload[0]);
+  },
+
+
+  // saveSchool(state, action) {
+  //   state.school =action.payload;
   // },
 
 

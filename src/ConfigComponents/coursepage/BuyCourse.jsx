@@ -3,8 +3,10 @@ import '../../ViewComponents/coursepage/course.css';
 import {Card, Col, Button, Image, ListGroup} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
+import { handleImage } from '../handleImage';
 
 const mapDispatchToProps = (dispatch) => ({
+  setImage: (data) => dispatch(actions.setImage(data)),
   setPrice: (data) => dispatch(actions.setPrice(data)),
   setLanguage: (data) => dispatch(actions.setLanguage(data)),
   setPrice: (data) => dispatch(actions.setPrice(data)),
@@ -35,7 +37,14 @@ export default connect(
   return (
     <div className="buy-course shadow ">
       <Card style={{width: '18rem'}}>
-        <Card.Img variant="top" src={course.image} />
+        <div class="file-upload">
+          <Card.Img variant="top" src={course.image} />
+          <input
+            type="file"
+            accept=".jpg, .jpeg, .png"
+            onChange={(e) => handleImage(e, props.setImage)}
+          />
+        </div>
         <Card.Body>
           <Card.Title>
             <input
@@ -49,7 +58,11 @@ export default connect(
               11 Hour left at this price
             </Card.Text>
           )}
-          <Button variant="primary" block  style={{backgroundColor: course.colors.buy_course}}>
+          <Button
+            variant="primary"
+            block
+            style={{backgroundColor: course.colors.buy_course}}
+          >
             Buy Now
           </Button>
           <ListGroup className="card-list" variant="flush">
@@ -99,15 +112,27 @@ export default connect(
               top courses anytime.
               <span className=" card-text"> Contact our sale</span>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className="pointer"> 
               <h6>Share this course</h6>
-             {course.show.share.instegram&& <Image src="./img_from_xd/instagram.svg"></Image>}
-              {course.show.share.facebook&& <Image src="./img_from_xd/facebook (1).svg"></Image>}
-              {course.show.share.whatsapp&& <Image src="./img_from_xd/whatsapp (1).svg"></Image>}
-              {course.show.share.twitter&& <Image src="./img_from_xd/twitter (1).svg"></Image>}
+              {course.show.share.instegram && (
+                <Image src="./img_from_xd/instagram.svg"></Image>
+              )}
+              {course.show.share.facebook && (
+                <Image src="./img_from_xd/facebook (1).svg"></Image>
+              )}
+              {course.show.share.whatsapp && (
+                <Image src="./img_from_xd/whatsapp (1).svg"></Image>
+              )}
+              {course.show.share.twitter && (
+                <Image src="./img_from_xd/twitter (1).svg"></Image>
+              )}
               {/* {course.show.share.linkedin&&  <Image src="./img_from_xd/linkedin (1).svg"></Image> } */}
-              {course.show.share.youtube&& <Image src="./img_from_xd/youtube (1).svg"></Image>}
-              {course.show.share.reddit&& <Image src="./img_from_xd/reddit.svg"></Image>}
+              {course.show.share.youtube && (
+                <Image src="./img_from_xd/youtube (1).svg"></Image>
+              )}
+              {course.show.share.reddit && (
+                <Image src="./img_from_xd/reddit.svg"></Image>
+              )}
             </ListGroup.Item>
           </ListGroup>
         </Card.Body>

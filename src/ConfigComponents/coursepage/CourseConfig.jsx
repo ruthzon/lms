@@ -5,6 +5,7 @@ import {useRouteMatch} from 'react-router-dom';
 import {actions} from '../../Store/actions';
 import '../configurator.css';
 import {createBrowserHistory} from 'history';
+import $ from 'jquery';
 
 const browserHistory = createBrowserHistory();
 
@@ -15,7 +16,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addCourse: (data) => dispatch(actions.addCourse(data)),
+  addCourseToServer: (data) => dispatch(actions.addCourseToServer(data)),
   setName: (data) => dispatch(actions.setName(data)),
   setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
   showHowIsFor: () => dispatch(actions.showHowIsFor()),
@@ -68,11 +69,11 @@ export default connect(
     else setChoose(click);
   };
   const handleSave = () => {
-    props.addCourse(props.course);
-    console.log(match.path);
-    console.log(match.pa);
-    browserHistory.replace('/' + match.params.name);
-    window.location.reload();
+   
+    props.addCourseToServer(props.course);
+    // browserHistory.replace('/' + match.params.name);
+    // window.location.reload();
+    
   };
   return (
     <>
@@ -346,54 +347,6 @@ export default connect(
           <button onClick={() => handleChoose(4)}>More sections</button>
           <div className={choose === 4 ? 'display' : 'cover'}>
             <div>
-              More courses
-              <label class="switch">
-                <input
-                  type="checkbox"
-                  onClick={props.showMoreCourses}
-                  checked={props.course.show.more.more_courses}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div>
-              I belibe...
-              <label class="switch">
-                <input
-                  type="checkbox"
-                  onClick={props.showBelive}
-                  checked={props.course.show.more.belive}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div>
-              Top educators
-              <label class="switch">
-                <input
-                  type="checkbox"
-                  onClick={props.showTopEducarors}
-                  checked={props.course.show.more.top_educators}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div>
-              Footer
-              <label class="switch">
-                <input
-                  type="checkbox"
-                  onClick={props.showCourseFooter}
-                  checked={props.course.show.more.footer}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
-          </div>
-
-          <button onClick={() => handleChoose(5)}>Colors</button>
-          <div className={choose === 5 ? 'display' : 'cover'}>
-            <div>
               Header backgroud
               <input
                 type="color"
@@ -426,33 +379,70 @@ export default connect(
               />
             </div>
             <div>
-              More courses
+              Additional courses
               <input
                 type="color"
                 value={props.course.colors.more_courses}
                 onChange={(e) => props.setColorMoreCourses(e.target.value)}
               />
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  onClick={props.showMoreCourses}
+                  checked={props.course.show.more.more_courses}
+                />
+                <span class="slider round"></span>
+              </label>
             </div>
             <div>
-              I belive
+              I belibe...
               <input
                 type="color"
                 value={props.course.colors.belive}
                 onChange={(e) => props.setColorBelive(e.target.value)}
               />
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  onClick={props.showBelive}
+                  checked={props.course.show.more.belive}
+                />
+                <span class="slider round"></span>
+              </label>
             </div>
             <div>
-              Top education
+              Top educators
               <input
                 type="color"
                 value={props.course.colors.top_educators}
                 onChange={(e) => props.setColorTopEducators(e.target.value)}
               />
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  onClick={props.showTopEducarors}
+                  checked={props.course.show.more.top_educators}
+                />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div>
+              Footer
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  onClick={props.showCourseFooter}
+                  checked={props.course.show.more.footer}
+                />
+                <span class="slider round"></span>
+              </label>
             </div>
           </div>
+          {/* </div> */}
+
           <div id="bottom_configurtor">
             <Button variant="primary" onClick={handleSave}>
-              save as draft
+              Save course
             </Button>
           </div>
         </div>
