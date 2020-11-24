@@ -6,7 +6,7 @@ import createReducer from './ReducerUtils';
 
 const initialState = {
   school: {
-    id: '0',
+    _id: '0',
     name: "School's name",
     title: 'Learn new skills online with top educators',
     subtitle: 'Choose from over 100,000 online video courses with new additions published every month.',
@@ -83,6 +83,9 @@ const initialState = {
 };
 
 const myschool = {
+  initialSchool(state,action){
+    state.school=action.payload;
+  },
   setSchoolName(state, action) {
     state.school.name = action.payload;
   },

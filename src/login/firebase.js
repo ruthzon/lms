@@ -95,10 +95,10 @@ export const nav = (displayName) => {
 };
 
 
-let myJwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
-let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+let myJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
+let myUid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
-export function checkPremission(data) {
+export function checkPremission(data,{dispatch}) {
     let TokenToString = data.accessToken.toString();
     let dataToProfilePage = {
         action: "loginCheckPermission",
@@ -135,7 +135,7 @@ export function checkPremission(data) {
             console.log(userName)
             let redirectUrl = ''
             if (des) {
-                redirectUrl = "https://" + des + '/' + userName;
+                redirectUrl = "https:/" + des + '/' + userName;
                 if (routes) {
                     redirectUrl += '/' + routes
                 }
@@ -143,10 +143,13 @@ export function checkPremission(data) {
             } else {
                 debugger;
                 // nav(userName);
-                if (!data.is_username)
+                if (!data.is_username) {
                     browserHistory.replace('/wizard')
-                window.location.reload()
-                (!data.is_username) ? browserHistory.replace('/wizard') :  window.location.href ='http://localhost:3000/' + userName + '/addcourse';
+                    window.location.reload()
+                }
+                else {
+                    window.location.href = 'http://localhost:3000/' + userName + '/addcourse';
+                }
             }
         }
     });

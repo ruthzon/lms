@@ -37,7 +37,7 @@ import {actions} from '../../Store/actions';
 import {connect} from 'react-redux';
 import CourseConfig from './CourseConfig';
 import HeaderConfig from '../HeaderConfig';
-import Video from '../coursepage/video';
+import Video from '../lessonPage/video';
 const mapDispatchToProps = (dispatch) => ({
   initialCourse: (course) => dispatch(actions.initialCourse(course)),
 });

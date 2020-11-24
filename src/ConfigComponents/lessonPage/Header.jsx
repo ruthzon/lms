@@ -27,13 +27,14 @@ import '../configurator.css';
 
 function mapStateToProps(state) {
   return {
-    course: state.courseReducer.course,
+    lesson: state.lessonReducer.lesson,
+    course:state.courseReducer.course
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setName: (name) => dispatch(actions.setName(name)),
-  setSubtitle: (sub) => dispatch(actions.setSubtitle(sub)),
+  setLessonProp: (name) => dispatch(actions.setLessonProp(name)),
+  showLessonProp: (sub) => dispatch(actions.showLessonProp(sub)),
 });
 export default connect(
   mapStateToProps,
@@ -41,7 +42,7 @@ export default connect(
 )(function Header(props) {
   // const user = useContext(UserContext);
   // const {course, setName, setSubtitle} = props;
-  let prev = Object.assign({}, props.course);
+  // let prev = Object.assign({}, props.course);
   return (
     <>
       <div
@@ -49,59 +50,60 @@ export default connect(
         style={{backgroundColor: props.course.colors.header}}
       >
         <div className="content">
-          {/* {user !== null && course.user_id === user.uid && (
+          {/* {user !== null && lesson.user_id === user.uid && (
             <p className="text-own">
               your own course - you may edit it
-              <a href={'/editcourse/' + course.id}> here</a>
+              <a href={'/editcourse/' + lesson.id}> here</a>
             </p>
           )} */}
           <h1>
             <textarea
-              value={props.course.name}
+              value={props.lesson.name}
               style={{color: props.course.colors.name}}
-              onChange={(e) => props.setName(e.target.value)}
+              onChange={(e) => props.setLessonProp([e.target.value,"name"])}
               type="text"
             />
-            {/* {props.course.name} */}
+            {/* {props.lesson.name} */}
           </h1>
           <br />
-          <div className={props.view ? 'header-view' : ''}>
+          <div>
             <h3>
               {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
               <textarea
                 style={{color: props.course.colors.subtitle}}
-                value={props.course.subtitle}
-                onChange={(e) => props.setSubtitle(e.target.value)}
+                value={props.lesson.subtitle}
+                onChange={(e) => props.setLessonProp([e.target.value,"subtitle"])}
                 type="text"
               />
-              {/* {course.subtitle} */}
+              {/* {lesson.subtitle} */}
             </h3>
             <Container>
+
               <Row>
-                {props.course.show.stars && (
+                {props.lesson.show.stars && (
                   <Col xs="3">
                     <FaRegStar color="#F3B23A" />
-                    {props.course._id==0?'??':props.course.stars} stars
+                    {props.course.stars} stars
                   </Col>
                 )}
-                {props.course.show.students && (
+                {props.lesson.show.students && (
                   <Col xs="3">
                     <FaRegEye color="#DB4500" />
                     {/* {course.views} */}
-                    Enrolled {props.course._id===0?'??':props.course.students_num} students
+                    Enrolled {props.course.students_num} students
                   </Col>
                 )}
-                {props.course.show.weeks && (
+                {props.lesson.show.weeks && (
                   <Col xs="3">
                     <FaRegClock />
                     Duration ?? weeks
                   </Col>
                 )}
-                {props.course.show.lessons && (
+                {props.lesson.show.lessons && (
                   <Col xs="3">
                     <FaRegPlayCircle color="#3E9365" />
-                    {props.course._id==0?'??': props.course.lessons.length + ' '} Lessons
+                    {props.course.lessons.length + ' '} Lessons
                   </Col>
                 )}
               </Row>

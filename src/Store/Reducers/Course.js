@@ -6,13 +6,13 @@ import createReducer from './ReducerUtils';
 
 const initialState = {
   course: {
-    id: '0',
+    _id: '0',
     name: 'Enter the name of the course here',
     subtitle: 'Here is a short description of the course and the content that will be taught in it',
     image: './img_from_xd/Image 108@2x.png',
-    stars: '?? stars',
-    views: '?? views',
-    // lessons: '?? ',//!!!
+    stars: 3,//להפוך למספר
+    views: 0,//להפוך למספר
+    students_num:0,
     auther: 'Name of the lecturer',
     auther_image: './img_from_xd/Rectangle 22.png',
     price: 'price',
@@ -106,7 +106,7 @@ const initialState = {
         discount: '50',
       },
     ],
-    //!!!
+    // lessons:[1,2,3],
     lessons: [
       { id: 1, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
       { id: 2, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
@@ -211,9 +211,7 @@ const mycourse = {
   setBeliveImage(state, action) {
     state.course.belive.image = action.payload;
   },
-  setLessonsProp(state, action) {
-    state.course.lessons[action.payload[2]][action.payload[1]] = action.payload[0];
-  },
+
   setTopEducatorsProp(state, action) {
     //array: [value, prop, index]
     state.course.top_educators[action.payload[2]][action.payload[1]] = action.payload[0];
@@ -222,7 +220,12 @@ const mycourse = {
     //array: [value, prop, index]
     state.course.top_educators[action.payload[1]].image = action.payload[0];
   },
-
+  initialLessons(state, action) {
+    state.course.lessons = action.payload;
+  },
+  addLesson(state, action) {
+    state.courses.lessons = state.courses.lessons.concat(action.payload);
+  },
 
   setColorHeader(state, action) {
     state.course.colors.header = action.payload;

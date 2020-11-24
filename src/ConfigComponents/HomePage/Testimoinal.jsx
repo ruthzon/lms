@@ -97,7 +97,6 @@ class Testimoinal extends Component {
             {this.props.school.testimoinal.map((item, key) => {
               return (
                 <Card className="test-card hover-trash" >
-                  
                   <FaTrash
                         className="trash"
                         onClick={(e) =>

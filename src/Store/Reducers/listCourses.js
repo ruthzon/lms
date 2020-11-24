@@ -28,17 +28,22 @@ const initialState = {
 };
 
 const mycourses = {
-  // initialCourses(state, action) {
-  //   state.courses = action.payload;
-  // },
+  initialCourses(state, action) {
+    state.courses = action.payload;
+  },
   addCourse(state, action) {
-    state.courses=state.courses.push(action.payload);
+    state.courses = state.courses.concat(action.payload);
   },
   removeCourse(state, action) {
-    state.Courses=state.Courses.filter((x)=>x!=action.payload) ;
+    state.courses = state.courses.filter((x) => x != action.payload);
   },
   updateCourse(state, action) {
-    state.Courses = action.payload;
+    state.courses = state.courses.map(
+      (element, i) => {
+        if (element._id == action.payload._id)
+          element = action.payload
+      })
+      debugger;
   }
 };
 

@@ -8,6 +8,7 @@ import '../../ViewComponents/coursepage/course.css';
 import {connect} from 'react-redux';
 import {handleImageById} from '../handleImage';
 import {actions} from '../../Store/actions';
+
 // impore './'
 
 function mapStateToProps(state) {
@@ -52,7 +53,7 @@ class TopEducators extends Component {
           <Carousel.Item>
             <CardDeck>
               {/* <RowTests props={this.state.arr} /> */}
-              {this.course.top_educators.map((item, key) => {
+              {this.props.course.top_educators.map((item, key) => {
                 return (
                   <>
                     <Card key={key} className="top-card">
@@ -74,27 +75,47 @@ class TopEducators extends Component {
                           />
                         </div>
                         <Card.Text>
-                          <textarea
+                          <input
                             value={item.header}
                             onChange={(e) =>
                               this.props.setTopEducatorsProp(
-                                e.target.value,
-                                e.target.id.split('-')[1],
-                                parseInt(e.target.id.split('-')[2])
+                                [e.target.value,
+                                "header",
+                                key]
                               )
                             }
                           />
                         </Card.Text>
                         <Card.Title>
                           {/* <img src={item.content} alt="Student"></img> */}
-                          {item.content}
+                          <textarea
+                            value={item.content}
+                            onChange={(e) =>
+                              this.props.setTopEducatorsProp(
+                                [e.target.value,
+                                "content",
+                                key]
+                              )
+                            }
+                          />
                         </Card.Title>
                         <div
                           style={{backgroundColor: item.color}}
                           className="discount"
                         >
                           Total Discount <br />
-                          <h6>{item.discount}%</h6>
+                          <h6>
+                          <input
+                            value={item.discount}
+                            onChange={(e) =>
+                              this.props.setTopEducatorsProp(
+                                [e.target.value,
+                                "discount",
+                                key]
+                              )
+                            }
+                          />
+                            %</h6>
                         </div>
                       </Card.Body>
                     </Card>

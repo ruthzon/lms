@@ -232,6 +232,11 @@ h3 {
   float: right;
   width: 40%;
   max-height: max-content;
+  height: 100%;
+  width: auto;
+  /* right: 0; */
+  /* bottom: 0; */
+  margin-right: -40px;
 }
 .top-card {
   height: 250px;
@@ -243,6 +248,14 @@ h3 {
 }
 .top-card .card-body {
   margin-left: 10px;
+}
+.top-card .card-title{
+  font-size: 14px;
+  font-weight: 600;
+}
+.top-card .card-text{
+  font-size: 10px;
+
 }
 #top {
   background-color: #efeff6;
@@ -298,7 +311,7 @@ h3 {
   font-size: smaller;
 }
 .top-card .discount {
-  font: normal normal normal 16px/30px Poppins;
+  font: normal normal normal 11px/20px Poppins;
   margin-left: -45px;
   padding: 10px;
   max-width: 60%;
@@ -306,7 +319,7 @@ h3 {
   color: #ffffff;
 }
 .discount h6 {
-  font: normal normal normal 40px/24px Poppins;
+  font: normal normal normal 30px/24px Poppins;
   letter-spacing: 0px;
   color: #ffffff;
   text-align: center;

@@ -6,7 +6,7 @@ import {
   useRouteMatch,
 } from 'react-router-dom';
 import CoursePage from './coursepage/CoursePage';
-import LessonPage from './coursepage/LessonPage';
+// import LessonPage from './lessonPage';
 import HomePage from './homepage/HomePage';
 import React from 'react';
 import {connect} from 'react-redux';
@@ -15,6 +15,8 @@ import {Courses} from '../Store/data';
 import Frame from './Frame/HomePageFrame';
 import HomePageFrame from './Frame/HomePageFrame';
 import CoursePageFrame from './Frame/CoursePageFrame';
+import LessonConfig from './lessonPage/LessonConfig';
+import LessonPageFrame from './Frame/LessonPageFrame';
 // import CoursePage from './coursepage/coursepage';
 const mapDispatchToProps = (dispatch) => ({
   initialCourses: (courses) => dispatch(actions.initialCourse(courses)),
@@ -36,10 +38,10 @@ export default connect(
           <CoursePageFrame />
         </Route>
         <Route path={`${match.path}/:course/:lesson`}>
-          <LessonPage />
+          <LessonPageFrame />
         </Route>
         <Route path={`${match.path}/:course`}>
-          <CoursePage />
+          <CoursePageFrame />
         </Route>
 
         <Route path={match.path}>

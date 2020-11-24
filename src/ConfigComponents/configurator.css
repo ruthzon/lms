@@ -231,7 +231,7 @@ textarea {
   overflow: hidden;
   /* position:relative; */
 }
-.buy-course .file-upload input{
+.buy-course .file-upload input {
   height: 200px;
 }
 .test-card .file-upload2 input {
@@ -330,8 +330,24 @@ header textarea {
   margin-top: 7px;
 }
 .top-card .card-text {
-  font: normal normal normal 12px/24px Poppins;
+  font: normal normal normal 10px/24px Poppins;
 }
-.pointer{
+.top-card .card-title{
+  font-size: 14px;
+  font-weight: 600;
+}
+.pointer {
   cursor: pointer;
+}
+.top-card .file-upload2 input {
+  height: 80%;
+  /* margin-left: 50px; */
+  right: -20px;
+}
+.top-card textarea,
+.top-card input {
+  width: 50%;
+}
+.discount input{
+  color:#ffffff
 }
