@@ -5,8 +5,8 @@ import {Card, CardDeck, Form} from 'react-bootstrap';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
-import {handleImage, handleImageById} from '../handleImage';
-import { FaTrash } from 'react-icons/fa';
+import {handleDelete, handleImage, handleImageById} from '../handleImage';
+import {FaTrash} from 'react-icons/fa';
 
 function mapStateToProps(state) {
   return {
@@ -16,6 +16,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
   setCategories: (name) => dispatch(actions.setCategories(name)),
   setCategoriesImage: (name) => dispatch(actions.setCategoriesImage(name)),
+  deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
 });
 export default connect(
   mapStateToProps,
@@ -43,8 +44,8 @@ function RowCategories(props) {
   var rows = [];
   for (var i = 0; i < props.data.school.categories.length; i++) {
     rows.push(
-      <Card
-        className="category-card"
+      <Card 
+        className="category-card hover-trash"
         style={{backgroundColor: props.data.school.categories[i].backcolor}}
       >
         <input
@@ -87,6 +88,16 @@ function RowCategories(props) {
                   e.target.value,
                   e.target.id.split('-')[1],
                   parseInt(e.target.id.split('-')[2]),
+                ])
+              }
+            />
+            <FaTrash
+              className="trash"
+              id={"categories-"+i}
+              onClick={(e) =>
+                handleDelete(props.data.deleteFromSection, [
+                  parseInt(e.target.id.split('-')[1]), //ind
+                  e.target.id.split('-')[0], //partner
                 ])
               }
             />

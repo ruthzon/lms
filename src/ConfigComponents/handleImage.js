@@ -39,7 +39,6 @@ const handleDelete = (funcDelete, data) => {
     dangerMode: true,
   }).then((willDelete) => {
     if (willDelete) {
-      debugger;
       funcDelete(data);
       swal('The file has been deleted successfully!', {
         icon: 'success',

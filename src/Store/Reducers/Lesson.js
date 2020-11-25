@@ -7,8 +7,8 @@ const initialState = {
     // _id: '0',
     name: 'Enter the name of the lesson here',
     subtitle: 'Here is a short description of the lesson and the content that will be taught in it',
-    course_id:'0',
-    lesson_url: './img_from_xd/Image 108@2x.png',
+    course_id: '0',
+    lesson_url: 'wzR0G67-FBM',
     show: {
       stars: true,
       views: true,
@@ -21,20 +21,27 @@ const initialState = {
       footer: true,
       description: true,
     },
+    settings: {
+      autoplay: 1,
+      controls: 1,
+      loop: 0,
+    }
   }
 };
 
 const mylesson = {
-  
+
   setLessonProp(state, action) {
     state.lesson[action.payload[1]] = action.payload[0];
   },
-  
-  showLessonProp(state,action) {
-    debugger;
+
+  showLessonProp(state, action) {
     state.lesson.show[action.payload] = !state.lesson.show[action.payload];
   },
-
+  setSettingProp(state, action) {
+    debugger;
+    state.lesson.settings[action.payload]= state.lesson.settings[action.payload] ===0?1:0;
+  },
 
 };
 

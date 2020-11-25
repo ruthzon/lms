@@ -16,6 +16,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     //courses
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
+        debugger
         $.ajax({
             url: 'https://lms.leader.codes/api/' + uid + '/courses',
             headers: {
@@ -34,7 +35,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     }
 
     if (action.type === 'ADD_COURSE_TO_SERVER') {
-        if (action.payload._id == 0) {
+        if (action.payload._id == 0 || !action.payload._id) {
             delete action.payload._id;
             $.ajax({
                 url: 'https://lms.leader.codes/api/' + uid + '/addCourse',
@@ -82,7 +83,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 Authorization: jwt,
             },
             data: action.payload,
-            method: 'delete',
+            method: 'get',
             dataType: 'json',
             contentType: 'application/json',
             withCradentials: true,
@@ -113,6 +114,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
         });
     }
     if (action.type === 'ADD_LESSON_TO_SERVER') {
+        
         $.ajax({
             url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload.course_id + '/addLesson',
             headers: {
@@ -140,7 +142,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 Authorization: jwt,
             },
             data: action.payload,
-            method: 'delete',
+            method: 'get',
             dataType: 'json',
             contentType: 'application/json',
             withCradentials: true,
@@ -154,7 +156,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     }
     //school
     if (action.type === 'ADD_SCHOOL_TO_SERVER') {
-        if (action.payload._id == 0) {
+        debugger
+        if (action.payload._id == 0|| !action.payload._id) {
             delete action.payload._id;
             $.ajax({
                 url: 'https://lms.leader.codes/api/' + uid + '/addSchool',
@@ -174,6 +177,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             });
         }
         else{
+            
             $.ajax({
                 url: 'https://lms.leader.codes/api/' + uid + '/'+action.payload._id+'/updateSchool',
                 headers: {

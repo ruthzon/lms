@@ -6,6 +6,7 @@ import {actions} from '../../Store/actions';
 import '../configurator.css';
 import {createBrowserHistory} from 'history';
 import $ from 'jquery';
+import { FaAngleDown, FaAngleRight } from 'react-icons/fa';
 
 const browserHistory = createBrowserHistory();
 
@@ -95,7 +96,7 @@ export default connect(
         </div>
 
         <div className="config">
-          <button onClick={() => handleChoose(1)}>Course Header</button>
+          <button onClick={() => handleChoose(1)}>Course Header{choose === 1 ?<FaAngleDown/>:<FaAngleRight/> }</button>
           <div className={choose === 1 ? 'display' : 'cover'}>
             <div>
               Stars
@@ -144,7 +145,7 @@ export default connect(
             </div>
           </div>
 
-          <button onClick={() => handleChoose(2)}>Course description</button>
+          <button onClick={() => handleChoose(2)}>Course description{choose === 2 ?<FaAngleDown/>:<FaAngleRight/> }</button>
           <div className={choose === 2 ? 'display' : 'cover'}>
             <div>
               Course Description
@@ -181,7 +182,7 @@ export default connect(
             </div>
           </div>
 
-          <button onClick={() => handleChoose(3)}>Course card</button>
+          <button onClick={() => handleChoose(3)}>Course card{choose === 3 ?<FaAngleDown/>:<FaAngleRight/> }</button>
           <div className={choose === 3 ? 'display' : 'cover'}>
             <div>
               Language
@@ -344,7 +345,7 @@ export default connect(
             </div>
           </div>
 
-          <button onClick={() => handleChoose(4)}>More sections</button>
+          <button onClick={() => handleChoose(4)}>More sections{choose === 4 ?<FaAngleDown/>:<FaAngleRight/> }</button>
           <div className={choose === 4 ? 'display' : 'cover'}>
             <div>
               Header backgroud

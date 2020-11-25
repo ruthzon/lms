@@ -34,6 +34,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
   setName: (name) => dispatch(actions.setName(name)),
   setSubtitle: (sub) => dispatch(actions.setSubtitle(sub)),
+  setWeeks: (sub) => dispatch(actions.setWeeks(sub)),
 });
 export default connect(
   mapStateToProps,
@@ -95,7 +96,7 @@ export default connect(
                 {props.course.show.weeks && (
                   <Col xs="3">
                     <FaRegClock />
-                    Duration ?? weeks
+                    Duration <input type="numner" onChange={e=>props.setWeeks(e.target.value)} value={props.course.students_num}/> weeks
                   </Col>
                 )}
                 {props.course.show.lessons && (

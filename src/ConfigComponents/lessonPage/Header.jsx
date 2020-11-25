@@ -97,7 +97,7 @@ export default connect(
                 {props.lesson.show.weeks && (
                   <Col xs="3">
                     <FaRegClock />
-                    Duration ?? weeks
+                    Duration {props.course.weeks} weeks
                   </Col>
                 )}
                 {props.lesson.show.lessons && (

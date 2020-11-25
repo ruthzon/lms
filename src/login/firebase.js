@@ -6,8 +6,9 @@ import { useContext } from "react";
 import { UserContext } from "./userProvider";
 import $ from 'jquery'
 import { useCookies } from "react-cookie";
-
 import { withCookies, Cookies } from "react-cookie";
+import store from '../Store/Store'
+import { actions } from "../Store/actions";
 
 const browserHistory = createBrowserHistory();
 
@@ -98,7 +99,7 @@ export const nav = (displayName) => {
 let myJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
 let myUid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
-export function checkPremission(data,{dispatch}) {
+export function checkPremission(data) {
     let TokenToString = data.accessToken.toString();
     let dataToProfilePage = {
         action: "loginCheckPermission",
@@ -141,13 +142,16 @@ export function checkPremission(data,{dispatch}) {
                 }
                 window.location.href = redirectUrl
             } else {
-                debugger;
                 // nav(userName);
                 if (!data.is_username) {
+                    store.dispatch(actions.getCoursesFromServer(uid))
+
                     browserHistory.replace('/wizard')
                     window.location.reload()
                 }
                 else {
+                    store.dispatch(actions.getCoursesFromServer(uid))
+                    store.dispatch(actions.getSchoolFromServer(uid))
                     window.location.href = 'http://localhost:3000/' + userName + '/addcourse';
                 }
             }

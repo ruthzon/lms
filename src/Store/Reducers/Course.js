@@ -12,6 +12,7 @@ const initialState = {
     image: './img_from_xd/Image 108@2x.png',
     stars: 3,//להפוך למספר
     views: 0,//להפוך למספר
+    weeks:0,
     students_num:0,
     auther: 'Name of the lecturer',
     auther_image: './img_from_xd/Rectangle 22.png',
@@ -108,9 +109,9 @@ const initialState = {
     ],
     // lessons:[1,2,3],
     lessons: [
-      { id: 1, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
-      { id: 2, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
-      { id: 3, name: "Everything You Need to Know Business", src: "", time: "Duration 10 weeks" },
+      { id: 1, name: "Everything You Need to Know Business", src: "wzR0G67-FBM", time: "Duration 10 weeks" },
+      { id: 2, name: "Everything You Need to Know Business", src: "aS-4U5GgdjM", time: "Duration 10 weeks" },
+      { id: 3, name: "Everything You Need to Know Business", src: "wzR0G67-FBM", time: "Duration 10 weeks" },
     ]
   }
 };
@@ -141,6 +142,9 @@ const mycourse = {
   },
   setViews(state, action) {
     state.course.views = action.payload;
+  },
+  setWeeks(state, action) {
+    state.course.weeks = action.payload;
   },
   setLesson(state, action) {
     state.course.lesson = action.payload;

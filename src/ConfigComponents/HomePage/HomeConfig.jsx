@@ -5,7 +5,7 @@ import {useRouteMatch} from 'react-router-dom';
 import {actions} from '../../Store/actions';
 import '../configurator.css';
 import {createBrowserHistory} from 'history';
-import {FaPlus} from 'react-icons/all';
+import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/all';
 import $ from 'jquery';
 const browserHistory = createBrowserHistory();
 
@@ -60,7 +60,7 @@ export default connect(
         </div>
 
         <div className="config">
-          <button onClick={() => handleChoose(1)}>Course Header</button>
+          <button onClick={() => handleChoose(1)}>Course Header {choose === 1 ?<FaAngleDown/>:<FaAngleRight/> }</button>
           <div className={choose === 1 ? 'display' : 'cover'}>
             {/* <div>
               Stars
@@ -75,7 +75,7 @@ export default connect(
             </div> */}
           </div>
 
-          <button onClick={() => handleChoose(2)}>Additional Sections</button>
+          <button onClick={() => handleChoose(2)}>Additional Sections{choose === 2 ?<FaAngleDown/>:<FaAngleRight/> }</button>
           <div className={choose === 2 ? 'display' : 'cover'}>
             <div>
               Header
