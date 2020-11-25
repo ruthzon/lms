@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   addSchoolToServer: (data) => dispatch(actions.addSchoolToServer(data)),
   addNewForSection: (data) => dispatch(actions.addNewForSection(data)),
   addNewForLearning: (data) => dispatch(actions.addNewForLearning(data)),
+  initialEmptyCourse:()=>dispatch(actions.initialEmptyCourse())
 });
 
 export default connect(
@@ -28,7 +29,11 @@ export default connect(
   mapDispatchToProps
 )(function HomeConfig(props) {
   let match = useRouteMatch();
-
+  const addCourse = () => {
+    props.initialEmptyCourse();
+    browserHistory.replace('/' + match.params.name + '/addCourse');
+    window.location.reload();
+  };
   const [choose, setChoose] = useState(0);
   const handleChoose = (click) => {
     if (choose === click) setChoose(0);
@@ -60,7 +65,12 @@ export default connect(
         </div>
 
         <div className="config">
-          <button onClick={() => handleChoose(1)}>Course Header {choose === 1 ?<FaAngleDown/>:<FaAngleRight/> }</button>
+
+          <button onClick={() => addCourse()}>Add Course</button>
+
+          <button onClick={() => handleChoose(1)}>
+            Course Header {choose === 1 ? <FaAngleDown /> : <FaAngleRight />}
+          </button>
           <div className={choose === 1 ? 'display' : 'cover'}>
             {/* <div>
               Stars
@@ -75,7 +85,10 @@ export default connect(
             </div> */}
           </div>
 
-          <button onClick={() => handleChoose(2)}>Additional Sections{choose === 2 ?<FaAngleDown/>:<FaAngleRight/> }</button>
+          <button onClick={() => handleChoose(2)}>
+            Additional Sections
+            {choose === 2 ? <FaAngleDown /> : <FaAngleRight />}
+          </button>
           <div className={choose === 2 ? 'display' : 'cover'}>
             <div>
               Header
@@ -177,8 +190,7 @@ export default connect(
                   props.addNewForLearning({
                     id: '00.',
                     header: 'Header',
-                    text:
-                      'Write here the text for that paragraph',
+                    text: 'Write here the text for that paragraph',
                   })
                 }
               />
@@ -294,6 +306,7 @@ export default connect(
               </label>
             </div>
           </div>
+
           <div id="bottom_configurtor">
             <Button variant="primary" onClick={handleSave}>
               Save school

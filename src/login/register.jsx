@@ -16,11 +16,12 @@ import {createBrowserHistory} from 'history';
 import $ from 'jquery';
 import {
   auth,
-  generateUserDocument,
   signInWithGoogle,
   checkPremission,
   signOut,
 } from './firebase';
+import store from '../Store/Store';
+import { actions } from '../Store/actions';
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
@@ -80,7 +81,8 @@ const Register = () => {
     }
     try {
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName});
+      // generateUserDocument(user, {displayName});
+      store.dispatch(actions.initialUser(user));
       // nav();
     } catch (error) {
       setError('Error Signing up with email and password');

@@ -3,7 +3,7 @@ import '../ViewComponents/homepage/App.css'
 
 // import $ from jquery
 
-const getCookie = (c_name) => {
+export const getCookie = (c_name) => {
   if (document.cookie.length > 0) {
     let c_start = document.cookie.indexOf(c_name + '=');
     if (c_start != -1) {
@@ -19,10 +19,10 @@ const getCookie = (c_name) => {
 };
 
 const usernameCheck = () => {
-//   const jwt = getCookie('jwt');
+  const jwt = getCookie('jwt');
 
-let jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
-let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+// let jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
+// let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
   const value = document.querySelector('input#usernameInput').value;
   const data = {token: jwt, usernameToCheck: value};

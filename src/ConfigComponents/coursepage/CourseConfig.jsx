@@ -6,7 +6,8 @@ import {actions} from '../../Store/actions';
 import '../configurator.css';
 import {createBrowserHistory} from 'history';
 import $ from 'jquery';
-import { FaAngleDown, FaAngleRight } from 'react-icons/fa';
+import swal from 'sweetalert';
+import {FaAngleDown, FaAngleRight} from 'react-icons/fa';
 
 const browserHistory = createBrowserHistory();
 
@@ -56,6 +57,7 @@ const mapDispatchToProps = (dispatch) => ({
   showTopEducarors: () => dispatch(actions.showTopEducarors()),
   showBelive: () => dispatch(actions.showBelive()),
   showMoreCourses: () => dispatch(actions.showMoreCourses()),
+  initialEmptyLesson: () => dispatch(actions.initialEmptyLesson()),
 });
 
 export default connect(
@@ -63,18 +65,30 @@ export default connect(
   mapDispatchToProps
 )(function CourseConfig(props) {
   let match = useRouteMatch();
-
+  const addLesson = () => {
+    props.initialEmptyLesson();
+    if (!match.params.course) {
+      swal(
+        'Oops...',
+        'You need to save the course before adding a lesson',
+        'warning'
+      );
+    } else {
+      browserHistory.replace(
+        '/' + match.params.name + '/' + match.params.course + '/addLesson'
+      );
+      window.location.reload();
+    }
+  };
   const [choose, setChoose] = useState(0);
   const handleChoose = (click) => {
     if (choose === click) setChoose(0);
     else setChoose(click);
   };
   const handleSave = () => {
-   
     props.addCourseToServer(props.course);
     // browserHistory.replace('/' + match.params.name);
     // window.location.reload();
-    
   };
   return (
     <>
@@ -96,7 +110,11 @@ export default connect(
         </div>
 
         <div className="config">
-          <button onClick={() => handleChoose(1)}>Course Header{choose === 1 ?<FaAngleDown/>:<FaAngleRight/> }</button>
+          <button onClick={() => addLesson()}>Add Lesson</button>
+
+          <button onClick={() => handleChoose(1)}>
+            Course Header{choose === 1 ? <FaAngleDown /> : <FaAngleRight />}
+          </button>
           <div className={choose === 1 ? 'display' : 'cover'}>
             <div>
               Stars
@@ -145,7 +163,10 @@ export default connect(
             </div>
           </div>
 
-          <button onClick={() => handleChoose(2)}>Course description{choose === 2 ?<FaAngleDown/>:<FaAngleRight/> }</button>
+          <button onClick={() => handleChoose(2)}>
+            Course description
+            {choose === 2 ? <FaAngleDown /> : <FaAngleRight />}
+          </button>
           <div className={choose === 2 ? 'display' : 'cover'}>
             <div>
               Course Description
@@ -182,7 +203,9 @@ export default connect(
             </div>
           </div>
 
-          <button onClick={() => handleChoose(3)}>Course card{choose === 3 ?<FaAngleDown/>:<FaAngleRight/> }</button>
+          <button onClick={() => handleChoose(3)}>
+            Course card{choose === 3 ? <FaAngleDown /> : <FaAngleRight />}
+          </button>
           <div className={choose === 3 ? 'display' : 'cover'}>
             <div>
               Language
@@ -345,7 +368,9 @@ export default connect(
             </div>
           </div>
 
-          <button onClick={() => handleChoose(4)}>More sections{choose === 4 ?<FaAngleDown/>:<FaAngleRight/> }</button>
+          <button onClick={() => handleChoose(4)}>
+            More sections{choose === 4 ? <FaAngleDown /> : <FaAngleRight />}
+          </button>
           <div className={choose === 4 ? 'display' : 'cover'}>
             <div>
               Header backgroud

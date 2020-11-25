@@ -37,6 +37,9 @@ export default connect(
           {/* <CoursePage /> */}
           <CoursePageFrame />
         </Route>
+        <Route path={`${match.path}/:course/addLesson`}>
+          <LessonPageFrame />
+        </Route>
         <Route path={`${match.path}/:course/:lesson`}>
           <LessonPageFrame />
         </Route>

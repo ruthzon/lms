@@ -1,14 +1,17 @@
 import { actions } from '../actions';
 import { createBrowserHistory } from 'history';
 import { matchPath } from 'react-router-dom';
+import swal from 'sweetalert';
+import {getCookie}from '../../login/wizard'
 
 import $ from 'jquery';
 
 const browserHistory = createBrowserHistory();
 
-let jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
+// let jwt ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+let jwt=getCookie('jwt');
+
 
 // router.get("/students", studentsController.getStudents);
 
@@ -16,7 +19,6 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     //courses
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
-        debugger
         $.ajax({
             url: 'https://lms.leader.codes/api/' + uid + '/courses',
             headers: {
@@ -29,12 +31,13 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                dispatch(actions.initialCourses(data))
+                dispatch(actions.initialCourses(data.data))
             },
         });
     }
 
     if (action.type === 'ADD_COURSE_TO_SERVER') {
+        delete action.payload["lessons"];
         if (action.payload._id == 0 || !action.payload._id) {
             delete action.payload._id;
             $.ajax({
@@ -49,9 +52,16 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 withCradentials: true,
                 // data: JSON.stringify(dataToProfilePage),
                 success: function (data) {
-                    dispatch(actions.addCourse(data))
-                    browserHistory.replace('/' + matchPath.params.name);
-                    window.location.reload();
+                    dispatch(actions.addCourse(data.data));
+                    // browserHistory.replace('/' + matchPath.params.name);
+                    // window.location.reload();
+                    console.log("course " + data.data._id);
+                    swal("Yes,", "Course added successfully", "success");
+                    // browserHistory.replace('/' + match.params.name);
+                    // window.location.reload();
+                },
+                error: function () {
+                    swal("Oops...", "Something went wrong, please try again later", "error");
                 },
             });
         }
@@ -69,14 +79,18 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 // data: JSON.stringify(dataToProfilePage),
                 success: function (data) {
 
-                    dispatch(actions.updateCourse(action.payload))
+                    dispatch(actions.updateCourse(data.data))
+                    console.log("course " + data.data._id);
+                    swal("Course saved successfully", "", "success");
+                },
+                error: function () {
+                    swal("Oops...", "Something went wrong, please try again later", "error");
                 },
             });
         }
     }
     //not yet
     if (action.type === 'DELETE_COURSE_FROM_SERVER') {
-        debugger;
         $.ajax({
             url: 'https://lms.leader.codes/api/' + uid + '/course',
             headers: {
@@ -88,10 +102,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             contentType: 'application/json',
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
-            success: function () {
+            success: function (data) {
                 //   browserHistory.replace('/' + match.params.name);
                 window.location.reload();
-                dispatch(actions.removeCourse(action.payload))
+                dispatch(actions.removeCourse(data.data))
             },
         });
     }
@@ -109,29 +123,61 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                dispatch(actions.initialLessons(data))
+                dispatch(actions.initialLessons(data.data))
             },
         });
     }
     if (action.type === 'ADD_LESSON_TO_SERVER') {
-        
-        $.ajax({
-            url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload.course_id + '/addLesson',
-            headers: {
-                Authorization: jwt,
-            },
-            data: JSON.stringify(action.payload),
-            method: 'post',
-            dataType: 'json',
-            contentType: 'application/json',
-            withCradentials: true,
-            // data: JSON.stringify(dataToProfilePage),
-            success: function (data) {
-                // browserHistory.replace('/' + matchPath.params.name);
-                // window.location.reload();
-                dispatch(actions.addLesson(data))
-            },
-        });
+        if (action.payload._id == 0) {
+            delete action.payload._id;
+            $.ajax({
+                url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload.course_id + '/addLesson',
+                headers: {
+                    Authorization: jwt,
+                },
+                data: JSON.stringify(action.payload),
+                method: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                withCradentials: true,
+                // data: JSON.stringify(dataToProfilePage),
+                success: function (data) {
+                    // browserHistory.replace('/' + matchPath.params.name);
+                    // window.location.reload();
+                    dispatch(actions.addLesson(data.data))
+                    console.log("lesson " + data.data._id);
+                    swal("Lesson added successfully", "", "success");
+                },
+                error: function () {
+                    swal("Oops...", "Something went wrong, please try again later", "error");
+                },
+            });
+        }
+        else {
+            $.ajax({
+                url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload.course_id + '/' + action.payload._id,
+                headers: {
+                    Authorization: jwt,
+                },
+                data: JSON.stringify(action.payload),
+                method: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                withCradentials: true,
+                // data: JSON.stringify(dataToProfilePage),
+                success: function (data) {
+                    // browserHistory.replace('/' + matchPath.params.name);
+                    // window.location.reload();
+                    dispatch(actions.initialLesson(data.data));
+                    dispatch(action.updateLesson(data.data));
+                    console.log("lesson " + data.data._id);
+                    swal("Lesson saved successfully", "", "success");
+                },
+                error: function () {
+                    swal("Oops...", "Something went wrong, please try again later", "error");
+                },
+            });
+        }
     }
     //not yen
     if (action.type === 'DELETE_LESSON_FROM_SERVER') {
@@ -152,12 +198,14 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 window.location.reload();
                 dispatch(actions.removeCourse(action.payload))
             },
+            error: function () {
+                swal("Oops...", "Something went wrong, please try again later", "error");
+            },
         });
     }
     //school
     if (action.type === 'ADD_SCHOOL_TO_SERVER') {
-        debugger
-        if (action.payload._id == 0|| !action.payload._id) {
+        if (action.payload._id == 0 || !action.payload._id) {
             delete action.payload._id;
             $.ajax({
                 url: 'https://lms.leader.codes/api/' + uid + '/addSchool',
@@ -172,14 +220,19 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 success: function (data) {
                     // browserHistory.replace('/' + match.params.name);
                     // window.location.reload();
-                    dispatch(actions.initialSchool(data))
+                    dispatch(actions.initialSchool(data.data));
+                    console.log("school " + data.data._id);
+                    swal("School saved successfully", "", "success");
+                },
+                error: function () {
+                    swal("Oops...", "Something went wrong, please try again later", "error");
                 },
             });
         }
-        else{
-            
+        else {
+
             $.ajax({
-                url: 'https://lms.leader.codes/api/' + uid + '/'+action.payload._id+'/updateSchool',
+                url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload._id + '/updateSchool',
                 headers: {
                     Authorization: jwt,
                 },
@@ -191,7 +244,12 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 success: function (data) {
                     //   browserHistory.replace('/' + match.params.name);
                     // window.location.reload();
-                    dispatch(actions.initialSchool(data))
+                    dispatch(actions.initialSchool(data.data));
+                    console.log("school " + data.data._id);
+                    swal("School saved successfully", "", "success");
+                },
+                error: function () {
+                    swal("Oops...", "Something went wrong, please try again later", "error");
                 },
             });
         }
@@ -211,8 +269,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             success: function (data) {
                 // browserHistory.replace('/' + matchPath.params.name);
                 // window.location.reload();
-                dispatch(actions.addCourse(data));
+                dispatch(actions.addCourse(data.data));
+
             },
+            
         });
     }
 

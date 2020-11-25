@@ -123,8 +123,8 @@ export function checkPremission(data) {
             let now = new Date();
             now.setMonth(now.getMonth() + 1);
 
-            // document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
-            document.cookie = "jwt=" + myJwt + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
+            document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
+            // document.cookie = "jwt=" + myJwt + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
             console.log("cookie" + document.cookie)
 
             const queryString = window.location.search;
@@ -144,12 +144,13 @@ export function checkPremission(data) {
             } else {
                 // nav(userName);
                 if (!data.is_username) {
-                    store.dispatch(actions.getCoursesFromServer(uid))
+                    // store.dispatch(actions.getCoursesFromServer(uid))
 
                     browserHistory.replace('/wizard')
                     window.location.reload()
                 }
                 else {
+                    store.dispatch(actions.setUserProps({"uid":uid,"userName":userName}))
                     store.dispatch(actions.getCoursesFromServer(uid))
                     store.dispatch(actions.getSchoolFromServer(uid))
                     window.location.href = 'http://localhost:3000/' + userName + '/addcourse';

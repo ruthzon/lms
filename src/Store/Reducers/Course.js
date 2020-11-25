@@ -109,9 +109,9 @@ const initialState = {
     ],
     // lessons:[1,2,3],
     lessons: [
-      { id: 1, name: "Everything You Need to Know Business", src: "wzR0G67-FBM", time: "Duration 10 weeks" },
-      { id: 2, name: "Everything You Need to Know Business", src: "aS-4U5GgdjM", time: "Duration 10 weeks" },
-      { id: 3, name: "Everything You Need to Know Business", src: "wzR0G67-FBM", time: "Duration 10 weeks" },
+      { _id: 1, name: "Everything You Need to Know Business", time: "10 weeks" },
+      { _id: 2, name: "Everything You Need to Know Business", time: "10 weeks" },
+      { _id: 3, name: "Everything You Need to Know Business", time: "10 weeks" },
     ]
   }
 };
@@ -128,6 +128,9 @@ const mycourse = {
   // initialCourse(state, action) {
   //   state.course = action.payload;
   // },
+  initialEmptyCourse (state) {
+    state.course= initialState.course;
+  },
   setName(state, action) {
     state.course.name = action.payload;
   },
@@ -228,7 +231,18 @@ const mycourse = {
     state.course.lessons = action.payload;
   },
   addLesson(state, action) {
-    state.courses.lessons = state.courses.lessons.concat(action.payload);
+    state.course.lessons = state.course.lessons.concat(action.payload);
+  },
+  removeLesson(state, action) {
+    state.course.lessons = state.course.lessons.filter((x) => x != action.payload);
+  },
+  updateLesson(state, action) {
+    state.course.lessons = state.course.lessons.map(
+      (element, i) => {
+        if (element._id == action.payload._id)
+          element = action.payload
+      })
+      debugger;
   },
 
   setColorHeader(state, action) {
@@ -328,8 +342,6 @@ const mycourse = {
   showCourseFooter(state) {
     state.course.show.more.footer = !state.course.show.more.footer;
   },
-
-
 };
 
 export default produce(

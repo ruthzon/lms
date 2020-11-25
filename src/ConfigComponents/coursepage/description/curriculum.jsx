@@ -52,7 +52,7 @@ class Curriculum extends Component {
           {/* Everything You Need to Know Business */}
           <div>
             <Image src="./img_from_xd/orange clock.svg"></Image>
-            {value.time}
+           Duration {value.time}
             
           </div>
         </ListGroup.Item>

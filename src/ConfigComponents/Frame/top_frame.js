@@ -11,6 +11,7 @@ import { actions } from '../../Store/actions';
 function mapStateToProps(state) {
     return {
         styles: state.stylesReducer.styles,
+        user:state.userReducer.user,
     };
 }
 
@@ -24,14 +25,16 @@ function Top_frame(props) {
         <div id="top_frame" className="row d-flex justify-content-between align-items-right mx-0">
             <a id="leader_logo" className="d-flex">
                 <img src={'./img_from_xd/leader-logo.png'} id="img_logo" class="m-auto"></img>
-                
+
             </a>
 
 
             <div id="top_frame_icons" className="mr-3">
+                <img src={props.user.photoURL} className="logo-img"/>
+
                 <img src={'./img_from_xd/thumbtack-solid.svg'} id="thumbtack" className={props.styles.thumbtack ? "rotateThumbtack" : ""} onClick={() => props.setThumbtack()} />
                 <img src={'./img_from_xd/menu.png'} id="menu" className="" onClick={() => props.setConfigurator()} />
-{/* 
+                {/* 
                 <button id="menu2" className="material-icons align-middle pl-2 pointer btn btn-simple" onClick={(() => props.setConfigurator())}>
                     menu
                 </button> */}

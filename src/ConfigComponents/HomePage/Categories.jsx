@@ -43,6 +43,7 @@ export default connect(
 function RowCategories(props) {
   var rows = [];
   for (var i = 0; i < props.data.school.categories.length; i++) {
+    let x=i;
     rows.push(
       <Card 
         className="category-card hover-trash"
@@ -71,7 +72,8 @@ function RowCategories(props) {
               handleImageById(
                 e,
                 props.data.setCategoriesImage,
-                parseInt(e.target.id.split('-')[2])
+                parseInt(e.target.id.split('-')[2]
+                )
               )
             }
           />
@@ -93,11 +95,12 @@ function RowCategories(props) {
             />
             <FaTrash
               className="trash"
-              id={"categories-"+i}
+              id={"categories-trash-"+i}
               onClick={(e) =>
                 handleDelete(props.data.deleteFromSection, [
-                  parseInt(e.target.id.split('-')[1]), //ind
-                  e.target.id.split('-')[0], //partner
+                  // parseInt(e.target.id.split('-')[2]), //ind
+                  x,
+                  "categories", //categories
                 ])
               }
             />
