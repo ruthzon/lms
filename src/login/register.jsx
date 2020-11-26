@@ -22,6 +22,7 @@ import {
 } from './firebase';
 import store from '../Store/Store';
 import { actions } from '../Store/actions';
+import { Link, withRouter } from 'react-router-dom';
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
@@ -40,16 +41,16 @@ import { actions } from '../Store/actions';
 // }
 // firebase.initializeApp(firebaseConfig);
 
-const history = createHashHistory();
-const browserHistory = createBrowserHistory();
+// const history = createHashHistory();
+// const browserHistory = createBrowserHistory();
 const validEmailRegex = RegExp(
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 );
 
-const Register = () => {
-  const state = {
-    type: 'password',
-  };
+const Register = (props) => {
+  const {history} = props;
+  const [type, setType] = useState('password');
+
 
   // const [passwordShown, setPasswordShown] = useState(false);
 
@@ -60,10 +61,10 @@ const Register = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const nav = () => {
-    browserHistory.replace('/');
-    window.location.reload();
-  };
+  // const nav = () => {
+  //   browserHistory.replace('/');
+  //   window.location.reload();
+  // };
   const createUserWithEmailAndPasswordHandler = async (
     event,
     email,
@@ -112,9 +113,9 @@ const Register = () => {
   //   firebase.auth().signInWithEmailAndPassword();
   // };
   const handleClick = () =>
-    this.setState(({type}) => ({
-      type: type === 'text' ? 'password' : 'text',
-    }));
+  setType(() => ({
+    type: type === 'text' ? 'password' : 'text',
+  }));
   useEffect(() => {
     // signOut();
 
@@ -200,7 +201,7 @@ const Register = () => {
                       </InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control
-                      type={state.type}
+                      type={type}
                       name="userPassword"
                       value={password}
                       onChange={(event) => onChangeHandler(event)}
@@ -242,9 +243,9 @@ const Register = () => {
                 </Button>
                 <br />
                 have an account?
-                <a href="/login" className="pink">
+                <Link onClick={()=>history.push('/register')}  className="pink">
                   Sign in
-                </a>
+                </Link>
                 {error !== null && (
                   <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
                     {error}
@@ -259,4 +260,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default withRouter(Register);

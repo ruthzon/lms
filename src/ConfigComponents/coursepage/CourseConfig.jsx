@@ -1,13 +1,13 @@
 import React, {Component, useState} from 'react';
 import {Button, Row} from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {useRouteMatch} from 'react-router-dom';
+import {useParams, useRouteMatch} from 'react-router-dom';
 import {actions} from '../../Store/actions';
 import '../configurator.css';
 import {createBrowserHistory} from 'history';
 import $ from 'jquery';
 import swal from 'sweetalert';
-import {FaAngleDown, FaAngleRight} from 'react-icons/fa';
+import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/fa';
 
 const browserHistory = createBrowserHistory();
 
@@ -65,6 +65,8 @@ export default connect(
   mapDispatchToProps
 )(function CourseConfig(props) {
   let match = useRouteMatch();
+  let {name, course}=useParams();
+  let {history}=props;
   const addLesson = () => {
     props.initialEmptyLesson();
     if (!match.params.course) {
@@ -74,10 +76,12 @@ export default connect(
         'warning'
       );
     } else {
-      browserHistory.replace(
-        '/' + match.params.name + '/' + match.params.course + '/addLesson'
-      );
-      window.location.reload();
+      history.push('/' + name + '/'+course+'/addLesson');
+
+      // browserHistory.replace(
+      //   '/' + match.params.name + '/' + match.params.course + '/addLesson'
+      // );
+      // window.location.reload();
     }
   };
   const [choose, setChoose] = useState(0);
@@ -110,7 +114,7 @@ export default connect(
         </div>
 
         <div className="config">
-          <button onClick={() => addLesson()}>Add Lesson</button>
+          <button onClick={() => addLesson()}>Add Lesson <FaPlus/> </button>
 
           <button onClick={() => handleChoose(1)}>
             Course Header{choose === 1 ? <FaAngleDown /> : <FaAngleRight />}

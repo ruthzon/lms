@@ -3,10 +3,15 @@ import { createBrowserHistory } from 'history';
 import { matchPath } from 'react-router-dom';
 import swal from 'sweetalert';
 import {getCookie}from '../../login/wizard'
-
+import history from '../../history'
 import $ from 'jquery';
+import store from '../Store';
 
-const browserHistory = createBrowserHistory();
+// const history = createBrowserHistory();
+
+// const url="localhost:3000"
+// const url="lms.leader.codes"
+// const user=store.getState().userReducer.user;
 
 // let jwt ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
@@ -17,6 +22,8 @@ let jwt=getCookie('jwt');
 
 export const getCourses = ({ dispatch, getState }) => next => action => {
     //courses
+
+    const user=store.getState().userReducer.user;
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
         $.ajax({
@@ -53,12 +60,14 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 // data: JSON.stringify(dataToProfilePage),
                 success: function (data) {
                     dispatch(actions.addCourse(data.data));
-                    // browserHistory.replace('/' + matchPath.params.name);
+                    // history.replace('/' + matchPath.params.name);
                     // window.location.reload();
                     console.log("course " + data.data._id);
                     swal("Yes,", "Course added successfully", "success");
-                    // browserHistory.replace('/' + match.params.name);
+                    history.replace('/' +user.userName);
                     // window.location.reload();
+                    // window.location.href = url +'/'+ user.userName;
+
                 },
                 error: function () {
                     swal("Oops...", "Something went wrong, please try again later", "error");
@@ -82,6 +91,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     dispatch(actions.updateCourse(data.data))
                     console.log("course " + data.data._id);
                     swal("Course saved successfully", "", "success");
+                    history.replace('/' +user.userName);
+                    // window.location.reload();
+                    // window.location.href = url + user.userName;
+
                 },
                 error: function () {
                     swal("Oops...", "Something went wrong, please try again later", "error");
@@ -103,8 +116,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                //   browserHistory.replace('/' + match.params.name);
-                window.location.reload();
+                //   history.replace('/' + match.params.name);
+                // window.location.reload();
                 dispatch(actions.removeCourse(data.data))
             },
         });
@@ -142,11 +155,15 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 withCradentials: true,
                 // data: JSON.stringify(dataToProfilePage),
                 success: function (data) {
-                    // browserHistory.replace('/' + matchPath.params.name);
+                    // history.replace('/' + matchPath.params.name);
                     // window.location.reload();
                     dispatch(actions.addLesson(data.data))
                     console.log("lesson " + data.data._id);
                     swal("Lesson added successfully", "", "success");
+                    history.replace('/' +user.userName+'/' +data.course_id);
+                    // window.location.reload();
+                    // window.location.href = url + user.userName+'/' +data.course_id;
+
                 },
                 error: function () {
                     swal("Oops...", "Something went wrong, please try again later", "error");
@@ -166,12 +183,15 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 withCradentials: true,
                 // data: JSON.stringify(dataToProfilePage),
                 success: function (data) {
-                    // browserHistory.replace('/' + matchPath.params.name);
+                    // history.replace('/' + matchPath.params.name);
                     // window.location.reload();
                     dispatch(actions.initialLesson(data.data));
                     dispatch(action.updateLesson(data.data));
                     console.log("lesson " + data.data._id);
                     swal("Lesson saved successfully", "", "success");
+                    history.replace('/' +user.userName+'/' +data.course_id);
+                    // window.location.reload();
+                    // window.location.href = url + user.userName+'/' +data.course_id;
                 },
                 error: function () {
                     swal("Oops...", "Something went wrong, please try again later", "error");
@@ -194,8 +214,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function () {
-                //   browserHistory.replace('/' + match.params.name);
-                window.location.reload();
+                //   history.replace('/' + match.params.name);
+                // window.location.reload();
                 dispatch(actions.removeCourse(action.payload))
             },
             error: function () {
@@ -218,7 +238,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 contentType: 'application/json',
                 withCradentials: true,
                 success: function (data) {
-                    // browserHistory.replace('/' + match.params.name);
+                    // history.replace('/' + match.params.name);
                     // window.location.reload();
                     dispatch(actions.initialSchool(data.data));
                     console.log("school " + data.data._id);
@@ -242,7 +262,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 contentType: 'application/json',
                 withCradentials: true,
                 success: function (data) {
-                    //   browserHistory.replace('/' + match.params.name);
+                    //   history.replace('/' + match.params.name);
                     // window.location.reload();
                     dispatch(actions.initialSchool(data.data));
                     console.log("school " + data.data._id);
@@ -267,7 +287,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                // browserHistory.replace('/' + matchPath.params.name);
+                // history.replace('/' + matchPath.params.name);
                 // window.location.reload();
                 dispatch(actions.addCourse(data.data));
 

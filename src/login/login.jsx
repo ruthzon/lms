@@ -9,8 +9,6 @@ import {
   Image,
   InputGroup,
 } from 'react-bootstrap';
-import {createHashHistory} from 'history';
-import {createBrowserHistory} from 'history';
 // import firebase from '@firebase/app';
 // import 'firebase/auth';
 import {
@@ -22,17 +20,18 @@ import {
 } from './firebase';
 import {UserContext} from './userProvider';
 import $ from 'jquery';
+import {Link, withRouter} from 'react-router-dom';
 
-const history = createHashHistory();
-const browserHistory = createBrowserHistory();
+// const history = createHashHistory();
+// const browserHistory = createBrowserHistory();
 // const user={};
 
-const Login = () => {
+export default withRouter(function Login(props) {
   const user = useContext(UserContext);
-
-  const state = {
-    type: 'password',
-  };
+  const { history} = props;
+  // const state = {
+  //   type: 'password',
+  // };
   const validEmailRegex = RegExp(
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   );
@@ -43,6 +42,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [type, setType] = useState('password');
 
   const signInWithEmailAndPasswordHandler = (event, email, password) => {
     event.preventDefault();
@@ -77,7 +77,7 @@ const Login = () => {
   };
 
   const handleClick = () =>
-    this.setState(({type}) => ({
+    setType(() => ({
       type: type === 'text' ? 'password' : 'text',
     }));
   useEffect(() => {
@@ -150,7 +150,7 @@ const Login = () => {
                     Password
                     {/* <FaRegStar /> */}
                   </Form.Label>
-                  <a href="">Forgot password?</a>
+                  <Link to="">Forgot password?</Link>
                   <InputGroup>
                     <InputGroup.Prepend>
                       {/* <Image src="./img_from_xd/Eyes.svg"></Image> */}
@@ -159,7 +159,7 @@ const Login = () => {
                       </InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control
-                      type={state.type}
+                      type={type}
                       placeholder="Enter password"
                       name="userPassword"
                       value={password}
@@ -196,9 +196,9 @@ const Login = () => {
                 </Button>
                 <br />
                 don't have an account?
-                <a href="/register" className="pink">
+                <Link onClick={()=>history.push('/register')} className="pink">
                   Sign up
-                </a>
+                </Link>
                 {error !== null && (
                   <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
                     {error}
@@ -212,6 +212,5 @@ const Login = () => {
       {/* </FirebaseAuthProvider> */}
     </>
   );
-};
-
-export default Login;
+});
+// export default Login;

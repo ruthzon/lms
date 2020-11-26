@@ -1,5 +1,9 @@
 import React, {Component, useEffect} from 'react';
-import '../ViewComponents/homepage/App.css'               
+import '../ViewComponents/homepage/App.css';
+import { connect } from 'react-redux';
+import history from '../history';
+
+// const history = createBrowserHistory();
 
 // import $ from jquery
 
@@ -18,11 +22,11 @@ export const getCookie = (c_name) => {
   return '';
 };
 
-const usernameCheck = () => {
+const usernameCheck = (user) => {
   const jwt = getCookie('jwt');
 
-// let jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
-// let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+  // let jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
+  // let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
   const value = document.querySelector('input#usernameInput').value;
   const data = {token: jwt, usernameToCheck: value};
@@ -41,26 +45,28 @@ const usernameCheck = () => {
           'The username is already taken. Please choose another username.';
       } else {
         alert('Username available and created!');
-        window.location.href = "https://lms.leader.codes/" + $.userName + '/addCourse'
-    }
+        history.replace('/' + user.userName + '/addCourse');
+        // window.location.reload();
+        // window.location.href = "https://lms.leader.codes/" + $.userName + '/addCourse'
+      }
     });
 };
 
-class Wizard extends Component {
-  // componentDidMount(){
-  //   let url="http://localhost:8000/students/";
-  //   fetch(url).then(res=>res.json())
-  //   .then(data=>{
-  //     console.log(data);
-  //   })
+function mapStateToProps(state) {
+  return {
+    user: state.userReducer.user,
+  };
+}
 
-  // }
+class Wizard extends Component {
   render() {
     return (
       <div className="auth">
         <div
           className="auth__main"
-          style={{backgroundImage:  "url(./img_from_xd/bg-login-finish-mobile.jpg)"}}
+          style={{
+            backgroundImage: 'url(./img_from_xd/bg-login-finish-mobile.jpg)',
+          }}
         >
           <div className="auth__wrap">
             <div className="auth__preview">
@@ -108,23 +114,29 @@ class Wizard extends Component {
                 <a
                   id="signupBtn"
                   className="btn btn_light auth__btn"
-                  style={{userSelect: "none", cursor: "pointer"}}
-                  onClick={usernameCheck}
+                  style={{userSelect: 'none', cursor: 'pointer'}}
+                  onClick={e=>usernameCheck(this.props.user)}
                 >
                   Continue
                 </a>
               </div>
-              <div id="errMsg" style={{color:"red"}}></div>
+              <div id="errMsg" style={{color: 'red'}}></div>
             </form>
           </div>
         </div>
         <div
           className="auth__bg"
-          style={{backgroundImage:" url(assets/img/bg-login-sign-in.jpg)"}}
+          style={{backgroundImage: ' url(assets/img/bg-login-sign-in.jpg)'}}
         ></div>
         <div
           id="wait"
-          style={{display:"none",zIndex:"2",position:"absolute",top:"50%",left:"50%"}}
+          style={{
+            display: 'none',
+            zIndex: '2',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+          }}
         >
           <img
             src="https://cdn.dribbble.com/users/225707/screenshots/2958729/attachments/648705/straight-loader.gif"
@@ -138,4 +150,8 @@ class Wizard extends Component {
     );
   }
 }
-export default Wizard;
+
+export default connect(
+  mapStateToProps,
+  null
+)( Wizard)

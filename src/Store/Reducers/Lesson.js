@@ -45,7 +45,6 @@ const mylesson = {
     state.lesson.show[action.payload] = !state.lesson.show[action.payload];
   },
   setSettingProp(state, action) {
-    debugger;
     state.lesson.settings[action.payload] = state.lesson.settings[action.payload] === 0 ? 1 : 0;
   },
 

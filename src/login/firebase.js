@@ -29,14 +29,15 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 
+const url="localhost:3000"
+// const url="lms.leader.codes"
+
 export const signInWithGoogle = () => {
     auth.signInWithPopup(provider).then((res) => {
         console.log(res.user);
-        debugger;
         console.log(res.user.displayName);
         // nav(res.user.displayName);
     }).catch((err) => {
-        debugger;
         console.log(err)
     })
     // nav();
@@ -92,7 +93,7 @@ export const nav = (displayName) => {
     debugger;
     // const name= displayName.replace(/\s/g, '');
     // browserHistory.replace('/' + displayName + '/addcourse');
-    window.location.href = 'localhost:3000/' + displayName + '/addcourse';
+    window.location.href = url + displayName + '/addcourse';
 };
 
 
@@ -153,7 +154,7 @@ export function checkPremission(data) {
                     store.dispatch(actions.setUserProps({"uid":uid,"userName":userName}))
                     store.dispatch(actions.getCoursesFromServer(uid))
                     store.dispatch(actions.getSchoolFromServer(uid))
-                    window.location.href = 'http://localhost:3000/' + userName + '/addcourse';
+                    window.location.href = url + userName + '/addcourse';
                 }
             }
         }

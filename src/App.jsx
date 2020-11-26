@@ -35,14 +35,16 @@ import Help from './Help';
 import CoursePage from './ViewComponents/coursepage/CoursePage';
 import { signOut } from './login/firebase';
 import Wizard from './login/wizard';
+import history from "./history.js";
+
 
 // import {NavigationContainer} from '@react-navigation/native';
 // import {createStackNavigator} from '@react-navigation/stack';
 
 // const Stack = createStackNavigator();
 
-const history = createHashHistory();
-const browserHistory = createBrowserHistory();
+// const history = createHashHistory();
+// const browserHistory = createBrowserHistory();
 
 
 function App() {
@@ -59,7 +61,7 @@ function App() {
         </Stack.Navigator>
       </NavigationContainer> */}
 
-      <Router>
+      <Router  history={history}>
         <Switch>
         {/* <Route path="/help">
             <Help />
