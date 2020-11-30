@@ -36,6 +36,7 @@ import CoursePage from './ViewComponents/coursepage/CoursePage';
 import { signOut } from './login/firebase';
 import Wizard from './login/wizard';
 import history from "./history.js";
+import wizard from './login/wizard';
 
 
 // import {NavigationContainer} from '@react-navigation/native';
@@ -66,20 +67,20 @@ function App() {
         {/* <Route path="/help">
             <Help />
           </Route> */}
-          <Route path="/login">
-            <Login />
+          <Route path="/login" component={Login}>
+            {/* <Login /> */}
           </Route>
-          <Route path="/register">
-            <Register />
+          <Route path="/register" component={Register}>
+            {/* <Register /> */}
           </Route>
-          <Route path="/wizard">
-            <Wizard />
+          <Route path="/wizard" component={wizard}>
+            {/* <Wizard /> */}
           </Route>
           {/* <Route path="/course">
             <CoursePage />
           </Route> */}
-          <Route path="/:name">
-              <RouteConfig />
+          <Route path="/:name" component={RouteConfig}>
+              {/* <RouteConfig /> */}
           </Route>
           {/* <Route path="/:name/addcourse">
             <AddCoursePage />

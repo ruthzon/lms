@@ -6,7 +6,8 @@ import createReducer from './ReducerUtils';
 
 const initialState = {
   school: {
-    _id: '0',
+    _id: '5fbb9c2c068ea32d1852f9fb',
+    // _id: '0',
     name: "School's name",
     title: 'Learn new skills online with top educators',
     subtitle: 'Choose from over 100,000 online video courses with new additions published every month.',

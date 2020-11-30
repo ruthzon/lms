@@ -1,8 +1,10 @@
 import React, {Component, useEffect} from 'react';
 import '../ViewComponents/homepage/App.css';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import history from '../history';
-
+import swal from 'sweetalert';
+import $ from 'jquery';
+import {actions} from '../Store/actions';
 // const history = createBrowserHistory();
 
 // import $ from jquery
@@ -22,15 +24,46 @@ export const getCookie = (c_name) => {
   return '';
 };
 
-const usernameCheck = (user) => {
-  const jwt = getCookie('jwt');
-
-  // let jwt="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
+const usernameCheck = (setUserProps) => {
+  // const jwt = getCookie('jwt');
+  let jwt =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
   // let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
   const value = document.querySelector('input#usernameInput').value;
   const data = {token: jwt, usernameToCheck: value};
-  fetch('https://lms.leader.codes/register/usernameCheck', {
+  // $.ajax({
+  //   url: 'https://lms.leader.codes/register/checkUsername',
+  //   headers: {
+  //     Authorization: jwt,
+  //   },
+  //   // data: JSON.stringify(action.payload),
+  //   method: 'post',
+  //   dataType: 'json',
+  //   data: JSON.stringify(data),
+  //   contentType: 'application/json',
+  //   withCradentials: true,
+  //   // data: JSON.stringify(dataToProfilePage),
+  //   success: function (res) {
+  //     if (!res.availability) {
+  //       swal(
+  //         'Oops...',
+  //         'The username is already taken. Please choose another username.',
+  //         'error'
+  //       );
+  //     } else {
+  //       swal('Oops...', 'Username available and created!', 'error');
+  //       setUserProps({"userName":value})
+  //       history.replace('/' + value + '/addCourse');
+  //       // window.location.reload();
+  //       // window.location.href = "https://lms.leader.codes/" + $.userName + '/addCourse'
+  //     }
+  //   },
+  //   error: function (err){
+  //     console.log(err);
+  //   }
+  // });
+  fetch('https://lms.leader.codes/register/checkUsername‎', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -38,19 +71,25 @@ const usernameCheck = (user) => {
     },
     body: JSON.stringify(data),
   })
-    .then(($) => $.json())
-    .then(($) => {
-      if (!$.availability) {
-        document.querySelector('#errMsg').innerText =
-          'The username is already taken. Please choose another username.';
+    .then((res) => res.json())
+    .then((res) => {
+      if (!res.availability) {
+        swal(
+          'Oops...',
+          'The username is already taken. Please choose another username.',
+          'error'
+        );
       } else {
-        alert('Username available and created!');
-        history.replace('/' + user.userName + '/addCourse');
-        // window.location.reload();
-        // window.location.href = "https://lms.leader.codes/" + $.userName + '/addCourse'
+        swal('Oops...', 'Username available and created!', 'error');
+        setUserProps({userName: value});
+        history.replace('/' + value + '/addCourse');
       }
     });
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  setUserProps: (data) => dispatch(actions.setUserProps(data)),
+});
 
 function mapStateToProps(state) {
   return {
@@ -115,7 +154,7 @@ class Wizard extends Component {
                   id="signupBtn"
                   className="btn btn_light auth__btn"
                   style={{userSelect: 'none', cursor: 'pointer'}}
-                  onClick={e=>usernameCheck(this.props.user)}
+                  onClick={() => usernameCheck(this.props.setUserProps)}
                 >
                   Continue
                 </a>
@@ -144,14 +183,11 @@ class Wizard extends Component {
             height="64"
           />
           <br />
-          Loading..
+          Loading...
         </div>
       </div>
     );
   }
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)( Wizard)
+export default connect(mapStateToProps, mapDispatchToProps)(Wizard);

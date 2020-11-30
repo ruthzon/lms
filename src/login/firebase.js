@@ -13,9 +13,9 @@ import { actions } from "../Store/actions";
 const browserHistory = createBrowserHistory();
 
 var firebaseConfig = {
-    apiKey: 'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
-    authDomain: 'lms-leader.firebaseapp.com',
-    databaseURL: 'https://lms-leader.firebaseio.com',
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_FIREBASE_URL,
     projectId: 'lms-leader',
     storageBucket: 'lms-leader.appspot.com',
     messagingSenderId: '451375116419',
@@ -71,6 +71,8 @@ export const generateUserDocument = async (user, additionalData) => {
                 uid,
                 ...additionalData
             });
+            store.dispatch(actions.setUserProps({"uid":uid,"email":email,"photoURL":photoURL}))
+
         } catch (error) {
             console.error("Error creating user document", error);
         }
@@ -97,8 +99,8 @@ export const nav = (displayName) => {
 };
 
 
-let myJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
-let myUid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+// let myJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU";
+// let myUid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
 export function checkPremission(data) {
     let TokenToString = data.accessToken.toString();
@@ -144,6 +146,7 @@ export function checkPremission(data) {
                 window.location.href = redirectUrl
             } else {
                 // nav(userName);
+
                 if (!data.is_username) {
                     // store.dispatch(actions.getCoursesFromServer(uid))
 
@@ -151,7 +154,6 @@ export function checkPremission(data) {
                     window.location.reload()
                 }
                 else {
-                    store.dispatch(actions.setUserProps({"uid":uid,"userName":userName}))
                     store.dispatch(actions.getCoursesFromServer(uid))
                     store.dispatch(actions.getSchoolFromServer(uid))
                     window.location.href = url + userName + '/addcourse';

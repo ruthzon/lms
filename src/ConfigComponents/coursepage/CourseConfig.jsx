@@ -8,7 +8,7 @@ import {createBrowserHistory} from 'history';
 import $ from 'jquery';
 import swal from 'sweetalert';
 import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/fa';
-
+import history from '../../history'
 const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
@@ -66,16 +66,15 @@ export default connect(
 )(function CourseConfig(props) {
   let match = useRouteMatch();
   let {name, course}=useParams();
-  let {history}=props;
   const addLesson = () => {
-    props.initialEmptyLesson();
-    if (!match.params.course) {
+    if (!props.course._id||props.course.id=='0') {
       swal(
         'Oops...',
         'You need to save the course before adding a lesson',
         'warning'
       );
     } else {
+      props.initialEmptyLesson();
       history.push('/' + name + '/'+course+'/addLesson');
 
       // browserHistory.replace(

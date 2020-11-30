@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import '../../ViewComponents/coursepage/course.css';
 import ReactPlayer from 'react-player';
 import YouTube from 'react-youtube';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-
+const gapi=window.gapi;
 function mapStateToProps(state) {
   return {
     lesson: state.lessonReducer.lesson,
@@ -12,7 +12,55 @@ function mapStateToProps(state) {
 }
 
 class Video extends Component {
-  
+  componentDidMount() {
+    gapi.load('client:auth2', function () {
+      gapi.auth2.init({client_id: 'YOUR_CLIENT_ID'});
+    });
+  }
+  authenticate = () => {
+    return gapi.auth2
+      .getAuthInstance()
+      .signIn({scope: 'https://www.googleapis.com/auth/youtube.readonly'})
+      .then(
+        function () {
+          console.log('Sign-in successful');
+        },
+        function (err) {
+          console.error('Error signing in', err);
+        }
+      );
+  };
+  loadClient = () => {
+    gapi.client.setApiKey('YOUR_API_KEY');
+    return gapi.client
+      .load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+      .then(
+        function () {
+          console.log('GAPI client loaded for API');
+        },
+        function (err) {
+          console.error('Error loading GAPI client for API', err);
+        }
+      );
+  };
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  execute = () => {
+    return gapi.client.youtube.channels
+      .list({
+        part: ['snippet,contentDetails,statistics'],
+        id: ['UC_x5XG1OV2P6uZZ5FSM9Ttw'],
+      })
+      .then(
+        function (response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log('Response', response);
+        },
+        function (err) {
+          console.error('Execute error', err);
+        }
+      );
+  };
+
   _onReady(event) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -22,24 +70,27 @@ class Video extends Component {
     const opts = {
       height: '390',
       width: '640',
-      playerVars: 
-        this.props.lesson.settings,
-      
+      playerVars: this.props.lesson.settings,
     };
     return (
       <>
         <div className={'content'}>
           {/* <ReactPlayer url="https://www.youtube.com/watch?v=wzR0G67-FBM&feature=emb_logo&ab_channel=במהכהלכה" />
           dd */}
-          <YouTube videoId={this.props.lesson.lesson_url} opts={opts} onReady={this._onReady} />
+          <button onclick={() => this.authenticate().then(this.loadClient)}>
+            authorize and load
+          </button>
+          <button onclick={this.execute}>execute</button>
+          <YouTube
+            videoId={this.props.lesson.lesson_url}
+            opts={opts}
+            onReady={this._onReady}
+          />
         </div>
         {/* <div className={"video content"+this.props.view? 'margin-view':''}></div> */}
       </>
     );
   }
 }
-export default connect(
-  mapStateToProps,
-  null
-)(Video)
+export default connect(mapStateToProps, null)(Video);
 // export default Video;
