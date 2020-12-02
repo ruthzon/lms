@@ -83,12 +83,11 @@ const Register = (props) => {
     try {
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       // generateUserDocument(user, {displayName});
-      store.dispatch(actions.initialUser(user));
+      store.dispatch(actions.setUserProps({"uid":user.uid,"email":user.email,"photoURL":user.photoURL}))
       // nav();
     } catch (error) {
       setError('Error Signing up with email and password');
     }
-
     setEmail('');
     setPassword('');
     setDisplayName('');

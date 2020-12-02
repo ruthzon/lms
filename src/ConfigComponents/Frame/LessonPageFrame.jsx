@@ -11,11 +11,9 @@ import CoursePage from '../coursepage/CoursePage';
 import LessonPage from '../lessonPage/LessonPage';
 import LessonConfig from '../lessonPage/LessonConfig';
 
-
-
 function mapStateToProps(state) {
   return {
-      styles: state.stylesReducer.styles,
+    styles: state.stylesReducer.styles,
   };
 }
 function LessonPageFrame(props) {
@@ -26,10 +24,15 @@ function LessonPageFrame(props) {
   // }
   return (
     <div id="frame">
-      <TopFrame />
-      {props.styles.configurator &&<LessonConfig />}
-      <LessonPage />
+       {props.styles.configurator && (
+            <Configurator>
+              <LessonConfig />
+            </Configurator>
+          )}
+          <Stage>
+            <LessonPage />
+          </Stage>
     </div>
   );
 }
-export default connect(mapStateToProps,null)(LessonPageFrame);
+export default connect(mapStateToProps, null)(LessonPageFrame);

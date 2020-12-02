@@ -6,7 +6,7 @@ import createReducer from './ReducerUtils';
 
 const initialState = {
   course: {
-    _id: '5fc4c6343c22b578e07c96f5',
+    _id: '0',
     name: 'Enter the name of the course here',
     subtitle: 'Here is a short description of the course and the content that will be taught in it',
     image: './img_from_xd/Image 108@2x.png',

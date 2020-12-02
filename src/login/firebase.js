@@ -9,8 +9,8 @@ import { useCookies } from "react-cookie";
 import { withCookies, Cookies } from "react-cookie";
 import store from '../Store/Store'
 import { actions } from "../Store/actions";
-
-const browserHistory = createBrowserHistory();
+import history from '../history'
+// const browserHistory = createBrowserHistory();
 
 var firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -29,13 +29,14 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 
-const url="localhost:3000"
+// const url="localhost:3000"
 // const url="lms.leader.codes"
 
 export const signInWithGoogle = () => {
     auth.signInWithPopup(provider).then((res) => {
         console.log(res.user);
         console.log(res.user.displayName);
+        store.dispatch(actions.setUserProps({"uid":res.user.uid,"email":res.user.email,"photoURL":res.user.photoURL}))
         // nav(res.user.displayName);
     }).catch((err) => {
         console.log(err)
@@ -57,45 +58,45 @@ export const signOut = () => {
         .catch(function (error) { console.log(error) });
 }
 export const generateUserDocument = async (user, additionalData) => {
-    if (!user) return;
-    const userRef = firestore.doc(`users/${user.uid}`);
-    const snapshot = await userRef.get();
-    if (!snapshot.exists) {
-        debugger;
-        const { email, displayName, photoURL, uid } = user;
-        try {
-            await userRef.set({
-                displayName,
-                email,
-                photoURL,
-                uid,
-                ...additionalData
-            });
-            store.dispatch(actions.setUserProps({"uid":uid,"email":email,"photoURL":photoURL}))
+    // if (!user) return;
+    // const userRef = firestore.doc(`users/${user.uid}`);
+    // const snapshot = await userRef.get();
+    // if (!snapshot.exists) {
+    //     debugger;
+    //     const { email, displayName, photoURL, uid } = user;
+    //     try {
+    //         await userRef.set({
+    //             displayName,
+    //             email,
+    //             photoURL,
+    //             uid,
+    //             ...additionalData
+    //         });
+    //         store.dispatch(actions.setUserProps({"uid":uid,"email":email,"photoURL":photoURL}))
 
-        } catch (error) {
-            console.error("Error creating user document", error);
-        }
-    }
-    return getUserDocument(user.uid);
+    //     } catch (error) {
+    //         console.error("Error creating user document", error);
+    //     }
+    // }
+    // return getUserDocument(user.uid);
 };
 const getUserDocument = async uid => {
-    if (!uid) return null;
-    try {
-        const userDocument = await firestore.doc(`users/${uid}`).get();
-        return {
-            uid,
-            ...userDocument.data()
-        };
-    } catch (error) {
-        console.error("Error fetching user", error);
-    }
+    // if (!uid) return null;
+    // try {
+    //     const userDocument = await firestore.doc(`users/${uid}`).get();
+    //     return {
+    //         uid,
+    //         ...userDocument.data()
+    //     };
+    // } catch (error) {
+    //     console.error("Error fetching user", error);
+    // }
 };
 export const nav = (displayName) => {
     debugger;
     // const name= displayName.replace(/\s/g, '');
     // browserHistory.replace('/' + displayName + '/addcourse');
-    window.location.href = url + displayName + '/addcourse';
+    window.location.href = '/'+ displayName + '/addcourse';
 };
 
 
@@ -150,13 +151,13 @@ export function checkPremission(data) {
                 if (!data.is_username) {
                     // store.dispatch(actions.getCoursesFromServer(uid))
 
-                    browserHistory.replace('/wizard')
+                    history.push('/wizard')
                     window.location.reload()
                 }
                 else {
                     store.dispatch(actions.getCoursesFromServer(uid))
                     store.dispatch(actions.getSchoolFromServer(uid))
-                    window.location.href = url + userName + '/addcourse';
+                    history.push('/'+ userName + '/addcourse');
                 }
             }
         }

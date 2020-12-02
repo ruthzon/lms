@@ -33,27 +33,18 @@ export default connect(
 )(function HomePage(props) {
   return (
     <>
-      <div
-        id="stage"
-        className={
-          props.styles.configurator ? 'col-md-10 d-flex' : 'col-md-12 d-flex'
-        }
-      >
-        <div id="landingPage_edit" className="m-auto">
-          <div className="homeconf">
-            {/* <Navigation /> */}
-            <Header />
-            {props.school.show.categories && <Categories />}
-            {props.school.show.getChoice && <GetChoice />}
-            {props.school.show.learning && <LearningPlatform />}
-            {props.school.show.worldSelection && <WorldSelectionCourse />}
-            {props.school.show.CTA && <CTA />}
-            {props.school.show.testimoinal && <Testimoinal />}
-            {/* <Testimoinal data={tst} /> */}
-            {props.school.show.partners && <OurPartner />}
-            {props.school.show.footer && <Footer />}
-          </div>
-        </div>
+      <div className="homeconf">
+        {/* <Navigation /> */}
+        <Header />
+        {props.school.show.categories && <Categories />}
+        {props.school.show.getChoice && <GetChoice />}
+        {props.school.show.learning && <LearningPlatform />}
+        {props.school.show.worldSelection && <WorldSelectionCourse />}
+        {props.school.show.CTA && <CTA />}
+        {props.school.show.testimoinal && <Testimoinal />}
+        {/* <Testimoinal data={tst} /> */}
+        {props.school.show.partners && <OurPartner />}
+        {props.school.show.footer && <Footer />}
       </div>
     </>
   );

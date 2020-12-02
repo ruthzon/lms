@@ -9,4 +9,4 @@ export default function createReducer(state, action, handlers) {
     if (handler) {
         handler(state, action);
     }
-}
+} 

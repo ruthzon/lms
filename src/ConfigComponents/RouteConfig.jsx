@@ -17,14 +17,26 @@ import HomePageFrame from './Frame/HomePageFrame';
 import CoursePageFrame from './Frame/CoursePageFrame';
 import LessonConfig from './lessonPage/LessonConfig';
 import LessonPageFrame from './Frame/LessonPageFrame';
+import TopFrame from './Frame/top_frame';
+import Stage from './Frame/stage';
+import Configurator from './Frame/configurator';
+import CourseConfig from './coursepage/CourseConfig';
+import LessonPage from './lessonPage/LessonPage';
+import HomeConfig from './homepage/HomeConfig';
+
 // import CoursePage from './coursepage/coursepage';
 const mapDispatchToProps = (dispatch) => ({
   initialCourses: (courses) => dispatch(actions.initialCourse(courses)),
   initialCourse: (courses) => dispatch(actions.initialCourse(courses)),
 });
 
+function mapStateToProps(state) {
+  return {
+    styles: state.stylesReducer.styles,
+  };
+}
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(function RouteConfig(props) {
   let match = useRouteMatch();
@@ -32,24 +44,31 @@ export default connect(
   return (
     <div>
       {/* <Link to={`${match.url}/components`}>Components</Link> */}
+
+      <TopFrame />
       <Switch>
         <Route path={`${match.path}/addcourse`}>
           {/* <CoursePage /> */}
           <CoursePageFrame />
+         
         </Route>
         <Route path={`${match.path}/:course/addLesson`}>
           <LessonPageFrame />
+         
         </Route>
         <Route path={`${match.path}/:course/:lesson`}>
           <LessonPageFrame />
+         
         </Route>
         <Route path={`${match.path}/:course`}>
+          {/* <CoursePageFrame /> */}
           <CoursePageFrame />
-        </Route>
 
+        </Route>
         <Route path={match.path}>
           <HomePageFrame />
           {/* <HomePage /> */}
+          
         </Route>
       </Switch>
     </div>

@@ -25,9 +25,9 @@ export const getCookie = (c_name) => {
 };
 
 const usernameCheck = (setUserProps) => {
-  // const jwt = getCookie('jwt');
-  let jwt =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
+  const jwt = getCookie('jwt');
+  // let jwt =
+    // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
   // let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
   const value = document.querySelector('input#usernameInput').value;
@@ -63,7 +63,7 @@ const usernameCheck = (setUserProps) => {
   //     console.log(err);
   //   }
   // });
-  fetch('https://lms.leader.codes/register/checkUsername‎', {
+  fetch('https://lms.leader.codes/register/checkUsername', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const usernameCheck = (setUserProps) => {
           'error'
         );
       } else {
-        swal('Oops...', 'Username available and created!', 'error');
+        swal('succsess', 'Username available and created!', 'succsess');
         setUserProps({userName: value});
         history.replace('/' + value + '/addCourse');
       }

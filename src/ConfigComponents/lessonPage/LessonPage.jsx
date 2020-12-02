@@ -30,24 +30,14 @@ export default connect(
   // .find((d) => (d.id = params.id));
   // const data=JSON.parse(params.data.toString())
   return (
-    <div
-      id="stage"
-      className={
-        props.styles.configurator ? 'col-md-10 d-flex' : 'col-md-12 d-flex'
-      }
-    >
-      {/* <Navigation /> */}
-      <div id="landingPage_edit" className="m-auto">
-        <div className="coursepage coursepageconf">
-         <Header />
-          <Video />
-          {/* {props.lesson.show.description && <Description />} */}
-          {/* {props.lesson.show.more_courses && <MoreCourses />} */}
-          {/* {props.lesson.show.belive && <Belive />} */}
-          {/* {props.lesson.show.top_educators && <TopEducators />} */}
-          {/* {props.lesson.show.footer && <Footer />} */}
-        </div>
-      </div>
+    <div className="coursepage coursepageconf">
+      <Header />
+      <Video />
+      {/* {props.lesson.show.description && <Description />} */}
+      {/* {props.lesson.show.more_courses && <MoreCourses />} */}
+      {/* {props.lesson.show.belive && <Belive />} */}
+      {/* {props.lesson.show.top_educators && <TopEducators />} */}
+      {/* {props.lesson.show.footer && <Footer />} */}
     </div>
   );
 });

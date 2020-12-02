@@ -13,8 +13,8 @@ import store from '../Store';
 // const url="lms.leader.codes"
 // const user=store.getState().userReducer.user;
 
-let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
-// let jwt = getCookie('jwt');
+// let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
+let jwt = getCookie('jwt');
 
 
 // router.get("/students", studentsController.getStudents);
@@ -23,9 +23,9 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     //courses
 
     const user = store.getState().userReducer.user;
-    let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+    // let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
-    // const uid = user.uid;
+    const uid = user.uid;
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
         $.ajax({

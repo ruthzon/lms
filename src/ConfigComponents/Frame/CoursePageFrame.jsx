@@ -24,9 +24,14 @@ function CoursePageFrame(props) {
   // }
   return (
     <div id="frame">
-      <TopFrame />
-      {props.styles.configurator &&<CourseConfig />}
-      <CoursePage />
+       {props.styles.configurator && (
+            <Configurator>
+              <CourseConfig />
+            </Configurator>
+          )}
+          <Stage>
+            <CoursePage />
+          </Stage>
     </div>
   );
 }
