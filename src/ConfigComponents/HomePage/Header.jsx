@@ -20,6 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
   setSchoolSubtitle: (sub) => dispatch(actions.setSchoolSubtitle(sub)),
   setSchoolImage: (sub) => dispatch(actions.setSchoolImage(sub)),
   setSchoolLogo: (sub) => dispatch(actions.setSchoolLogo(sub)),
+  setSectionConfig: (sub) => dispatch(actions.setSectionConfig(sub)),
+
 });
 export default connect(
   mapStateToProps,
@@ -27,7 +29,9 @@ export default connect(
 )(function Header(props) {
   return (
     <>
-      <header  style={{backgroundColor: props.school.colors.header}}>
+      <header 
+      onClick={()=>props.setSectionConfig({name:'header'})}
+       style={{backgroundColor: props.school.colors.header}}>
         <Container>
           <Row>
             <Col className="middle" md="6">

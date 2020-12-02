@@ -74,6 +74,7 @@ export default withRouter(
               function={props.setCategories}
             />
           );
+          
 
         default:
           return 'foo';
