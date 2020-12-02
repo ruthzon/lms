@@ -23,7 +23,6 @@ var jwt=getCookie('jwt');
 
 var url = window.location;
 var userName = (url.pathname.split('/')[1]);
-debugger
 fetch('https://lms.leader.codes/api/' + userName + '/getUid', {
     method: 'GET',
     headers: {
@@ -32,7 +31,7 @@ fetch('https://lms.leader.codes/api/' + userName + '/getUid', {
     },
     // body: JSON.stringify({ userName: userName }),
 })
-    .then((res) => {debugger; res.json() })
+    .then((res) => { res.json() })
     .then((res) => {
         if (res && res.data.uid) {
             let user = res.data;

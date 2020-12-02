@@ -242,7 +242,6 @@ const mycourse = {
         if (element._id == action.payload._id)
           element = action.payload
       })
-      debugger;
   },
 
   setColorHeader(state, action) {

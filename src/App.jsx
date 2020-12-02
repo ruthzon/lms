@@ -62,7 +62,7 @@ function App() {
         </Stack.Navigator>
       </NavigationContainer> */}
 
-      <Router  history={history}>
+      <Router history={history}>
         <Switch>
         {/* <Route path="/help">
             <Help />

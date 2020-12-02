@@ -87,6 +87,9 @@ const myschool = {
   initialSchool(state,action){
     state.school=action.payload;
   },
+  setSchoolProp(state, action) {
+    state.school[action.payload.prop] = action.payload.data;
+  },
   setSchoolName(state, action) {
     state.school.name = action.payload;
   },

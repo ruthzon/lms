@@ -145,7 +145,7 @@ input:checked + .slider:before {
   resize: none;
   overflow-y: hidden;
 }
-
+.hover-config
 .homeconf input:hover,
 .homeconf textarea:hover,
 .coursepageconf textarea:hover,
@@ -207,6 +207,7 @@ textarea {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #fff;
+  width: 100%;
 }
 .config input[type='color'] {
   float: right;
@@ -259,6 +260,9 @@ textarea {
 }
 .file-upload img {
   width: 100%;
+}
+#file-upload-button{
+  opacity: 1;
 }
 .test-card .file-upload img {
   width: auto;

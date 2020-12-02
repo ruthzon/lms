@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCategories: (name) => dispatch(actions.setCategories(name)),
   setCategoriesImage: (name) => dispatch(actions.setCategoriesImage(name)),
   deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
 export default connect(
   mapStateToProps,
@@ -46,10 +47,11 @@ function RowCategories(props) {
     let x=i;
     rows.push(
       <Card 
-        className="category-card hover-trash"
+      onClick={()=>props.data.setSectionConfig({name:"category",id:x})}
+        className="category-card hover-trash hover-config"
         style={{backgroundColor: props.data.school.categories[i].backcolor}}
       >
-        <input
+        {/* <input
           id={'category-backcolor-' + i}
           type="color"
           className="border-white"
@@ -61,10 +63,10 @@ function RowCategories(props) {
               parseInt(e.target.id.split('-')[2]),
             ])
           }
-        />
+        /> */}
         <div class="file-upload">
           <Card.Img variant="top" src={props.data.school.categories[i].icon} />
-          <input
+          {/* <input
             id={'category-icon-' + i}
             type="file"
             accept=".svg"
@@ -76,12 +78,13 @@ function RowCategories(props) {
                 )
               )
             }
-          />
+          /> */}
         </div>
 
         <Card.Body>
           <Card.Title>
-            <input
+            {props.data.school.categories[i].name}
+            {/* <input
               className="width-webkit"
               id={'category-name-' + i}
               value={props.data.school.categories[i].name}
@@ -92,8 +95,8 @@ function RowCategories(props) {
                   parseInt(e.target.id.split('-')[2]),
                 ])
               }
-            />
-            <FaTrash
+            /> */}
+            {/* <FaTrash
               className="trash"
               id={"categories-trash-"+i}
               onClick={(e) =>
@@ -103,7 +106,7 @@ function RowCategories(props) {
                   "categories", //categories
                 ])
               }
-            />
+            /> */}
           </Card.Title>
         </Card.Body>
       </Card>

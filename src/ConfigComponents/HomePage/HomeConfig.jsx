@@ -4,14 +4,15 @@ import {connect} from 'react-redux';
 import {useParams, useRouteMatch, withRouter} from 'react-router-dom';
 import {actions} from '../../Store/actions';
 import '../configurator.css';
-import {createBrowserHistory} from 'history';
 import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/all';
 import $ from 'jquery';
+import {ConfigCategory, ConfigHeader} from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
   return {
     school: state.schoolReducer.school,
+    styles: state.stylesReducer.styles,
   };
 }
 
@@ -21,277 +22,75 @@ const mapDispatchToProps = (dispatch) => ({
   addSchoolToServer: (data) => dispatch(actions.addSchoolToServer(data)),
   addNewForSection: (data) => dispatch(actions.addNewForSection(data)),
   addNewForLearning: (data) => dispatch(actions.addNewForLearning(data)),
-  initialEmptyCourse:()=>dispatch(actions.initialEmptyCourse())
+  initialEmptyCourse: () => dispatch(actions.initialEmptyCourse()),
+  setSchoolProp: (data) => dispatch(actions.setSchoolProp(data)),
+  setSchoolImage: (data) => dispatch(actions.setSchoolImage(data)),
+  setCategories: (data) => dispatch(actions.setCategories(data)),
+  setCategoriesImage: (data) => dispatch(actions.setCategoriesImage(data)),
+  setColorSchoolByPart: (data) => dispatch(actions.setColorSchoolByPart(data)),
 });
 
-export default withRouter( connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function HomeConfig(props) {
-  let match = useRouteMatch();
-  let {name}=useParams();
-  let {history}=props;
-  const addCourse = () => {
-    props.initialEmptyCourse();
-    history.push('/' + name + '/addCourse');
-    // window.location.reload();
-  };
-  const [choose, setChoose] = useState(0);
-  const handleChoose = (click) => {
-    if (choose === click) setChoose(0);
-    else setChoose(click);
-  };
-  const handleSave = () => {
-    props.addSchoolToServer(props.school);
-    // browserHistory.replace('/' + match.params.name);
-    // window.location.reload();
-    // $.ajax()
-  };
-  return (
-    <>
- 
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(function HomeConfig(props) {
+    let match = useRouteMatch();
+    let {name} = useParams();
+    let {history} = props;
+    const addCourse = () => {
+      props.initialEmptyCourse();
+      history.push('/' + name + '/addCourse');
+      // window.location.reload();
+    };
+    const [choose, setChoose] = useState(0);
+    const handleChoose = (click) => {
+      if (choose === click) setChoose(0);
+      else setChoose(click);
+    };
+    const handleSave = () => {
+      props.addSchoolToServer(props.school);
+      // browserHistory.replace('/' + match.params.name);
+      // window.location.reload();
+      // $.ajax()
+    };
+    const switchConfigComponent = (name, id) => {
+      switch (name) {
+        case 'header':
+          return (
+            <ConfigHeader
+              image={props.setSchoolImage}
+              school={props.school}
+              function={props.setSchoolProp}
+              color={props.setColorSchoolByPart}
+            />
+          );
+        case 'category':
+          return (
+            <ConfigCategory
+              id={id}
+              image={props.setCategoriesImage}
+              school={props.school}
+              function={props.setCategories}
+            />
+          );
+
+        default:
+          return 'foo';
+      }
+    };
+    return (
+      <>
         <div className="config">
-
-          <button onClick={() => addCourse()}>Add Course <FaPlus/> </button>
-
-          <button onClick={() => handleChoose(1)}>
-            Course Header {choose === 1 ? <FaAngleDown /> : <FaAngleRight />}
+          <button onClick={() => addCourse()}>
+            Add Course <FaPlus />
           </button>
-          <div className={choose === 1 ? 'display' : 'cover'}>
-            {/* <div>
-              Stars
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={props.showStars}
-                  checked={props.course.show.stars}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div> */}
-          </div>
-
-          <button onClick={() => handleChoose(2)}>
-            Additional Sections
-            {choose === 2 ? <FaAngleDown /> : <FaAngleRight />}
-          </button>
-          <div className={choose === 2 ? 'display' : 'cover'}>
-            <div>
-              Header
-              <input
-                type="color"
-                value={props.school.colors.header}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'header'])
-                }
-              />
-            </div>
-            <div>
-              Title
-              <input
-                type="color"
-                value={props.school.colors.title}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'title'])
-                }
-              />
-            </div>
-            <div>
-              Subtitle
-              <input
-                type="color"
-                value={props.school.colors.subtitle}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'subtitle'])
-                }
-              />
-            </div>
-            <div>
-              Categories
-              <input
-                type="color"
-                value={props.school.colors.categories}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'categories'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('categories')}
-                  checked={props.school.show.categories}
-                />
-                <span className="slider round"></span>
-              </label>
-              <FaPlus
-                onClick={(e) =>
-                  props.addNewForSection([
-                    {
-                      name: 'Name',
-                      icon: './img_from_xd/Layer 2.svg',
-                      backcolor: '#FFF',
-                    },
-                    'categories',
-                  ])
-                }
-              />
-            </div>
-            <div>
-              Get choice
-              <input
-                type="color"
-                value={props.school.colors.getChoice}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'getChoice'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('getChoice')}
-                  checked={props.school.show.getChoice}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-            <div>
-              Learning platform
-              <input
-                type="color"
-                value={props.school.colors.learning}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'learning'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('learning')}
-                  checked={props.school.show.learning}
-                />
-                <span className="slider round"></span>
-              </label>
-              <FaPlus
-                onClick={(e) =>
-                  props.addNewForLearning({
-                    id: '00.',
-                    header: 'Header',
-                    text: 'Write here the text for that paragraph',
-                  })
-                }
-              />
-            </div>
-            <div>
-              World selection
-              <input
-                type="color"
-                value={props.school.colors.worldSelection}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'worldSelection'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('worldSelection')}
-                  checked={props.school.show.worldSelection}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-            <div>
-              Get started
-              <input
-                type="color"
-                value={props.school.colors.CTA}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'CTA'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('CTA')}
-                  checked={props.school.show.CTA}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-            <div>
-              Testimoinal
-              <input
-                type="color"
-                value={props.school.colors.testimoinal}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'testimoinal'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('testimoinal')}
-                  checked={props.school.show.testimoinal}
-                />
-                <span className="slider round"></span>
-              </label>
-              <FaPlus
-                onClick={(e) =>
-                  props.addNewForSection([
-                    {
-                      name: 'Name',
-                      image: './img_from_xd/User.png',
-                      description: 'What the testimoinal has to say.',
-                    },
-                    'testimoinal',
-                  ])
-                }
-              />
-            </div>
-            <div>
-              Partners
-              <input
-                type="color"
-                value={props.school.colors.partners}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'partners'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('partners')}
-                  checked={props.school.show.partners}
-                />
-                <span className="slider round"></span>
-              </label>
-              <FaPlus
-                onClick={(e) =>
-                  props.addNewForSection([
-                    './img_from_xd/leader-logo.png',
-                    'partners',
-                  ])
-                }
-              />
-            </div>
-            <div>
-              Footer
-              <input
-                type="color"
-                value={props.school.colors.footer}
-                onChange={(e) =>
-                  props.setColorSchoolByPart([e.target.value, 'footer'])
-                }
-              />
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.showSchoolByPart('footer')}
-                  checked={props.school.show.footer}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
+          <div>{props.styles.section_config.name}</div>
+          <br/>
+          {switchConfigComponent(
+            props.styles.section_config.name,
+            props.styles.section_config.id
+          )}
 
           <div id="bottom_configurtor">
             <Button variant="primary" onClick={handleSave}>
@@ -299,15 +98,7 @@ export default withRouter( connect(
             </Button>
           </div>
         </div>
-    </>
-  );
-}));
-
-// export default CourseConfig;
-
-/* Course Description
-          {props.course.description['Course Description']}
-          Certification
-          {props.course.description['Certification']}
-          Who this course is for
-          {props.course.description['Course Description']} */
+      </>
+    );
+  })
+);

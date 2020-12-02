@@ -5,6 +5,8 @@ const initialState = {
     styles: {
         configurator:true,
         thumbtack:true,
+        section_config:{name:'header'},
+
     },
   
   };
@@ -20,7 +22,9 @@ const initialState = {
     setThumbtack(state) {
       state.styles.thumbtack=!state.styles.thumbtack;
     },
-    
+    setSectionConfig(state,action){
+      state.styles.section_config=action.payload;
+    }
   };
   
   export default produce(
