@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './frame.css';
 // import Section from '../section/section';
-import HomePage from '../homepage/HomePage';
+import HomePage from '../HomePage/HomePage';
 import Configurator from './configurator';
 import TopFrame from './top_frame';
 import Stage from './stage';
 import CourseConfig from '../coursepage/CourseConfig';
-import HomeConfig from '../homepage/HomeConfig';
+import HomeConfig from '../HomePage/HomeConfig';
 
 
 

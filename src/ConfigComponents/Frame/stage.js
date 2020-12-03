@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './frame.css'
 // import Section from '../section/section'
-import HomePage from '../homepage/HomePage';
+import HomePage from '../HomePage/HomePage';
 
 function mapStateToProps(state) {
     return {
