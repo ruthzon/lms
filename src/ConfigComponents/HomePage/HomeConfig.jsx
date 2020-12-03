@@ -6,7 +6,13 @@ import {actions} from '../../Store/actions';
 import '../configurator.css';
 import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/all';
 import $ from 'jquery';
-import {ConfigCategory, ConfigHeader} from './HomeConfigSections';
+import {
+  ConfigCategories,
+  ConfigCategory,
+  ConfigHeader,
+  ConfigGetChoice,
+  ConfigLearning,
+} from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
@@ -28,6 +34,8 @@ const mapDispatchToProps = (dispatch) => ({
   setCategories: (data) => dispatch(actions.setCategories(data)),
   setCategoriesImage: (data) => dispatch(actions.setCategoriesImage(data)),
   setColorSchoolByPart: (data) => dispatch(actions.setColorSchoolByPart(data)),
+  setLearningImage: (name) => dispatch(actions.setLearningImage(name)),
+  setLearningHeader: (name) => dispatch(actions.setLearningHeader(name)),
 });
 
 export default withRouter(
@@ -74,7 +82,32 @@ export default withRouter(
               function={props.setCategories}
             />
           );
-          
+        case 'categories':
+          return (
+            <ConfigCategories
+              school={props.school}
+              color={props.setColorSchoolByPart}
+              show={props.showSchoolByPart}
+            />
+          );
+        case 'getChoice':
+          return (
+            <ConfigGetChoice
+              school={props.school}
+              color={props.setColorSchoolByPart}
+              show={props.showSchoolByPart}
+            />
+          );
+        case 'learning':
+          return (
+            <ConfigLearning
+              image={props.setLearningImage}
+              function={props.setLearningHeader}
+              school={props.school}
+              color={props.setColorSchoolByPart}
+              show={props.showSchoolByPart}
+            />
+          );
 
         default:
           return 'foo';
@@ -86,8 +119,9 @@ export default withRouter(
           <button onClick={() => addCourse()}>
             Add Course <FaPlus />
           </button>
-          <div>{props.styles.section_config.name}</div>
-          <br/>
+          <br />
+          <h5>{props.styles.section_config.name}</h5>
+          <br />
           {switchConfigComponent(
             props.styles.section_config.name,
             props.styles.section_config.id

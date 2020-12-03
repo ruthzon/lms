@@ -5,10 +5,13 @@ import {Card, CardDeck, Dropdown, Carousel, Form} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
 import {connect} from 'react-redux';
-import { actions } from '../../Store/actions';
+import {actions} from '../../Store/actions';
+
 
 const mapDispatchToProps = (dispatch) => ({
   setSchoolName: (name) => dispatch(actions.setSchoolName(name)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+
 });
 
 function mapStateToProps(state) {
@@ -23,7 +26,12 @@ export default connect(
   mapDispatchToProps
 )(function GetChoice(props) {
   return (
-    <section id="choice"  style={{backgroundColor: props.school.colors.getChoice}}>
+    <section
+      id="choice"
+      style={{backgroundColor: props.school.colors.getChoice}}
+      onClick={() => props.setSectionConfig({name: 'getChoice'})}
+      className="hover-config"
+    >
       <div className="title">
         <Form inline>
           <Dropdown>

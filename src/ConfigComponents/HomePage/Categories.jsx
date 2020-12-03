@@ -25,7 +25,11 @@ export default connect(
 )(function Categories(props) {
   return (
     <>
-      <div style={{backgroundColor: props.school.colors.categories}}>
+      <div
+        style={{backgroundColor: props.school.colors.categories}}
+        onClick={() => props.setSectionConfig({name: 'categories'})}
+        className="hover-config"
+      >
         <div className="title">
           <Form inline>
             <button id="see-all">See all Categories</button>
@@ -44,10 +48,10 @@ export default connect(
 function RowCategories(props) {
   var rows = [];
   for (var i = 0; i < props.data.school.categories.length; i++) {
-    let x=i;
+    let x = i;
     rows.push(
-      <Card 
-      onClick={()=>props.data.setSectionConfig({name:"category",id:x})}
+      <Card
+        onClick={() => props.data.setSectionConfig({name: 'category', id: x})}
         className="category-card hover-trash hover-config"
         style={{backgroundColor: props.data.school.categories[i].backcolor}}
       >

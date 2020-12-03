@@ -145,7 +145,7 @@ input:checked + .slider:before {
   resize: none;
   overflow-y: hidden;
 }
-.hover-config
+.hover-config:hover,
 .homeconf input:hover,
 .homeconf textarea:hover,
 .coursepageconf textarea:hover,

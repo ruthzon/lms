@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
   setLearningImage: (name) => dispatch(actions.setLearningImage(name)),
   setLearningHeader: (name) => dispatch(actions.setLearningHeader(name)),
   deleteFromLearning: (name) => dispatch(actions.deleteFromLearning(name)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
 export default connect(
   mapStateToProps,
@@ -24,7 +25,8 @@ export default connect(
 )(function LearningPlatform(props) {
   return (
     <section
-      className="learning-platform"
+      onClick={() => props.setSectionConfig({name: 'learning'})}
+      className="hover-config learning-platform"
       style={{backgroundColor: props.school.colors.learning}}
     >
       <div className="title">
