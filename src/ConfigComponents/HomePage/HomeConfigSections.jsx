@@ -156,7 +156,7 @@ export function ConfigGetChoice(props) {
         <input
           type="text"
           onChange={(e) => props.function(e.target.value)}
-          value={props.learning.header}
+          value={props.school.learning.header}
         />
       </div>
       <div>
