@@ -8,6 +8,7 @@ const initialState = {
         userName: '',
         email: '',
         photoURL: './img_from_xd/User.png',
+        is_pro: false,
     }
 };
 
