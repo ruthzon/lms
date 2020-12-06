@@ -18,7 +18,8 @@ import {
   Partners as prt,
   Learnings as lrn,
 } from '../../Store/data.js';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+
 const mapDispatchToProps = (dispatch) => ({});
 
 function mapStateToProps(state) {

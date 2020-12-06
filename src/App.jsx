@@ -37,6 +37,7 @@ import { signOut } from './login/firebase';
 import Wizard from './login/wizard';
 import history from "./history.js";
 import wizard from './login/wizard';
+import studentProfilePage from './ViewComponents/studentProfilePage';
 
 
 // import {NavigationContainer} from '@react-navigation/native';

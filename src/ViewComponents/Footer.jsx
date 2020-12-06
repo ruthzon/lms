@@ -9,8 +9,7 @@ function Footer() {
       <Container>
         <Row
           text="center"
-          className="text-center text-xs-center text-sm-left text-md-right"
-        >
+          className="text-center text-xs-center text-sm-left text-md-right">
           <Col xs="12" sm="3" md="3">
             <h5>Company</h5>
             <ul className="list-unstyled quick-links">
