@@ -27,7 +27,7 @@ export default connect(
     <>
       <div
         style={{backgroundColor: props.school.colors.categories}}
-        onClick={() => props.setSectionConfig({name: 'categories'})}
+        // onClick={() => props.setSectionConfig({name: 'categories'})}
         className="hover-config"
       >
         <div className="title">
@@ -52,7 +52,7 @@ function RowCategories(props) {
     rows.push(
       <Card
         onClick={() => props.data.setSectionConfig({name: 'category', id: x})}
-        className="category-card hover-trash hover-config"
+        className="category-card hover-trash hover-config-child"
         style={{backgroundColor: props.data.school.categories[i].backcolor}}
       >
         {/* <input

@@ -11,6 +11,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = (dispatch) => ({
   setCta: (name) => dispatch(actions.setCta(name)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+
 });
 
 class CTA extends Component {
@@ -24,31 +26,40 @@ class CTA extends Component {
   // }
   render() {
     return (
-      <section className="cta white"  style={{backgroundColor: this.props.school.colors.CTA}}>
-        <h1>
-          <input
-            className="white width-webkit"
-            id="cta-title"
-            value={this.props.school.CTA.title}
-            onChange={(e) =>
-              this.props.setCta([e.target.value, e.target.id.split('-')[1]])
-            }
-          />
-        </h1>
-        <h4>
-          <em>
-            <textarea
-              className="white height-100 font-size-14"
-              id="cta-text"
-              value={this.props.school.CTA.text}
+      <div
+        onClick={() => this.props.setSectionConfig({name: 'cta'})}
+        className="hover-config"
+      >
+        <section
+          onClick={() => this.props.setSectionConfig({name: 'categories'})}
+          className="cta white"
+          style={{backgroundColor: this.props.school.colors.CTA}}
+        >
+          <h1>
+            <input
+              className="white width-webkit"
+              id="cta-title"
+              value={this.props.school.CTA.title}
               onChange={(e) =>
                 this.props.setCta([e.target.value, e.target.id.split('-')[1]])
               }
             />
-          </em>
-        </h4>
-        <button>Get Started</button>
-      </section>
+          </h1>
+          <h4>
+            <em>
+              <textarea
+                className="white height-100 font-size-14"
+                id="cta-text"
+                value={this.props.school.CTA.text}
+                onChange={(e) =>
+                  this.props.setCta([e.target.value, e.target.id.split('-')[1]])
+                }
+              />
+            </em>
+          </h4>
+          <button>Get Started</button>
+        </section>
+      </div>
     );
   }
 }

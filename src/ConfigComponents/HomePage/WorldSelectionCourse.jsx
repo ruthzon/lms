@@ -1,28 +1,25 @@
-import {
-  FaArrowLeft,
-  FaArrowRight,
-} from 'react-icons/all';
+import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {
-  Card,
-  CardDeck,
-  Dropdown,
-  Carousel,
-  Form
-} from 'react-bootstrap';
+import {Card, CardDeck, Dropdown, Carousel, Form} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
-import { connect } from 'react-redux';
-
+import {connect} from 'react-redux';
+import { actions } from '../../Store/actions';
 
 function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
     courses: state.listCoursesReducer.courses,
-    school:state.schoolReducer.school
+    school: state.schoolReducer.school,
   };
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+
+});
+
 
 function WorldSelectionCourse(props) {
   // const {course, setName, setSubtitle, setImage} = props;
@@ -38,11 +35,18 @@ function WorldSelectionCourse(props) {
     </button>
   );
   return (
-    <section id="world"  style={{backgroundColor: props.school.colors.worldSelection}}>
+    <section
+      onClick={() => props.setSectionConfig({name: 'worldSelection'})}
+      id="world"
+      style={{backgroundColor: props.school.colors.worldSelection}}
+      className="hover-config"
+    >
       <div className="title">
         <Form inline>
           <Dropdown>
-            <Dropdown.Toggle  variant="light" id="dropdown-basic">Design</Dropdown.Toggle>
+            <Dropdown.Toggle variant="light" id="dropdown-basic">
+              Design
+            </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
@@ -61,12 +65,12 @@ function WorldSelectionCourse(props) {
       >
         <Carousel.Item>
           <CardDeck>
-            <ListCourses  courses={props.courses} i={0} />
+            <ListCourses courses={props.courses} i={0} />
           </CardDeck>
         </Carousel.Item>
         <Carousel.Item>
           <CardDeck>
-            <ListCourses courses={props.courses} i={3}/>
+            <ListCourses courses={props.courses} i={3} />
           </CardDeck>
         </Carousel.Item>
       </Carousel>
@@ -83,10 +87,6 @@ function WorldSelectionCourse(props) {
   );
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(
-WorldSelectionCourse)
+export default connect(mapStateToProps, mapDispatchToProps)(WorldSelectionCourse);
 
 // export {WorldSelectionCourse, GetChoice};

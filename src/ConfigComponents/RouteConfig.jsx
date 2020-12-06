@@ -48,6 +48,11 @@ export default connect(
 
       <TopFrame />
       <Switch>
+      <Route path={`${match.path}/profile`}>
+          {/* <CoursePage /> */}
+          <CoursePageFrame />
+         
+        </Route>
         <Route path={`${match.path}/addcourse`}>
           {/* <CoursePage /> */}
           <CoursePageFrame />

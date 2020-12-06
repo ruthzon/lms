@@ -1,5 +1,6 @@
 import React from 'react';
-import {handleImage, handleImageById} from '../handleImage';
+import {FaCopy, FaPlus, FaTrash} from 'react-icons/fa';
+import {handleDelete, handleImage, handleImageById} from '../handleImage';
 
 export function ConfigHeader(props) {
   return (
@@ -62,24 +63,57 @@ export function ConfigHeader(props) {
 }
 
 export function ConfigCategory(props) {
-  debugger;
+  let {data, id} = props;
+  let thisCategory = props.school.categories[id];
   return (
     <>
+      <h5>
+        Categoty
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForSection([
+              {
+                name: 'Name',
+                icon: './img_from_xd/Layer 2.svg',
+                backcolor: '#FFF',
+              },
+              'categories',
+            ])
+          }
+        />
+        <FaTrash
+          onClick={(e) =>
+            handleDelete(data.deleteFromSection, [id, 'categories'])
+          }
+        />
+        <FaCopy
+          onClick={(e) =>
+            data.addNewForSection([
+              {
+                name: thisCategory.name,
+                icon: thisCategory.icon,
+                backcolor: thisCategory.name.backcolor,
+              },
+              'categories',
+            ])
+          }
+        />
+      </h5>
       <div>
         Name
         <input
           type="text"
-          value={props.school.categories[props.id].name}
-          onChange={(e) => props.function([e.target.value, 'name', props.id])}
+          value={data.school.categories[id].name}
+          onChange={(e) => props.function([e.target.value, 'name', id])}
         />
       </div>
       <div>
         Background color
         <input
-          id={'category-backcolor-' + props.id}
+          id={'category-backcolor-' + id}
           type="color"
           className="border-white"
-          value={props.school.categories[props.id].backcolor}
+          value={data.school.categories[id].backcolor}
           onChange={(e) =>
             props.function([e.target.value, 'backcolor', props.id])
           }
@@ -91,8 +125,8 @@ export function ConfigCategory(props) {
           type="file"
           accept=".svg"
           onChange={(e) => handleImageById(e, props.image, props.id)}
-          style={{backgroundImage: props.school.image}}
-          files={props.school.image}
+          style={{backgroundImage: data.school.image}}
+          files={data.school.image}
           // onChange={(e) =>
           //   props.function({prop: 'subtitle', data: e.target.value})
           // }
@@ -106,6 +140,21 @@ export function ConfigCategory(props) {
 export function ConfigCategories(props) {
   return (
     <>
+      <h5>
+        Categories
+        <FaPlus
+          onClick={(e) =>
+            props.data.addNewForSection([
+              {
+                name: 'Name',
+                icon: './img_from_xd/Layer 2.svg',
+                backcolor: '#FFF',
+              },
+              'categories',
+            ])
+          }
+        />
+      </h5>
       <div>
         Background color
         <input
@@ -151,6 +200,33 @@ export function ConfigGetChoice(props) {
           <span className="slider round"></span>
         </label>
       </div>
+    </>
+  );
+}
+
+export function ConfigLearning(props) {
+  return (
+    <>
+      <h5>Learning platform</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={props.school.colors.learning}
+          onChange={(e) => props.color([e.target.value, 'learning'])}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => props.show('learning')}
+            checked={props.school.show.learning}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
       <div>
         Title
         <input
@@ -171,15 +247,16 @@ export function ConfigGetChoice(props) {
   );
 }
 
-export function ConfigLearning(props) {
+export function ConfigWorldSelection(props) {
   return (
     <>
+      <h5>World Selection</h5>
       <div>
         Background color
         <input
           type="color"
-          value={props.school.colors.learning}
-          onChange={(e) => props.color([e.target.value, 'learning'])}
+          value={props.school.colors.worldSelection}
+          onChange={(e) => props.color([e.target.value, 'worldSelection'])}
         />
       </div>
       <div>
@@ -187,11 +264,56 @@ export function ConfigLearning(props) {
         <label className="switch">
           <input
             type="checkbox"
-            onClick={(e) => props.show('learning')}
-            checked={props.school.show.learning}
+            onClick={(e) => props.show('worldSelection')}
+            checked={props.school.show.worldSelection}
           />
           <span className="slider round"></span>
         </label>
+      </div>
+    </>
+  );
+}
+
+export function ConfigCTA(props) {
+  debugger;
+  let {data} = props.data;
+  return (
+    <>
+      <h5>CTA</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={props.school.colors.CTA}
+          onChange={(e) => props.color([e.target.value, 'CTA'])}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => props.show('CTA')}
+            checked={props.school.show.CTA}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div>
+        Title
+        <input
+          type="text"
+          onChange={(e) => data.setCta([e.target.value, 'title'])}
+          value={props.school.CTA.title}
+        />
+      </div>
+      <div>
+        Text
+        <input
+          type="text"
+          onChange={(e) => data.setCta([e.target.value, 'text'])}
+          value={props.school.CTA.text}
+        />
       </div>
     </>
   );

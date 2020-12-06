@@ -12,6 +12,9 @@ import {
   ConfigHeader,
   ConfigGetChoice,
   ConfigLearning,
+  ConfigWorldSelection,
+  ConfigTopEducators,
+  ConfigCTA
 } from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
@@ -36,6 +39,9 @@ const mapDispatchToProps = (dispatch) => ({
   setColorSchoolByPart: (data) => dispatch(actions.setColorSchoolByPart(data)),
   setLearningImage: (name) => dispatch(actions.setLearningImage(name)),
   setLearningHeader: (name) => dispatch(actions.setLearningHeader(name)),
+  addNewForSection: (name) => dispatch(actions.addNewForSection(name)),
+  setCta: (name) => dispatch(actions.setCta(name)),
+  deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
 });
 
 export default withRouter(
@@ -80,6 +86,8 @@ export default withRouter(
               image={props.setCategoriesImage}
               school={props.school}
               function={props.setCategories}
+              add={props.addNewForSection}
+              data={props}
             />
           );
         case 'categories':
@@ -88,6 +96,7 @@ export default withRouter(
               school={props.school}
               color={props.setColorSchoolByPart}
               show={props.showSchoolByPart}
+              data={props}
             />
           );
         case 'getChoice':
@@ -108,6 +117,23 @@ export default withRouter(
               show={props.showSchoolByPart}
             />
           );
+          case 'worldSelection':
+          return (
+            <ConfigWorldSelection
+              school={props.school}
+              color={props.setColorSchoolByPart}
+              show={props.showSchoolByPart}
+            />
+          );
+          case 'cta':
+            return (
+              <ConfigCTA
+                school={props.school}
+                color={props.setColorSchoolByPart}
+                show={props.showSchoolByPart}
+                data={props}
+              />
+            );
 
         default:
           return 'foo';
@@ -120,7 +146,7 @@ export default withRouter(
             Add Course <FaPlus />
           </button>
           <br />
-          <h5>{props.styles.section_config.name}</h5>
+          {/* <h5>{props.styles.section_config.name}</h5> */}
           <br />
           {switchConfigComponent(
             props.styles.section_config.name,
