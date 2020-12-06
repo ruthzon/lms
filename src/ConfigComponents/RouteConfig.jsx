@@ -7,22 +7,22 @@ import {
 } from 'react-router-dom';
 import CoursePage from './coursepage/CoursePage';
 // import LessonPage from './lessonPage';
-import HomePage from './homepage/HomePage';
+import HomePage from './HomePage/HomePage';
 import React from 'react';
 import {connect} from 'react-redux';
 import {actions} from '../Store/actions';
-import {Courses} from '../Store/data';
-import Frame from './Frame/HomePageFrame';
+// import {Courses} from '../Store/data';
+// import Frame from './Frame/HomePageFrame';
 import HomePageFrame from './Frame/HomePageFrame';
 import CoursePageFrame from './Frame/CoursePageFrame';
-import LessonConfig from './lessonPage/LessonConfig';
+// import LessonConfig from './lessonPage/LessonConfig';
 import LessonPageFrame from './Frame/LessonPageFrame';
 import TopFrame from './Frame/top_frame';
-import Stage from './Frame/stage';
-import Configurator from './Frame/configurator';
-import CourseConfig from './coursepage/CourseConfig';
-import LessonPage from './lessonPage/LessonPage';
-import HomeConfig from './homepage/HomeConfig';
+// import Stage from './Frame/stage';
+// import Configurator from './Frame/configurator';
+// import CourseConfig from './coursepage/CourseConfig';
+// import LessonPage from './lessonPage/LessonPage';
+// import HomeConfig fro./HomePage/HomeConfigfig';
 
 // import CoursePage from './coursepage/coursepage';
 const mapDispatchToProps = (dispatch) => ({

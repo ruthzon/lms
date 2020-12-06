@@ -11,7 +11,7 @@ import { actions } from '../../Store/actions';
 function mapStateToProps(state) {
     return {
         styles: state.stylesReducer.styles,
-        user:state.userReducer.user,
+        user: state.userReducer.user,
     };
 }
 
@@ -30,7 +30,7 @@ function Top_frame(props) {
 
 
             <div id="top_frame_icons" className="mr-3">
-                <img src={props.user.photoURL} className="logo-img"/>
+                <img src={props.user.photoURL} className="logo-img" />
 
                 <img src={'./img_from_xd/thumbtack-solid.svg'} id="thumbtack" className={props.styles.thumbtack ? "rotateThumbtack" : ""} onClick={() => props.setThumbtack()} />
                 <img src={'./img_from_xd/menu.png'} id="menu" className="" onClick={() => props.setConfigurator()} />
