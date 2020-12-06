@@ -18,6 +18,7 @@ import CoursePageFrame from './Frame/CoursePageFrame';
 // import LessonConfig from './lessonPage/LessonConfig';
 import LessonPageFrame from './Frame/LessonPageFrame';
 import TopFrame from './Frame/top_frame';
+import StudentProfilePage from '../ViewComponents/studentProfilePage';
 // import Stage from './Frame/stage';
 // import Configurator from './Frame/configurator';
 // import CourseConfig from './coursepage/CourseConfig';
@@ -52,6 +53,7 @@ export default connect(
           <CoursePageFrame />
          
         </Route>
+ 
         <Route path={`${match.path}/:course/addLesson`}>
           <LessonPageFrame />
          

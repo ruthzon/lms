@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
 function Top_frame(props) {
     return (
         <div id="top_frame" className="row d-flex justify-content-between align-items-right mx-0">
-            <a id="leader_logo" className="d-flex">
+            <a id="leader_logo" className="d-flex" >
                 <img src={'./img_from_xd/leader-logo.png'} id="img_logo" class="m-auto"></img>
 
             </a>

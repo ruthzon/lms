@@ -1,7 +1,7 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import './App.css';
-import {GetChoice, WorldSelectionCourse} from './GetCoice.jsx';
+import { GetChoice, WorldSelectionCourse } from './GetCoice.jsx';
 import Navigation from '../../navbar.jsx';
 import Header from './Header.jsx';
 import Categories from './Categories';
@@ -10,6 +10,7 @@ import CTA from './CTA';
 import Testimoinal from './Testimoinal';
 import OurPartner from './OurPartner';
 import Footer from '../Footer';
+
 import {
   Categories as ctgs,
   Courses as crs,
@@ -18,11 +19,11 @@ import {
   Learnings as lrn,
 } from '../../Store/data.js';
 
+
 function HomePage() {
   return (
     <>
       <Navigation />
-
       <Header />
       <Categories data={ctgs} />
       <GetChoice />
@@ -32,6 +33,7 @@ function HomePage() {
       <Testimoinal />
       {/* <Testimoinal data={tst} /> */}
       <OurPartner data={prt} />
+
       <Footer />
     </>
   );
