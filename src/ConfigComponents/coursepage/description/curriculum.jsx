@@ -9,8 +9,8 @@ import {useRouteMatch, useLocation} from 'react-router-dom';
 import {FaTrash} from 'react-icons/fa';
 import {handleDelete} from '../../handleImage';
 
-const history = createHashHistory();
-const browserHistory = createBrowserHistory();
+const history = history;
+// const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
   return {
@@ -34,9 +34,9 @@ class Curriculum extends Component {
   }
   navigate = (lesson) => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
-    let name = browserHistory.location.pathname.split('/')[1];
+    let name = history.location.pathname.split('/')[1];
     debugger;
-    browserHistory.replace(
+    history.replace(
       '/' + name + '/' + this.props.course.name + '/' + lesson
     );
     window.location.reload();

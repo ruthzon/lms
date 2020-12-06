@@ -136,6 +136,10 @@ input:checked + .slider:before {
   top: 70px;
   /* display: inline-block; */
 }
+.config h5 svg{
+  font-size: .8rem;
+  margin-right: 3px;
+}
 .homeconf input,
 .homeconf textarea,
 .coursepageconf textarea,
@@ -145,6 +149,21 @@ input:checked + .slider:before {
   /* width: -webkit-fill-available; */
   resize: none;
   overflow-y: hidden;
+}
+
+.hover-config-child:hover:before {
+  border: 1px solid #f56962;
+}
+.hover-config-child:before{
+  /* border: 1px solid #f56962; */
+border:none;
+z-index: -1;
+}
+
+.hover-config-child:hover{
+  border: 1px solid #f56962;
+  z-index: 3;
+  
 }
 .hover-config:hover,
 .homeconf input:hover,
@@ -156,6 +175,7 @@ input:checked + .slider:before {
   opacity: 1;
   cursor: pointer;
   border: 1px solid #f56962;
+  z-index: 1;
 }
 @media only screen and (max-width: 1000px) {
   .homeconf .category-card .card-body {
