@@ -13,9 +13,12 @@ import history from '../history'
 // const browserHistory = createBrowserHistory();
 
 var firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_URL,
+    // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    apiKey:'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
+    // authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    authDomain:'lms-leader.firebaseapp.com',
+    // databaseURL: process.env.REACT_APP_FIREBASE_URL,
+    databaseURL:'https://lms-leader.firebaseio.com',
     projectId: 'lms-leader',
     storageBucket: 'lms-leader.appspot.com',
     messagingSenderId: '451375116419',

@@ -1,6 +1,6 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {BrowserRouter as Router, useParams} from 'react-router-dom';
+import { BrowserRouter as Router, useParams } from 'react-router-dom';
 import Footer from '../../ViewComponents/Footer';
 import Navigation from '../../navbar';
 import Header from './Header';
@@ -12,7 +12,7 @@ import Belive from '../coursepage/belive';
 import Video from './video';
 import TopEducators from '../../ViewComponents/coursepage/topEducators';
 import '../configurator.css';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
   return {
