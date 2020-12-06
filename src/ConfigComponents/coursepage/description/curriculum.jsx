@@ -8,8 +8,9 @@ import {createBrowserHistory} from 'history';
 import {useRouteMatch, useLocation} from 'react-router-dom';
 import {FaTrash} from 'react-icons/fa';
 import {handleDelete} from '../../handleImage';
+import history from '../../../history';
 
-const history = history;
+// const history = history;
 // const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
