@@ -223,12 +223,14 @@ textarea {
 .coursepageconf .buy-course .card-img-top {
   height: 200px;
 }
+.config textarea,
 .config input[type='text'],
 .config input[type='number'] {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #fff;
   width: 100%;
+  color: #ffffff;
 }
 .config input[type='color'] {
   float: right;

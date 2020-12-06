@@ -25,7 +25,10 @@ export default connect(
 )(function LearningPlatform(props) {
   return (
     <section
-      onClick={() => props.setSectionConfig({name: 'learning'})}
+      onClick={(e) => {
+        if (e.target === e.currentTarget)
+          props.setSectionConfig({name: 'learning'});
+      }}
       className="hover-config learning-platform"
       style={{backgroundColor: props.school.colors.learning}}
     >
@@ -85,8 +88,13 @@ function handleHeader(e) {
 function RowLearning(props) {
   var rows = [];
   for (var i = 0; i < props.data.school.learning.info.length; i++) {
+    let x=i;
     rows.push(
-      <div id={'learning-' + i} className="hover-trash">
+      <div
+        id={'learning-' + i}
+        onClick={() => props.data.setSectionConfig({name: 'learning-x', id: x})}
+        className=" hover-config"
+      >
         <FaTrash
           className="trash"
           id={'learning-trash-' + i}

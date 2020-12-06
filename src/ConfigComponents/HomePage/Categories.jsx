@@ -27,7 +27,7 @@ export default connect(
     <>
       <div
         style={{backgroundColor: props.school.colors.categories}}
-        // onClick={() => props.setSectionConfig({name: 'categories'})}
+        onClick={(e) => {if (e.target === e.currentTarget) props.setSectionConfig({name: 'categories'})}}
         className="hover-config"
       >
         <div className="title">

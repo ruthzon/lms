@@ -36,11 +36,10 @@ class Curriculum extends Component {
   navigate = (lesson) => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     let name = history.location.pathname.split('/')[1];
-    debugger;
-    history.replace(
+    history.push(
       '/' + name + '/' + this.props.course.name + '/' + lesson
     );
-    window.location.reload();
+    // window.location.reload();
     console.log();
   };
   render() {

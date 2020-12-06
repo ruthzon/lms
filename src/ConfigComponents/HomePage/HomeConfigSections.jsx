@@ -275,11 +275,10 @@ export function ConfigWorldSelection(props) {
 }
 
 export function ConfigCTA(props) {
-  debugger;
-  let {data} = props.data;
+  let data = props.data;
   return (
     <>
-      <h5>CTA</h5>
+      <h5>Get started</h5>
       <div>
         Background color
         <input
@@ -309,10 +308,86 @@ export function ConfigCTA(props) {
       </div>
       <div>
         Text
-        <input
+        <textarea
           type="text"
           onChange={(e) => data.setCta([e.target.value, 'text'])}
           value={props.school.CTA.text}
+        />
+      </div>
+    </>
+  );
+}
+
+
+export function ConfigLearningX(props) {
+  let {data, id} = props;
+  let thisCategory = props.school.categories[id];
+  return (
+    <>
+      <h5>
+        
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForSection([
+              {
+                name: 'Name',
+                icon: './img_from_xd/Layer 2.svg',
+                backcolor: '#FFF',
+              },
+              'learning',
+            ])
+          }
+        />
+        <FaTrash
+          onClick={(e) =>
+            handleDelete(data.deleteFromSection, [id, 'learning'])
+          }
+        />
+        <FaCopy
+          onClick={(e) =>
+            data.addNewForSection([
+              {
+                name: thisCategory.name,
+                icon: thisCategory.icon,
+                backcolor: thisCategory.name.backcolor,
+              },
+              'learning',
+            ])
+          }
+        />
+      </h5>
+      <div>
+        Name
+        <input
+          type="text"
+          value={data.school.categories[id].name}
+          onChange={(e) => props.function([e.target.value, 'name', id])}
+        />
+      </div>
+      <div>
+        Background color
+        <input
+          id={'category-backcolor-' + id}
+          type="color"
+          className="border-white"
+          value={data.school.categories[id].backcolor}
+          onChange={(e) =>
+            props.function([e.target.value, 'backcolor', props.id])
+          }
+        />
+      </div>
+      <div>
+        Icon
+        <input
+          type="file"
+          accept=".svg"
+          onChange={(e) => handleImageById(e, props.image, props.id)}
+          style={{backgroundImage: data.school.image}}
+          files={data.school.image}
+          // onChange={(e) =>
+          //   props.function({prop: 'subtitle', data: e.target.value})
+          // }
+          // value={props.school.image}
         />
       </div>
     </>

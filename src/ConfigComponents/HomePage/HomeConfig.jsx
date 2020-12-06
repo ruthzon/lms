@@ -14,7 +14,8 @@ import {
   ConfigLearning,
   ConfigWorldSelection,
   ConfigTopEducators,
-  ConfigCTA
+  ConfigCTA,
+  ConfigLearningX
 } from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
@@ -114,6 +115,14 @@ export default withRouter(
               function={props.setLearningHeader}
               school={props.school}
               color={props.setColorSchoolByPart}
+              show={props.showSchoolByPart}
+            />
+          );
+          case 'learning-x':
+          return (
+            <ConfigLearningX
+              function={props.setLearningHeader}
+              school={props.school}
               show={props.showSchoolByPart}
             />
           );

@@ -82,7 +82,7 @@ const usernameCheck = (setUserProps) => {
       } else {
         swal('succsess', 'Username available and created!', 'succsess');
         setUserProps({userName: value});
-        history.replace('/' + value + '/addCourse');
+        history.push('/' + value + '/addCourse');
       }
     });
 };
