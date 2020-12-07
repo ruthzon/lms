@@ -1,4 +1,4 @@
-import {FaArrowRight, FaArrowLeft,FaTrash} from 'react-icons/all';
+import {FaArrowRight, FaArrowLeft, FaTrash} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from 'react';
 import {Card, CardDeck, Form} from 'react-bootstrap';
@@ -8,7 +8,7 @@ import 'react-multi-carousel/lib/styles.css';
 import '../../ViewComponents/homepage/App.css';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
-import {handleImageById,handleDelete} from '../handleImage';
+import {handleImageById, handleDelete} from '../handleImage';
 
 function mapStateToProps(state) {
   return {
@@ -19,6 +19,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
   setTestimoinal: (sub) => dispatch(actions.setTestimoinal(sub)),
   setTestimoinalImage: (sub) => dispatch(actions.setTestimoinalImage(sub)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
   deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
 });
 
@@ -96,8 +97,13 @@ class Testimoinal extends Component {
             {/* <CardDeck> */}
             {this.props.school.testimoinal.map((item, key) => {
               return (
-                <Card className="test-card hover-trash" >
-                  <FaTrash
+                <Card
+                  onClick={() =>
+                    this.props.setSectionConfig({name: 'testimoinal', id: key})
+                  }
+                  className="test-card hover-trash hover-config"
+                >
+                  {/* <FaTrash
                         className="trash"
                         onClick={(e) =>
                           // handleDelete(props.deleteFromSection, [
@@ -109,10 +115,12 @@ class Testimoinal extends Component {
                             'testimoinal',
                           ])
                         }
-                      />
+                      /> */}
                   <Card.Body>
                     <Card.Title>
-                      <span class="file-upload2">
+                      <img src={item.image} alt="Student"></img>
+
+                      {/* <span class="file-upload2">
                         <img src={item.image} alt="Student"></img>
                         <input
                           id={'students-image-' + key}
@@ -126,16 +134,16 @@ class Testimoinal extends Component {
                             )
                           }
                         />
-                      </span>
+                      </span> */}
                       <input
                         id={'students-name-' + key}
                         value={item.name}
                         onChange={(e) =>
-                          this.props.setTestimoinal(
+                          this.props.setTestimoinal([
                             e.target.value,
                             e.target.id.split('-')[1],
                             parseInt(e.target.id.split('-')[2])
-                          )
+                          ])
                         }
                       />
                     </Card.Title>
@@ -145,11 +153,11 @@ class Testimoinal extends Component {
                         id={'students-description-' + key}
                         value={item.description}
                         onChange={(e) =>
-                          this.props.setTestimoinal(
+                          this.props.setTestimoinal([
                             e.target.value,
                             e.target.id.split('-')[1],
                             parseInt(e.target.id.split('-')[2])
-                          )
+                          ])
                         }
                       />
                     </Card.Text>

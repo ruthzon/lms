@@ -4,7 +4,9 @@ import './frame.css'
 // import logo from '../../assets/leader_logo.png'
 // import thumbtack from './img_from_xd/thumbtack-solid.svg'
 import $ from 'jquery'
+import history from '../../history';
 import { actions } from '../../Store/actions';
+import { useParams } from 'react-router-dom';
 // import { setFlagToggleCon ,setFlagthumbtack} from '../../redux/actions/funnel.action'
 
 
@@ -21,6 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function Top_frame(props) {
+    let { name } = useParams();
     return (
         <div id="top_frame" className="row d-flex justify-content-between align-items-right mx-0">
             <a id="leader_logo" className="d-flex" >
@@ -30,7 +33,8 @@ function Top_frame(props) {
 
 
             <div id="top_frame_icons" className="mr-3">
-                <img src={props.user.photoURL} className="logo-img" />
+                <img src={props.user.photoURL} onClick={() => {history.push('/' + name + '/profile'); window.location.reload()}
+                } className=" logo-img" />
 
                 <img src={'./img_from_xd/thumbtack-solid.svg'} id="thumbtack" className={props.styles.thumbtack ? "rotateThumbtack" : ""} onClick={() => props.setThumbtack()} />
                 <img src={'./img_from_xd/menu.png'} id="menu" className="" onClick={() => props.setConfigurator()} />

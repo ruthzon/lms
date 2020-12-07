@@ -129,6 +129,9 @@ const myschool = {
   setTestimoinalImage(state, action) {
     state.school.testimoinal[action.payload[1]].image = action.payload[0];
   },
+  setTestimoinal(state, action) {
+    state.school.testimoinal[action.payload[2]][action.payload[1]] = action.payload[0];
+  },
   setCTAText(state, action) {
     state.school.CTA.text = action.payload;
   },

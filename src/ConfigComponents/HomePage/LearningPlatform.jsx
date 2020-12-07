@@ -95,20 +95,14 @@ function RowLearning(props) {
         onClick={() => props.data.setSectionConfig({name: 'learning-x', id: x})}
         className=" hover-config"
       >
-        <FaTrash
-          className="trash"
-          id={'learning-trash-' + i}
+        {/* <FaTrash
           onClick={(e) =>
-            // handleDelete(props.deleteFromSection, [
-            //   parseInt(e.target.id.split('-')[1]), //ind
-            //   e.target.id.split('-')[0], //partner
-            // ])
             handleDelete(props.data.deleteFromLearning, [
               parseInt(e.target.id.split('-')[2]),
               'learning',
             ])
           }
-        />
+        /> */}
         <span>
           <input
             className="width-webkit"

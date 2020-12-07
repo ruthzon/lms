@@ -15,7 +15,9 @@ import {
   ConfigWorldSelection,
   ConfigTopEducators,
   ConfigCTA,
-  ConfigLearningX
+  ConfigLearningX,
+  ConfigTestimoinal,
+  ConfigTestimoinalX,
 } from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
@@ -38,11 +40,15 @@ const mapDispatchToProps = (dispatch) => ({
   setCategories: (data) => dispatch(actions.setCategories(data)),
   setCategoriesImage: (data) => dispatch(actions.setCategoriesImage(data)),
   setColorSchoolByPart: (data) => dispatch(actions.setColorSchoolByPart(data)),
+  setLearning: (name) => dispatch(actions.setLearning(name)),
   setLearningImage: (name) => dispatch(actions.setLearningImage(name)),
   setLearningHeader: (name) => dispatch(actions.setLearningHeader(name)),
-  addNewForSection: (name) => dispatch(actions.addNewForSection(name)),
   setCta: (name) => dispatch(actions.setCta(name)),
   deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
+  deleteFromLearning: (name) => dispatch(actions.deleteFromLearning(name)),
+  setTestimoinalImage: (name) => dispatch(actions.setTestimoinalImage(name)),
+  setTestimoinal: (name) => dispatch(actions.setTestimoinal(name)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
 
 export default withRouter(
@@ -118,15 +124,16 @@ export default withRouter(
               show={props.showSchoolByPart}
             />
           );
-          case 'learning-x':
+        case 'learning-x':
           return (
             <ConfigLearningX
-              function={props.setLearningHeader}
+              data={props}
+              id={id}
               school={props.school}
-              show={props.showSchoolByPart}
+              function={props.setLearning} //lkjh
             />
           );
-          case 'worldSelection':
+        case 'worldSelection':
           return (
             <ConfigWorldSelection
               school={props.school}
@@ -134,15 +141,19 @@ export default withRouter(
               show={props.showSchoolByPart}
             />
           );
-          case 'cta':
-            return (
-              <ConfigCTA
-                school={props.school}
-                color={props.setColorSchoolByPart}
-                show={props.showSchoolByPart}
-                data={props}
-              />
-            );
+        case 'cta':
+          return (
+            <ConfigCTA
+              school={props.school}
+              color={props.setColorSchoolByPart}
+              show={props.showSchoolByPart}
+              data={props}
+            />
+          );
+        case 'testimoinal':
+          return <ConfigTestimoinal id={id} data={props} />;
+        case 'testimoinal-x':
+          return <ConfigTestimoinalX id={id} data={props} />;
 
         default:
           return 'foo';

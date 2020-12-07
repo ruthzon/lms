@@ -31,7 +31,8 @@ export default connect(
     <>
       <header 
       onClick={()=>props.setSectionConfig({name:'header'})}
-       style={{backgroundColor: props.school.colors.header}}>
+       style={{backgroundColor: props.school.colors.header}}
+        className="hover-config">
         <Container>
           <Row>
             <Col className="middle" md="6">

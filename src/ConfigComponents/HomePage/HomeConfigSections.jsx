@@ -318,40 +318,146 @@ export function ConfigCTA(props) {
   );
 }
 
-
 export function ConfigLearningX(props) {
   let {data, id} = props;
-  let thisCategory = props.school.categories[id];
+  let thisLearn = props.school.learning.info[id];
   return (
     <>
       <h5>
-        
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForLearning({
+              id: '00.',
+              header: 'Header',
+              text: 'Write here the text for that paragraph',
+            })
+          }
+        />
+        <FaTrash
+          onClick={(e) =>
+            handleDelete(data.deleteFromLearning, [id, 'learning'])
+          }
+        />
+        <FaCopy
+          onClick={(e) =>
+            data.addNewForLearning({
+              id: thisLearn.id,
+              header: thisLearn.header,
+              text: thisLearn.text,
+            })
+          }
+        />
+      </h5>
+      <div>
+        id
+        <input
+          type="text"
+          value={data.school.learning.info[id].id}
+          onChange={(e) => {
+            data.setLearning([e.target.value, 'id', id]);
+          }}
+        />
+      </div>
+      <div>
+        Title
+        <input
+          type="text"
+          value={data.school.learning.info[id].header}
+          onChange={(e) => {
+            data.setLearning([e.target.value, 'header', id]);
+          }}
+        />
+      </div>
+      <div>
+        Text
+        <input
+          type="text"
+          value={data.school.learning.info[id].text}
+          onChange={(e) => {
+            data.setLearning([e.target.value, 'text', id]);
+          }}
+        />
+      </div>
+    </>
+  );
+}
+
+export function ConfigTestimoinal(props) {
+  return (
+    <>
+      <h5>Testimoinal</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={props.school.colors.testimoinal}
+          onChange={(e) => props.color([e.target.value, 'testimoinal'])}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => props.show('testimoinal')}
+            checked={props.school.show.testimoinal}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div>
+        Title
+        <input
+          type="text"
+          onChange={(e) => props.function(e.target.value)}
+          value={props.school.learning.header}
+        />
+      </div>
+      <div>
+        Image
+        <input
+          type="file"
+          accept=".jpg, .png, .jpeg"
+          onChange={(e) => handleImage(e, props.image)}
+        />
+      </div>
+    </>
+  );
+}
+
+export function ConfigTestimoinalX(props) {
+  let {data, id} = props;
+  let thisTest = data.school.testimoinal[id];
+  return (
+    <>
+      <h5>
         <FaPlus
           onClick={(e) =>
             data.addNewForSection([
               {
                 name: 'Name',
-                icon: './img_from_xd/Layer 2.svg',
-                backcolor: '#FFF',
+                image: './img_from_xd/User.png',
+                description: 'What the testimoinal has to say.',
               },
-              'learning',
+              'testimoinal',
             ])
           }
         />
         <FaTrash
-          onClick={(e) =>
-            handleDelete(data.deleteFromSection, [id, 'learning'])
-          }
+          onClick={(e) => {
+            handleDelete(data.deleteFromSection, [id, 'testimoinal']);
+            data.setSectionConfig({name: id==0?'testimoinal':'testimoinal-x', id: id == 0 ? 1 : id-1});
+          }}
         />
         <FaCopy
           onClick={(e) =>
             data.addNewForSection([
               {
-                name: thisCategory.name,
-                icon: thisCategory.icon,
-                backcolor: thisCategory.name.backcolor,
+                name: thisTest.name,
+                image: thisTest.image,
+                description: thisTest.description,
               },
-              'learning',
+              'testimoinal',
             ])
           }
         />
@@ -360,34 +466,28 @@ export function ConfigLearningX(props) {
         Name
         <input
           type="text"
-          value={data.school.categories[id].name}
-          onChange={(e) => props.function([e.target.value, 'name', id])}
+          value={data.school.testimoinal[id].name}
+          onChange={(e) => {
+            data.setTestimoinal([e.target.value, 'name', id]);
+          }}
         />
       </div>
       <div>
-        Background color
+        Description
         <input
-          id={'category-backcolor-' + id}
-          type="color"
-          className="border-white"
-          value={data.school.categories[id].backcolor}
-          onChange={(e) =>
-            props.function([e.target.value, 'backcolor', props.id])
-          }
+          type="text"
+          value={data.school.testimoinal[id].description}
+          onChange={(e) => {
+            data.setTestimoinal([e.target.value, 'description', id]);
+          }}
         />
       </div>
       <div>
-        Icon
+        Image
         <input
           type="file"
-          accept=".svg"
-          onChange={(e) => handleImageById(e, props.image, props.id)}
-          style={{backgroundImage: data.school.image}}
-          files={data.school.image}
-          // onChange={(e) =>
-          //   props.function({prop: 'subtitle', data: e.target.value})
-          // }
-          // value={props.school.image}
+          accept=".png, .jpg, .jpeg"
+          onChange={(e) => handleImageById(e, data.setTestimoinalImage, id)}
         />
       </div>
     </>
