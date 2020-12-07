@@ -1,12 +1,18 @@
 import React from 'react'
-// import Header from '../ViewComponents/'
 import './homepage/App.css'
+import CourseCard from './CourseCard';
 
 function studentProfilePage() {
     return (
         <div>
-          
-            <h1>hiii</h1>
+          <h1>hiiiiiiiiii</h1>
+            {/* <ul>
+                {CourseCard.map(item=>
+                    <li>
+                        {item}
+                    </li>
+                    )}
+            </ul> */}
 
         </div>
     )

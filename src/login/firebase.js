@@ -14,11 +14,11 @@ import history from '../history'
 
 var firebaseConfig = {
     // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    apiKey:'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
+    apiKey: 'AIzaSyB9giidNYNmRxYgj3PC4cysla54gHxaNJ4',
     // authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    authDomain:'lms-leader.firebaseapp.com',
+    authDomain: 'lms-leader.firebaseapp.com',
     // databaseURL: process.env.REACT_APP_FIREBASE_URL,
-    databaseURL:'https://lms-leader.firebaseio.com',
+    databaseURL: 'https://lms-leader.firebaseio.com',
     projectId: 'lms-leader',
     storageBucket: 'lms-leader.appspot.com',
     messagingSenderId: '451375116419',
@@ -39,7 +39,7 @@ export const signInWithGoogle = () => {
     auth.signInWithPopup(provider).then((res) => {
         console.log(res.user);
         console.log(res.user.displayName);
-        store.dispatch(actions.setUserProps({"uid":res.user.uid,"email":res.user.email,"photoURL":res.user.photoURL}))
+        store.dispatch(actions.setUserProps({ "uid": res.user.uid, "email": res.user.email, "photoURL": res.user.photoURL }))
         // nav(res.user.displayName);
     }).catch((err) => {
         console.log(err)
@@ -99,7 +99,7 @@ export const nav = (displayName) => {
     debugger;
     // const name= displayName.replace(/\s/g, '');
     // browserHistory.replace('/' + displayName + '/addcourse');
-    window.location.href = '/'+ displayName + '/addcourse';
+    window.location.href = '/' + displayName + '/addcourse';
 };
 
 
@@ -160,7 +160,7 @@ export function checkPremission(data) {
                 else {
                     store.dispatch(actions.getCoursesFromServer(uid))
                     store.dispatch(actions.getSchoolFromServer(uid))
-                    history.push('/'+ userName + '/addcourse');
+                    history.push('/' + userName + '/addcourse');
                 }
             }
         }
