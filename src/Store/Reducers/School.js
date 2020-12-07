@@ -78,6 +78,7 @@ const initialState = {
       footer: '#282834',
       getChoice: '#EFEFF6',//!!!!!!!
       worldSelection: '#FEF0EF',//!!!!!!!
+      aboutStudent:'#FEF0EF'
     }
 
   }
