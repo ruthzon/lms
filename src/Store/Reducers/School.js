@@ -125,6 +125,7 @@ const initialState = {
         reddit: false,
         google:true
       },
+      aboutStudent:'#FEF0EF'
     }
   }
 };
