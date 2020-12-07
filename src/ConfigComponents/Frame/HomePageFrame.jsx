@@ -25,6 +25,8 @@ function HomePageFrame(props) {
   // }
   return (
     <div id="frame">
+            <TopFrame />
+
       {props.styles.configurator && (
             <Configurator>
               <HomeConfig />

@@ -24,14 +24,16 @@ function LessonPageFrame(props) {
   // }
   return (
     <div id="frame">
-       {props.styles.configurator && (
-            <Configurator>
-              <LessonConfig />
-            </Configurator>
-          )}
-          <Stage>
-            <LessonPage />
-          </Stage>
+      <TopFrame />
+
+      {props.styles.configurator && (
+        <Configurator>
+          <LessonConfig />
+        </Configurator>
+      )}
+      <Stage>
+        <LessonPage />
+      </Stage>
     </div>
   );
 }
