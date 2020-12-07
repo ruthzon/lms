@@ -383,6 +383,7 @@ export function ConfigLearningX(props) {
 }
 
 export function ConfigTestimoinal(props) {
+  let data = props.data;
   return (
     <>
       <h5>Testimoinal</h5>
@@ -390,8 +391,10 @@ export function ConfigTestimoinal(props) {
         Background color
         <input
           type="color"
-          value={props.school.colors.testimoinal}
-          onChange={(e) => props.color([e.target.value, 'testimoinal'])}
+          value={data.school.colors.testimoinal}
+          onChange={(e) =>
+            data.setColorSchoolByPart([e.target.value, 'testimoinal'])
+          }
         />
       </div>
       <div>
@@ -399,27 +402,11 @@ export function ConfigTestimoinal(props) {
         <label className="switch">
           <input
             type="checkbox"
-            onClick={(e) => props.show('testimoinal')}
-            checked={props.school.show.testimoinal}
+            onClick={(e) => data.showSchoolByPart('testimoinal')}
+            checked={data.school.show.testimoinal}
           />
           <span className="slider round"></span>
         </label>
-      </div>
-      <div>
-        Title
-        <input
-          type="text"
-          onChange={(e) => props.function(e.target.value)}
-          value={props.school.learning.header}
-        />
-      </div>
-      <div>
-        Image
-        <input
-          type="file"
-          accept=".jpg, .png, .jpeg"
-          onChange={(e) => handleImage(e, props.image)}
-        />
       </div>
     </>
   );
@@ -446,7 +433,10 @@ export function ConfigTestimoinalX(props) {
         <FaTrash
           onClick={(e) => {
             handleDelete(data.deleteFromSection, [id, 'testimoinal']);
-            data.setSectionConfig({name: id==0?'testimoinal':'testimoinal-x', id: id == 0 ? 1 : id-1});
+            data.setSectionConfig({
+              name: id == 0 ? 'testimoinal' : 'testimoinal-x',
+              id: id == 0 ? 1 : id - 1,
+            });
           }}
         />
         <FaCopy
@@ -490,6 +480,278 @@ export function ConfigTestimoinalX(props) {
           onChange={(e) => handleImageById(e, data.setTestimoinalImage, id)}
         />
       </div>
+    </>
+  );
+}
+
+export function ConfigPartner(props) {
+  let data = props.data;
+  return (
+    <>
+      <h5>Partners</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={data.school.colors.partners}
+          onChange={(e) =>
+            data.setColorSchoolByPart([e.target.value, 'partners'])
+          }
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showSchoolByPart('partners')}
+            checked={data.school.show.partners}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+    </>
+  );
+}
+
+export function ConfigPartnerX(props) {
+  let {data, id} = props;
+  let thisPartner = data.school.partners[id];
+  return (
+    <>
+      <h5>
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForSection(['./img_from_xd/leader-logo.png', 'partners'])
+          }
+        />
+        <FaTrash
+          onClick={(e) => {
+            handleDelete(data.deleteFromSection, [id, 'partners']);
+            data.setSectionConfig({
+              name: id == 0 ? 'partner' : 'partner-x',
+              id: id == 0 ? 1 : id - 1,
+            });
+          }}
+        />
+        <FaCopy
+          onClick={(e) => data.addNewForSection([thisPartner, 'partners'])}
+        />
+      </h5>
+      <div>
+        Image
+        <input
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          onChange={(e) => handleImageById(e, data.setPartners, id)}
+        />
+      </div>
+    </>
+  );
+}
+function HelpShare(props) {
+  let {name, buttons, func} = props;
+  let show = buttons.show[name];
+  let value = buttons.share[name];
+  return (
+    <div>
+      {name}
+      <label class="switch">
+        <input
+          type="checkbox"
+          onClick={(e) =>
+            func({
+              sh: 'show',
+              name: name,
+              text: e.target.checked,
+            })
+          }
+          checked={show}
+        />
+        <span class="slider round"></span>
+      </label>
+      {show && (
+        <input
+          type="text"
+          placeholder={'link to ' + name}
+          onChange={(e) =>
+            func({
+              sh: 'share',
+              name: 'instegram',
+              text: e.target.value,
+            })
+          }
+          value={value}
+        />
+      )}
+    </div>
+  );
+}
+export function ConfigFooter(props) {
+  let data = props.data;
+  return (
+    <>
+      <h5>Footer</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={data.school.colors.footer}
+          onChange={(e) =>
+            data.setColorSchoolByPart([e.target.value, 'footer'])
+          }
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showSchoolByPart('footer')}
+            checked={data.school.show.footer}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div>
+        Footer text
+        <textarea
+          type="text"
+          value={data.school.footerBottom.text}
+          onChange={(e) => {
+            data.setFooterText(e.target.value);
+          }}
+        />
+      </div>
+      <HelpShare
+        name={'instegram'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+      <HelpShare
+        name={'facebook'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+      <HelpShare
+        name={'whatsapp'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+      <HelpShare
+        name={'twitter'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+      <HelpShare
+        name={'linkedin'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+      <HelpShare
+        name={'youtube'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+      <HelpShare
+        name={'reddit'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+      <HelpShare
+        name={'google'}
+        func={data.setFooterShare}
+        buttons={data.school.footerBottom}
+      />
+    </>
+  );
+}
+export function ConfigFooterCol(props) {
+  let {data, col} = props;
+  let thisCol = data.school.footer[col];
+  return (
+    <>
+      <h5>
+        Header
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForFooter({col: col, array: 'new', links: 'link to...'})
+          }
+        />
+        <input
+          type="text"
+          value={thisCol.name}
+          onChange={(e) => {
+            data.setFooterColName({
+              col: col,
+              text: e.target.value,
+            });
+          }}
+        />
+        {/* <FaCopy
+          onClick={(e) =>
+            data.addNewForFooter({
+              col: thisCol.col,
+              array: thisCol.array,
+              links: thisCol.links,
+            })
+          }
+        /> */}
+      </h5>
+      {thisCol.array.map((value, key) => {
+        return (
+          <>
+            <span>
+              {key}
+              <FaTrash
+                onClick={(e) => {
+                  handleDelete(data.deleteFromFooter, {col: col, id: key});
+                }}
+              />
+              <FaCopy
+                onClick={(e) => {
+                  data.addNewForFooter({
+                    col: col,
+                    array: thisCol.array[key],
+                    links: thisCol.links[key],
+                  });
+                }}
+              />
+            </span>
+            <div>
+              Text
+              <input
+                type="text"
+                value={value}
+                onChange={(e) => {
+                  data.setFooter({
+                    col:col,
+                    key: 'array',
+                    value: e.target.value,
+                    id: key,
+                  });
+                }}
+              />
+            </div>
+            <div>
+              Link to
+              <input
+                type="text"
+                value={thisCol.links[key]}
+                onChange={(e) => {
+                  data.setFooter({
+                    col:col,
+                    key: 'links',
+                    value: e.target.value,
+                    id: key,
+                  });
+                }}
+              />
+            </div>
+            <br></br>
+          </>
+        );
+      })}
     </>
   );
 }

@@ -1,30 +1,102 @@
-import {FaGoogle, FaTwitter, FaLinkedin, FaFacebook} from 'react-icons/all';
+import {
+  FaGoogle,
+  FaTwitter,
+  FaLinkedin,
+  FaFacebook,
+  FaInstagram,
+  FaWhatsapp,
+  FaYoutube,
+  FaReddit,
+} from 'react-icons/all';
 // import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import '../ViewComponents/homepage/App.css';
-import { connect } from 'react-redux';
-
+import {connect} from 'react-redux';
+import history from '../history';
+import {actions} from '../Store/actions';
 function mapStateToProps(state) {
   return {
     school: state.schoolReducer.school,
   };
 }
 const mapDispatchToProps = (dispatch) => ({
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(
-function Footer(props) {
+)(function Footer(props) {
+  const iconShare = (share) => {
+    switch (share) {
+      case 'instegram':
+        return <FaInstagram />;
+      case 'facebook':
+        return <FaFacebook />;
+      case 'whatsapp':
+        return <FaWhatsapp />;
+      case 'twitter':
+        return <FaTwitter />;
+      case 'linkedin':
+        return <FaLinkedin />;
+      case 'youtube':
+        return <FaYoutube />;
+      case 'reddit':
+        return <FaReddit />;
+      case 'google':
+        return <FaGoogle />;
+
+      default:
+        break;
+    }
+  };
+  const listIcons = () => {
+    // for
+  };
   return (
-    <section id="footer"  style={{backgroundColor: props.school.colors.footer}}>
+    <section
+      id="footer"
+      onClick={(e) => {
+        if (e.target === e.currentTarget)
+          props.setSectionConfig({name: 'footer'});
+      }}
+      className="hover-config"
+      style={{backgroundColor: props.school.colors.footer}}
+    >
       <Container>
         <Row
           text="center"
           className="text-center text-xs-center text-sm-left text-md-right"
         >
-          <Col xs="12" sm="3" md="3">
+          {props.school.footer.map((col, key) => {
+            return (
+              <Col
+                xs="12"
+                sm="6"
+                md="3"
+                onClick={() =>
+                  props.setSectionConfig({name: 'footer-col', id: key})
+                }
+                className="hover-config"
+              >
+                <h5>{col.name}</h5>
+                <ul className="list-unstyled quick-links">
+                  {col.array.map((value, key) => {
+                    return (
+                      <li>
+                        <a 
+                        // onClick={() => history.push(col.links[key])}
+                        >
+                          {value}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Col>
+            );
+          })}
+          {/* <Col xs="12" sm="3" md="3">
             <h5>Company</h5>
             <ul className="list-unstyled quick-links">
               <li>
@@ -107,16 +179,38 @@ function Footer(props) {
                 </a>
               </li>
             </ul>
-          </Col>
+          </Col> */}
         </Row>
-        <Row className="text-center text-xs-center text-sm-left text-md-left">
+        <Row
+          onClick={(e) => {
+            props.setSectionConfig({name: 'footer'});
+          }}
+          className="hover-config text-center text-xs-center text-sm-left text-md-left"
+        >
           <Col xs="12" sm="12" md="12" mt="2">
             <div className="all-right">
-              © 2015-2020 Skillfy Education Private Limited. All rights reserved
+              {props.school.footerBottom.text}
               <ul className="list-unstyled list-inline social text-center">
-                <li className="list-inline-item">
+                {Object.entries(props.school.footerBottom.share).map(
+                  (share) => {
+                    return (
+                      <>
+                        {props.school.footerBottom.show[share[0]] && (
+                          <li className="list-inline-item">
+                            <a 
+                            // onClick={() => history.push(share[1])}
+                            >
+                              {iconShare(share[0])}
+                            </a>
+                          </li>
+                        )}
+                      </>
+                    );
+                  }
+                )}
+                {/* <li className="list-inline-item">
                   <a href="">
-                    <FaFacebook />{' '}
+                    <FaFacebook />
                   </a>
                 </li>
                 <li className="list-inline-item">
@@ -133,7 +227,7 @@ function Footer(props) {
                   <a href="">
                     <FaLinkedin />
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </Col>
@@ -142,5 +236,5 @@ function Footer(props) {
       </Container>
     </section>
   );
-})
+});
 // export default Footer;

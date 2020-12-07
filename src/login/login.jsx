@@ -78,7 +78,7 @@ export default withRouter(function Login(props) {
 
   const handleClick = () =>
     setType(() => ({
-      type: type === 'text' ? 'password' : 'text',
+      type: type == 'text' ? 'password' : 'text',
     }));
   useEffect(() => {
     // signOut();
@@ -187,7 +187,7 @@ export default withRouter(function Login(props) {
                   <hr />
                 </div>
                 <Button
-                  onClick={signInWithGoogle}
+                  onClick={(e)=>signInWithGoogle(e)}
                   type="submit"
                   variant="light"
                 >

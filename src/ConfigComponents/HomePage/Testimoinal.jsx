@@ -57,7 +57,11 @@ class Testimoinal extends Component {
     return (
       <>
         <section
-          className="test"
+          className="test hover-config"
+          onClick={(e) => {
+            if (e.target === e.currentTarget)
+              this.props.setSectionConfig({name: 'testimoinal'});
+          }}
           style={{backgroundColor: this.props.school.colors.testimoinal}}
         >
           <div className="title">
@@ -99,7 +103,7 @@ class Testimoinal extends Component {
               return (
                 <Card
                   onClick={() =>
-                    this.props.setSectionConfig({name: 'testimoinal', id: key})
+                    this.props.setSectionConfig({name: 'testimoinal-x', id: key})
                   }
                   className="test-card hover-trash hover-config"
                 >

@@ -25,23 +25,28 @@ var firebaseConfig = {
     appId: '1:451375116419:web:a631ec62e2e0a0304e6bb6',
     measurementId: 'G-2DZBMG06NZ',
 };
-firebase.initializeApp(firebaseConfig);
+const fire = firebase.initializeApp(firebaseConfig);
 // firebase.auth.Auth.Persistence.LOCAL;
 
-export const auth = firebase.auth();
+export const auth = fire.auth();
 export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 
 // const url="localhost:3000"
 // const url="lms.leader.codes"
 
-export const signInWithGoogle = () => {
+export const signInWithGoogle = (event) => {
+    event.preventDefault();
+
     auth.signInWithPopup(provider).then((res) => {
+        console.log("sign")
         console.log(res.user);
         console.log(res.user.displayName);
         store.dispatch(actions.setUserProps({ "uid": res.user.uid, "email": res.user.email, "photoURL": res.user.photoURL }))
         // nav(res.user.displayName);
     }).catch((err) => {
+        console.log("err")
+
         console.log(err)
     })
     // nav();
@@ -51,8 +56,7 @@ export const signOut = () => {
     let exsistsJwt = document.cookie.split(";").filter(s => s.includes('jwt'));
     console.log(exsistsJwt);
 
-    firebase
-        .auth()
+    auth
         .signOut()
         .then(function () {
             console.log("logged out");
@@ -99,7 +103,7 @@ export const nav = (displayName) => {
     debugger;
     // const name= displayName.replace(/\s/g, '');
     // browserHistory.replace('/' + displayName + '/addcourse');
-    window.location.href = '/' + displayName + '/addcourse';
+    // window.location.href = '/' + displayName + '/addcourse';
 };
 
 
