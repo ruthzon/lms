@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+button:focus{
+    outline: 0;
+}
+.file-upload{
+    /* border:15px solid white; */
+    margin-bottom: -7vh;
+ 
+}
+.file-upload img{
+    background-size: cover;
+    background-position: center;
+}
+.about{
+
+letter-spacing: var(--unnamed-character-spacing-0-32);
+color: var(--unnamed-color-5f5982);
+text-align: left;
+font: normal normal normal 16px/30px Poppins;
+
+}
+.about ul {
+    list-style-type: none;
+padding: 0;}
+.about ul li{
+    display: inline;
+    margin-right: 2vw;   
+}
+.follow-btn{
+background-color:transparent;
+border: 1px solid orange;
+border-radius: 5px;
+color:orange;
+display: inline-block;
+margin-left: 20vw;
+
+}
+.a{
+    display: inline-block;  
+}
+h2{
+    display: inline-block; 
+}
+.course-list ul li{
+  display: inline-block;  
+  margin-right: 2%;
+  margin-left: 2%;
+
+}
+.popular-btn{
+    border: 1px solid var(---other-text);
+border: 1px solid #CAC6D4;
+border-radius: 4px;
+opacity: 1;
+background-color: transparent;
+color:gray;
+}

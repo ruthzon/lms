@@ -11,14 +11,16 @@ class Belive extends Component {
             <Row>
               <Col md="6">
                 <p>
-                  <i>
+                  <i className="IBelive">
                     I believe in lifelong learning and Skillfy is a great place
                     to learn from experts. I’ve learned a lot and recommend it
                     to all my friends.
                   </i>
                   <br />
                   <br />
-                  Riaz Surti | Hearthy Foods
+                  <br></br>
+                  <p className="p1 ">Riaz Surti | Hearthy Foods</p>
+                  
                 </p>
               </Col>
               <Col md="6">
