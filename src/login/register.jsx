@@ -233,7 +233,7 @@ const Register = (props) => {
                   <hr />
                 </div>
                 <Button
-                  onClick={signInWithGoogle}
+                  onClick={(e)=>signInWithGoogle(e)}
                   type="submit"
                   variant="light"
                 >

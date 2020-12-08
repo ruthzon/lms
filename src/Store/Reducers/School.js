@@ -78,15 +78,65 @@ const initialState = {
       footer: '#282834',
       getChoice: '#EFEFF6',//!!!!!!!
       worldSelection: '#FEF0EF',//!!!!!!!
+<<<<<<< HEAD
       
+=======
+    },
+    footer: [
+      {
+        name: "Company",
+        array: ["About", "Careers", "Press", "Blog", "Affiliates"],
+        links: ["", "", "", "", "", ""]
+      },
+      {
+        name: "Community",
+        array: ["Go Premium", "Team Plans", "Refer a Friend", "Gift Cards", "Scholarships", "Free Classes"],
+        links: ["", "", "", "", "", ""]
+      }
+      ,
+      {
+        name: "Teaching",
+        array: ["Became a", "Teacher", "Teaching", "Academy", "Teacher", "Handbook"],
+        links: ["", "", "", "", "", ""]
+      }
+      ,
+      {
+        name: "Support",
+        array: ["Support", "contact us", "System requirements", "Register", "key", "Site feedback"],
+        links: ["", "", "", "", "", ""]
+      }
+    ],
+    footerBottom:{
+      text:"© 2015-2020 Skillfy Education Private Limited. All rights reserved",
+      share: {
+        instegram: '',
+        facebook: '',
+        whatsapp: '',
+        twitter: '',
+        linkedin: '',
+        youtube: '',
+        reddit: '',
+        google:''
+      },
+      show: {
+        instegram: false,
+        facebook: true,
+        whatsapp: false,
+        twitter: true,
+        linkedin: true,
+        youtube: false,
+        reddit: false,
+        google:true
+      },
+      aboutStudent:'#FEF0EF'
+>>>>>>> 83472734e4ca3b7503e7e8d08aa3c7c5c418a684
     }
-
   }
 };
 
 const myschool = {
-  initialSchool(state,action){
-    state.school=action.payload;
+  initialSchool(state, action) {
+    state.school = action.payload;
   },
   setSchoolProp(state, action) {
     state.school[action.payload.prop] = action.payload.data;
@@ -139,8 +189,18 @@ const myschool = {
   setCTATitle(state, action) {
     state.school.CTA.title = action.payload;
   },
-
-
+  setFooterColName(state, action) {
+    state.school.footer[action.payload.col].name = action.payload.text;
+  },
+  setFooterShare(state, action) {
+    state.school.footerBottom[action.payload.sh][action.payload.name] = action.payload.text;
+  },
+  setFooterText(state, action) {
+    state.school.footerBottom.text = action.payload;
+  },
+  setFooter(state,action){
+    state.school.footer[action.payload.col][action.payload.key][action.payload.id]=action.payload.value
+  },
 
 
   // Showwwwww
@@ -157,13 +217,20 @@ const myschool = {
     state.school.learning.info = state.school.learning.info.concat(action.payload);
   },
   deleteFromSection(state, action) {
-    state.school[action.payload[1]] = state.school[action.payload[1]].filter((element,ind) => ind !== action.payload[0]);
+    state.school[action.payload[1]] = state.school[action.payload[1]].filter((element, ind) => ind !== action.payload[0]);
   },
   deleteFromLearning(state, action) {
-    state.school.learning.info = state.school.learning.info.filter((element,ind) => ind !== action.payload[0]);
+    state.school.learning.info = state.school.learning.info.filter((element, ind) => ind !== action.payload[0]);
   },
+  addNewForFooter(state, action) {
+    state.school.footer[action.payload.col].array = state.school.footer[action.payload.col].array.concat(action.payload.array);
+    state.school.footer[action.payload.col].links = state.school.footer[action.payload.col].links.concat(action.payload.links);
 
-
+  },
+  deleteFromFooter(state, action) {
+    state.school.footer[action.payload.col].array = state.school.footer[action.payload.col].array.filter((element, ind) => ind !== action.payload.id);
+    state.school.footer[action.payload.col].links = state.school.footer[action.payload.col].links.filter((element, ind) => ind !== action.payload.id);
+  },
   // saveSchool(state, action) {
   //   state.school =action.payload;
   // },

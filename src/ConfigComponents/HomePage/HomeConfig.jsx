@@ -18,6 +18,10 @@ import {
   ConfigLearningX,
   ConfigTestimoinal,
   ConfigTestimoinalX,
+  ConfigPartner,
+  ConfigPartnerX,
+  ConfigFooterCol,
+  ConfigFooter,
 } from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
@@ -49,6 +53,13 @@ const mapDispatchToProps = (dispatch) => ({
   setTestimoinalImage: (name) => dispatch(actions.setTestimoinalImage(name)),
   setTestimoinal: (name) => dispatch(actions.setTestimoinal(name)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+  setPartners: (name) => dispatch(actions.setPartners(name)),
+  setFooterText: (name) => dispatch(actions.setFooterText(name)),
+  setFooterShare: (name) => dispatch(actions.setFooterShare(name)),
+  setFooterColName: (name) => dispatch(actions.setFooterColName(name)),
+  setFooter: (name) => dispatch(actions.setFooter(name)),
+  addNewForFooter: (name) => dispatch(actions.addNewForFooter(name)),
+  deleteFromFooter: (name) => dispatch(actions.deleteFromFooter(name)),
 });
 
 export default withRouter(
@@ -154,6 +165,14 @@ export default withRouter(
           return <ConfigTestimoinal id={id} data={props} />;
         case 'testimoinal-x':
           return <ConfigTestimoinalX id={id} data={props} />;
+        case 'partner':
+          return <ConfigPartner id={id} data={props} />;
+        case 'partner-x':
+          return <ConfigPartnerX id={id} data={props} />;
+        case 'footer':
+          return <ConfigFooter data={props} />;
+        case 'footer-col':
+          return <ConfigFooterCol col={id} data={props} />;
 
         default:
           return 'foo';

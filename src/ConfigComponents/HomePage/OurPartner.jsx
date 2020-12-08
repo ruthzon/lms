@@ -19,6 +19,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
   setPartners: (sub) => dispatch(actions.setPartners(sub)),
   deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
 export default connect(
   mapStateToProps,
@@ -41,7 +42,11 @@ export default connect(
       return (
         <>
           <section
-            className="partner"
+          onClick={(e) => {
+            if (e.target === e.currentTarget)
+              this.props.setSectionConfig({name: 'partner'});
+          }}
+            className="partner hover-config"
             style={{backgroundColor: props.school.colors.partners}}
           >
             <div className="title">
@@ -89,9 +94,11 @@ export default connect(
             >
               {props.school.partners.map((item, key) => {
                 return (
-                  <div key={key} className="hover-trash">
+                  <div key={key} onClick={() =>
+                    this.props.setSectionConfig({name: 'partner-x', id: key})
+                  } className="hover-trash hover-config">
                     <div class="file-upload2">
-                      <input
+                      {/* <input
                         id={'partners-' + key}
                         type="file"
                         accept=".png, .jpg, .jpeg"
@@ -102,10 +109,10 @@ export default connect(
                             parseInt(e.target.id.split('-')[1])
                           )
                         }
-                      />
+                      /> */}
                       <Image src={item} thumbnail />
 
-                      <FaTrash
+                      {/* <FaTrash
                         className="trash"
                         onClick={(e) =>
                           // handleDelete(props.deleteFromSection, [
@@ -117,7 +124,7 @@ export default connect(
                             'partners',
                           ])
                         }
-                      />
+                      /> */}
                     </div>
                   </div>
                 );

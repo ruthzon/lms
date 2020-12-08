@@ -47,7 +47,6 @@ export default connect(
     <div>
       {/* <Link to={`${match.url}/components`}>Components</Link> */}
 
-      <TopFrame />
       <Switch>
       <Route path={`${match.path}/profile`}>
           {/* <CoursePage /> */}
