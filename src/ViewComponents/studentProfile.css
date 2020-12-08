@@ -41,3 +41,17 @@ margin-left: 20vw;
 h2{
     display: inline-block; 
 }
+.course-list ul li{
+  display: inline-block;  
+  margin-right: 2%;
+  margin-left: 2%;
+
+}
+.popular-btn{
+    border: 1px solid var(---other-text);
+border: 1px solid #CAC6D4;
+border-radius: 4px;
+opacity: 1;
+background-color: transparent;
+color:gray;
+}

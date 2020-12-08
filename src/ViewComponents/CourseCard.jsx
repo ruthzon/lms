@@ -17,7 +17,7 @@ const browserHistory = createBrowserHistory();
 //   mapDispatchToProps
 // )(
 export default function CourseCard(props) {
-  const user = useContext(UserContext);
+  // const user = useContext(UserContext);
   // const user={};
 
   const navigate = () => {
@@ -36,9 +36,9 @@ export default function CourseCard(props) {
       // onPress={() => navigation.navigate('Details')}
       // href="./coursepage/CoursePage.jsx"
     >
-      {user!==null && props.course.user_id === user.uid && (
-        <Card.Text className="text-own">your own course</Card.Text>
-      )}
+      {/* {user!==null && props.course.user_id === user.uid && ( */}
+        {/* <Card.Text className="text-own">your own course</Card.Text> */}
+      {/* )} */}
       <Card.Img
         variant="top"
         className="card-img"
