@@ -78,9 +78,6 @@ const initialState = {
       footer: '#282834',
       getChoice: '#EFEFF6',//!!!!!!!
       worldSelection: '#FEF0EF',//!!!!!!!
-<<<<<<< HEAD
-      
-=======
     },
     footer: [
       {
@@ -129,7 +126,6 @@ const initialState = {
         google:true
       },
       aboutStudent:'#FEF0EF'
->>>>>>> 83472734e4ca3b7503e7e8d08aa3c7c5c418a684
     }
   }
 };
