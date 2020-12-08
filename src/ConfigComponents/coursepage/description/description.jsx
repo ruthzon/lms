@@ -6,7 +6,15 @@ import Reviews from './reviews';
 import Instructor from './instructor';
 import {Button} from 'react-bootstrap';
 import '../../../ViewComponents/coursepage/course.css';
-
+import { actions } from '../../../Store/actions';
+import { connect } from 'react-redux';
+const mapDispatchToProps = (dispatch) => ({
+ setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+});
+export default connect(
+  null,
+  mapDispatchToProps
+)(
 class Description extends Component {
   constructor() {
     super();
@@ -49,18 +57,18 @@ class Description extends Component {
       <div className="description content">
 
               <div>
-                <button className={this.state.choose===1?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose1')}>
+                <button className={this.state.choose===1?'btn-choose':'btn'} onClick={() =>{this.chooseComponent('choose1'); this.props.setSectionConfig({name: 'course_overview'})}}>
                   Overview
                 </button>
-                <button className={this.state.choose===2?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose2')}>
+                <button className={this.state.choose===2?'btn-choose':'btn'} onClick={() =>{this.chooseComponent('choose2'); this.props.setSectionConfig({name: 'course_curriculum'})}}>
                   Curriculum
                 </button>
                 
-                <button className={this.state.choose===3?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose3')}>
+                <button className={this.state.choose===3?'btn-choose':'btn'} onClick={() =>{this.chooseComponent('choose3'); this.props.setSectionConfig({name: 'course_instructor'})}}>
                   Instructor
                 </button>
                 
-                <button className={this.state.choose===4?'btn-choose':'btn'} onClick={() => this.chooseComponent('choose4')}>
+                <button className={this.state.choose===4?'btn-choose':'btn'} onClick={() =>{this.chooseComponent('choose4'); this.props.setSectionConfig({name: 'course_reviews'})}}>
                   Reviews
                 </button>
               </div>
@@ -74,6 +82,6 @@ class Description extends Component {
       </div>
     );
   }
-}
+})
 
-export default Description;
+// export default Description;

@@ -10,10 +10,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setCertification: (data) => dispatch(actions.setCertification(data)),
-  setCourseDescription: (data) => dispatch(actions.setCourseDescription(data)),
-  setHowIsFor: (data) => dispatch(actions.setHowIsFor(data)),
-});
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+  setDescription: (data) => dispatch(actions.setDescription(data)),
+  });
 
 class Overview extends Component {
   constructor() {
@@ -25,13 +24,12 @@ class Overview extends Component {
 
   render() {
     let data = this.props.course.description;
-    let course=this.props.course;
+    // let course=this.props.course;
     // console.log(this.props.data.description);
     // console.log(JSON.parse(this.props.data.description));
-    console.log(data);
     return (
       <>
-        <div className="overview">
+        <div onClick={()=> this.props.setSectionConfig({name: 'course_overview'})} className="overview hover-config">
           {/* {this.props.data.description.Certification} */}
           {/* {data}
           {data.map((item, key) => {
@@ -43,7 +41,7 @@ class Overview extends Component {
               </>
             );
           })} */}
-          {course.show['Course Description'] && (
+          {/* {course.show['Course Description'] && (
             <>
               <h5>Course Description</h5>
               <h6><textarea onChange={(e) => this.props.setCourseDescription(e.target.value)} value={data['Course Description']}></textarea></h6>
@@ -60,7 +58,37 @@ class Overview extends Component {
               <h5>Who this course is for</h5>
               <h6><textarea onChange={(e) => this.props.setHowIsFor(e.target.value)} value={data['Who this course is for']}></textarea></h6>
             </>
-          )}
+          )} */}
+          {data.map((value, key) => {
+            return (
+              <>
+                <h5>
+                  <input
+                    onChange={(e) =>
+                      this.props.setDescription({
+                        id: key,
+                        value: e.target.value,
+                        key: 'header',
+                      })
+                    }
+                    value={value.header}
+                  ></input>
+                </h5>
+                <h6>
+                  <textarea
+                    onChange={(e) =>
+                      this.props.setDescription({
+                        id: key,
+                        value: e.target.value,
+                        key: 'text',
+                      })
+                    }
+                    value={value.text}
+                  ></textarea>
+                </h6>
+              </>
+            );
+          })}
         </div>
       </>
     );

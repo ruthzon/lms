@@ -35,6 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
   setName: (name) => dispatch(actions.setName(name)),
   setSubtitle: (sub) => dispatch(actions.setSubtitle(sub)),
   setWeeks: (sub) => dispatch(actions.setWeeks(sub)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
 export default connect(
   mapStateToProps,
@@ -46,7 +47,8 @@ export default connect(
   return (
     <>
       <div
-        className="header"
+        onClick={() => props.setSectionConfig({name: 'course_header'})}
+        className="hover-config header"
         style={{backgroundColor: props.course.colors.header}}
       >
         <div className="content">
@@ -83,26 +85,40 @@ export default connect(
                 {props.course.show.stars && (
                   <Col xs="3">
                     <FaRegStar color="#F3B23A" />
-                    {props.course._id==0?'??':props.course.stars} stars
+                    {props.course._id == 0 ? '??' : props.course.stars} stars
                   </Col>
                 )}
                 {props.course.show.students && (
                   <Col xs="3">
                     <FaRegEye color="#DB4500" />
                     {/* {course.views} */}
-                    Enrolled {props.course._id===0?'??':props.course.students_num} students
+                    Enrolled{' '}
+                    {props.course._id === 0
+                      ? '??'
+                      : props.course.students_num}{' '}
+                    students
                   </Col>
                 )}
                 {props.course.show.weeks && (
                   <Col xs="3">
                     <FaRegClock />
-                    Duration <input type="number" className="weeks-i" onChange={e=>props.setWeeks(e.target.value)} value={props.course.students_num}/> weeks
+                    Duration{' '}
+                    <input
+                      type="number"
+                      className="weeks-i"
+                      onChange={(e) => props.setWeeks(e.target.value)}
+                      value={props.course.students_num}
+                    />{' '}
+                    weeks
                   </Col>
                 )}
                 {props.course.show.lessons && (
                   <Col xs="3">
                     <FaRegPlayCircle color="#3E9365" />
-                    {props.course._id==0?'??': props.course.lessons.length + ' '} Lessons
+                    {props.course._id == 0
+                      ? '??'
+                      : props.course.lessons.length + ' '}{' '}
+                    Lessons
                   </Col>
                 )}
               </Row>

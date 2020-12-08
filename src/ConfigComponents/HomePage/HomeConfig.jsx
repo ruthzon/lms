@@ -13,7 +13,6 @@ import {
   ConfigGetChoice,
   ConfigLearning,
   ConfigWorldSelection,
-  ConfigTopEducators,
   ConfigCTA,
   ConfigLearningX,
   ConfigTestimoinal,
@@ -95,6 +94,7 @@ export default withRouter(
               school={props.school}
               function={props.setSchoolProp}
               color={props.setColorSchoolByPart}
+              show={props.showSchoolByPart}
             />
           );
         case 'category':
@@ -175,7 +175,7 @@ export default withRouter(
           return <ConfigFooterCol col={id} data={props} />;
 
         default:
-          return 'foo';
+          return 'Click any object on the page to change its settings';
       }
     };
     return (

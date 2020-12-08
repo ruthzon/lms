@@ -5,7 +5,7 @@ const initialState = {
     styles: {
         configurator:true,
         thumbtack:true,
-        section_config:{name:'header'},
+        section_config:{name:''},
 
     },
   

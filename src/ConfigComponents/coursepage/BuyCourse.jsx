@@ -3,16 +3,14 @@ import '../../ViewComponents/coursepage/course.css';
 import {Card, Col, Button, Image, ListGroup} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
-import { handleImage } from '../handleImage';
+import {handleImage} from '../handleImage';
 
 const mapDispatchToProps = (dispatch) => ({
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
   setImage: (data) => dispatch(actions.setImage(data)),
   setPrice: (data) => dispatch(actions.setPrice(data)),
-  setLanguage: (data) => dispatch(actions.setLanguage(data)),
-  setPrice: (data) => dispatch(actions.setPrice(data)),
-  setUse: (data) => dispatch(actions.setUse(data)),
-  setAccess: (data) => dispatch(actions.setAccess(data)),
-  setCertificate: (data) => dispatch(actions.setCertificate(data)),
+  setPrevPriceTime: (data) => dispatch(actions.setPrevPriceTime(data)),
+  setCourseInfo: (name) => dispatch(actions.setCourseInfo(name)),
 });
 
 function mapStateToProps(state) {
@@ -28,15 +26,32 @@ export default connect(
   // let course = props.data;
   const {
     course,
-    setLanguage,
+    setCourseInfo,
+    setSectionConfig,
+    setPrevPrice,
+    setPrevPriceTime,
+    // setLanguage,
     setPrice,
-    setAccess,
-    setCertificate,
-    setUse,
+    // setAccess,
+    // setCertificate,
+    // setUse,
   } = props;
   return (
-    <div className="buy-course shadow ">
-      <Card style={{width: '18rem'}}>
+    <div
+      className="buy-course shadow hover-config "
+      onClick={(e) => {
+        if (e.target === e.currentTarget)
+          setSectionConfig({name: 'buy_course'});
+      }}
+    >
+      <Card
+        style={{width: '18rem'}}
+        className="hover-config "
+        onClick={(e) => {
+          if (e.target === e.currentTarget)
+            setSectionConfig({name: 'buy_course'});
+        }}
+      >
         <div class="file-upload">
           <Card.Img variant="top" src={course.image} />
           <input
@@ -45,30 +60,72 @@ export default connect(
             onChange={(e) => handleImage(e, props.setImage)}
           />
         </div>
-        <Card.Body>
-          <Card.Title>
-            <input
-              value={course.price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </Card.Title>
-          {course.show.prev_price && (
-            <Card.Text>
-              <Image src="./img_from_xd/orange clock.svg"></Image>
-              11 Hour left at this price
-            </Card.Text>
+        <Card.Body
+          onClick={(e) => {
+            if (e.target === e.currentTarget)
+              setSectionConfig({name: 'buy_course'});
+          }}
+        >
+          {course.show.price && (
+            <>
+              <Card.Title className="price">
+                <input
+                  value={course.price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+                {course.show.prev_price && (
+                  <span>
+                    <input
+                      value={course.prev_price}
+                      onChange={(e) => setPrevPrice(e.target.value)}
+                    />
+                  </span>
+                )}
+              </Card.Title>
+              {course.show.prev_price && course.show.prev_price_time && (
+                <Card.Text>
+                  <Image src="./img_from_xd/orange clock.svg"></Image>
+                  <input
+                    value={course.prev_price_time + ' left at this price'}
+                    onChange={(e) => setPrevPriceTime(e.target.value)}
+                  />
+                </Card.Text>
+              )}
+              <Button
+                variant="primary"
+                block
+                style={{backgroundColor: course.colors.buy_course}}
+              >
+                Buy Now
+              </Button>
+            </>
           )}
-          <Button
-            variant="primary"
-            block
-            style={{backgroundColor: course.colors.buy_course}}
-          >
-            Buy Now
-          </Button>
           <ListGroup className="card-list" variant="flush">
-            <ListGroup.Item>
+            <ListGroup.Item
+              onClick={(e) => {
+                setSectionConfig({name: 'buy_course_info'});
+              }}
+              className="hover-config"
+            >
               <h5>This course includes</h5>
-              {course.show.language && (
+              {course.course_info.map((value, key) => {
+                return (
+                  <p>
+                    <Image src={value.icon}></Image>
+                    <input
+                      value={value.name}
+                      onChange={(e) =>
+                        setCourseInfo({
+                          id: key,
+                          key: 'name',
+                          value: e.target.value,
+                        })
+                      }
+                    />
+                  </p>
+                );
+              })}
+              {/*{course.show.language && (
                 <p>
                   <Image src="./img_from_xd/book.svg"></Image>
                   Language -{' '}
@@ -104,7 +161,7 @@ export default connect(
                     onChange={(e) => setCertificate(e.target.value)}
                   />
                 </p>
-              )}
+              )}*/}
             </ListGroup.Item>
 
             <ListGroup.Item>
@@ -112,7 +169,12 @@ export default connect(
               top courses anytime.
               <span className=" card-text"> Contact our sale</span>
             </ListGroup.Item>
-            <ListGroup.Item className="pointer"> 
+            <ListGroup.Item
+              onClick={(e) => {
+                setSectionConfig({name: 'buy_course_share'});
+              }}
+              className="pointer hover-config"
+            >
               <h6>Share this course</h6>
               {course.show.share.instegram && (
                 <Image src="./img_from_xd/instagram.svg"></Image>
