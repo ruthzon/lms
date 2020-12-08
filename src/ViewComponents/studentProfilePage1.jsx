@@ -22,8 +22,8 @@ export default connect(
 )(function studentProfilePage1(props) {
     return (
         <div>
-            {/* <h1>hiiiiiiiiiiiiiiiiii</h1>
-            <button>hiiiiiiiiiiiiiiiiiiiiii</button> */}
+            
+            <button>hiiiiiiiiiiiiiiiiiiiiii</button>
 
         </div>
     )
