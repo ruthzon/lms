@@ -2,20 +2,20 @@
 button:focus{
     outline: 0;
 }
-.file-upload{
-    padding: 0;
-    border:15px solid white;
-    border-radius: 5px;
-    margin-bottom: -7vh;
-    transition: .3s;
- 
-}
+
 .file-upload img{
     background-size: cover;
     background-position: center;
     
 }
-.file-upload:hover{
+.student-img{
+    padding: 0;
+    border-radius: 5px;
+    margin-bottom: -7vh;
+    transition: .3s;
+    border:15px solid white;
+}
+.student-img:hover{
     transform: scale(1.1); 
 }
 

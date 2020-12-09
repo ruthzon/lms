@@ -34,7 +34,7 @@ export default connect(
             <Navigation></Navigation>
             <div className="container-fluid">
                 <div className="row align-items-center" style={{ backgroundColor: props.studentProfile.colors.aboutStudent }}>
-                    <div class="file-upload offset-2 col-3 mt-5">
+                    <div class="file-upload student-img offset-2 col-3 mt-5">
                         <img variant="top" src={props.studentProfile.image} />
                         <input
                             type="file"
@@ -45,7 +45,7 @@ export default connect(
                     <div className="col-6 about ml-5">
                         <h2 className="student-name ">{props.studentProfile.name}</h2>
                         <p className="a ml-2">{props.studentProfile.profession}</p>
-                        <button className="follow-btn">Follow</button>
+                        <button className=" ml-5 follow-btn">Follow</button>
                         <p>{props.studentProfile.about}</p>
                         <ul >
                             <li>
