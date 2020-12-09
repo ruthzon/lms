@@ -12,16 +12,23 @@ const initialState = {
     image: './img_from_xd/Image 108@2x.png',
     stars: 3,//להפוך למספר
     views: 0,//להפוך למספר
-    weeks:0,
-    students_num:0,
+    weeks: 0,
+    students_num: 0,
     auther: 'Name of the lecturer',
     auther_image: './img_from_xd/Rectangle 22.png',
     price: 'price',
     prev_price: 'prev price',
-    language: 'Course language',
-    use: 'Use on desktop, tablet & mobile',
-    access: 'Full lifetime access',
-    certificate: 'Certificate of Completion',
+    prev_price_time: '11 hours',
+    // language: 'Course language',
+    // use: 'Use on desktop, tablet & mobile',
+    // access: 'Full lifetime access',
+    // certificate: 'Certificate of Completion',
+    course_info: [
+      { name: "Course language",icon:"./img_from_xd/book.svg" },
+      { name:  'Use on desktop, tablet & mobile',icon:"./img_from_xd/screen.svg"  },
+      { name: 'Full lifetime access',icon:"./img_from_xd/timer.svg"  },
+      { name: 'Certificate of Completion',icon:"./img_from_xd/other.svg"  },
+    ],
     share: {
       instegram: '',
       facebook: '',
@@ -36,19 +43,21 @@ const initialState = {
       auther: 'Riaz Surti | Hearthy Foods',
       image: './img_from_xd/image 116.png',
     },
-    description: {
-      "Course Description": "See-through delicate embroidered organza blue lining luxury acetate-mix stretch pleat detailing. Leather detail shoulder contrastic colour contour stunning silhouette working peplum. Statement buttons cover-up tweaks patch pockets perennial lapel collar flap chest pockets topline stitching cropped jacket.",
-      "Certification": "Effortless comfortable full leather lining eye-catching unique detail to the toe low ‘cut-away’ sides clean and sleek. Polished finish elegant court shoe work duty stretch slingback strap mid kitten heel this ladylike design slingback strap mid kitten heel this ladylike design.",
-      "Who this course is for": "Anyone interested in learning about business (only practical concepts that you can use and no boring theory + we won’t cover business topics that are common sense"
-    },
+    description: [
+      { header: "Course Description", text: "See-through delicate embroidered organza blue lining luxury acetate-mix stretch pleat detailing. Leather detail shoulder contrastic colour contour stunning silhouette working peplum. Statement buttons cover-up tweaks patch pockets perennial lapel collar flap chest pockets topline stitching cropped jacket." },
+      { header: "Certification", text: "Effortless comfortable full leather lining eye-catching unique detail to the toe low ‘cut-away’ sides clean and sleek. Polished finish elegant court shoe work duty stretch slingback strap mid kitten heel this ladylike design slingback strap mid kitten heel this ladylike design." },
+      { header: "Who this course is for", text: "Anyone interested in learning about business (only practical concepts that you can use and no boring theory + we won’t cover business topics that are common sense" },
+    ],
     show: {
       stars: true,
       views: true,
       prev_price: true,
-      language: true,
-      use: true,
-      access: true,
-      certificate: true,
+      price:true,
+      prev_price_time:true,
+      // language: true,
+      // use: true,
+      // access: true,
+      // certificate: true,
       students: true,
       weeks: true,
       lessons: true,
@@ -68,9 +77,9 @@ const initialState = {
         reddit: true,
       },
       description: true,
-      "Course Description": true,
-      "Certification": true,
-      "Who this course is for": true,
+      // "Course Description": true,
+      // "Certification": true,
+      // "Who this course is for": true,
     },
     colors: {
       header: '#FEF0EF',
@@ -128,8 +137,8 @@ const mycourse = {
   initialCourse(state, action) {
     state.course = action.payload;
   },
-  initialEmptyCourse (state) {
-    state.course= initialState.course;
+  initialEmptyCourse(state) {
+    state.course = initialState.course;
   },
   setName(state, action) {
     state.course.name = action.payload;
@@ -164,30 +173,40 @@ const mycourse = {
   setPrevPrice(state, action) {
     state.course.prev_price = action.payload;
   },
-  setLanguage(state, action) {
-    state.course.language = action.payload;
+  setPrevPriceTime(state, action) {
+    state.course.prev_price_time = action.payload;
   },
   setDescription(state, action) {
-    state.course.description = action.payload;
+    state.course.description[action.payload.id][action.payload.key] = action.payload.value;
   },
-  setHowIsFor(state, action) {
-    state.course.description['Who this course is for'] = action.payload;
+
+  addNewForOverview(state, action) {
+    state.course.description = state.course.description.concat(action.payload)
   },
-  setCertification(state, action) {
-    state.course.description['Certification'] = action.payload;
+  deleteFromOverview(state, action) {
+    state.course.description = state.course.description.filter((element, ind) => ind !== action.payload);
   },
-  setCourseDescription(state, action) {
-    state.course.description['Course Description'] = action.payload;
+  addNewForInfo(state, action) {
+    state.course.course_info = state.course.course_info.concat(action.payload)
   },
-  setUse(state, action) {
-    state.course.use = action.payload;
+  deleteFromInfo(state, action) {
+    state.course.course_info = state.course.course_info.filter((element, ind) => ind !== action.payload);
   },
-  setAccess(state, action) {
-    state.course.access = action.payload;
+  setCourseInfo(state, action) {
+    state.course.course_info[action.payload.id][action.payload.key] = [action.payload.value];
   },
-  setCertificate(state, action) {
-    state.course.certificate = action.payload;
-  },
+  // setLanguage(state, action) {
+  //   state.course.language = action.payload;
+  // },
+  // setUse(state, action) {
+  //   state.course.use = action.payload;
+  // },
+  // setAccess(state, action) {
+  //   state.course.access = action.payload;
+  // },
+  // setCertificate(state, action) {
+  //   state.course.certificate = action.payload;
+  // },
   setInstegram(state, action) {
     state.course.share.instegram = action.payload;
   },
@@ -234,7 +253,7 @@ const mycourse = {
     state.course.lessons = state.course.lessons.concat(action.payload);
   },
   removeLesson(state, action) {
-    state.course.lessons = state.course.lessons.filter((x,ind) => ind != action.payload);
+    state.course.lessons = state.course.lessons.filter((x, ind) => ind != action.payload);
   },
   updateLesson(state, action) {
     state.course.lessons = state.course.lessons.map(
@@ -266,23 +285,20 @@ const mycourse = {
     state.course.colors.top_educators = action.payload;
   },
   // Showwwwww
-  showHowIsFor(state) {
-    state.course.show['Who this course is for'] = !state.course.show['Who this course is for'];
-  },
-  showCertification(state) {
-    state.course.show['Certification'] = !state.course.show['Certification'];
-  },
-  showCourseDescription(state) {
-    state.course.show['Course Description'] = !state.course.show['Course Description'];
-  },
   showStars(state) {
     state.course.show.stars = !state.course.show.stars;
   },
   showViews(state) {
     state.course.show.views = !state.course.show.views;
   },
+  showPrice(state) {
+    state.course.show.price = !state.course.show.price;
+  },
   showPrevPrice(state) {
     state.course.show.prev_price = !state.course.show.prev_price;
+  },
+  showPrevPriceTime(state) {
+    state.course.show.prev_price_time = !state.course.show.prev_price_time;
   },
   showDescription(state) {
     state.course.show.description = !state.course.show.description;
@@ -296,18 +312,7 @@ const mycourse = {
   showLessons(state) {
     state.course.show.lessons = !state.course.show.lessons;
   },
-  showLanguage(state) {
-    state.course.show.language = !state.course.show.language;
-  },
-  showUse(state) {
-    state.course.show.use = !state.course.show.use;
-  },
-  showAccess(state) {
-    state.course.show.access = !state.course.show.access;
-  },
-  showCertificate(state) {
-    state.course.show.certificate = !state.course.show.certificate;
-  },
+
   showInstegram(state) {
     state.course.show.share.instegram = !state.course.show.share.instegram;
   },

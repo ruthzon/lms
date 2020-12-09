@@ -42,11 +42,14 @@ margin-left: 20vw;
 h2{
     display: inline-block; 
 }
+<<<<<<< HEAD
 .white{
     background-color:olive;
     /* width: 100vh; */
 }
 
+=======
+>>>>>>> 14c5040fede0909c33fa9e37f9348f4700b6712e
 .course-list ul li{
   display: inline-block;  
   margin-right: 2%;

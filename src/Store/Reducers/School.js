@@ -64,7 +64,9 @@ const initialState = {
       partners: true,
       footer: true,
       getChoice: true,//!!!!!!!
-      worldSelection: true,//!!!!!!!
+      worldSelection: true,//!!!!!!!\
+      searchbar: true
+
     },
     colors: {
       header: '#33333D',
@@ -78,6 +80,8 @@ const initialState = {
       footer: '#282834',
       getChoice: '#EFEFF6',//!!!!!!!
       worldSelection: '#FEF0EF',//!!!!!!!
+      searchbar: '#f56962'
+
     },
     footer: [
       {
@@ -103,8 +107,8 @@ const initialState = {
         links: ["", "", "", "", "", ""]
       }
     ],
-    footerBottom:{
-      text:"© 2015-2020 Skillfy Education Private Limited. All rights reserved",
+    footerBottom: {
+      text: "© 2015-2020 Skillfy Education Private Limited. All rights reserved",
       share: {
         instegram: '',
         facebook: '',
@@ -113,7 +117,7 @@ const initialState = {
         linkedin: '',
         youtube: '',
         reddit: '',
-        google:''
+        google: ''
       },
       show: {
         instegram: false,
@@ -123,9 +127,9 @@ const initialState = {
         linkedin: true,
         youtube: false,
         reddit: false,
-        google:true
+        google: true,
       },
-      aboutStudent:'#FEF0EF'
+      aboutStudent: '#FEF0EF'
     }
   }
 };
@@ -194,8 +198,8 @@ const myschool = {
   setFooterText(state, action) {
     state.school.footerBottom.text = action.payload;
   },
-  setFooter(state,action){
-    state.school.footer[action.payload.col][action.payload.key][action.payload.id]=action.payload.value
+  setFooter(state, action) {
+    state.school.footer[action.payload.col][action.payload.key][action.payload.id] = action.payload.value
   },
 
 

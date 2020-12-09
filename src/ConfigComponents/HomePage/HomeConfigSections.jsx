@@ -5,6 +5,10 @@ import {handleDelete, handleImage, handleImageById} from '../handleImage';
 export function ConfigHeader(props) {
   return (
     <>
+    <h5>
+      Header
+      </h5>
+      <br/>
       <div>
         Background color
         <input
@@ -43,7 +47,22 @@ export function ConfigHeader(props) {
           value={props.school.subtitle}
         />
       </div>
-
+      <div>
+        Search bar
+        <input
+          type="color"
+          value={props.school.colors.searchbar}
+          onChange={(e) => props.color([e.target.value, 'searchbar'])}
+        />
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => props.show('searchbar')}
+            checked={props.school.show.searchbar}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
       <div>
         Select image
         <input
@@ -672,7 +691,7 @@ export function ConfigFooterCol(props) {
   return (
     <>
       <h5>
-        Header
+        Footer
         <FaPlus
           onClick={(e) =>
             data.addNewForFooter({col: col, array: 'new', links: 'link to...'})
@@ -702,7 +721,7 @@ export function ConfigFooterCol(props) {
         return (
           <>
             <span>
-              {key}
+              {key+1}
               <FaTrash
                 onClick={(e) => {
                   handleDelete(data.deleteFromFooter, {col: col, id: key});

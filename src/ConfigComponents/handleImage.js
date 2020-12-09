@@ -27,6 +27,23 @@ async function handleImageById(e, func,id) {
     }
   };
 }
+async function handleIconById(e, func,id) {
+  let file = e.target.files[0];
+  console.log(file);
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onloadend = () => {
+    if (file.size / 1024 / 1024 > 2) alert('File size exceeds 2 MB');
+    else {
+      console.log(reader.result);
+      func({
+        id: id,
+        key: 'icon',
+        value: reader.result,
+      });
+    }
+  };
+}
 
 const handleDelete = (funcDelete, data) => {
   // let name=data.currentTarget.__reactEventHandlers$dr5mwtbhix.name;
@@ -48,4 +65,4 @@ const handleDelete = (funcDelete, data) => {
     }
   });
 };
-export{handleImage,handleImageById,handleDelete};
+export{handleImage,handleImageById,handleDelete,handleIconById};
