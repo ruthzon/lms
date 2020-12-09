@@ -30,11 +30,11 @@ export default connect(
     mapDispatchToProps
 )(function studentProfilePage(props) {
     return (
-        <div>    
+        <div>
             <Navigation></Navigation>
             <div className="container-fluid">
                 <div className="row align-items-center" style={{ backgroundColor: props.studentProfile.colors.aboutStudent }}>
-                    <div class="file-upload offset-2 col-3 mt-5">
+                    <div class="file-upload student-img offset-2 col-3 mt-5">
                         <img variant="top" src={props.studentProfile.image} />
                         <input
                             type="file"
@@ -42,10 +42,10 @@ export default connect(
                             onChange={(e) => handleImage(e, props.setSstudentImage)}
                         />
                     </div>
-                    <div className="col-6 about">
+                    <div className="col-6 about ml-5">
                         <h2 className="student-name ">{props.studentProfile.name}</h2>
                         <p className="a ml-2">{props.studentProfile.profession}</p>
-                        <button className="follow-btn">Follow</button>
+                        <button className=" ml-5 follow-btn">Follow</button>
                         <p>{props.studentProfile.about}</p>
                         <ul >
                             <li>
@@ -69,7 +69,7 @@ export default connect(
                 <div className="course-list row mt-5">
                     <ul>
                         {list.map(item => (
-                            <li className="col-3">
+                            <li className="col-md-3 col-sm-12">
                                 <CourseCard course={item}></CourseCard>
                             </li>
                         ))}

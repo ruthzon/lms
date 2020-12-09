@@ -2,16 +2,23 @@
 button:focus{
     outline: 0;
 }
-.file-upload{
-    /* border:15px solid white; */
-    margin-bottom: -7vh;
- 
-}
+
 .file-upload img{
     background-size: cover;
     background-position: center;
     
 }
+.student-img{
+    padding: 0;
+    border-radius: 5px;
+    margin-bottom: -7vh;
+    transition: .3s;
+    border:15px solid white;
+}
+.student-img:hover{
+    transform: scale(1.1); 
+}
+
 .about{
 
 letter-spacing: var(--unnamed-character-spacing-0-32);
@@ -33,7 +40,7 @@ border: 1px solid orange;
 border-radius: 5px;
 color:orange;
 display: inline-block;
-margin-left: 20vw;
+margin-left: 15vw;
 
 }
 .a{
@@ -42,14 +49,11 @@ margin-left: 20vw;
 h2{
     display: inline-block; 
 }
-<<<<<<< HEAD
 .white{
     background-color:olive;
     /* width: 100vh; */
 }
 
-=======
->>>>>>> 14c5040fede0909c33fa9e37f9348f4700b6712e
 .course-list ul li{
   display: inline-block;  
   margin-right: 2%;
@@ -67,3 +71,4 @@ color:gray;
 .btn-view{
     margin-right: 5vh;
 }
+

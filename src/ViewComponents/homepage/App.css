@@ -607,6 +607,10 @@ section .section-title {
   opacity: 1;
   cursor: pointer;
 }
+.course-card{
+      box-shadow: 0 4px 30px 0 rgba(0, 0, 0, 0.2), 0 6px 30px 0 rgba(0, 0, 0, 0.19);
+
+}
 .user-img {
   height: 25px;
   border-radius: 20px;
