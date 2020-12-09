@@ -447,3 +447,31 @@ export function ConfigBuyCourseInfo(props) {
     </>
   );
 }
+
+export function ConfigMoreCourses(props) {
+  let data=props.data;
+  return (
+    <>
+      <h5>More courses</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={data.course.colors.more_courses}
+          onChange={(e) => data.setColorMoreCourses(e.target.value)}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showMoreCourses()}
+            checked={data.course.show.more_courses}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+    </>
+  );
+}

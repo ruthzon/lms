@@ -7,6 +7,7 @@ import {CardDeck, Form, Dropdown, Carousel} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import {connect} from 'react-redux';
 import {Courses} from '../../Store/data';
+import { actions } from '../../Store/actions';
 
 function mapStateToProps(state) {
   return {
@@ -14,6 +15,11 @@ function mapStateToProps(state) {
     courses: state.listCoursesReducer.courses,
   };
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+  });
+
 function CarouserlItem(props) {
   const listItems = [];
   let times = props.len % 3 === 0 ? props.len / 3 : props.len / 3 + 1;
@@ -31,7 +37,7 @@ function CarouserlItem(props) {
 }
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(function MoreCourses(props) {
   let courses = props.courses;
   // if (props.courses.length == 0) courses = Courses;
@@ -49,6 +55,10 @@ export default connect(
   return (
     <section
       id="world"
+      onClick={(e) => {
+        props.setSectionConfig({name: 'course_more_courses'});
+      }}
+      className="hover-config"
       style={{backgroundColor: props.course.colors.more_courses}}
     >
       <div className="title">

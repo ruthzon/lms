@@ -17,6 +17,7 @@ import {
   ConfigOverview,
   ConfigBuyCourseShare,
   ConfigBuyCourseInfo,
+  ConfigMoreCourses,
 } from './CourseConfigSections';
 const browserHistory = createBrowserHistory();
 
@@ -125,6 +126,8 @@ export default connect(
         return <ConfigBuyCourseShare data={props} />;
       case 'buy_course_info':
         return <ConfigBuyCourseInfo data={props} />;
+      case 'course_more_courses':
+        return <ConfigMoreCourses data={props} />;
 
       default:
         return 'Click any object on the page to change its settings';
@@ -132,7 +135,7 @@ export default connect(
   };
   return (
     <>
-      <div className="config overflow-auto">
+      <div className="config">
         <button onClick={() => addLesson()}>
           Add Lesson <FaPlus />
         </button>
