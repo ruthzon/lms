@@ -1,6 +1,11 @@
 import React from 'react';
 import {FaCopy, FaPlus, FaTrash} from 'react-icons/fa';
-import {handleDelete, handleIconById, handleImage, handleImageById} from '../handleImage';
+import {
+  handleDelete,
+  handleIconById,
+  handleImage,
+  handleImageById,
+} from '../handleImage';
 
 export function ConfigHeader(props) {
   let data = props.data;
@@ -437,7 +442,7 @@ export function ConfigBuyCourseInfo(props) {
               <input
                 type="file"
                 accept=".svg"
-                onChange={(e) => handleIconById(e, data.setCourseInfo,key)}
+                onChange={(e) => handleIconById(e, data.setCourseInfo, key)}
               />
             </div>
             <br></br>
@@ -449,7 +454,7 @@ export function ConfigBuyCourseInfo(props) {
 }
 
 export function ConfigMoreCourses(props) {
-  let data=props.data;
+  let data = props.data;
   return (
     <>
       <h5>More courses</h5>
@@ -467,7 +472,108 @@ export function ConfigMoreCourses(props) {
           <input
             type="checkbox"
             onClick={(e) => data.showMoreCourses()}
-            checked={data.course.show.more_courses}
+            checked={data.course.show.more.more_courses}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+    </>
+  );
+}
+
+export function ConfigBelive(props) {
+  let data = props.data;
+  return (
+    <>
+      <h5>A qoute</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={data.course.colors.belive}
+          onChange={(e) => data.setColorBelive(e.target.value)}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showBelive()}
+            checked={data.course.show.more.belive}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div>
+        Text
+        <textarea
+          type="text"
+          value={data.course.belive.text}
+          onChange={(e) => data.setBeliveText(e.target.value)}
+        />
+      </div>
+      <div>
+        Auther
+        <input
+          type="text"
+          value={data.course.belive.auther}
+          onChange={(e) => data.setBeliveAuther(e.target.value)}
+        />
+      </div>
+      <div>
+        Image
+        <input
+          type="file"
+          accept=".png, .jpeg, .jpg"
+          onChange={(e) => handleImage(e, data.setBeliveImage)}
+        />
+      </div>
+    </>
+  );
+}
+
+export function ConfigFooter(props) {
+  let data = props.data;
+  return (
+    <>
+      <h5>Footer</h5>
+      
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showCourseFooter()}
+            checked={data.course.show.more.footer}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+    </>
+  );
+}
+
+export function ConfigTopEducators(props) {
+  let data = props.data;
+  return (
+    <>
+      <h5>More courses</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={data.course.colors.top_educators}
+          onChange={(e) => data.setColorTopEducators(e.target.value)}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showTopEducarors()}
+            checked={data.course.show.more.top_educators}
           />
           <span className="slider round"></span>
         </label>

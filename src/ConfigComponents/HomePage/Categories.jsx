@@ -51,6 +51,7 @@ function RowCategories(props) {
     let x = i;
     rows.push(
       <Card
+      key={x}
         onClick={() => props.data.setSectionConfig({name: 'category', id: x})}
         className="category-card hover-trash hover-config-child"
         style={{backgroundColor: props.data.school.categories[i].backcolor}}

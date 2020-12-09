@@ -11,9 +11,29 @@
 }
 
 .rec-pagination {
-    visibility: hidden;
+  visibility: hidden;
 }
-.rec-carousel-wrapper.content{
-    padding: 0;
-    max-width: 80%;
+.rec-carousel-wrapper.content {
+  padding: 0;
+  max-width: 80%;
 }
+.carousel-right {
+  text-align: right;
+  float: right;
+}
+
+#top .bkVSTc {
+  /* display: none; */
+}
+.paging-scroll{
+  height: 5px;
+  width: 60%;
+  background-color: white;
+}
+.paging-button{
+  height: 5px;
+  display: inline-flex;
+  width: 100;
+  background-color: #F68C20;
+}
+

@@ -253,6 +253,10 @@ textarea {
 .config input[type='file']{
   overflow: hidden;
 }
+
+.config div{
+  margin-bottom: 2px;
+}
 .coursepageconf .overview textarea {
   height: 180px;
   font-size: 12pt;
@@ -400,7 +404,7 @@ header textarea {
 }
 .top-card textarea,
 .top-card input {
-  width: 50%;
+  width: 60%;
 }
 .discount input {
   color: #ffffff;

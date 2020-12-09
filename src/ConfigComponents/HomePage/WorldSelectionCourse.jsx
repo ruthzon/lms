@@ -25,7 +25,7 @@ function WorldSelectionCourse(props) {
   // const {course, setName, setSubtitle, setImage} = props;
 
   const prev = (
-    <button onClick="dispatchDiscreteEvent" className="carousel-left">
+    <button className="carousel-left">
       <FaArrowLeft />
     </button>
   );

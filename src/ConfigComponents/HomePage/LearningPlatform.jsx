@@ -91,6 +91,7 @@ function RowLearning(props) {
     let x=i;
     rows.push(
       <div
+      key={x}
         id={'learning-' + i}
         onClick={() => props.data.setSectionConfig({name: 'learning-x', id: x})}
         className=" hover-config"

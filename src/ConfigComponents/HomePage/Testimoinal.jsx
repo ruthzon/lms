@@ -101,7 +101,7 @@ class Testimoinal extends Component {
             {/* <CardDeck> */}
             {this.props.school.testimoinal.map((item, key) => {
               return (
-                <Card
+                <Card key={key}
                   onClick={() =>
                     this.props.setSectionConfig({name: 'testimoinal-x', id: key})
                   }

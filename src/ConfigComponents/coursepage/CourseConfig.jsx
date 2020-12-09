@@ -18,6 +18,8 @@ import {
   ConfigBuyCourseShare,
   ConfigBuyCourseInfo,
   ConfigMoreCourses,
+  ConfigBelive,
+  ConfigFooter,
 } from './CourseConfigSections';
 const browserHistory = createBrowserHistory();
 
@@ -57,6 +59,9 @@ const mapDispatchToProps = (dispatch) => ({
   setColorBelive: (data) => dispatch(actions.setColorBelive(data)),
   setColorName: (data) => dispatch(actions.setColorName(data)),
   setColorSubtitle: (data) => dispatch(actions.setColorSubtitle(data)),
+  setBeliveImage: (data) => dispatch(actions.setBeliveImage(data)),
+  setBeliveAuther: (data) => dispatch(actions.setBeliveAuther(data)),
+  setBeliveText: (data) => dispatch(actions.setBeliveText(data)),
   showLinkedin: () => dispatch(actions.showLinkedin()),
   showInstegram: () => dispatch(actions.showInstegram()),
   showFacebook: () => dispatch(actions.showFacebook()),
@@ -128,6 +133,10 @@ export default connect(
         return <ConfigBuyCourseInfo data={props} />;
       case 'course_more_courses':
         return <ConfigMoreCourses data={props} />;
+      case 'course_belive':
+        return <ConfigBelive data={props} />;
+      case 'course_footer':
+        return <ConfigFooter data={props} />;
 
       default:
         return 'Click any object on the page to change its settings';
