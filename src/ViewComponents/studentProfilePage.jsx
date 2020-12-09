@@ -1,28 +1,37 @@
 import React from 'react'
 import './homepage/App.css'
-import { connect } from 'react-redux';
-// import CourseCard from './CourseCard';
-import { handleImage } from '../ConfigComponents/handleImage';
+import { connect } from 'react-redux'
+import { actions } from '../Store/actions'
+import { handleImage } from '../ConfigComponents/handleImage'
 import './studentProfile.css'
-import Belive from '../ViewComponents/coursepage/belive'
-import StudentProfilePage1 from './studentProfilePage1';
-// import  Navigation from '../ViewComponents/coursepage/navbar';
+import Navigation from './coursepage/navbar'
+import Belive from './coursepage/belive'
+import TopEducators from './coursepage/topEducators'
+import Footer from './Footer'
+import CourseCard from './CourseCard';
+import { Courses } from '../Store/data'
 
 
-
-function mapStateToProps(state) {
+const list = Courses;
+const mapStateToProps = (state) => {
     return {
-        studentProfile: state.studentProfilReducer.studentProfile
+        studentProfile: state.studentProfilReducer.studentProfile,
+        courses: state.listCoursesReducer.courses,
     };
 }
 
+
+const mapDispatchToProps = (dispatch) => ({
+    setSstudentImage: (sub) => dispatch(actions.setSstudentImage(sub)),
+});
+
 export default connect(
     mapStateToProps,
-    // mapDispatchToProps
+    mapDispatchToProps
 )(function studentProfilePage(props) {
     return (
-        <div>
-            {/* <Navigation></Navigation> */}
+        <div>    
+            <Navigation></Navigation>
             <div className="container-fluid">
                 <div className="row align-items-center" style={{ backgroundColor: props.studentProfile.colors.aboutStudent }}>
                     <div class="file-upload offset-2 col-3 mt-5">
@@ -30,7 +39,7 @@ export default connect(
                         <input
                             type="file"
                             accept=".jpg, .jpeg, .png"
-                            onChange={(e) => handleImage(e, props.setImage)}
+                            onChange={(e) => handleImage(e, props.setSstudentImage)}
                         />
                     </div>
                     <div className="col-6 about">
@@ -50,10 +59,25 @@ export default connect(
                                     Course</li>
                         </ul>
                     </div>
-
+                </div>
+                <div className="row mt-5">
+                    <h2 className="offset-1 mt-5 col-3">My courses({list.length}) </h2>
+                    <select className="form-control offset-5 col-1 popular-btn mt-5">Popular
+                    <option selected>Popular</option>
+                    </select>
+                </div>
+                <div className="course-list row mt-5">
+                    <ul>
+                        {list.map(item => (
+                            <li className="col-3">
+                                <CourseCard course={item}></CourseCard>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
                 <Belive></Belive>
-                <StudentProfilePage1></StudentProfilePage1>
+                <TopEducators></TopEducators>
+                <Footer></Footer>
             </div>
 
         </div>

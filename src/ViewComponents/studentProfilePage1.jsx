@@ -1,31 +1,46 @@
+
 import React from 'react'
 import './homepage/App.css'
 import { connect } from 'react-redux';
-// import CourseCard from './CourseCard';
-import studentProfilePage1 from './studentProfilePage1';
-import { handleImage } from '../ConfigComponents/handleImage';
-import './studentProfile.css'
-import Belive from '../ViewComponents/coursepage/belive'
-// import  Navigation from '../ViewComponents/coursepage/navbar';
+// import './course.css';
+import CourseCard from '../ViewComponents/CourseCard';
+import { ExCourse, Courses } from '../Store/data'
+// import { Course } from '../classes';
 
 
-
-function mapStateToProps(state) {
+const list = Courses;
+const mapStateToProps = (state) => {
     return {
-        studentProfile: state.studentProfilReducer.studentProfile
+        studentProfile: state.studentProfilReducer.studentProfile,
+        courses: state.listCoursesReducer.courses,
     };
 }
 
 export default connect(
-    mapStateToProps,
+    mapStateToProps
     // mapDispatchToProps
-)(function studentProfilePage1(props) {
-    return (
-        <div>
-            
-            <button>hiiiiiiiiiiiiiiiiiiiiii</button>
 
-        </div>
-    )
-})
+)
 
+    (function studentProfilePage1(props) {
+        return (
+            <div className="container-fluid">
+                <div className="row mt-5">
+                    <h2 className="offset-1  col-3">My courses({list.length}) </h2>
+                    <select className="form-control offset-5 col-1 popular-btn">Popular
+                    <option selected>Popular</option>
+                    </select>
+                </div>
+                <div className="course-list row mt-5">
+                    <ul>
+                        {list.map(item => (
+                            <li className="col-3">
+                                <CourseCard course={item}></CourseCard>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+            </div>
+        )
+    })

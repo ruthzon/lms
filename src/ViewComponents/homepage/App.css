@@ -686,3 +686,7 @@ section .section-title {
     font-size: smaller;
   }
 }
+.navbar{
+    background-color: white !important;
+    width: 100vw !important;
+}

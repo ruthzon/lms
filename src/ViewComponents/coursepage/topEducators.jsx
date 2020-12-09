@@ -66,10 +66,11 @@ class TopEducators extends Component {
       </button>
     );
     return (
+
       <section id="top">
-        <div className="title">
-          <button>View all</button>
-          <h3>Top Education offers and deals are listed here</h3>
+        <div className=" row justify-content-around">
+          <h3 className="">Top Education offers and deals are listed here</h3>
+          <button className="btn-view">View all</button>
         </div>
         <Carousel
           autoPlay={false}
