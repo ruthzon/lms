@@ -36,15 +36,9 @@ export default function CourseCard(props) {
       // onPress={() => navigation.navigate('Details')}
       // href="./coursepage/CoursePage.jsx"
     >
-<<<<<<< HEAD
       {/* {user!==null && props.course.user_id === user.uid && (
         <Card.Text className="text-own">your own course</Card.Text>
       )} */}
-=======
-      {/* {user!==null && props.course.user_id === user.uid && ( */}
-        {/* <Card.Text className="text-own">your own course</Card.Text> */}
-      {/* )} */}
->>>>>>> 14c5040fede0909c33fa9e37f9348f4700b6712e
       <Card.Img
         variant="top"
         className="card-img"

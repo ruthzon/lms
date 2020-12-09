@@ -30,7 +30,7 @@ export default connect(
     mapDispatchToProps
 )(function studentProfilePage(props) {
     return (
-        <div>    
+        <div>
             <Navigation></Navigation>
             <div className="container-fluid">
                 <div className="row align-items-center" style={{ backgroundColor: props.studentProfile.colors.aboutStudent }}>
@@ -42,7 +42,7 @@ export default connect(
                             onChange={(e) => handleImage(e, props.setSstudentImage)}
                         />
                     </div>
-                    <div className="col-6 about">
+                    <div className="col-6 about ml-5">
                         <h2 className="student-name ">{props.studentProfile.name}</h2>
                         <p className="a ml-2">{props.studentProfile.profession}</p>
                         <button className="follow-btn">Follow</button>
@@ -69,7 +69,7 @@ export default connect(
                 <div className="course-list row mt-5">
                     <ul>
                         {list.map(item => (
-                            <li className="col-3">
+                            <li className="col-md-3 col-sm-12">
                                 <CourseCard course={item}></CourseCard>
                             </li>
                         ))}
