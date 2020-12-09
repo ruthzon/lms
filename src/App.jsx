@@ -38,6 +38,7 @@ import Wizard from './login/wizard';
 import history from "./history.js";
 import wizard from './login/wizard';
 import studentProfilePage from './ViewComponents/studentProfilePage';
+import RouteView from './ViewComponents/RouteView';
 
 
 // import {NavigationContainer} from '@react-navigation/native';
@@ -75,6 +76,9 @@ function App() {
             {/* <Register /> */}
           </Route>
           <Route path="/wizard" component={wizard}>
+            {/* <Wizard /> */}
+          </Route>
+          <Route path="/view/:school" component={RouteView}>
             {/* <Wizard /> */}
           </Route>
           {/* <Route path="/course">
