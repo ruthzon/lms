@@ -47,7 +47,7 @@ export default connect(
       <Container>
         <Row>
           <Col xs="6">
-            <div class="file-upload">
+            <div class="file-upload hover-img">
               <Image src={props.school.learning.image}></Image>
               <input
                 type="file"

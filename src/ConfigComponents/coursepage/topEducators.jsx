@@ -29,7 +29,7 @@ class TopEducators extends Component {
     super();
     this.breakPoints = [
       {width: 1, itemsToShow: 1},
-      {width: 250, itemsToShow: 2},
+      {width: 350, itemsToShow: 2},
       {width: 700, itemsToShow: 3},
     ];
   }
@@ -53,24 +53,23 @@ class TopEducators extends Component {
           itemPadding={[0, 20]}
           className="content"
           ref={(ref) => (this.carousel = ref)}
-          renderPagination={({ pages, activePage, onClick }) => {
+          renderPagination={({pages, activePage, onClick}) => {
             return (
               <span direction="row" className="paging-scroll">
-                {pages.map(page => {
-                  const isActivePage = activePage === page
+                {pages.map((page) => {
+                  const isActivePage = activePage === page;
                   return (
                     <span
-                    className="paging-button"
+                      className="paging-button"
                       key={page}
                       onClick={() => onClick(page)}
                       active={isActivePage}
                     />
-                  )
+                  );
                 })}
               </span>
-            )
+            );
           }}
-        
         >
           {/* <Carousel.Item> */}
           {/* <CardDeck> */}
@@ -78,18 +77,32 @@ class TopEducators extends Component {
           {this.props.course.top_educators.map((item, key) => {
             return (
               <>
-                <Card key={key} className="top-card">
+                <Card
+                  key={key}
+                  className="top-card hover-config"
+                  onClick={() =>
+                    this.props.setSectionConfig({
+                      name: 'course_top_educators_x',
+                      id: key,
+                    })
+                  }
+                >
                   {/* <Card.ImgOverlay >
                           <Image src={item.bg}></Image>
                         </Card.ImgOverlay> */}
                   <Card.Body>
-                    <div class="file-upload2">
+                    <div className="file-upload2">
                       <Image src={item.image}></Image>
                       <input
+                        className="hover-config"
                         type="file"
                         accept=".jpg, .jpeg, .png"
                         onChange={(e) =>
-                          handleImageById(e, this.props.setTopEducatorsImage)
+                          handleImageById(
+                            e,
+                            this.props.setTopEducatorsImage,
+                            key
+                          )
                         }
                       />
                     </div>
@@ -145,7 +158,7 @@ class TopEducators extends Component {
           {/* </CardDeck> */}
           {/* </Carousel.Item> */}
         </Carousel>
-        <div className="content">
+        <div className="content mt--42">
           <Button
             variant="light"
             onClick={() => this.carousel.slidePrev()}
@@ -156,7 +169,7 @@ class TopEducators extends Component {
           <Button
             variant="light"
             onClick={() => this.carousel.slideNext()}
-            className="carousel-right pt-0"
+            className="carousel-right"
           >
             <FaArrowRight />
           </Button>

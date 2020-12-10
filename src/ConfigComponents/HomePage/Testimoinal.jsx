@@ -121,10 +121,10 @@ class Testimoinal extends Component {
                         }
                       /> */}
                   <Card.Body>
-                    <Card.Title>
-                      <img src={item.image} alt="Student"></img>
+                    <Card.Title className="hover-img"> 
+                      {/* <img src={item.image} alt="Student"></img> */}
 
-                      {/* <span class="file-upload2">
+                      <span class="file-upload2">
                         <img src={item.image} alt="Student"></img>
                         <input
                           id={'students-image-' + key}
@@ -138,7 +138,7 @@ class Testimoinal extends Component {
                             )
                           }
                         />
-                      </span> */}
+                      </span>
                       <input
                         id={'students-name-' + key}
                         value={item.name}

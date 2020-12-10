@@ -152,7 +152,7 @@ input:checked + .slider:before {
 .homeconf input,
 .homeconf textarea,
 .coursepageconf textarea,
-.coursepageconf input{
+.coursepageconf input {
   border: none;
   background-color: transparent;
   /* width: -webkit-fill-available; */
@@ -174,6 +174,10 @@ input:checked + .slider:before {
   border: 1px solid #f56962;
   z-index: 3;
 }
+.hover-img:hover {
+  cursor: pointer;
+  border: 1px solid #f56962;
+}
 .hover-config:hover,
 .homeconf input:hover,
 .homeconf textarea:hover,
@@ -186,6 +190,7 @@ input:checked + .slider:before {
   border: 1px solid #f56962;
   z-index: 1;
 }
+
 @media only screen and (max-width: 1000px) {
   .homeconf .category-card .card-body {
     display: block;
@@ -201,6 +206,18 @@ input:checked + .slider:before {
 .cover {
   display: none;
 }
+.btn-light:not(:disabled):not(.disabled):active,
+.show > .btn-light.dropdown-toggle {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: #ffffff;
+}
+.dropdown-toggle.btn:hover {
+  color: #ffffff;
+  background-color: transparent;
+  border-color: #ffffff;
+}
+.config button:hover,
 .config button {
   background-color: transparent;
   border: 1px solid #fff;
@@ -210,8 +227,10 @@ input:checked + .slider:before {
   font-size: 14px;
   text-align: left;
   padding: 0 5px;
+  color: #ffffff;
 }
-.config textarea{
+
+.config textarea {
   overflow: hidden;
 }
 .config .btn-primary {
@@ -236,8 +255,8 @@ textarea {
   height: 200px;
 }
 .config textarea,
-.config input[type='text'],
-.config input[type='number'] {
+/* .config input[type='number'], */
+.config input[type='text'] {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #fff;
@@ -250,11 +269,18 @@ textarea {
   border: none;
   width: 15%;
 }
-.config input[type='file']{
+.config input[type='file'] {
   overflow: hidden;
 }
-
-.config div{
+.config input[type='number'] {
+  float: right;
+  width: 30%;
+}
+.config input[type='radio'] {
+  float: right;
+  margin-top: 5px;
+}
+.config div {
   margin-bottom: 2px;
 }
 .coursepageconf .overview textarea {
@@ -284,12 +310,18 @@ textarea {
   left: 0px;
   height: 50px;
 }
+.file-upload2 input[type='file']:hover,
+.file-upload input[type='file']:hover,
+.file-upload input[type='file'] {
+  opacity: 0;
+}
 .file-upload2 input {
   height: 50%;
   position: absolute;
   width: 130px;
   opacity: 0;
 }
+
 .file-upload input {
   opacity: 0;
   position: absolute;
@@ -304,8 +336,9 @@ textarea {
   width: 100%;
 }
 #file-upload-button {
-  opacity: 1;
+  opacity: 0;
 }
+
 .test-card .file-upload img {
   width: auto;
 }
@@ -415,4 +448,8 @@ header textarea {
 }
 .trash-lesson {
   cursor: pointer;
+}
+.width-80 {
+  width: 80px;
+  color: #f68c20;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Dropdown} from 'react-bootstrap';
 import {FaCopy, FaPlus, FaTrash} from 'react-icons/fa';
 import {
   handleDelete,
@@ -394,7 +395,7 @@ export function ConfigBuyCourseInfo(props) {
   return (
     <>
       <h5>
-        Footer
+        Course information
         <FaPlus
           onClick={(e) =>
             data.addNewForInfo({
@@ -477,6 +478,67 @@ export function ConfigMoreCourses(props) {
           <span className="slider round"></span>
         </label>
       </div>
+      <div>
+        Title
+        <textarea
+          value={data.course.more_courses.header}
+          onChange={(e) =>
+            data.setMoreCourses({key: 'header', value: e.target.value})
+          }
+        />
+      </div>
+      <div>
+        Items to show
+        <input
+          type="number"
+          value={data.course.more_courses.items}
+          onChange={(e) =>
+            data.setMoreCourses({key: 'items', value: e.target.value})
+          }
+        />
+      </div>
+      <radioGroup>
+        <br />
+        <u>Algorithm</u>
+        <div id="algo" radioGroup="algo">
+          <div>
+            Same category
+            <input
+              type="radio"
+              checked={data.course.more_courses.algorithm === 'category'}
+              onChange={(e) =>
+                data.setMoreCourses({key: 'algorithm', value: 'category'})
+              }
+            />
+          </div>
+          <div>
+            Same auther
+            <input
+              type="radio"
+              checked={data.course.more_courses.algorithm === 'auther'}
+              onChange={(e) =>
+                data.setMoreCourses({key: 'algorithm', value: 'auther'})
+              }
+            />
+          </div>
+        </div>
+      </radioGroup>
+      
+      {/* <Dropdown>
+        <Dropdown.Toggle variant="light" id="dropdown-basic">
+          Algorithm
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={(e) => data.showMoreCourses()}>
+            Category
+          </Dropdown.Item>
+          <Dropdown.Item onClick={(e) => data.showMoreCourses()}>
+            Auther
+          </Dropdown.Item>
+          // {/* <Dropdown.Item>Something else</Dropdown.Item> 
+        </Dropdown.Menu>
+      </Dropdown> */}
     </>
   );
 }
@@ -538,7 +600,7 @@ export function ConfigFooter(props) {
   return (
     <>
       <h5>Footer</h5>
-      
+
       <div>
         Show this section
         <label className="switch">
@@ -558,7 +620,21 @@ export function ConfigTopEducators(props) {
   let data = props.data;
   return (
     <>
-      <h5>More courses</h5>
+      <h5>
+        Top educations
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForTop({
+              bg: './img_from_xd/path 65-1.svg',
+              image: './img_from_xd/image 63.png',
+              header: 'Title',
+              content: 'Content of discount',
+              color: '#111111',
+              discount: '000',
+            })
+          }
+        />
+      </h5>
       <div>
         Background color
         <input
@@ -577,6 +653,77 @@ export function ConfigTopEducators(props) {
           />
           <span className="slider round"></span>
         </label>
+      </div>
+    </>
+  );
+}
+
+export function ConfigTopEducatorsX(props) {
+  let {data, id} = props;
+  return (
+    <>
+      <h5>
+        Top educations
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForTop({
+              bg: './img_from_xd/path 65-1.svg',
+              image: './img_from_xd/image 63.png',
+              header: 'Title',
+              content: 'Content of discount',
+              color: '#111111',
+              discount: '000',
+            })
+          }
+        />
+      </h5>
+      <div>
+        Header
+        <textarea
+          type="text"
+          value={data.course.top_educators[id].header}
+          onChange={(e) =>
+            data.setTopEducatorsProp([e.target.value, 'header', id])
+          }
+        />
+      </div>
+      <div>
+        Content
+        <textarea
+          type="text"
+          value={data.course.top_educators[id].content}
+          onChange={(e) =>
+            data.setTopEducatorsProp([e.target.value, 'content', id])
+          }
+        />
+      </div>
+      <div>
+        Discount
+        <input
+          type="text"
+          value={data.course.top_educators[id].discount}
+          onChange={(e) =>
+            data.setTopEducatorsProp([e.target.value, 'discount', id])
+          }
+        />
+      </div>
+      <div>
+        Background color discount
+        <input
+          type="color"
+          value={data.course.top_educators[id].color}
+          onChange={(e) =>
+            data.setTopEducatorsProp([e.target.value, 'color', id])
+          }
+        />
+      </div>
+      <div>
+        Image
+        <input
+          type="file"
+          accept=".jpg, .jpeg, .png"
+          onChange={(e) => handleImageById(e, data.setTopEducatorsImage, id)}
+        />
       </div>
     </>
   );

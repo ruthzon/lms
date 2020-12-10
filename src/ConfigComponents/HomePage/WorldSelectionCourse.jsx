@@ -1,11 +1,14 @@
 import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {Card, CardDeck, Dropdown, Carousel, Form} from 'react-bootstrap';
+import {Card, CardDeck, Dropdown, Form} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
 import {connect} from 'react-redux';
-import { actions } from '../../Store/actions';
+import {actions} from '../../Store/actions';
+import Carousel from 'react-elastic-carousel';
+import '../HomePage/carousel.css';
+import CourseCard from '../CourseCard';
 
 function mapStateToProps(state) {
   return {
@@ -17,10 +20,33 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
-
+  setWorldSelection: (name) => dispatch(actions.setWorldSelection(name)),
 });
 
-
+function CourseCards(props) {
+  const algo = props.school.worldSelection.algorithm;
+  const courses_algo = props.courses.sort((a, b) =>
+    a[algo] > b[algo] ? 1 : -1
+  );
+  const listItems = [];
+  let times =
+    props.school.worldSelection.items <= courses_algo.length
+      ? props.school.worldSelection.items
+      : courses_algo.length;
+  for (let i = 0; i < times; i++) {
+    listItems.push(
+      <>
+        {/* // <Carousel.Item> */}
+        {/* <CardDeck> */}
+        <CourseCard course={courses_algo[i]} />
+        {/* <ListCourses i={i * 3} courses={courses_algo} /> */}
+        {/* // </CardDeck> */}
+        {/* </Carousel.Item>*/}
+      </>
+    );
+  }
+  return listItems;
+}
 function WorldSelectionCourse(props) {
   // const {course, setName, setSubtitle, setImage} = props;
 
@@ -34,6 +60,11 @@ function WorldSelectionCourse(props) {
       <FaArrowRight />
     </button>
   );
+  const breakPoints = [
+    {width: 1, itemsToShow: 1},
+    {width: 1000, itemsToShow: 3},
+  ];
+  let carousel = null;
   return (
     <section
       onClick={() => props.setSectionConfig({name: 'worldSelection'})}
@@ -55,15 +86,22 @@ function WorldSelectionCourse(props) {
           </Dropdown>
           <button>View all</button>
         </Form>
-        <h3>The world’s largest selection of courses</h3>
+        <h3>
+          <textarea
+            value={props.school.worldSelection.header}
+            onChange={(e) =>
+              props.setWorldSelection([e.target.value, 'header'])
+            }
+          />
+        </h3>
       </div>
       <Carousel
-        autoPlay="false"
-        nextIcon={next}
-        prevIcon={prev}
-        data-interval="false"
+        className="content"
+        breakPoints={breakPoints}
+        ref={(ref) => (carousel = ref)}
       >
-        <Carousel.Item>
+        <CourseCards school={props.school} courses={props.courses} />
+        {/* <Carousel.Item>
           <CardDeck>
             <ListCourses courses={props.courses} i={0} />
           </CardDeck>
@@ -72,7 +110,7 @@ function WorldSelectionCourse(props) {
           <CardDeck>
             <ListCourses courses={props.courses} i={3} />
           </CardDeck>
-        </Carousel.Item>
+        </Carousel.Item> */}
       </Carousel>
       {/* <Form inline className="carousel">
             <button className="carousel-left">
@@ -87,6 +125,9 @@ function WorldSelectionCourse(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorldSelectionCourse);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WorldSelectionCourse);
 
 // export {WorldSelectionCourse, GetChoice};

@@ -5,10 +5,8 @@ import {handleDelete, handleImage, handleImageById} from '../handleImage';
 export function ConfigHeader(props) {
   return (
     <>
-    <h5>
-      Header
-      </h5>
-      <br/>
+      <h5>Header</h5>
+      <br />
       <div>
         Background color
         <input
@@ -198,6 +196,7 @@ export function ConfigCategories(props) {
 }
 
 export function ConfigGetChoice(props) {
+  let data = props.data;
   return (
     <>
       <div>
@@ -219,6 +218,62 @@ export function ConfigGetChoice(props) {
           <span className="slider round"></span>
         </label>
       </div>
+      <div>
+        Title
+        <textarea
+          value={data.school.getChoice.header}
+          onChange={(e) =>
+            data.setGetChoice([e.target.value, 'header'])
+          }
+        />
+      </div>
+      <div>
+        Items to show
+        <input
+          type="number"
+          value={data.school.getChoice.items}
+            onChange={(e) => data.setGetChoice([e.target.value, 'items'])}
+
+        />
+      </div>
+      <radioGroup>
+        <br />
+        <u>Algorithm</u>
+        {/* <div id="algo" radioGroup="algo"> */}
+        <div>
+          Most stars
+          <input
+            type="radio"
+            checked={data.school.getChoice.algorithm === 'stars'}
+            onChange={(e) => data.setGetChoice(['stars', 'algorithm'])}
+          />
+        </div>
+        <div>
+          Most views
+          <input
+            type="radio"
+            checked={data.school.getChoice.algorithm === 'views'}
+            onChange={(e) => data.setGetChoice(['views', 'algorithm'])}
+          />
+        </div>
+        <div>
+          Most students
+          <input
+            type="radio"
+            checked={data.school.getChoice.algorithm === 'students'}
+            onChange={(e) => data.setGetChoice(['students', 'algorithm'])}
+          />
+        </div>
+        <div>
+          Most lessons
+          <input
+            type="radio"
+            checked={data.school.getChoice.algorithm === 'lessons'}
+            onChange={(e) => data.setGetChoice(['lessons', 'algorithm'])}
+          />
+        </div>
+        {/* </div> */}
+      </radioGroup>
     </>
   );
 }
@@ -226,7 +281,18 @@ export function ConfigGetChoice(props) {
 export function ConfigLearning(props) {
   return (
     <>
-      <h5>Learning platform</h5>
+      <h5>
+        Learning platform
+        <FaPlus
+          onClick={(e) =>
+            props.data.addNewForLearning({
+              id: '00.',
+              header: 'Header',
+              text: 'Write here the text for that paragraph',
+            })
+          }
+        />
+      </h5>
       <div>
         Background color
         <input
@@ -260,77 +326,6 @@ export function ConfigLearning(props) {
           type="file"
           accept=".jpg, .png, .jpeg"
           onChange={(e) => handleImage(e, props.image)}
-        />
-      </div>
-    </>
-  );
-}
-
-export function ConfigWorldSelection(props) {
-  return (
-    <>
-      <h5>World Selection</h5>
-      <div>
-        Background color
-        <input
-          type="color"
-          value={props.school.colors.worldSelection}
-          onChange={(e) => props.color([e.target.value, 'worldSelection'])}
-        />
-      </div>
-      <div>
-        Show this section
-        <label className="switch">
-          <input
-            type="checkbox"
-            onClick={(e) => props.show('worldSelection')}
-            checked={props.school.show.worldSelection}
-          />
-          <span className="slider round"></span>
-        </label>
-      </div>
-    </>
-  );
-}
-
-export function ConfigCTA(props) {
-  let data = props.data;
-  return (
-    <>
-      <h5>Get started</h5>
-      <div>
-        Background color
-        <input
-          type="color"
-          value={props.school.colors.CTA}
-          onChange={(e) => props.color([e.target.value, 'CTA'])}
-        />
-      </div>
-      <div>
-        Show this section
-        <label className="switch">
-          <input
-            type="checkbox"
-            onClick={(e) => props.show('CTA')}
-            checked={props.school.show.CTA}
-          />
-          <span className="slider round"></span>
-        </label>
-      </div>
-      <div>
-        Title
-        <input
-          type="text"
-          onChange={(e) => data.setCta([e.target.value, 'title'])}
-          value={props.school.CTA.title}
-        />
-      </div>
-      <div>
-        Text
-        <textarea
-          type="text"
-          onChange={(e) => data.setCta([e.target.value, 'text'])}
-          value={props.school.CTA.text}
         />
       </div>
     </>
@@ -400,12 +395,153 @@ export function ConfigLearningX(props) {
     </>
   );
 }
+export function ConfigWorldSelection(props) {
+  let {data}=props;
+  return (
+    <>
+      <h5>World Selection</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={props.school.colors.worldSelection}
+          onChange={(e) => props.color([e.target.value, 'worldSelection'])}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => props.show('worldSelection')}
+            checked={props.school.show.worldSelection}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div>
+        Title
+        <textarea
+          value={data.school.worldSelection.header}
+          onChange={(e) =>
+            data.setWorldSelection([e.target.value, 'header'])
+          }
+        />
+      </div>
+      <div>
+        Items to show
+        <input
+          type="number"
+          value={data.school.worldSelection.items}
+            onChange={(e) => data.setWorldSelection([e.target.value, 'items'])}
+
+        />
+      </div>
+      <radioGroup>
+        <br />
+        <u>Algorithm</u>
+        {/* <div id="algo" radioGroup="algo"> */}
+        <div>
+          Most stars
+          <input
+            type="radio"
+            checked={data.school.worldSelection.algorithm === 'stars'}
+            onChange={(e) => data.setWorldSelection(['stars', 'algorithm'])}
+          />
+        </div>
+        <div>
+          Most views
+          <input
+            type="radio"
+            checked={data.school.worldSelection.algorithm === 'views'}
+            onChange={(e) => data.setWorldSelection(['views', 'algorithm'])}
+          />
+        </div>
+        <div>
+          Most students
+          <input
+            type="radio"
+            checked={data.school.worldSelection.algorithm === 'students'}
+            onChange={(e) => data.setWorldSelection(['students', 'algorithm'])}
+          />
+        </div>
+        <div>
+          Most lessons
+          <input
+            type="radio"
+            checked={data.school.worldSelection.algorithm === 'lessons'}
+            onChange={(e) => data.setWorldSelection(['lessons', 'algorithm'])}
+          />
+        </div>
+        {/* </div> */}
+      </radioGroup>
+    </>
+  );
+}
+
+export function ConfigCTA(props) {
+  let data = props.data;
+  return (
+    <>
+      <h5>Get started</h5>
+      <div>
+        Background color
+        <input
+          type="color"
+          value={props.school.colors.CTA}
+          onChange={(e) => props.color([e.target.value, 'CTA'])}
+        />
+      </div>
+      <div>
+        Show this section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => props.show('CTA')}
+            checked={props.school.show.CTA}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <div>
+        Title
+        <input
+          type="text"
+          onChange={(e) => data.setCta([e.target.value, 'title'])}
+          value={props.school.CTA.title}
+        />
+      </div>
+      <div>
+        Text
+        <textarea
+          type="text"
+          onChange={(e) => data.setCta([e.target.value, 'text'])}
+          value={props.school.CTA.text}
+        />
+      </div>
+    </>
+  );
+}
 
 export function ConfigTestimoinal(props) {
   let data = props.data;
   return (
     <>
-      <h5>Testimoinal</h5>
+      <h5>
+        Testimoinal
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForSection([
+              {
+                name: 'Name',
+                image: './img_from_xd/User.png',
+                description: 'What the testimoinal has to say.',
+              },
+              'testimoinal',
+            ])
+          }
+        />
+      </h5>
       <div>
         Background color
         <input
@@ -483,7 +619,7 @@ export function ConfigTestimoinalX(props) {
       </div>
       <div>
         Description
-        <input
+        <textarea
           type="text"
           value={data.school.testimoinal[id].description}
           onChange={(e) => {
@@ -507,7 +643,14 @@ export function ConfigPartner(props) {
   let data = props.data;
   return (
     <>
-      <h5>Partners</h5>
+      <h5>
+        Partners
+        <FaPlus
+          onClick={(e) =>
+            data.addNewForSection(['./img_from_xd/leader-logo.png', 'partners'])
+          }
+        />
+      </h5>
       <div>
         Background color
         <input
@@ -721,7 +864,7 @@ export function ConfigFooterCol(props) {
         return (
           <>
             <span>
-              {key+1}
+              {key + 1}
               <FaTrash
                 onClick={(e) => {
                   handleDelete(data.deleteFromFooter, {col: col, id: key});
@@ -744,7 +887,7 @@ export function ConfigFooterCol(props) {
                 value={value}
                 onChange={(e) => {
                   data.setFooter({
-                    col:col,
+                    col: col,
                     key: 'array',
                     value: e.target.value,
                     id: key,
@@ -759,7 +902,7 @@ export function ConfigFooterCol(props) {
                 value={thisCol.links[key]}
                 onChange={(e) => {
                   data.setFooter({
-                    col:col,
+                    col: col,
                     key: 'links',
                     value: e.target.value,
                     id: key,

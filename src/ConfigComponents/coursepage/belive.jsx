@@ -20,7 +20,13 @@ function mapStateToProps(state) {
 
 class Belive extends Component {
   render() {
-    let {course, setBeliveAuther,setSectionConfig, setBeliveImage, setBeliveText} = this.props;
+    let {
+      course,
+      setBeliveAuther,
+      setSectionConfig,
+      setBeliveImage,
+      setBeliveText,
+    } = this.props;
     return (
       <>
         <div
@@ -47,7 +53,7 @@ class Belive extends Component {
                 </p>
               </Col>
               <Col md="6">
-                <div class="file-upload">
+                <div class="file-upload hover-img">
                   <Image src={course.belive.image}></Image>
                   <input
                     type="file"

@@ -20,6 +20,8 @@ import {
   ConfigMoreCourses,
   ConfigBelive,
   ConfigFooter,
+  ConfigTopEducators,
+  ConfigTopEducatorsX,
 } from './CourseConfigSections';
 const browserHistory = createBrowserHistory();
 
@@ -79,7 +81,12 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFromOverview: (name) => dispatch(actions.deleteFromOverview(name)),
   addNewForInfo: (name) => dispatch(actions.addNewForInfo(name)),
   deleteFromInfo: (name) => dispatch(actions.deleteFromInfo(name)),
+  addNewForTop: (name) => dispatch(actions.addNewForTop(name)),
+  deleteFromTop: (name) => dispatch(actions.deleteFromTop(name)),
   setCourseInfo: (name) => dispatch(actions.setCourseInfo(name)),
+  setTopEducatorsProp: (name) => dispatch(actions.setTopEducatorsProp(name)),
+  setTopEducatorsImage: (name) => dispatch(actions.setTopEducatorsImage(name)),
+  setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
 });
 
 export default connect(
@@ -137,6 +144,10 @@ export default connect(
         return <ConfigBelive data={props} />;
       case 'course_footer':
         return <ConfigFooter data={props} />;
+      case 'course_top_educators':
+        return <ConfigTopEducators data={props} />;
+      case 'course_top_educators_x':
+        return <ConfigTopEducatorsX data={props} id={id}/>;
 
       default:
         return 'Click any object on the page to change its settings';

@@ -26,12 +26,13 @@ const mapStateToProps = (state) => {
 // )(
   export default
   function RowCourse(props) {
-    const listCourses = [];
-    let i = props.i;
-    let j = i;
-    for (i; i < props.courses.length && i < j + 3; i++) {
-      listCourses.push(<CourseCard course={props.courses[i]} />);
-    }
-    return listCourses;
+    return "not in use"
+    // const listCourses = [];
+    // let i = props.i;
+    // let j = i;
+    // for (i; i < props.courses.length && i < j + 3; i++) {
+    //   listCourses.push(<CourseCard course={props.courses[i]} />);
+    // }
+    // return listCourses;
   }
 // );

@@ -3,12 +3,14 @@ import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
 // import CourseCard from '../homepage/Courses'
 import ListCourses from '../ListCourses';
 import React from 'react';
-import {CardDeck, Form, Dropdown, Carousel} from 'react-bootstrap';
+import {CardDeck, Form, Dropdown} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import {connect} from 'react-redux';
 import {Courses} from '../../Store/data';
-import { actions } from '../../Store/actions';
-
+import {actions} from '../../Store/actions';
+import Carousel from 'react-elastic-carousel';
+import '../HomePage/carousel.css';
+import CourseCard from '../CourseCard';
 function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
@@ -18,18 +20,29 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
-  });
+  setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
+});
 
 function CarouserlItem(props) {
+  const algo = props.course.more_courses.algorithm;
+  const courses_algo = props.courses.filter(
+    (course) => course[algo] == props.course[algo]
+  );
   const listItems = [];
-  let times = props.len % 3 === 0 ? props.len / 3 : props.len / 3 + 1;
+  let times =
+    props.course.more_courses.items <= courses_algo.length
+      ? props.course.more_courses.items
+      :courses_algo.length;
   for (let i = 0; i < times; i++) {
     listItems.push(
-      <Carousel.Item>
-        <CardDeck>
-          <ListCourses i={i * 3} courses={props.courses}/>
-        </CardDeck>
-      </Carousel.Item>
+      <>
+        {/* // <Carousel.Item> */}
+        {/* <CardDeck> */}
+        <CourseCard course={courses_algo[i]} />
+        {/* <ListCourses i={i * 3} courses={courses_algo} /> */}
+        {/* // </CardDeck> */}
+        {/* </Carousel.Item>*/}
+      </>
     );
   }
   // debugger;
@@ -39,9 +52,14 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function MoreCourses(props) {
-  let courses = props.courses;
+  let {course, courses} = props;
   // if (props.courses.length == 0) courses = Courses;
-
+  const carousel = null;
+  const breakPoints = [
+    {width: 1, itemsToShow: 1},
+    {width: 550, itemsToShow: 2},
+    {width: 1000, itemsToShow: 3},
+  ];
   const prev = (
     <button onClick="dispatchDiscreteEvent" className="carousel-left">
       <FaArrowLeft />
@@ -75,15 +93,21 @@ export default connect(
           </Dropdown>
           <button>View all</button>
         </Form>
-        <h3>More courses you might like</h3>
+        <h3>
+          <input
+            value={course.more_courses.header}
+            onChange={(e) =>
+              props.setMoreCourses({key: 'header', value: e.target.value})
+            }
+          />
+        </h3>
       </div>
       <Carousel
-        autoPlay={false}
-        nextIcon={next}
-        prevIcon={prev}
-        data-interval="false"
+        className="content"
+        breakPoints={breakPoints}
+        ref={(ref) => (carousel = ref)}
       >
-        <CarouserlItem len={courses.length} courses={courses} />
+        <CarouserlItem courses={courses} course={course} />
 
         {/* <Carousel.Item>
           <CardDeck>

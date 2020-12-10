@@ -23,7 +23,7 @@
 }
 
 #top .bkVSTc {
-  /* display: none; */
+  display: none;
 }
 .paging-scroll{
   height: 5px;
@@ -35,5 +35,8 @@
   display: inline-flex;
   width: 100;
   background-color: #F68C20;
+}
+.mt--42{
+  margin-top: -42px;
 }
 
