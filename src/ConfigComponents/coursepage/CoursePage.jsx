@@ -16,7 +16,7 @@ import {
   Link,
   useParams,
 } from 'react-router-dom';
-import Footer from '../../ViewComponents/Footer';
+import Footer from './Footer';
 import Navigation from '../../navbar';
 import Header from './Header';
 import '../../ViewComponents/coursepage/course.css';

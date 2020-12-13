@@ -17,6 +17,11 @@ import {
   ConfigOverview,
   ConfigBuyCourseShare,
   ConfigBuyCourseInfo,
+  ConfigMoreCourses,
+  ConfigBelive,
+  ConfigFooter,
+  ConfigTopEducators,
+  ConfigTopEducatorsX,
 } from './CourseConfigSections';
 const browserHistory = createBrowserHistory();
 
@@ -56,6 +61,9 @@ const mapDispatchToProps = (dispatch) => ({
   setColorBelive: (data) => dispatch(actions.setColorBelive(data)),
   setColorName: (data) => dispatch(actions.setColorName(data)),
   setColorSubtitle: (data) => dispatch(actions.setColorSubtitle(data)),
+  setBeliveImage: (data) => dispatch(actions.setBeliveImage(data)),
+  setBeliveAuther: (data) => dispatch(actions.setBeliveAuther(data)),
+  setBeliveText: (data) => dispatch(actions.setBeliveText(data)),
   showLinkedin: () => dispatch(actions.showLinkedin()),
   showInstegram: () => dispatch(actions.showInstegram()),
   showFacebook: () => dispatch(actions.showFacebook()),
@@ -73,7 +81,12 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFromOverview: (name) => dispatch(actions.deleteFromOverview(name)),
   addNewForInfo: (name) => dispatch(actions.addNewForInfo(name)),
   deleteFromInfo: (name) => dispatch(actions.deleteFromInfo(name)),
+  addNewForTop: (name) => dispatch(actions.addNewForTop(name)),
+  deleteFromTop: (name) => dispatch(actions.deleteFromTop(name)),
   setCourseInfo: (name) => dispatch(actions.setCourseInfo(name)),
+  setTopEducatorsProp: (name) => dispatch(actions.setTopEducatorsProp(name)),
+  setTopEducatorsImage: (name) => dispatch(actions.setTopEducatorsImage(name)),
+  setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
 });
 
 export default connect(
@@ -125,6 +138,16 @@ export default connect(
         return <ConfigBuyCourseShare data={props} />;
       case 'buy_course_info':
         return <ConfigBuyCourseInfo data={props} />;
+      case 'course_more_courses':
+        return <ConfigMoreCourses data={props} />;
+      case 'course_belive':
+        return <ConfigBelive data={props} />;
+      case 'course_footer':
+        return <ConfigFooter data={props} />;
+      case 'course_top_educators':
+        return <ConfigTopEducators data={props} />;
+      case 'course_top_educators_x':
+        return <ConfigTopEducatorsX data={props} id={id}/>;
 
       default:
         return 'Click any object on the page to change its settings';
@@ -132,7 +155,7 @@ export default connect(
   };
   return (
     <>
-      <div className="config overflow-auto">
+      <div className="config">
         <button onClick={() => addLesson()}>
           Add Lesson <FaPlus />
         </button>

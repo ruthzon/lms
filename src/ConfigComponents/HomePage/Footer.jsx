@@ -11,10 +11,10 @@ import {
 // import './courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
-import '../ViewComponents/homepage/App.css';
+import '../../ViewComponents/homepage/App.css';
 import {connect} from 'react-redux';
-import history from '../history';
-import {actions} from '../Store/actions';
+import history from '../../history';
+import {actions} from '../../Store/actions';
 function mapStateToProps(state) {
   return {
     school: state.schoolReducer.school,
@@ -71,6 +71,7 @@ export default connect(
           {props.school.footer.map((col, key) => {
             return (
               <Col
+              key="key"
                 xs="12"
                 sm="6"
                 md="3"
@@ -83,7 +84,7 @@ export default connect(
                 <ul className="list-unstyled quick-links">
                   {col.array.map((value, key) => {
                     return (
-                      <li>
+                      <li key={key}>
                         <a 
                         // onClick={() => history.push(col.links[key])}
                         >
@@ -192,11 +193,11 @@ export default connect(
               {props.school.footerBottom.text}
               <ul className="list-unstyled list-inline social text-center">
                 {Object.entries(props.school.footerBottom.share).map(
-                  (share) => {
+                  (share,key) => {
                     return (
                       <>
                         {props.school.footerBottom.show[share[0]] && (
-                          <li className="list-inline-item">
+                          <li className="list-inline-item" key={key}>
                             <a 
                             // onClick={() => history.push(share[1])}
                             >

@@ -12,7 +12,7 @@ function Configurator(props) {
             <div id="wrap-configurator" className="pt-4 px-2">
                 <div
                     id="head-configurator"
-                    class="row d-flex justify-content-between m-0 mb-3 mt-1"
+                    className="row d-flex justify-content-between m-0 mb-3 mt-1"
                 >
                     <span className="material-icons">settings</span>
 

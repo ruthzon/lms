@@ -1,7 +1,7 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../../ViewComponents/homepage/App.css';
-import {Card, CardDeck, Form} from 'react-bootstrap';
+import {Card, CardDeck, Col, Container, Dropdown, Form, Row} from 'react-bootstrap';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
@@ -27,7 +27,10 @@ export default connect(
     <>
       <div
         style={{backgroundColor: props.school.colors.categories}}
-        onClick={(e) => {if (e.target === e.currentTarget) props.setSectionConfig({name: 'categories'})}}
+        onClick={(e) => {
+          if (e.target === e.currentTarget)
+            props.setSectionConfig({name: 'categories'});
+        }}
         className="hover-config"
       >
         <div className="title">
@@ -38,9 +41,13 @@ export default connect(
         </div>
         <CardDeck className="none"></CardDeck>
         {/* Because the first card deck always align to right. */}
-        <CardDeck>
-          <RowCategories data={props} />
-        </CardDeck>
+        {/* <CardDeck> */}
+        <Container className="content">
+          <Row>
+            <RowCategories data={props} />
+            {/* </CardDeck> */}
+          </Row>
+        </Container>
       </div>
     </>
   );
@@ -50,12 +57,14 @@ function RowCategories(props) {
   for (var i = 0; i < props.data.school.categories.length; i++) {
     let x = i;
     rows.push(
-      <Card
-        onClick={() => props.data.setSectionConfig({name: 'category', id: x})}
-        className="category-card hover-trash hover-config-child"
-        style={{backgroundColor: props.data.school.categories[i].backcolor}}
-      >
-        {/* <input
+      <Col xs="12" sm="6" md="4" lg="3" xl="2">
+        <Card
+          key={x}
+          onClick={() => props.data.setSectionConfig({name: 'category', id: x})}
+          className="category-card hover-trash hover-config-child"
+          style={{backgroundColor: props.data.school.categories[i].backcolor}}
+        >
+          {/* <input
           id={'category-backcolor-' + i}
           type="color"
           className="border-white"
@@ -68,39 +77,42 @@ function RowCategories(props) {
             ])
           }
         /> */}
-        <div class="file-upload">
-          <Card.Img variant="top" src={props.data.school.categories[i].icon} />
-          {/* <input
-            id={'category-icon-' + i}
-            type="file"
-            accept=".svg"
-            onChange={(e) =>
-              handleImageById(
-                e,
-                props.data.setCategoriesImage,
-                parseInt(e.target.id.split('-')[2]
-                )
-              )
-            }
-          /> */}
-        </div>
-
-        <Card.Body>
-          <Card.Title>
-            {props.data.school.categories[i].name}
-            {/* <input
-              className="width-webkit"
-              id={'category-name-' + i}
-              value={props.data.school.categories[i].name}
+          <div class="file-upload">
+            <Card.Img
+              variant="top"
+              src={props.data.school.categories[i].icon}
+            />
+            <input
+              id={'category-icon-' + i}
+              type="file"
+              accept=".svg"
               onChange={(e) =>
-                props.data.setCategories([
-                  e.target.value,
-                  e.target.id.split('-')[1],
-                  parseInt(e.target.id.split('-')[2]),
-                ])
+                handleImageById(
+                  e,
+                  props.data.setCategoriesImage,
+                  parseInt(e.target.id.split('-')[2])
+                )
               }
-            /> */}
-            {/* <FaTrash
+            />
+          </div>
+
+          <Card.Body>
+            <Card.Title>
+              {/* {props.data.school.categories[i].name} */}
+              <textarea
+                className="width-webkit"
+                id={'category-name-' + i}
+                value={props.data.school.categories[i].name}
+                onChange={(e) =>
+                  props.data.setCategories([
+                    e.target.value,
+                    e.target.id.split('-')[1],
+                    parseInt(e.target.id.split('-')[2]),
+                  ])
+                }
+              />
+             
+              {/* <FaTrash
               className="trash"
               id={"categories-trash-"+i}
               onClick={(e) =>
@@ -111,9 +123,10 @@ function RowCategories(props) {
                 ])
               }
             /> */}
-          </Card.Title>
-        </Card.Body>
-      </Card>
+            </Card.Title>
+          </Card.Body>
+        </Card>
+      </Col>
     );
   }
   return rows;
