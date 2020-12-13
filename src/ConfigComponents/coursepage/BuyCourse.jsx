@@ -10,6 +10,7 @@ const mapDispatchToProps = (dispatch) => ({
   setImage: (data) => dispatch(actions.setImage(data)),
   setPrice: (data) => dispatch(actions.setPrice(data)),
   setPrevPriceTime: (data) => dispatch(actions.setPrevPriceTime(data)),
+  setPrevPrice: (data) => dispatch(actions.setPrevPrice(data)),
   setCourseInfo: (name) => dispatch(actions.setCourseInfo(name)),
 });
 
@@ -52,7 +53,7 @@ export default connect(
             setSectionConfig({name: 'buy_course'});
         }}
       >
-        <div class="file-upload">
+        <div className="file-upload hover-img">
           <Card.Img variant="top" src={course.image} />
           <input
             type="file"
@@ -86,9 +87,11 @@ export default connect(
                 <Card.Text>
                   <Image src="./img_from_xd/orange clock.svg"></Image>
                   <input
-                    value={course.prev_price_time + ' left at this price'}
+                    className="width-80"
+                    value={course.prev_price_time}
                     onChange={(e) => setPrevPriceTime(e.target.value)}
                   />
+                  left at this price
                 </Card.Text>
               )}
               <Button

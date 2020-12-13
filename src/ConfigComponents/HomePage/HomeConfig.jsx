@@ -59,6 +59,8 @@ const mapDispatchToProps = (dispatch) => ({
   setFooter: (name) => dispatch(actions.setFooter(name)),
   addNewForFooter: (name) => dispatch(actions.addNewForFooter(name)),
   deleteFromFooter: (name) => dispatch(actions.deleteFromFooter(name)),
+  setGetChoice: (name) => dispatch(actions.setGetChoice(name)),
+  setWorldSelection: (name) => dispatch(actions.setWorldSelection(name)),
 });
 
 export default withRouter(
@@ -123,6 +125,7 @@ export default withRouter(
               school={props.school}
               color={props.setColorSchoolByPart}
               show={props.showSchoolByPart}
+              data={props}
             />
           );
         case 'learning':
@@ -133,6 +136,7 @@ export default withRouter(
               school={props.school}
               color={props.setColorSchoolByPart}
               show={props.showSchoolByPart}
+              data={props}
             />
           );
         case 'learning-x':
@@ -150,6 +154,7 @@ export default withRouter(
               school={props.school}
               color={props.setColorSchoolByPart}
               show={props.showSchoolByPart}
+              data={props}
             />
           );
         case 'cta':

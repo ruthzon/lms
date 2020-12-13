@@ -10,15 +10,17 @@ const initialState = {
     name: 'Enter the name of the course here',
     subtitle: 'Here is a short description of the course and the content that will be taught in it',
     image: './img_from_xd/Image 108@2x.png',
+    category:"",
     stars: 3,//להפוך למספר
-    views: 0,//להפוך למספר
+    views: 0,
     weeks: 0,
-    students_num: 0,
+    students: 0,///במקום students_num
     auther: 'Name of the lecturer',
     auther_image: './img_from_xd/Rectangle 22.png',
     price: 'price',
     prev_price: 'prev price',
     prev_price_time: '11 hours',
+    date_created:'',//תאריך ושעה לפי זמן היצירה
     // language: 'Course language',
     // use: 'Use on desktop, tablet & mobile',
     // access: 'Full lifetime access',
@@ -48,6 +50,11 @@ const initialState = {
       { header: "Certification", text: "Effortless comfortable full leather lining eye-catching unique detail to the toe low ‘cut-away’ sides clean and sleek. Polished finish elegant court shoe work duty stretch slingback strap mid kitten heel this ladylike design slingback strap mid kitten heel this ladylike design." },
       { header: "Who this course is for", text: "Anyone interested in learning about business (only practical concepts that you can use and no boring theory + we won’t cover business topics that are common sense" },
     ],
+    more_courses:{
+      header:"More courses you might like",
+      algorithm:"category",
+      items:6
+    },
     show: {
       stars: true,
       views: true,
@@ -179,7 +186,9 @@ const mycourse = {
   setDescription(state, action) {
     state.course.description[action.payload.id][action.payload.key] = action.payload.value;
   },
-
+  setMoreCourses(state, action) {
+    state.course.more_courses[action.payload.key] = action.payload.value;
+  },
   addNewForOverview(state, action) {
     state.course.description = state.course.description.concat(action.payload)
   },
@@ -191,6 +200,12 @@ const mycourse = {
   },
   deleteFromInfo(state, action) {
     state.course.course_info = state.course.course_info.filter((element, ind) => ind !== action.payload);
+  },
+  addNewForTop(state, action) {
+    state.course.top_educators = state.course.top_educators.concat(action.payload)
+  },
+  deleteFromTop(state, action) {
+    state.course.top_educators = state.course.top_educators.filter((element, ind) => ind !== action.payload);
   },
   setCourseInfo(state, action) {
     state.course.course_info[action.payload.id][action.payload.key] = [action.payload.value];

@@ -66,7 +66,7 @@ export const Courses = [
     new Course(
         '3',
         'Sx9WW4LfAPgyVN1lX2exwRbwNTo2',
-        'Adobe Masterclass Photoshop, Illustrator, XD & InDesign',
+        'Adobe Masterclass Photoshop, XD & InDesign',
         'Learn graphic design today with Photoshop, Illustrator, Adobe XD, InDesign & more in this Adobe CC Masterclass!',
         './img_from_xd/Image 108@2x.png',
         '8',
@@ -114,7 +114,7 @@ export const Courses = [
     new Course(
         '6',
         'bXGxgqHJxDOfKTRHSHBJ6VIl5gr2',
-        'Adobe Masterclass Photoshop, Illustrator, XD & InDesign',
+        'Adobe Masterclass Photoshop, XD & InDesign',
         'Learn graphic design today with Photoshop, Illustrator, Adobe XD, InDesign & more in this Adobe CC Masterclass!',
         './img_from_xd/Image 25.png',
         '4.5',

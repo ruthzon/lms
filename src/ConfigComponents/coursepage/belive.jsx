@@ -9,6 +9,7 @@ const mapDispatchToProps = (dispatch) => ({
   setBeliveImage: (data) => dispatch(actions.setBeliveImage(data)),
   setBeliveAuther: (data) => dispatch(actions.setBeliveAuther(data)),
   setBeliveText: (data) => dispatch(actions.setBeliveText(data)),
+  setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
 });
 
 function mapStateToProps(state) {
@@ -19,11 +20,18 @@ function mapStateToProps(state) {
 
 class Belive extends Component {
   render() {
-    let {course, setBeliveAuther, setBeliveImage, setBeliveText} = this.props;
+    let {
+      course,
+      setBeliveAuther,
+      setSectionConfig,
+      setBeliveImage,
+      setBeliveText,
+    } = this.props;
     return (
       <>
         <div
-          className="belive beliveconf"
+          onClick={() => setSectionConfig({name: 'course_belive'})}
+          className="belive beliveconf hover-config"
           style={{backgroundColor: course.colors.belive}}
         >
           <Container>
@@ -45,7 +53,7 @@ class Belive extends Component {
                 </p>
               </Col>
               <Col md="6">
-                <div class="file-upload">
+                <div class="file-upload hover-img">
                   <Image src={course.belive.image}></Image>
                   <input
                     type="file"

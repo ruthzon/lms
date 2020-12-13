@@ -9,7 +9,7 @@ import Navigation from './coursepage/navbar'
 import Belive from './coursepage/belive'
 import TopEducators from './coursepage/topEducators'
 import Footer from './Footer'
-import CourseCard from './CourseCard';
+import CourseCardWithProgress from './CourseCardWithProgress';
 import { Courses } from '../Store/data'
 import { render } from "@testing-library/react";
 // import UseState from 'react-hook-use-state';
@@ -114,7 +114,7 @@ export default connect(
                     <ul>
                         {sorted ? sorted.map(item => (
                             <li className="col-md-3 col-sm-12">
-                                <CourseCard course={item}></CourseCard>
+                                <CourseCardWithProgress course={item}></CourseCardWithProgress>
                             </li>
                         )) :
                             list.map(item => (
@@ -128,6 +128,7 @@ export default connect(
                 <Belive></Belive>
                 <TopEducators></TopEducators>
                 <Footer></Footer>
+
             </div>
 
         </div>

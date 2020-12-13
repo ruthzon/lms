@@ -1,17 +1,18 @@
 import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {Card, CardDeck, Dropdown, Carousel, Form} from 'react-bootstrap';
+import {Card, CardDeck, Dropdown, Carousel, Form, Row, Container, Col} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
-
-
+import CourseCard from '../CourseCard';
+import {Courses} from '../../Store/data'
 const mapDispatchToProps = (dispatch) => ({
   setSchoolName: (name) => dispatch(actions.setSchoolName(name)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
-
+  setGetChoice: (name) => dispatch(actions.setGetChoice(name)),
+  setWorldSelection: (name) => dispatch(actions.setWorldSelection(name)),
 });
 
 function mapStateToProps(state) {
@@ -21,10 +22,42 @@ function mapStateToProps(state) {
   };
 }
 
+
+function CourseCards(props) {
+  const algo = props.school.worldSelection.algorithm;
+  const courses_algo = props.courses.sort((a, b) =>
+    a[algo] > b[algo] ? 1 : -1
+  );
+  const listItems = [];
+  let times =
+    props.school.worldSelection.items <= courses_algo.length
+      ? props.school.worldSelection.items
+      : courses_algo.length;
+  for (let i = 0; i < times; i++) {
+    listItems.push(
+      <>
+        {/* // <Carousel.Item> */}
+        {/* <CardDeck> */}
+        <Col xs="12"  xl="6">
+        <CourseCard course={courses_algo[i]} />
+        </Col>
+        {/* <ListCourses i={i * 3} courses={courses_algo} /> */}
+        {/* // </CardDeck> */}
+        {/* </Carousel.Item>*/}
+      </>
+    );
+  }
+  return listItems;
+}
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function GetChoice(props) {
+  // const breakPoints = [
+  //   {width: 1, itemsToShow: 1},
+  //   {width: 1000, itemsToShow: 3},
+  // ];
   return (
     <section
       id="choice"
@@ -46,15 +79,25 @@ export default connect(
           </Dropdown>
           <button>View all</button>
         </Form>
-        <h3>Get choice of your course</h3>
+        <h3>
+          <textarea
+            value={props.school.getChoice.header}
+            onChange={(e) => props.setGetChoice([e.target.value, 'header'])}
+          />
+        </h3>
       </div>
-      <CardDeck className="none"></CardDeck>
+      <Container className="content">
+        <Row>
+          <CourseCards school={props.school} courses={Courses} />
+        </Row>
+      </Container>
+      {/* <CardDeck className="none"></CardDeck>
       <CardDeck>
         <ListCourses courses={props.courses} i={0} />
       </CardDeck>
       <CardDeck>
         <ListCourses courses={props.courses} i={3} />
-      </CardDeck>
+      </CardDeck> */}
     </section>
   );
 });

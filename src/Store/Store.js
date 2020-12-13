@@ -4,7 +4,7 @@ import schoolReducer from './Reducers/School'
 import stylesReducer from './Reducers/Styles'
 import lessonReducer from './Reducers/Lesson'
 import userReducer from './Reducers/User'
-
+import CourseStudentReducer from './Reducers/CourseStudent'
 import studentProfilReducer from './Reducers/studentProfile'
 // import companyReducer from './Reducers/Company'
 import listCoursesReducer from './Reducers/listCourses'
@@ -17,7 +17,7 @@ import { getCookie } from '../login/wizard';
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // );
 
-const reducer = combineReducers({ courseReducer, listCoursesReducer, schoolReducer,studentProfilReducer,stylesReducer, lessonReducer, userReducer });
+const reducer = combineReducers({ courseReducer, listCoursesReducer, schoolReducer,studentProfilReducer,stylesReducer, lessonReducer, userReducer,CourseStudentReducer });
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(getCourses)));
 var jwt = getCookie('jwt');

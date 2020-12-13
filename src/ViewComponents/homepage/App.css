@@ -659,9 +659,7 @@ section .section-title {
   .category-card .card-img-top {
     margin: 0 0;
   }
-  .category-card {
-    height: auto;
-  }
+  
 
   .course-card .col-2,
   .course-card .col-5,

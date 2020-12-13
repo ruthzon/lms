@@ -62,7 +62,10 @@ export default withRouter(function Login(props) {
         .catch((error) => {
           setError('Error signing in with password and email!');
           console.error('Error signing in with password and email', error);
-        });
+        }).catch((err)=>{
+          if (err.code= "auth/user-not-found")
+          console.log("")
+        })
     }
   };
 
@@ -181,6 +184,7 @@ export default withRouter(function Login(props) {
                 >
                   Start now!
                 </Button>
+                
                 <br />
                 <div className="text-center">
                   <span className="or">OR</span>

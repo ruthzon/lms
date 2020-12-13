@@ -50,6 +50,16 @@ const initialState = {
       "./img_from_xd/Image 13.png",
       "./img_from_xd/Image 14.png",
     ],
+    getChoice:{
+      header:"Get choice of your course",
+      algorithm:"views",
+      items:6
+    },
+    worldSelection:{
+      header:"The world’s largest selection of courses",
+      algorithm:"stars",
+      items:6
+    },
     // footer: {
     //   "Company": ["About", "Careers", "Press", "Blog", "Affiliates",],
     //   "Community": [ "Go Premium", "Team Plans", "Refer a Friend", "Gift Cards", "Scholarships",],
@@ -201,7 +211,12 @@ const myschool = {
   setFooter(state, action) {
     state.school.footer[action.payload.col][action.payload.key][action.payload.id] = action.payload.value
   },
-
+  setGetChoice(state, action) {
+    state.school.getChoice[action.payload[1]] = action.payload[0];
+  },
+  setWorldSelection(state, action) {
+    state.school.worldSelection[action.payload[1]] = action.payload[0];
+  },
 
   // Showwwwww
   showSchoolByPart(state, action) {

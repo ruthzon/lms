@@ -77,6 +77,9 @@ function App() {
           <Route path="/wizard" component={wizard}>
             {/* <Wizard /> */}
           </Route>
+          <Route path="/view/:school" component={RouteView}>
+            {/* <Wizard /> */}
+          </Route>
           {/* <Route path="/course">
             <CoursePage />
           </Route> */}

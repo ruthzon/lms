@@ -47,7 +47,7 @@ export default connect(
       <Container>
         <Row>
           <Col xs="6">
-            <div class="file-upload">
+            <div class="file-upload hover-img">
               <Image src={props.school.learning.image}></Image>
               <input
                 type="file"
@@ -91,6 +91,7 @@ function RowLearning(props) {
     let x=i;
     rows.push(
       <div
+      key={x}
         id={'learning-' + i}
         onClick={() => props.data.setSectionConfig({name: 'learning-x', id: x})}
         className=" hover-config"

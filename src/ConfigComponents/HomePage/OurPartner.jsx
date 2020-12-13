@@ -97,8 +97,8 @@ export default connect(
                   <div key={key} onClick={() =>
                     this.props.setSectionConfig({name: 'partner-x', id: key})
                   } className="hover-trash hover-config">
-                    <div class="file-upload2">
-                      {/* <input
+                    <div class="file-upload2 hover-img">
+                      <input
                         id={'partners-' + key}
                         type="file"
                         accept=".png, .jpg, .jpeg"
@@ -109,7 +109,7 @@ export default connect(
                             parseInt(e.target.id.split('-')[1])
                           )
                         }
-                      /> */}
+                      />
                       <Image src={item} thumbnail />
 
                       {/* <FaTrash
