@@ -8,7 +8,7 @@ import Navigation from './coursepage/navbar'
 import Belive from './coursepage/belive'
 import TopEducators from './coursepage/topEducators'
 import Footer from './Footer'
-import CourseCard from './CourseCard';
+import CourseCardWithProgress from './CourseCardWithProgress';
 import { Courses } from '../Store/data'
 
 
@@ -62,15 +62,18 @@ export default connect(
                 </div>
                 <div className="row mt-5">
                     <h2 className="offset-1 mt-5 col-3">My courses({list.length}) </h2>
-                    <select className="form-control offset-5 col-1 popular-btn mt-5">Popular
-                    <option selected>Popular</option>
+                    <select className="form-control offset-5 col-1 popular-btn mt-5">
+                        <option selected>Popular</option>
+                        <option selected>Most viewed</option>
+                        <option selected>Price</option>
+                        <option selected>Star</option>
                     </select>
                 </div>
                 <div className="course-list row mt-5">
                     <ul>
                         {list.map(item => (
                             <li className="col-md-3 col-sm-12">
-                                <CourseCard course={item}></CourseCard>
+                                <CourseCardWithProgress course={item}></CourseCardWithProgress>
                             </li>
                         ))}
                     </ul>
@@ -78,6 +81,7 @@ export default connect(
                 <Belive></Belive>
                 <TopEducators></TopEducators>
                 <Footer></Footer>
+
             </div>
 
         </div>
