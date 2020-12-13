@@ -9,8 +9,8 @@ import CoursePage from './coursepage/CoursePage';
 // import LessonPage from './lessonPage';
 import HomePage from './HomePage/HomePage';
 import React from 'react';
-import {connect} from 'react-redux';
-import {actions} from '../Store/actions';
+import { connect } from 'react-redux';
+import { actions } from '../Store/actions';
 // import {Courses} from '../Store/data';
 // import Frame from './Frame/HomePageFrame';
 import HomePageFrame from './Frame/HomePageFrame';
@@ -18,7 +18,7 @@ import CoursePageFrame from './Frame/CoursePageFrame';
 // import LessonConfig from './lessonPage/LessonConfig';
 import LessonPageFrame from './Frame/LessonPageFrame';
 import TopFrame from './Frame/top_frame';
-import StudentProfilePage from '../ViewComponents/studentProfilePage';
+import StudentProfilePage from '../ViewComponents/StudentProfilePage';
 // import studentProfilePage from '../ViewComponents/studentProfilePage';
 // import Stage from './Frame/stage';
 // import Configurator from './Frame/configurator';
@@ -48,24 +48,24 @@ export default connect(
       {/* <Link to={`${match.url}/components`}>Components</Link> */}
 
       <Switch>
-      <Route path={`${match.path}/profile`}>
+        <Route path={`${match.path}/profile`}>
           {/* <CoursePage /> */}
           <StudentProfilePage />
-         
+
         </Route>
         <Route path={`${match.path}/addcourse`}>
           {/* <CoursePage /> */}
           <CoursePageFrame />
-         
+
         </Route>
- 
+
         <Route path={`${match.path}/:course/addLesson`}>
           <LessonPageFrame />
-         
+
         </Route>
         <Route path={`${match.path}/:course/:lesson`}>
           <LessonPageFrame />
-         
+
         </Route>
         <Route path={`${match.path}/:course`}>
           {/* <CoursePageFrame /> */}
@@ -75,7 +75,7 @@ export default connect(
         <Route path={match.path}>
           <HomePageFrame />
           {/* <HomePage /> */}
-          
+
         </Route>
       </Switch>
     </div>

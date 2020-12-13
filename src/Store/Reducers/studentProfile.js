@@ -3,6 +3,7 @@ import produce from 'immer';
 import { Courses, ExCourse } from '../data';
 import createReducer from './ReducerUtils';
 import Course from './Course'
+// import { Courses } from '../Store/data'
 
 
 
@@ -12,7 +13,7 @@ const initialState = {
         name: 'David Cohen',
         image: './img_from_xd/Mask Group 9.png',
         profession:' illustrator & Artist',
-        courseList: [{name:'Handsaim', numOfViews:'0' }],
+        courseList: Course,
         colors: {
             aboutStudent: '#FEF0EF',
             recomandCourses:'#EFEFF6'
