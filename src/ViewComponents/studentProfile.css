@@ -72,3 +72,26 @@ color:gray;
     margin-right: 5vh;
 }
 
+.progress{
+    border:1px solid black;
+    width: 200px;
+    /* background-color: rgb(245, 164, 13); */
+}
+
+  
+  .progress-bar {
+    height: 24px;
+    display: block;
+  }
+  
+  .bar-warning {
+    background-color: yellow;
+  }
+  
+  .bar-success {
+    background-color: red;
+  }
+  
+  .bar-error {
+    background-color: red;
+  }

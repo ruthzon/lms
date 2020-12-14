@@ -1,4 +1,5 @@
-import React from 'react'
+// import React from 'react'
+import React, { useState, useEffect } from "react";
 import './homepage/App.css'
 import { connect } from 'react-redux'
 import { actions } from '../Store/actions'
@@ -8,11 +9,14 @@ import Navigation from './coursepage/navbar'
 import Belive from './coursepage/belive'
 import TopEducators from './coursepage/topEducators'
 import Footer from './Footer'
-import CourseCard from './CourseCard';
+import CourseCardWithProgress from './CourseCardWithProgress';
 import { Courses } from '../Store/data'
+import { render } from "@testing-library/react";
+import CourseCard from "./CourseCard";
+// import UseState from 'react-hook-use-state';
 
 
-const list = Courses;
+
 const mapStateToProps = (state) => {
     return {
         studentProfile: state.studentProfilReducer.studentProfile,
@@ -20,15 +24,54 @@ const mapStateToProps = (state) => {
     };
 }
 
-
 const mapDispatchToProps = (dispatch) => ({
     setSstudentImage: (sub) => dispatch(actions.setSstudentImage(sub)),
 });
 
+
+
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(function studentProfilePage(props) {
+)(function StudentProfilePage(props) {
+
+    const list = Courses;
+    const [sorted, setSorted] = useState(null);
+
+
+    useEffect(() => {
+        console.log('storted', sorted)
+        }, [sorted])
+
+    const sortArray = (type, sorted, setSorted) => {
+        const types = {
+            views: 'views',
+            stars: 'stars',
+            popular: 'popular',
+        };
+        const sortProperty = types[type];
+        if(sortProperty!='popular')
+        {
+            let sortedTemp = list.sort((a, b) => b[sortProperty] - a[sortProperty]);
+            console.log(sortedTemp);
+            let sortedListTemp = [];
+        
+            sortedTemp.forEach(element => {
+                sortedListTemp.push(element);
+            });
+
+            setSorted(
+                sortedListTemp
+            );
+        }
+        else
+        {
+            
+        }        
+
+    };
+
     return (
         <div>
             <Navigation></Navigation>
@@ -62,22 +105,31 @@ export default connect(
                 </div>
                 <div className="row mt-5">
                     <h2 className="offset-1 mt-5 col-3">My courses({list.length}) </h2>
-                    <select className="form-control offset-5 col-1 popular-btn mt-5">Popular
-                    <option selected>Popular</option>
+                    <select onChange={(e) => sortArray(e.target.value, sorted, setSorted)} className="form-control offset-5 col-1 popular-btn mt-5">Popular
+                        <option selected>stars</option>
+                        <option selected>views</option>
+                        <option selected>popular</option>
                     </select>
                 </div>
                 <div className="course-list row mt-5">
                     <ul>
-                        {list.map(item => (
+                        {sorted ? sorted.map(item => (
                             <li className="col-md-3 col-sm-12">
-                                <CourseCard course={item}></CourseCard>
+                                <CourseCardWithProgress course={item}></CourseCardWithProgress>
                             </li>
-                        ))}
+                        )) :
+                            list.map(item => (
+                                <li className="col-md-3 col-sm-12">
+                                    <CourseCard course={item}></CourseCard>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
                 <Belive></Belive>
                 <TopEducators></TopEducators>
                 <Footer></Footer>
+
             </div>
 
         </div>

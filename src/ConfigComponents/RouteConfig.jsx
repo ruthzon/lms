@@ -9,8 +9,8 @@ import CoursePage from './coursepage/CoursePage';
 // import LessonPage from './lessonPage';
 import HomePage from './HomePage/HomePage';
 import React from 'react';
-import {connect} from 'react-redux';
-import {actions} from '../Store/actions';
+import { connect } from 'react-redux';
+import { actions } from '../Store/actions';
 // import {Courses} from '../Store/data';
 // import Frame from './Frame/HomePageFrame';
 import HomePageFrame from './Frame/HomePageFrame';
@@ -53,24 +53,24 @@ export default connect(
         <Spinner />
       ) : (
       <Switch>
-      <Route path={`${match.path}/profile`}>
+        <Route path={`${match.path}/profile`}>
           {/* <CoursePage /> */}
           <StudentProfilePage />
-         
+
         </Route>
         <Route path={`${match.path}/addcourse`}>
           {/* <CoursePage /> */}
           <CoursePageFrame />
-         
+
         </Route>
- 
+
         <Route path={`${match.path}/:course/addLesson`}>
           <LessonPageFrame />
-         
+
         </Route>
         <Route path={`${match.path}/:course/:lesson`}>
           <LessonPageFrame />
-         
+
         </Route>
         <Route path={`${match.path}/:course`}>
           {/* <CoursePageFrame /> */}
@@ -80,7 +80,7 @@ export default connect(
         <Route path={match.path}>
           <HomePageFrame />
           {/* <HomePage /> */}
-          
+
         </Route>
       </Switch>)}
     </div>

@@ -6,13 +6,8 @@ import { connect } from 'react-redux';
 import CourseCard from '../ViewComponents/CourseCard';
 import { ExCourse, Courses } from '../Store/data'
 // import { Course } from '../classes';
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> 14c5040fede0909c33fa9e37f9348f4700b6712e
 const list = Courses;
 const mapStateToProps = (state) => {
     return {
@@ -45,14 +40,6 @@ export default connect(
                         ))}
                     </ul>
                 </div>
-<<<<<<< HEAD
-=======
-
-            </div>
-        )
-    })
-
->>>>>>> 14c5040fede0909c33fa9e37f9348f4700b6712e
 
             </div>
         )
