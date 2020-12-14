@@ -23,10 +23,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 
     const user = getState().userReducer.user;
-    
+
     let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
     // const uid = user.uid;
-    
+
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
         $.ajax({
@@ -60,7 +60,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             if (school._id == 0 || !school._id)
                 dispatch(actions.addSchoolToServer(school))
             delete course._id;
-            course.date_created=new Date().toLocaleString();
+            course.date_created = new Date().toLocaleString();
             $.ajax({
                 url: 'https://lms.leader.codes/api/' + uid + '/addCourse',
                 headers: {
@@ -187,7 +187,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
         }
         else {
             $.ajax({
-                url: 'https://lms.leader.codes/api/' + uid + '/' + lesson.course_id + '/' + action.payload._id,
+                url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload._id + '/updateLesson',
                 headers: {
                     Authorization: jwt,
                 },

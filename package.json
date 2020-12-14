@@ -51,7 +51,8 @@
     "semantic-ui-react": "^2.0.0",
     "styled-components": "^5.2.1",
     "sweetalert": "^2.1.2",
-    "typeface-poppins": "0.0.72"
+    "typeface-poppins": "0.0.72",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",
