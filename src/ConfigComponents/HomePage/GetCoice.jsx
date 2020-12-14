@@ -1,18 +1,28 @@
 import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {Card, CardDeck, Dropdown, Carousel, Form, Row, Container, Col} from 'react-bootstrap';
+import {
+  Card,
+  CardDeck,
+  Dropdown,
+  Carousel,
+  Form,
+  Row,
+  Container,
+  Col,
+} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
 import {connect} from 'react-redux';
 import {actions} from '../../Store/actions';
 import CourseCard from '../CourseCard';
-import {Courses} from '../../Store/data'
+import {Courses} from '../../Store/data';
 const mapDispatchToProps = (dispatch) => ({
   setSchoolName: (name) => dispatch(actions.setSchoolName(name)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
   setGetChoice: (name) => dispatch(actions.setGetChoice(name)),
   setWorldSelection: (name) => dispatch(actions.setWorldSelection(name)),
+  // initialCourses: (name) => dispatch(actions.initialCourses(name)),
 });
 
 function mapStateToProps(state) {
@@ -22,25 +32,30 @@ function mapStateToProps(state) {
   };
 }
 
-
 function CourseCards(props) {
   const algo = props.school.worldSelection.algorithm;
   const courses_algo = props.courses.sort((a, b) =>
     a[algo] > b[algo] ? 1 : -1
   );
+  let sortedListTemp = [];
+  courses_algo.forEach((element) => {
+    sortedListTemp.push(element);
+  });
+  // props.initialCourses(courses_algo);
   const listItems = [];
   let times =
     props.school.worldSelection.items <= courses_algo.length
       ? props.school.worldSelection.items
       : courses_algo.length;
+  console.log(sortedListTemp);
+
   for (let i = 0; i < times; i++) {
-    console.log(courses_algo)
     listItems.push(
       <>
         {/* // <Carousel.Item> */}
         {/* <CardDeck> */}
-        <Col xs="12" md="6"  xl="4">
-        <CourseCard course={courses_algo[i]} />
+        <Col xs="12" md="6" xl="4">
+          <CourseCard course={sortedListTemp[i]} />
         </Col>
         {/* <ListCourses i={i * 3} courses={courses_algo} /> */}
         {/* // </CardDeck> */}

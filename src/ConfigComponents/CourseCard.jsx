@@ -37,13 +37,13 @@ export default connect(
   let course = props.course;
 
   var url = window.location;
-  var userName = url.pathname.split('/')[1];
+  var school = url.pathname.split('/')[2];
   // const user = useContext(UserContext);
 
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     // browserHistory.replace(`${match.path} / ${course.name}`);
-    history.push(`${userName}/${course.name}`);
+    history.push(`/view/${school}/${course.name}`);
     window.location.reload();
     console.log(props);
   };
@@ -82,10 +82,10 @@ export default connect(
         <Container>
           <Row>
             <Col xs="2" className="align-left profile">
-              <img src={course.auther_image} alt="card"></img>
+              <img src={course.teacher.name} alt="card"></img>
             </Col>
             <Col xs="4" className="align-left profile">
-              {course.auther}
+              {course.teacher.img}
             </Col>
             <Col xs="6" className="align-right price">
               <span>{course.prev_price} </span>

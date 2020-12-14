@@ -71,9 +71,6 @@ class TopEducators extends Component {
             );
           }}
         >
-          {/* <Carousel.Item> */}
-          {/* <CardDeck> */}
-          {/* <RowTests props={this.state.arr} /> */}
           {this.props.course.top_educators.map((item, key) => {
             return (
               <>

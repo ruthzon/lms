@@ -10,26 +10,29 @@ const initialState = {
     name: 'Enter the name of the course here',
     subtitle: 'Here is a short description of the course and the content that will be taught in it',
     image: './img_from_xd/Image 108@2x.png',
-    category:"",
+    category: "",
+    preview: "",
     stars: 3,
     views: 0,
     weeks: 0,
-    students: 0,///במקום students_num
-    auther: 'Name of the lecturer',
-    auther_image: './img_from_xd/Rectangle 22.png',
+    students: 0,
+    teacher: {
+      name: 'Name of the lecturer',
+      img: './img_from_xd/Rectangle 22.png'
+    },
     price: 'price',
     prev_price: 'prev price',
     prev_price_time: '11 hours',
-    date_created:'',//תאריך ושעה לפי זמן היצירה
+    date_created: '',
     // language: 'Course language',
     // use: 'Use on desktop, tablet & mobile',
     // access: 'Full lifetime access',
     // certificate: 'Certificate of Completion',
     course_info: [
-      { name: "Course language",icon:"./img_from_xd/book.svg" },
-      { name:  'Use on desktop, tablet & mobile',icon:"./img_from_xd/screen.svg"  },
-      { name: 'Full lifetime access',icon:"./img_from_xd/timer.svg"  },
-      { name: 'Certificate of Completion',icon:"./img_from_xd/other.svg"  },
+      { name: "Course language", icon: "./img_from_xd/book.svg" },
+      { name: 'Use on desktop, tablet & mobile', icon: "./img_from_xd/screen.svg" },
+      { name: 'Full lifetime access', icon: "./img_from_xd/timer.svg" },
+      { name: 'Certificate of Completion', icon: "./img_from_xd/other.svg" },
     ],
     share: {
       instegram: '',
@@ -50,17 +53,17 @@ const initialState = {
       { header: "Certification", text: "Effortless comfortable full leather lining eye-catching unique detail to the toe low ‘cut-away’ sides clean and sleek. Polished finish elegant court shoe work duty stretch slingback strap mid kitten heel this ladylike design slingback strap mid kitten heel this ladylike design." },
       { header: "Who this course is for", text: "Anyone interested in learning about business (only practical concepts that you can use and no boring theory + we won’t cover business topics that are common sense" },
     ],
-    more_courses:{
-      header:"More courses you might like",
-      algorithm:"category",
-      items:6
+    more_courses: {
+      header: "More courses you might like",
+      algorithm: "category",
+      items: 6
     },
     show: {
       stars: true,
       views: true,
       prev_price: true,
-      price:true,
-      prev_price_time:true,
+      price: true,
+      prev_price_time: true,
       // language: true,
       // use: true,
       // access: true,
@@ -84,8 +87,8 @@ const initialState = {
         reddit: true,
       },
       description: true,
-      reviews:true,
-      instructor:true,
+      reviews: true,
+      instructor: true,
       // "Course Description": true,
       // "Certification": true,
       // "Who this course is for": true,
