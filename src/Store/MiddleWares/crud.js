@@ -332,6 +332,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             },
             error: function (err) {
                 console.log("error get all for user " + err.massage);
+                dispatch(actions.setProcess(false));
             }
 
         });
