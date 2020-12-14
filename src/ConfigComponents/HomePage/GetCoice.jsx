@@ -33,29 +33,25 @@ function mapStateToProps(state) {
 }
 
 function CourseCards(props) {
-  const algo = props.school.worldSelection.algorithm;
-  const courses_algo = props.courses.sort((a, b) =>
-    a[algo] > b[algo] ? 1 : -1
-  );
-  let sortedListTemp = [];
-  courses_algo.forEach((element) => {
-    sortedListTemp.push(element);
-  });
+  if (!props.courses || props.courses.length)
+    return 'Add courses to see them here';
+  const algo = props.school.getChoice.algorithm;
+  const courses_algo = props.courses.sort((a, b) => a[algo] - b[algo]);
   // props.initialCourses(courses_algo);
-  const listItems = [];
   let times =
-    props.school.worldSelection.items <= courses_algo.length
-      ? props.school.worldSelection.items
+    props.school.getChoice.items <= courses_algo.length
+      ? props.school.getChoice.items
       : courses_algo.length;
-  console.log(sortedListTemp);
 
+
+  const listItems = [];
   for (let i = 0; i < times; i++) {
     listItems.push(
       <>
         {/* // <Carousel.Item> */}
         {/* <CardDeck> */}
         <Col xs="12" md="6" xl="4">
-          <CourseCard course={sortedListTemp[i]} />
+          <CourseCard course={courses_algo[i]} />
         </Col>
         {/* <ListCourses i={i * 3} courses={courses_algo} /> */}
         {/* // </CardDeck> */}

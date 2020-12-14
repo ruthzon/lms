@@ -7,7 +7,7 @@ class Category {
 }
 
 class Course {
-    constructor(id,user_id="",name = 'Course',subtitle='', image, stars = 4.5, views = 28500,lesion="36", auther = "Annonimous",teacher={}, auther_image = '', price="49.65",prev_price="99.99", language="english", description={}) {
+    constructor(id,user_id="",name = 'Course',subtitle='', image, stars = 4.5, views = 28500,lesson="36",teacher={}, price="49.65",prev_price="99.99", language="english", description={}) {
         this.id=id;
         this.user_id=user_id;
         this.name = name;
@@ -15,7 +15,7 @@ class Course {
         this.image = image;
         this.stars = stars;
         this.views = views;
-        this.lesion=lesion
+        this.lesson=lesson
         this.teacher = teacher;
         this.price=price;
         this.prev_price=prev_price;

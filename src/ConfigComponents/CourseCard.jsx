@@ -82,10 +82,10 @@ export default connect(
         <Container>
           <Row>
             <Col xs="2" className="align-left profile">
-              <img src={course.teacher.name} alt="card"></img>
+              <img src={course.teacher.img} alt="teacher image"></img>
             </Col>
             <Col xs="4" className="align-left profile">
-              {course.teacher.img}
+              {course.teacher.name}
             </Col>
             <Col xs="6" className="align-right price">
               <span>{course.prev_price} </span>
