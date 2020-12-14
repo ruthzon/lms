@@ -24,7 +24,7 @@ export const getCookie = (c_name) => {
   return '';
 };
 
-const usernameCheck = (setUserProps) => {
+const usernameCheck = (setUserProps,getAllForUser) => {
   const jwt = getCookie('jwt');
   // let jwt =
     // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
@@ -82,13 +82,16 @@ const usernameCheck = (setUserProps) => {
       } else {
         swal('succsess', 'Username available and created!', 'succsess');
         setUserProps({userName: value});
-        history.push('/' + value + '/addCourse');
+        getAllForUser(value);
+        history.push('/' + value );
       }
     });
 };
 
 const mapDispatchToProps = (dispatch) => ({
   setUserProps: (data) => dispatch(actions.setUserProps(data)),
+  getAllForUser: (data) => dispatch(actions.getAllForUser(data)),
+
 });
 
 function mapStateToProps(state) {
@@ -154,7 +157,7 @@ class Wizard extends Component {
                   id="signupBtn"
                   className="btn btn_light auth__btn"
                   style={{userSelect: 'none', cursor: 'pointer'}}
-                  onClick={() => usernameCheck(this.props.setUserProps)}
+                  onClick={() => usernameCheck(this.props.setUserProps, this.props.getAllForUser)}
                 >
                   Continue
                 </a>

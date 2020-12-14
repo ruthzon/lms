@@ -34,11 +34,12 @@ function CourseCards(props) {
       ? props.school.worldSelection.items
       : courses_algo.length;
   for (let i = 0; i < times; i++) {
+    console.log(courses_algo)
     listItems.push(
       <>
         {/* // <Carousel.Item> */}
         {/* <CardDeck> */}
-        <Col xs="12"  xl="6">
+        <Col xs="12" md="6"  xl="4">
         <CourseCard course={courses_algo[i]} />
         </Col>
         {/* <ListCourses i={i * 3} courses={courses_algo} /> */}

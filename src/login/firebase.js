@@ -101,7 +101,7 @@ export const nav = (displayName) => {
     debugger;
     // const name= displayName.replace(/\s/g, '');
     // browserHistory.replace('/' + displayName + '/addcourse');
-    window.location.href = '/' + displayName + '/addcourse';
+    // window.location.href = '/' + displayName ;
 };
 
 
@@ -157,12 +157,13 @@ export function checkPremission(data) {
                     // store.dispatch(actions.getCoursesFromServer(uid))
 
                     history.push('/wizard')
-                    window.location.reload()
+                    // window.location.reload()
                 }
                 else {
-                    store.dispatch(actions.getCoursesFromServer(uid))
-                    store.dispatch(actions.getSchoolFromServer(uid))
-                    history.push('/' + userName + '/addcourse');
+                    // store.dispatch(actions.getCoursesFromServer(uid))
+                    // store.dispatch(actions.getSchoolFromServer(uid))
+                    store.dispatch(actions.getAllForUser(userName))
+                    history.push('/' + userName);
                 }
             }
         }

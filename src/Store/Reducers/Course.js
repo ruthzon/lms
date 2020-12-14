@@ -11,7 +11,7 @@ const initialState = {
     subtitle: 'Here is a short description of the course and the content that will be taught in it',
     image: './img_from_xd/Image 108@2x.png',
     category:"",
-    stars: 3,//להפוך למספר
+    stars: 3,
     views: 0,
     weeks: 0,
     students: 0,///במקום students_num
@@ -84,6 +84,8 @@ const initialState = {
         reddit: true,
       },
       description: true,
+      reviews:true,
+      instructor:true,
       // "Course Description": true,
       // "Certification": true,
       // "Who this course is for": true,
@@ -326,6 +328,12 @@ const mycourse = {
   },
   showLessons(state) {
     state.course.show.lessons = !state.course.show.lessons;
+  },
+  showReviews(state) {
+    state.course.show.reviews = !state.course.show.reviews;
+  },
+  showInstructor(state) {
+    state.course.show.instructor = !state.course.show.instructor;
   },
 
   showInstegram(state) {

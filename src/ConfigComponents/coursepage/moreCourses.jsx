@@ -54,7 +54,7 @@ export default connect(
 )(function MoreCourses(props) {
   let {course, courses} = props;
   // if (props.courses.length == 0) courses = Courses;
-  const carousel = null;
+  let carousel = null;
   const breakPoints = [
     {width: 1, itemsToShow: 1},
     {width: 550, itemsToShow: 2},

@@ -167,6 +167,7 @@ export function ConfigCurriculum(props) {
   //     </h5>
   //   </>
   // );
+  return null;
 }
 
 export function ConfigCurriculumX(props) {
@@ -183,7 +184,42 @@ export function ConfigCurriculumX(props) {
   //     </h5>
   //   </>
   // );
+  return null;
 }
+
+
+export function ConfigInstructorReviews(props) {
+  let data = props.data;
+  return (
+    <>
+      <h5>Reviews</h5>
+      <div>
+        Show reviews section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showReviews()}
+            checked={data.course.show.reviews}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+      <h5>Instructor</h5>
+      <div>
+        Show instructor section
+        <label className="switch">
+          <input
+            type="checkbox"
+            onClick={(e) => data.showInstructor()}
+            checked={data.course.show.instructor}
+          />
+          <span className="slider round"></span>
+        </label>
+      </div>
+    </>
+  );
+}
+
 
 export function ConfigBuyCourse(props) {
   let {data} = props;

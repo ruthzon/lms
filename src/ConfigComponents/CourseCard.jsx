@@ -8,10 +8,11 @@ import {actions} from '../Store/actions';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import {UserContext} from '../login/userProvider';
-import './configurator.css'
-import { useRouteMatch } from 'react-router-dom';
-const history = createHashHistory();
-const browserHistory = createBrowserHistory();
+import './configurator.css';
+import {useRouteMatch} from 'react-router-dom';
+import history from '../history';
+// const history = createHashHistory();
+// const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
   return {
@@ -33,17 +34,21 @@ export default connect(
   // const {id, course, initialById, setName, setSubtitle, setImage} = props;
   // initialById(id);
   // let match = useRouteMatch();
-  let course=props.course;
-  const user = useContext(UserContext);
+  let course = props.course;
+
+  var url = window.location;
+  var userName = url.pathname.split('/')[1];
+  // const user = useContext(UserContext);
 
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     // browserHistory.replace(`${match.path} / ${course.name}`);
+    history.push(`${userName}/${course.name}`);
     window.location.reload();
     console.log(props);
   };
   return (
-    <Card className="edit-course-card" style={{ width: '20rem',margin: 'auto' }}>
+    <Card className="course-card" onClick={navigate}>
       <Card.Img
         variant="top"
         className="card-img"

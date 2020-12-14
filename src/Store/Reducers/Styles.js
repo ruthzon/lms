@@ -6,6 +6,7 @@ const initialState = {
         configurator:true,
         thumbtack:true,
         section_config:{name:''},
+        process:true
 
     },
   
@@ -24,7 +25,10 @@ const initialState = {
     },
     setSectionConfig(state,action){
       state.styles.section_config=action.payload;
-    }
+    },
+    setProcess(state, action) {
+      state.styles.process=action.payload;
+    },
   };
   
   export default produce(

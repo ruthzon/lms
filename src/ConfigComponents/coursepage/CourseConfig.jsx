@@ -22,6 +22,7 @@ import {
   ConfigFooter,
   ConfigTopEducators,
   ConfigTopEducatorsX,
+  ConfigInstructorReviews,
 } from './CourseConfigSections';
 const browserHistory = createBrowserHistory();
 
@@ -87,6 +88,8 @@ const mapDispatchToProps = (dispatch) => ({
   setTopEducatorsProp: (name) => dispatch(actions.setTopEducatorsProp(name)),
   setTopEducatorsImage: (name) => dispatch(actions.setTopEducatorsImage(name)),
   setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
+  showReviews: (name) => dispatch(actions.showReviews(name)),
+  showInstructor: (name) => dispatch(actions.showInstructor(name)),
 });
 
 export default connect(
@@ -132,6 +135,8 @@ export default connect(
         return <ConfigCurriculum data={props} />;
       case 'course_curriculum_x':
         return <ConfigCurriculumX data={props} />;
+      case 'course_rev_inst':
+        return <ConfigInstructorReviews data={props} />;
       case 'buy_course':
         return <ConfigBuyCourse data={props} />;
       case 'buy_course_share':
@@ -147,7 +152,7 @@ export default connect(
       case 'course_top_educators':
         return <ConfigTopEducators data={props} />;
       case 'course_top_educators_x':
-        return <ConfigTopEducatorsX data={props} id={id}/>;
+        return <ConfigTopEducatorsX data={props} id={id} />;
 
       default:
         return 'Click any object on the page to change its settings';

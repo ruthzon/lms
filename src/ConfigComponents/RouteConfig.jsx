@@ -19,6 +19,8 @@ import CoursePageFrame from './Frame/CoursePageFrame';
 import LessonPageFrame from './Frame/LessonPageFrame';
 import TopFrame from './Frame/top_frame';
 import StudentProfilePage from '../ViewComponents/studentProfilePage';
+import Spinner from '../spinner/spinner';
+
 // import studentProfilePage from '../ViewComponents/studentProfilePage';
 // import Stage from './Frame/stage';
 // import Configurator from './Frame/configurator';
@@ -30,6 +32,7 @@ import StudentProfilePage from '../ViewComponents/studentProfilePage';
 const mapDispatchToProps = (dispatch) => ({
   initialCourses: (courses) => dispatch(actions.initialCourse(courses)),
   initialCourse: (courses) => dispatch(actions.initialCourse(courses)),
+  setProcess: (name) => dispatch(actions.setProcess(name)),
 });
 
 function mapStateToProps(state) {
@@ -46,7 +49,9 @@ export default connect(
   return (
     <div>
       {/* <Link to={`${match.url}/components`}>Components</Link> */}
-
+      {props.styles.process ? (
+        <Spinner />
+      ) : (
       <Switch>
       <Route path={`${match.path}/profile`}>
           {/* <CoursePage /> */}
@@ -77,7 +82,7 @@ export default connect(
           {/* <HomePage /> */}
           
         </Route>
-      </Switch>
+      </Switch>)}
     </div>
   );
 });

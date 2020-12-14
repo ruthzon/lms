@@ -78,36 +78,7 @@ export default connect(
               />
               {/* {lesson.subtitle} */}
             </h3>
-            <Container>
-
-              <Row>
-                {props.lesson.show.stars && (
-                  <Col xs="3">
-                    <FaRegStar color="#F3B23A" />
-                    {props.course.stars} stars
-                  </Col>
-                )}
-                {props.lesson.show.students && (
-                  <Col xs="3">
-                    <FaRegEye color="#DB4500" />
-                    {/* {course.views} */}
-                    Enrolled {props.course.students_num} students
-                  </Col>
-                )}
-                {props.lesson.show.weeks && (
-                  <Col xs="3">
-                    <FaRegClock />
-                    Duration {props.course.weeks} weeks
-                  </Col>
-                )}
-                {props.lesson.show.lessons && (
-                  <Col xs="3">
-                    <FaRegPlayCircle color="#3E9365" />
-                    {props.course.lessons.length + ' '} Lessons
-                  </Col>
-                )}
-              </Row>
-            </Container>
+         
           </div>
         </div>
       </div>
