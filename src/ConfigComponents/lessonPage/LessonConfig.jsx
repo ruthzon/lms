@@ -43,7 +43,7 @@ export default connect(
     <>
  
         <div className="config">
-          <button onClick={() => handleChoose(1)}>
+          {/* <button onClick={() => handleChoose(1)}>
             Course Header {choose === 1 ? <FaAngleDown /> : <FaAngleRight />}
           </button>
           <div className={choose === 1 ? 'display' : 'cover'}>
@@ -146,10 +146,10 @@ export default connect(
 
           <button onClick={() => handleChoose(3)}>
             Video settings{choose === 3 ? <FaAngleDown /> : <FaAngleRight />}
-          </button>
-          <div className={choose === 3 ? 'display' : 'cover'}>
+          </button> */}
+          <div>
             <div>
-              Lesson id (get from youtube)
+              Lesson url
               <input
                 type="text"
                 placeholder="url"
@@ -186,6 +186,17 @@ export default connect(
                   type="checkbox"
                   onClick={(e) => props.setSettingProp('loop')}
                   checked={props.lesson.settings.loop}
+                />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div>
+              muted
+              <label class="switch">
+                <input
+                  type="checkbox"
+                  onClick={(e) => props.setSettingProp('muted')}
+                  checked={props.lesson.settings.muted}
                 />
                 <span class="slider round"></span>
               </label>

@@ -24,6 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function CarouserlItem(props) {
+  if (!props.courses || props.courses.length)
+    return 'Add courses to see them here';
   const algo = props.course.more_courses.algorithm;
   const courses_algo = props.courses.filter(
     (course) => course[algo] == props.course[algo]

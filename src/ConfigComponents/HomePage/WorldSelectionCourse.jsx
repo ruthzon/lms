@@ -24,11 +24,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function CourseCards(props) {
-  if (!props.courses || props.courses.length) return "Add courses to see them here"
+  if (!props.courses || props.courses.length)
+    return 'Add courses to see them here';
   const algo = props.school.worldSelection.algorithm;
-  const courses_algo = props.courses.sort((a, b) =>
-    a[algo] > b[algo] ? 1 : -1
-  );
+  const courses_algo = props.courses.sort((a, b) => a[algo] - b[algo]);
   const listItems = [];
   let times =
     props.school.worldSelection.items <= courses_algo.length

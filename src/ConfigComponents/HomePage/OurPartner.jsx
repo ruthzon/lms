@@ -60,33 +60,7 @@ export default connect(
               </Form>
               <h3>Trusted by our awesome partners</h3>
             </div>
-            {/* <Container>
-          <Row>
-            {props.school.partners.map((item, key) => {
-              return (
-                <Col xs={4} md={2} key={key}>
-                  <div class="file-upload">
-                    <Image src={item} thumbnail />
-                    <input
-                      id={'partners-' + key}
-                      type="file"
-                      accept=".png, .jpg, .jpeg"
-                      onChange={(e) =>
-                        handleImageById(
-                          e,
-                          props.setPartners,
-                          parseInt(e.target.id.split('-')[1])
-                        )
-                      }
-                    />
-                  </div>
-                </Col>
-              );
-            })}
-            //  <RowPartners data={props.data} /> 
-          </Row>
-        </Container>
-         */}
+          
             <Carousel
               className="content"
               breakPoints={this.breakPoints}
@@ -112,19 +86,7 @@ export default connect(
                       />
                       <Image src={item} thumbnail />
 
-                      {/* <FaTrash
-                        className="trash"
-                        onClick={(e) =>
-                          // handleDelete(props.deleteFromSection, [
-                          //   parseInt(e.target.id.split('-')[1]), //ind
-                          //   e.target.id.split('-')[0], //partner
-                          // ])
-                          handleDelete(props.deleteFromSection, [
-                            key,
-                            'partners',
-                          ])
-                        }
-                      /> */}
+                      
                     </div>
                   </div>
                 );
@@ -136,12 +98,3 @@ export default connect(
     }
   }
 );
-
-// function RowPartners(props) {
-//   var rows = [];
-//   for (var i = 0; i < props.data.length; i++) {
-//     rows.push();
-//   }
-//   return rows;
-// }
-// export default OurPartner;
