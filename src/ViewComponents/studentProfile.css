@@ -82,6 +82,7 @@ color:gray;
   .progress-bar {
     height: 24px;
     display: block;
+    background-color: lightseagreen !important;
   }
   
   .bar-warning {
@@ -89,9 +90,9 @@ color:gray;
   }
   
   .bar-success {
-    background-color: red;
+    background-color: green;
   }
   
   .bar-error {
-    background-color: red;
+    background-color: green;
   }

@@ -29,7 +29,7 @@ export default connect(
         // const user={};
 
         $(document).ready(function () {
-            const dProgress = (props.courses.id / props.courseStudent.finishedLessons) * 100.0;
+            // const dProgress = (props.courses.id / props.courseStudent.finishedLessons) * 100.0;
             // console.log(dProgress)
             var x = 100
             var y = 4
@@ -38,25 +38,16 @@ export default connect(
             for (let i = 0; i < bars.length; i++) {
                 var progress = $(bars[i]).attr('aria-valuenow');
                 $(bars[i]).width(progress + z + '%');
-                // if (progress >= "90") {
-                //     $(bars[i]).addClass("bar-success");
-                // } else if (progress >= "90" && progress < "100") {
-                //     $(bars[i]).addClass("bar-warning");
-                // } else {
-                //     $(bars[i]).addClass("bar-error");
-                // }
+                if (progress >= "90") {
+                    $(bars[i]).addClass("bar-success");
+                } else if (progress >= "90" && progress < "100") {
+                    $(bars[i]).addClass("bar-warning");
+                } else {
+                    $(bars[i]).addClass("bar-error");
+                }
             }
         });
-        // const CalculateRase = () => {
 
-        //     // const dProgress = (props.courses.stars / props.courses.views) * 100.0;
-        //     // const dProgress = x / y;
-        //     let pro = x / y;
-        //     setPro(pro);
-        //     console.log(pro);
-        //     return pro;
-
-        // }
 
 
         const navigate = () => {
@@ -124,7 +115,7 @@ export default connect(
                         <Row>
 
                             <div className="progress row mt-5">
-                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped " role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </Row>
                     </Container>

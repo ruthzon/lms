@@ -1,26 +1,64 @@
-import {
-  FaArrowLeft,
-  FaArrowRight,
-} from 'react-icons/all';
-// import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
 import React from 'react';
-import {
-  Card,
-  CardDeck,
-  Dropdown,
-  Carousel,
-  Form
-} from 'react-bootstrap';
-import './App.css';
+import { Card, CardDeck, Dropdown, Carousel, Form, Row, Container, Col } from 'react-bootstrap';
+import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
+import CourseCard from '../CourseCard';
+import { Courses } from '../../Store/data'
 
-function GetChoice(props) {
+
+function mapStateToProps(state) {
+  return {
+    courses: state.listCoursesReducer.courses,
+    school: state.schoolReducer.school,
+  };
+}
+
+
+function CourseCards(props) {
+  const algo = props.school.worldSelection.algorithm;
+  const courses_algo = props.courses.sort((a, b) =>
+    a[algo] > b[algo] ? 1 : -1
+  );
+  const listItems = [];
+  let times =
+    props.school.worldSelection.items <= courses_algo.length
+      ? props.school.worldSelection.items
+      : courses_algo.length;
+  for (let i = 0; i < times; i++) {
+    console.log(courses_algo)
+    listItems.push(
+      <>
+        <Col xs="12" md="6" xl="4">
+          <CourseCard course={courses_algo[i]} />
+        </Col>
+      </>
+    );
+  }
+  return listItems;
+}
+
+export default connect(
+  mapStateToProps
+
+)(function GetChoice(props) {
   return (
-    <section id="choice">
-      <div className="title">
-        <Form inline>
+    <section
+      id="choice"
+      style={{ backgroundColor: props.school.colors.getChoice }}
+    >
+      <div className="title row ">
+
+        <h3 className="h3-getChoice col-5">
+          <p className="title-get-choice"> {props.school.getChoice.header}</p>
+        </h3>
+        <Form inline className="form-getChoice col-4">
           <Dropdown>
-            <Dropdown.Toggle  variant="light" id="dropdown-basic">Design</Dropdown.Toggle>
+            <Dropdown.Toggle variant="light" id="dropdown-basic">
+              Design
+            </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
@@ -29,75 +67,14 @@ function GetChoice(props) {
           </Dropdown>
           <button>View all</button>
         </Form>
-        <h3>Get choice of your course</h3>
       </div>
-      <CardDeck className="none"></CardDeck>
-      <CardDeck>
-        <ListCourses data={props.data} i={0}/>
-      </CardDeck>
-      <CardDeck>
-        <ListCourses data={props.data} i={3} />
-      </CardDeck>
+      <Container className="content">
+        <Row>
+          <CourseCards school={props.school} courses={Courses} />
+        </Row>
+      </Container>
     </section>
   );
-}
+});
 
-function WorldSelectionCourse() {
-  // const {course, setName, setSubtitle, setImage} = props;
-
-  const prev = (
-    <button onClick="dispatchDiscreteEvent" className="carousel-left">
-      <FaArrowLeft />
-    </button>
-  );
-  const next = (
-    <button className="carousel-right">
-      <FaArrowRight />
-    </button>
-  );
-  return (
-    <section id="world">
-      <div className="title">
-        <Form inline>
-          <Dropdown>
-            <Dropdown.Toggle  variant="light" id="dropdown-basic">Design</Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <button>View all</button>
-        </Form>
-        <h3>The world’s largest selection of courses</h3>
-      </div>
-      <Carousel
-        autoPlay="false"
-        nextIcon={next}
-        prevIcon={prev}
-        data-interval="false"
-      >
-        <Carousel.Item>
-          <CardDeck>
-            <ListCourses i={0} />
-          </CardDeck>
-        </Carousel.Item>
-        <Carousel.Item>
-          <CardDeck>
-            <ListCourses i={3}/>
-          </CardDeck>
-        </Carousel.Item>
-      </Carousel>
-      {/* <Form inline className="carousel">
-            <button className="carousel-left">
-              <FaArrowLeft />
-            </button>
-            <span className="carousel-line"></span>
-            <button className="carousel-right">
-              <FaArrowRight />
-            </button>
-          </Form> */}
-    </section>
-  );
-}
-export {WorldSelectionCourse, GetChoice};
+// export {WorldSelectionCourse, GetChoice};

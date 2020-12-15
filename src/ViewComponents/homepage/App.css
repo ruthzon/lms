@@ -692,3 +692,18 @@ section .section-title {
     background-color: white !important;
     width: 100vw !important;
 }
+.h3-getChoice{
+  /* width: 100vw !important; */
+  margin-left: 15vw;
+}
+.form-getChoice{
+ left: 20vw;
+
+}
+.image-our-partner img:focus{
+  /* outline: 0; */
+  padding: 0;
+  border-color: white !important;
+  outline: 0 !important;
+
+}
