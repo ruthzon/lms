@@ -55,7 +55,7 @@ class Testimoinal extends Component {
             ref={(ref) => (this.carousel = ref)}
             className="content"
           >
-            {this.props.school.testimoinal.map((item, key) => {
+            {this.props.school.testimoinals.map((item, key) => {
               return (
                 <Card
                   className="test-card hover-trash "
