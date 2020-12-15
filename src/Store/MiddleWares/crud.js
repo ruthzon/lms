@@ -29,6 +29,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
 
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
+        if (action.payload)
+            uid = action.payload
         $.ajax({
             url: 'https://lms.leader.codes/api/' + uid + '/courses',
             headers: {
@@ -41,20 +43,31 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
-                if (data.data && data.data != [])
-                    dispatch(actions.initialCourses(data.data))
+                if (data && data.length) {
+                    let courses = []
+                    for (let course in data) {
+                        
+                        courses.push(data[course])
+                    }
+                    dispatch(actions.initialCourses(data))
+                }
+                var url = window.location;
+                var course = url.pathname.split('/')[2];
+                if (course != "addCourses" || course!="addcourse") {
+                    let cours = getState().listCoursesReducer.courses.find((c) => (c.title == course.title));
+                    if (cours)
+                        dispatch(actions.initialCourse(cours))
+
+                }
             },
         });
     }
 
     if (action.type === 'ADD_COURSE_TO_SERVER') {
         let course = Object.assign({}, action.payload);
-        try {
-            delete course["lessons"];
-        }
-        catch (err) {
-            console.log(err)
-        }
+        delete course["lessons"];
+        // delete course["teacher"];
+
         if (course._id == 0 || !course._id) {
             let school = store.getState().schoolReducer.school;
             if (school._id == 0 || !school._id)
@@ -74,6 +87,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 // data: JSON.stringify(dataToProfilePage),
                 success: function (data) {
                     dispatch(actions.initialCourse(data.data));
+                    dispatch(actions.addTeacher(data.teacher))
                     dispatch(actions.addCourse(data.data));
                     // history.replace('/' + matchPath.params.name);
                     // window.location.reload();
@@ -290,6 +304,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
         }
     }
     if (action.type === 'GET_SCHOOL_FROM_SERVER') {
+        if (action.payload)
+            uid = action.payload
         $.ajax({
             url: 'https://lms.leader.codes/api/' + uid + '/school',
             headers: {
@@ -304,8 +320,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             success: function (data) {
                 // history.replace('/' + matchPath.params.name);
                 // window.location.reload();
-                if (data.data)
-                    dispatch(actions.initialSchool(data.data));
+                if (data)
+                    dispatch(actions.initialSchool(data));
 
             },
 
@@ -326,9 +342,9 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             success: function (res) {
                 if (res && res.data.uid) {
                     let user = res.data;
+                    dispatch(actions.setUserProps({ "uid": user.uid, "email": user.email, "photoURL": user.photo_URL, "userName": user.username }))
                     dispatch(actions.getCoursesFromServer(user.uid))
                     dispatch(actions.getSchoolFromServer(user.uid))
-                    dispatch(actions.setUserProps({ "uid": user.uid, "email": user.email, "photoURL": user.photo_URL, "userName": user.username }))
                     dispatch(actions.setProcess(false));
                 }
             },

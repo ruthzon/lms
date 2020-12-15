@@ -100,7 +100,7 @@ export default connect(
       </div>
       <Container className="content">
         <Row>
-          <CourseCards school={props.school} courses={Courses} />
+          <CourseCards school={props.school} courses={props.courses} />
         </Row>
       </Container>
       {/* <CardDeck className="none"></CardDeck>
