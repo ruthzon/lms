@@ -20,7 +20,7 @@ import {actions} from '../Store/actions';
 //   import TopFrame from './Frame/top_frame';
 import StudentProfilePage from '../ViewComponents/studentProfilePage';
 import CoursePage from './coursepage/CoursePage';
-import LessonPage from './coursepage/LessonPage';
+import LessonPage from './lessonPage/LessonPage';
 // import studentProfilePage from '../ViewComponents/studentProfilePage';
 // import Stage from './Frame/stage';
 // import Configurator from './Frame/configurator';
