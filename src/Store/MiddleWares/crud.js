@@ -46,15 +46,15 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 if (data && data.length) {
                     let courses = []
                     for (let course in data) {
-                        
+
                         courses.push(data[course])
                     }
-                    dispatch(actions.initialCourses(data))
+                    dispatch(actions.initialCourses(courses))
                 }
                 var url = window.location;
-                var course = url.pathname.split('/')[2];
-                if (course != "addCourses" || course!="addcourse") {
-                    let cours = getState().listCoursesReducer.courses.find((c) => (c.title == course.title));
+                var course = decodeURI(url.pathname.split('/')[2]);
+                if (course && course != "addcourse" && course != "addcourse#") {
+                    let cours = getState().listCoursesReducer.courses.find((c) => (c.name == course));
                     if (cours)
                         dispatch(actions.initialCourse(cours))
 
@@ -117,10 +117,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 // data: JSON.stringify(dataToProfilePage),
                 success: function (data) {
 
-                    dispatch(actions.updateCourse(data.data))
+                    dispatch(actions.initialCourse(data.data))
                     console.log("course " + data.data._id);
                     swal("Course saved successfully", "", "success");
-                    history.replace('/' + user.userName);
+                    // history.replace('/' + user.userName);
                     // window.location.reload();
                     // window.location.href = url + user.userName;
 
