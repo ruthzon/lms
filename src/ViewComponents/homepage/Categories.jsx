@@ -1,44 +1,77 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import './App.css';
-import {Card, CardDeck, Form} from 'react-bootstrap';
+import '../../ViewComponents/homepage/App.css';
+import { Card, CardDeck, Col, Container, Dropdown, Form, Row } from 'react-bootstrap';
 import { Component } from 'react';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
+// import {handleDelete, handleImage, handleImageById} from '../handleImage';
+import { FaTrash } from 'react-icons/fa';
 
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
+}
 
-function Categories(props) {
+export default connect(
+  mapStateToProps
+)(function Categories(props) {
   return (
     <>
-      <div className="title">
-        <Form inline>
-          <button id="see-all">See all Categories</button>
-        </Form>
-        <h3>Choice favourite course from top category</h3>
+      <div
+        style={{ backgroundColor: props.school.colors.categories }}
+      // className="hover-config"
+      >
+        <div className="title">
+          <Form inline>
+            <button id="see-all">See all Categories</button>
+          </Form>
+          <h3>Choice favourite course from top category</h3>
+        </div>
+        <CardDeck className="none"></CardDeck>
+        {/* Because the first card deck always align to right. */}
+        {/* <CardDeck> */}
+        <Container className="content">
+          <Row>
+            <RowCategories data={props} />
+            {/* </CardDeck> */}
+          </Row>
+        </Container>
       </div>
-      <CardDeck className="none"></CardDeck>
-      {/* Because the first card deck always align to right. */}
-      <CardDeck>
-        <RowCategories data={props.data} />
-      </CardDeck>
     </>
   );
-}
+});
 function RowCategories(props) {
   var rows = [];
-  for (var i = 0; i < props.data.length; i++) {
-    rows.push(CategoryCard(props.data[i]));
+  for (var i = 0; i < props.data.school.categories.length; i++) {
+    let x = i;
+    rows.push(
+      <Col xs="12" sm="6" md="4" lg="3" xl="2">
+        <Card
+          key={x}
+          className="category-card hover-trash"
+          style={{ backgroundColor: props.data.school.categories[i].backcolor }}
+        >
+          <div >
+            <Card.Img
+              variant="top"
+              src={props.data.school.categories[i].icon}
+            />
+          </div>
+
+          <Card.Body>
+            <Card.Title>
+              <p>{props.data.school.categories[i].name}</p>
+
+            </Card.Title>
+          </Card.Body>
+        </Card>
+      </Col>
+    );
   }
   return rows;
 }
 
-function CategoryCard(props) {
-  return (
-    <Card className="category-card" style={{backgroundColor: props.backcolor}}>
-      <Card.Img variant="top" src={props.icon} />
-      <Card.Body >
-        <Card.Title>{props.name}</Card.Title>
-      </Card.Body>
-    </Card>
-  );
-}
 
-export default Categories;
+// export default Categories;

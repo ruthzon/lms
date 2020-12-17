@@ -1,12 +1,12 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import '../../ViewComponents/homepage/App.css';
-import {Card, CardDeck, Col, Container, Dropdown, Form, Row} from 'react-bootstrap';
-import {Component} from 'react';
-import {connect} from 'react-redux';
-import {actions} from '../../Store/actions';
-import {handleDelete, handleImage, handleImageById} from '../handleImage';
-import {FaTrash} from 'react-icons/fa';
+import { Card, CardDeck, Col, Container, Dropdown, Form, Row } from 'react-bootstrap';
+import { Component } from 'react';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
+import { handleDelete, handleImage, handleImageById } from '../handleImage';
+import { FaTrash } from 'react-icons/fa';
 
 function mapStateToProps(state) {
   return {
@@ -26,10 +26,10 @@ export default connect(
   return (
     <>
       <div
-        style={{backgroundColor: props.school.colors.categories}}
+        style={{ backgroundColor: props.school.colors.categories }}
         onClick={(e) => {
           if (e.target === e.currentTarget)
-            props.setSectionConfig({name: 'categories'});
+            props.setSectionConfig({ name: 'categories' });
         }}
         className="hover-config"
       >
@@ -60,9 +60,9 @@ function RowCategories(props) {
       <Col xs="12" sm="6" md="4" lg="3" xl="2">
         <Card
           key={x}
-          onClick={() => props.data.setSectionConfig({name: 'category', id: x})}
+          onClick={() => props.data.setSectionConfig({ name: 'category', id: x })}
           className="category-card hover-trash hover-config-child"
-          style={{backgroundColor: props.data.school.categories[i].backcolor}}
+          style={{ backgroundColor: props.data.school.categories[i].backcolor }}
         >
           {/* <input
           id={'category-backcolor-' + i}
@@ -111,7 +111,7 @@ function RowCategories(props) {
                   ])
                 }
               />
-             
+
               {/* <FaTrash
               className="trash"
               id={"categories-trash-"+i}

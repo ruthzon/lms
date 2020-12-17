@@ -99,7 +99,7 @@ class Testimoinal extends Component {
             </Carousel.Item> */}
             {/* <Carousel.Item> */}
             {/* <CardDeck> */}
-            {this.props.school.testimoinal.map((item, key) => {
+            {this.props.school.testimoinals.map((item, key) => {
               return (
                 <Card key={key}
                   onClick={() =>

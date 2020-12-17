@@ -1,68 +1,71 @@
-import {FaArrowRight, FaArrowLeft} from 'react-icons/all';
-// import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Image
-} from 'react-bootstrap';
-import './App.css';
+import { FaArrowRight, FaArrowLeft, FaTrash } from 'react-icons/all';
+import React, { Component } from 'react';
+import { Container, Row, Col, Form, Image } from 'react-bootstrap';
+import '../../ViewComponents/homepage/App.css';
+import { actions } from '../../Store/actions';
+import { connect } from 'react-redux';
+import Carousel from 'react-elastic-carousel';
 
-function OurPartner(props) {
-  return (
-    <>
-      <section className="partner">
-        <div className="title">
-          <Form inline>
-            <button>
-              <FaArrowLeft />
-            </button>
-            <button>
-              <FaArrowRight />
-            </button>
-          </Form>
-          <h3>Trusted by our awesome partners
-          </h3>
-        </div>
-        <Container>
-          <Row>
-            {/* <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 9.png" rounded />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 11.png" roundedCircle />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 10.png" thumbnail />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 12.png" thumbnail />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 13.png" thumbnail />
-            </Col>
-            <Col xs={4} md={2}>
-              <Image src="./img_from_xd/Image 14.png" thumbnail />
-            </Col> */}
-            <RowPartners data={props.data}/>
-          </Row>
-        </Container>
-      </section>
-    </>
-  );
+
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
 }
 
-function RowPartners(props) {
-  var rows = [];
-  for (var i = 0; i < props.data.length; i++) {
-    rows.push(            
-    <Col xs={4} md={2}>
-      <Image src={props.data[i].image} thumbnail />
-    </Col>
-    );
+export default connect(
+  mapStateToProps
+
+)(
+  class OurPartner extends Component {
+    constructor() {
+      super();
+      this.breakPoints = [
+        { width: 1, itemsToShow: 2 },
+        { width: 550, itemsToShow: 4 },
+        { width: 1000, itemsToShow: 6 },
+      ];
+    }
+    goto(num) {
+      this.carousel.goTo(num);
+    }
+    render() {
+      let props = this.props;
+      return (
+        <>
+          <section
+            style={{ backgroundColor: props.school.colors.partners }}
+          >
+            <div className="title">
+              <Form inline>
+                <button >
+                  <FaArrowLeft />
+                </button>
+                <button >
+                  <FaArrowRight />
+                </button>
+              </Form>
+              <h3>Trusted by our awesome partners</h3>
+            </div>
+    
+            <Carousel
+              className="content"
+              breakPoints={this.breakPoints}
+              ref={(ref) => (this.carousel = ref)}
+            >
+              {props.school.partners.map((item, key) => {
+                return (
+                  <div className="image-our-partner">
+                    <Image src={item} thumbnail />
+                  </div>
+                );
+              })}
+            </Carousel>
+          </section>
+        </>
+      );
+    }
   }
-  return rows;
-}
-export default OurPartner;
+);
+
+

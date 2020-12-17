@@ -1,106 +1,85 @@
-import {FaArrowRight, FaArrowLeft} from 'react-icons/all';
-// import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
-import React, {Component} from 'react';
-import {Card, CardDeck, Form, Carousel} from 'react-bootstrap';
-import '../../../node_modules/react-multi-carousel/lib/styles.css';
-import './App.css';
+import { FaArrowRight, FaArrowLeft, FaTrash } from 'react-icons/all';
+import React, { Component } from 'react';
+import { Card, CardDeck, Form } from 'react-bootstrap';
+import Carousel from 'react-elastic-carousel';
+// import './carousel.css';
+import 'react-multi-carousel/lib/styles.css';
+import '../../ViewComponents/homepage/App.css';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
+
+function mapStateToProps(state) {
+  return {
+    school: state.schoolReducer.school,
+  };
+}
+
+
 
 class Testimoinal extends Component {
-  state = {arr: []};
-  componentDidMount() {
-    let url = 'http://localhost:8000/students/';
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        this.setState({arr: data.students});
-      });
+  constructor() {
+    super();
+    this.breakPoints = [
+      { width: 1, itemsToShow: 2 },
+      { width: 400, itemsToShow: 3 },
+      // {width: 850, itemsToShow: 3},
+      { width: 1750, itemsToShow: 4 },
+    ];
   }
   render() {
     const prev = (
-      <button>
+      <button onClick={() => this.carousel.slidePrev()}>
         <FaArrowLeft />
       </button>
     );
     const next = (
-      <button>
+      <button onClick={() => this.carousel.slideNext()}>
         <FaArrowRight />
       </button>
     );
     return (
       <>
-        <section className="test">
+        <section
+          style={{ backgroundColor: this.props.school.colors.testimoinal }}
+        >
           <div className="title">
             <h3>What our students have to say </h3>
+            <Form inline>
+              {prev}
+              {next}
+            </Form>
           </div>
-          {/* <CardDeck className="none"></CardDeck> */}
-          <Carousel nextIcon={next} prevIcon={prev} data-interval="false">
-            <Carousel.Item>
-              <CardDeck>
-                {/* <RowTests props={this.state.arr} /> */}
-                {this.state.arr.map((item, key) => {
-                  return (
-                    <Card key={key} className="test-card">
-                      <Card.Body>
-                        <Card.Title>
-                          <img src={item.image} alt="Student"></img>
-                          {item.name}
-                        </Card.Title>
-                        <Card.Text>{item.description} </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
-              </CardDeck>
-            </Carousel.Item>
-            <Carousel.Item>
-              <CardDeck>
-                {this.state.arr.map((item) => {
-                  return (
-                    <Card className="test-card">
-                      <Card.Body>
-                        <Card.Title>
-                          <img src={item.image} alt="Student"></img>
-                          {item.name}
-                        </Card.Title>
-                        <Card.Text>{item.description} </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
-                {/* <RowTests props={this.state.arr} /> */}
-              </CardDeck>
-            </Carousel.Item>
+          <Carousel
+            breakPoints={this.breakPoints}
+            itemPadding={[10, 10]}
+            ref={(ref) => (this.carousel = ref)}
+            className="content"
+          >
+            {this.props.school.testimoinals.map((item, key) => {
+              return (
+                <Card
+                  className="test-card hover-trash "
+                >
+                  <Card.Body>
+                    <Card.Title>
+                      <span >
+                        <img src={item.image} alt="Student"></img>
+                      </span>
+                      <p>{item.name}</p>
+                    </Card.Title>
+                    <Card.Text>
+                      <p>{item.description}</p>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              );
+            })}
+
           </Carousel>
         </section>
       </>
     );
   }
 }
-// class TestCard extends Component {
-//   render(props) {
-//     return (
-//       <Card className="test-card">
-//         <Card.Body>
-//           <Card.Title>
-//             <img src={props.image} alt="Student"></img>
-//             {props.name}
-//           </Card.Title>
-//           <Card.Text>{props.description} </Card.Text>
-//         </Card.Body>
-//       </Card>
-//     );
-//   }
-// }
-// class RowTests extends Component {
-//   render(props) {
-//     var rows = [];
-//     for (var i = 0; i < props.data.length; i++) {
-//       console.log(props);
-//       console.log(props.data[i]);
-//       rows.push(TestCard(props.data[i]));
-//     }
-//     return rows;
-//   }
-// }
-export default Testimoinal;
+
+export default connect(mapStateToProps)(Testimoinal);

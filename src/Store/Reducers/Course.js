@@ -174,10 +174,13 @@ const mycourse = {
     state.course.lesson = action.payload;
   },
   setAuther(state, action) {
-    state.course.auther = action.payload;
+    state.course.teacher.name = action.payload;
   },
   setAutherImage(state, action) {
-    state.course.auther_image = action.payload;
+    state.course.teacher.img = action.payload;
+  },
+  addTeacher(state, action) {
+    state.course.teacher = action.payload;
   },
   setPrice(state, action) {
     state.course.price = action.payload;

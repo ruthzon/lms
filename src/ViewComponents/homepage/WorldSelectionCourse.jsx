@@ -1,40 +1,39 @@
 import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import CourseCard from '../homepage/Courses'
-import ListCourses from '../ListCourses';
 import React from 'react';
-import {CardDeck, Form, Dropdown} from 'react-bootstrap';
+import {Card, CardDeck, Dropdown, Form} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
+import ListCourses from '../ListCourses';
 import {connect} from 'react-redux';
-import {Courses} from '../../Store/data';
 import {actions} from '../../Store/actions';
 import Carousel from 'react-elastic-carousel';
 import '../HomePage/carousel.css';
 import CourseCard from '../CourseCard';
+
 function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
     courses: state.listCoursesReducer.courses,
+    school: state.schoolReducer.school,
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
-  setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
+  setWorldSelection: (name) => dispatch(actions.setWorldSelection(name)),
 });
 
-function CarouserlItem(props) {
-  if (!props.courses || !props.courses.length)
-    return 'Add courses to see them here';
-  const algo = props.course.more_courses.algorithm;
-  const courses_algo = props.courses.filter(
-    (course) => course[algo] == props.course[algo]
+function CourseCards(props) {
+  if (!props.courses || props.courses.length) return "Add courses to see them here"
+  const algo = props.school.worldSelection.algorithm;
+  const courses_algo = props.courses.sort((a, b) =>
+    a[algo] > b[algo] ? 1 : -1
   );
   const listItems = [];
   let times =
-    props.course.more_courses.items <= courses_algo.length
-      ? props.course.more_courses.items
-      :courses_algo.length;
+    props.school.worldSelection.items <= courses_algo.length
+      ? props.school.worldSelection.items
+      : courses_algo.length;
   for (let i = 0; i < times; i++) {
     listItems.push(
       <>
@@ -47,23 +46,13 @@ function CarouserlItem(props) {
       </>
     );
   }
-  // debugger;
   return listItems;
 }
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(function MoreCourses(props) {
-  let {course, courses} = props;
-  // if (props.courses.length == 0) courses = Courses;
-  let carousel = null;
-  const breakPoints = [
-    {width: 1, itemsToShow: 1},
-    {width: 550, itemsToShow: 2},
-    {width: 1000, itemsToShow: 3},
-  ];
+function WorldSelectionCourse(props) {
+  // const {course, setName, setSubtitle, setImage} = props;
+
   const prev = (
-    <button onClick="dispatchDiscreteEvent" className="carousel-left">
+    <button className="carousel-left">
       <FaArrowLeft />
     </button>
   );
@@ -72,14 +61,17 @@ export default connect(
       <FaArrowRight />
     </button>
   );
+  const breakPoints = [
+    {width: 1, itemsToShow: 1},
+    {width: 1000, itemsToShow: 3},
+  ];
+  let carousel = null;
   return (
     <section
+      onClick={() => props.setSectionConfig({name: 'worldSelection'})}
       id="world"
-      onClick={(e) => {
-        props.setSectionConfig({name: 'course_more_courses'});
-      }}
+      style={{backgroundColor: props.school.colors.worldSelection}}
       className="hover-config"
-      style={{backgroundColor: props.course.colors.more_courses}}
     >
       <div className="title">
         <Form inline>
@@ -96,10 +88,10 @@ export default connect(
           <button>View all</button>
         </Form>
         <h3>
-          <input
-            value={course.more_courses.header}
+          <textarea
+            value={props.school.worldSelection.header}
             onChange={(e) =>
-              props.setMoreCourses({key: 'header', value: e.target.value})
+              props.setWorldSelection([e.target.value, 'header'])
             }
           />
         </h3>
@@ -109,15 +101,34 @@ export default connect(
         breakPoints={breakPoints}
         ref={(ref) => (carousel = ref)}
       >
-        <CarouserlItem courses={courses} course={course} />
-
+        <CourseCards school={props.school} courses={props.courses} />
         {/* <Carousel.Item>
           <CardDeck>
-            <ListCourses i={3} />
+            <ListCourses courses={props.courses} i={0} />
+          </CardDeck>
+        </Carousel.Item>
+        <Carousel.Item>
+          <CardDeck>
+            <ListCourses courses={props.courses} i={3} />
           </CardDeck>
         </Carousel.Item> */}
       </Carousel>
+      {/* <Form inline className="carousel">
+            <button className="carousel-left">
+              <FaArrowLeft />
+            </button>
+            <span className="carousel-line"></span>
+            <button className="carousel-right">
+              <FaArrowRight />
+            </button>
+          </Form> */}
     </section>
   );
-});
-// export default MoreCourses;
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WorldSelectionCourse);
+
+// export {WorldSelectionCourse, GetChoice};

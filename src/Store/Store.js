@@ -25,7 +25,7 @@ var jwt = getCookie('jwt');
 // let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 
 var url = window.location;
-var userName = (url.pathname.split('/')[1]);
+var userName = decodeURI(url.pathname.split('/')[1]);
 // fetch('https://lms.leader.codes/api/' + userName + '/getUid', {
 //     method: 'GET',
 //     headers: {

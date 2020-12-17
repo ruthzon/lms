@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
   setName: (name) => dispatch(actions.setName(name)),
   setSubtitle: (subtitle) => dispatch(actions.setSubtitle(subtitle)),
   setImage: (image) => dispatch(actions.setImage(image)),
+  initialCourse: (image) => dispatch(actions.initialCourse(image)),
 });
 
 export default connect(
@@ -37,15 +38,17 @@ export default connect(
   let course = props.course;
 
   var url = window.location;
-  var school = url.pathname.split('/')[2];
+  // var school = url.pathname.split('/')[2];
+  var name = decodeURI(url.pathname.split('/')[1]);
   // const user = useContext(UserContext);
 
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     // browserHistory.replace(`${match.path} / ${course.name}`);
-    history.push(`/view/${school}/${course.name}`);
+    history.push(`${name}/${course.name}`);
+    props.initialCourse(course)
     window.location.reload();
-    console.log(props);
+    console.log(course);
   };
   return (
     <Card className="course-card" onClick={navigate}>

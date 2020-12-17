@@ -38,7 +38,12 @@ export default connect(
        
         // console.log(props.course.name)
         $(document).ready(function () {
+<<<<<<< HEAD
      
+=======
+            // const dProgress = (props.courses.id / props.courseStudent.finishedLessons) * 100.0;
+            // console.log(dProgress)
+>>>>>>> 264d96bb291db3d8280fd5024e1ce79ac3217058
             var x = 100
             var y = 4
             var z = x / y
@@ -46,16 +51,21 @@ export default connect(
             for (let i = 0; i < bars.length; i++) {
                 var progress = $(bars[i]).attr('aria-valuenow');
                 $(bars[i]).width(progress + z + '%');
-                // if (progress >= "90") {
-                //     $(bars[i]).addClass("bar-success");
-                // } else if (progress >= "90" && progress < "100") {
-                //     $(bars[i]).addClass("bar-warning");
-                // } else {
-                //     $(bars[i]).addClass("bar-error");
-                // }
+                if (progress >= "90") {
+                    $(bars[i]).addClass("bar-success");
+                } else if (progress >= "90" && progress < "100") {
+                    $(bars[i]).addClass("bar-warning");
+                } else {
+                    $(bars[i]).addClass("bar-error");
+                }
             }
         });
+<<<<<<< HEAD
   
+=======
+
+
+>>>>>>> 264d96bb291db3d8280fd5024e1ce79ac3217058
 
         var url = window.location;
         var school = url.pathname.split('/')[2];
@@ -129,7 +139,7 @@ export default connect(
                         <Row>
 
                             <div className="progress row mt-5">
-                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped " role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </Row>
                     </Container>

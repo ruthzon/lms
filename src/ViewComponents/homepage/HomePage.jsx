@@ -1,12 +1,13 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import './App.css';
-import { GetChoice, WorldSelectionCourse } from './GetCoice.jsx';
+import WorldSelectionCourse from './GetCoice.jsx';
+import GetChoice from './GetCoice.jsx'
 import Navigation from '../../navbar.jsx';
 import Header from './Header.jsx';
 import Categories from './Categories';
 import LearningPlatform from './LearningPlatform';
-import CTA from './CTA';
+import CTACopy from './CTA';
 import Testimoinal from './Testimoinal';
 import OurPartner from './OurPartner';
 import Footer from '../Footer';
@@ -29,11 +30,10 @@ function HomePage() {
       <GetChoice />
       <LearningPlatform data={lrn} />
       <WorldSelectionCourse />
-      <CTA />
+      <CTACopy />
       <Testimoinal />
       {/* <Testimoinal data={tst} /> */}
       <OurPartner data={prt} />
-
       <Footer />
     </>
   );

@@ -1,5 +1,5 @@
 // import './../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import './homepage/App.css';
 
 // import {
@@ -53,13 +53,15 @@ export default connect(
 )(function CoursePage(props) {
   // let {data }= useParams();
   let params = useParams();
-  let course = ExCourse;
 
-  if (params.course) {
-    console.log(params.course);
-    course = props.courses.find((c) => (c.name = params.course));
-  }
-  // props.initialCourse(course);
+  useEffect(() => {
+    let course = ExCourse;
+    if (params.course) {
+      console.log(params.course);
+      course = props.courses.find((c) => (c = params.course));
+      // props.initialCourse(course);
+    }
+  });
   // console.log(params.course);
   // console.log(course);
   // console.log(props.courses);

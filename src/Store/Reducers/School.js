@@ -8,6 +8,7 @@ const initialState = {
   school: {
     // _id: '5fbb9c2c068ea32d1852f9fb',
     _id: '0',
+    lmsUser_id:'0',
     name: "School's name",
     title: 'Learn new skills online with top educators',
     subtitle: 'Choose from over 100,000 online video courses with new additions published every month.',
@@ -36,7 +37,7 @@ const initialState = {
         { id: '03.', header: 'Find video courses on almost any topic', text: 'Find what you are intersted to learn online and choose what exactly best for you that you really passionate to learn and get to study about it' },
       ],
     },
-    testimoinal:
+    testimoinals:
       [
         { name: "Rebecca Moore", image: './img_from_xd/User.png', description: "Skillfy is a life saver. I don’t have the time money for a college education. My goal is to become a freelance web designer and thanks to Skillfy." },
         { name: "Samatha R. Oiler", image: './img_from_xd/User-1.png', description: "Skillfy is a life saver. I don’t have the time money for a college education. My goal is to become a freelance web designer and thanks to Skillfy." },
@@ -188,10 +189,10 @@ const myschool = {
     state.school.partners[action.payload[1]] = action.payload[0];
   },
   setTestimoinalImage(state, action) {
-    state.school.testimoinal[action.payload[1]].image = action.payload[0];
+    state.school.testimoinals[action.payload[1]].image = action.payload[0];
   },
   setTestimoinal(state, action) {
-    state.school.testimoinal[action.payload[2]][action.payload[1]] = action.payload[0];
+    state.school.testimoinals[action.payload[2]][action.payload[1]] = action.payload[0];
   },
   setCTAText(state, action) {
     state.school.CTA.text = action.payload;
