@@ -158,14 +158,32 @@ class TopEducators extends Component {
         <div className="content mt--42">
           <Button
             variant="light"
-            onClick={() => this.carousel.slidePrev()}
+            // disabled={
+            //   !this.carousel.state.firstItem
+            // }
+            onClick={() => {
+              this.carousel.slidePrev();
+            }}
             className="carousel-left"
           >
             <FaArrowLeft />
           </Button>
           <Button
+            // disabled={
+            //   !this.carousel ||
+            //   !this.props.course.top_educators.length -
+            //     this.carousel.state.firstItem -
+            //     this.carousel.state.pages.length
+            // }
             variant="light"
-            onClick={() => this.carousel.slideNext()}
+            onClick={() => {
+              if (
+                this.props.course.top_educators.length -
+                this.carousel.state.firstItem -
+                this.carousel.state.pages.length>0
+              )
+                this.carousel.slideNext();
+            }}
             className="carousel-right"
           >
             <FaArrowRight />

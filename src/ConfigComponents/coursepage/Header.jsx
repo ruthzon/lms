@@ -102,13 +102,13 @@ export default connect(
                 {props.course.show.weeks && (
                   <Col xs="3">
                     <FaRegClock />
-                    Duration{' '}
+                    Duration
                     <input
                       type="number"
                       className="weeks-i"
                       onChange={(e) => props.setWeeks(e.target.value)}
                       value={props.course.students_num}
-                    />{' '}
+                    />
                     weeks
                   </Col>
                 )}
