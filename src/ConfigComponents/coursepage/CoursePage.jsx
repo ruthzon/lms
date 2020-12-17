@@ -71,7 +71,7 @@ export default connect(
         <CourseConfig /> */}
         {/* <div className="content-config"> */}
         <Header />
-        <BuyCourse />
+        <BuyCourse className="mt-5"/>
         {/* <help/> */}
         <Description />
         {props.course.show.more.more_courses && <MoreCourses />}

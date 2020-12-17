@@ -120,7 +120,7 @@ export default connect(
                         )) :
                             list.map(item => (
                                 <li className="col-md-3 col-sm-12">
-                                    <CourseCard course={item}></CourseCard>
+                                    <CourseCardWithProgress course={item}></CourseCardWithProgress>
                                 </li>
                             ))
                         }

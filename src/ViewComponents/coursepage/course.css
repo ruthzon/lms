@@ -408,3 +408,6 @@ letter-spacing: 2px;
   .p1{
     padding-top: 3vh;
   }
+  .coursePage{
+    overflow-x: hidden;
+  }

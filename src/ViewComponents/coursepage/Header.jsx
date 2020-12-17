@@ -1,28 +1,29 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import './course.css';
-import {Row, Col, Container} from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import {
   FaRegStar,
   FaRegEye,
   FaRegPlayCircle,
   FaRegClock,
 } from 'react-icons/all';
-import {UserContext} from '../../login/userProvider';
-import {Link} from 'react-router-dom';
+import { UserContext } from '../../login/userProvider';
+import { Link } from 'react-router-dom';
 
 function Header(props) {
-  const user = useContext(UserContext);
+  // const user = useContext(UserContext);
+  // console.log(user)
 
   return (
     <>
       <div className="header">
         <div className="content">
-          {user !== null && props.data.user_id === user.uid && (
+          {/* {user !== null && props.data.user_id === user.uid && ( */}
             <p className="text-own">
               your own course - you may edit it
               <Link to={'/editcourse/' + props.data.id}> here</Link>
             </p>
-          )}
+          {/* )} */}
           <h1>{props.data.name}</h1>
           <br />
           <div className={props.view ? 'header-view' : ''}>

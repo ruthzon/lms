@@ -39,7 +39,7 @@ export default connect(
   } = props;
   return (
     <div
-      className="buy-course shadow hover-config "
+      className="buy-course shadow hover-config mt-5"
       onClick={(e) => {
         if (e.target === e.currentTarget)
           setSectionConfig({name: 'buy_course'});
