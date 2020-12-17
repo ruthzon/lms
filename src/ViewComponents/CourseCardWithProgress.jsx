@@ -38,12 +38,8 @@ export default connect(
        
         // console.log(props.course.name)
         $(document).ready(function () {
-<<<<<<< HEAD
-     
-=======
             // const dProgress = (props.courses.id / props.courseStudent.finishedLessons) * 100.0;
             // console.log(dProgress)
->>>>>>> 264d96bb291db3d8280fd5024e1ce79ac3217058
             var x = 100
             var y = 4
             var z = x / y
@@ -60,12 +56,7 @@ export default connect(
                 }
             }
         });
-<<<<<<< HEAD
   
-=======
-
-
->>>>>>> 264d96bb291db3d8280fd5024e1ce79ac3217058
 
         var url = window.location;
         var school = url.pathname.split('/')[2];
