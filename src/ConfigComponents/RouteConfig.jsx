@@ -52,7 +52,7 @@ export default connect(
       {props.styles.process ? (
         <Spinner />
       ) : (
-      <Switch>
+      <Switch >
         <Route path={`${match.path}/profile`}>
           {/* <CoursePage /> */}
           <StudentProfilePage />
