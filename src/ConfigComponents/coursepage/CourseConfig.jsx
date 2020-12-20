@@ -107,7 +107,7 @@ export default connect(
       );
     } else {
       props.initialEmptyLesson();
-      history.push('/' + name + '/' + course + '/addLesson');
+      history.push('/' + name + '/' + course + '/addlesson');
 
       // browserHistory.replace(
       //   '/' + match.params.name + '/' + match.params.course + '/addLesson'

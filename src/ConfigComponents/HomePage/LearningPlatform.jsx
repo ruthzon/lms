@@ -58,21 +58,7 @@ export default connect(
             {/* <Image src={props.school.learning.image}></Image> */}
           </Col>
           <Col xs="6" className="lerning">
-            {/* <div>
-              <span>01.</span>
-              <div className="header-learning">Go at your own pace</div>
-              <div className="text-learning">Find what you are intersted to learn online and choose what exactly best for you that you really passionate to learn and get to study about it</div>
-            </div>
-            <div>
-              <span>02.</span>
-              <div className="header-learning">Learn from industry experts</div>
-              <div className="text-learning">Find what you are intersted to learn online and choose what exactly best for you that you really passionate to learn and get to study about it</div>
-            </div>
-            <div>
-              <span>03.</span>
-              <div  className="header-learning">Find video courses on almost any topic</div>
-              <div className="text-learning">Find what you are intersted to learn online and choose what exactly best for you that you really passionate to learn and get to study about it</div>
-            </div> */}
+ 
             <RowLearning data={props} />
           </Col>
         </Row>

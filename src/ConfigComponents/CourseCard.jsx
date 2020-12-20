@@ -9,7 +9,7 @@ import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import {UserContext} from '../login/userProvider';
 import './configurator.css';
-import {useRouteMatch} from 'react-router-dom';
+import {useParams, useRouteMatch} from 'react-router-dom';
 import history from '../history';
 // const history = createHashHistory();
 // const browserHistory = createBrowserHistory();
@@ -39,15 +39,18 @@ export default connect(
 
   var url = window.location;
   // var school = url.pathname.split('/')[2];
-  var name = decodeURI(url.pathname.split('/')[1]);
+  // var name = decodeURI(url.pathname.split('/')[1]);
   // const user = useContext(UserContext);
-
+  let {name} = useParams();
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     // browserHistory.replace(`${match.path} / ${course.name}`);
-    history.push(`${name}/${course.name}`);
-    props.initialCourse(course)
-    window.location.reload();
+    // history.push(`${name}/${course.name}`);
+    history.push('/' + name + '/' + course.name);
+
+
+    props.initialCourse(course);
+    // window.location.reload();
     console.log(course);
   };
   return (
@@ -70,7 +73,7 @@ export default connect(
             </Col>
             <Col xs="4" className="align-right">
               <FaRegPlayCircle color="#3E9365" />
-              {course.lessons} Lessons
+              {course.lessons.length} Lessons
             </Col>
           </Row>
         </Container>

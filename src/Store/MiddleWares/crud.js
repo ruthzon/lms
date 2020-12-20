@@ -43,8 +43,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
+                let courses = []
                 if (data && data.length) {
-                    let courses = []
                     for (let course in data) {
 
                         courses.push(data[course])
@@ -53,10 +53,18 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 }
                 var url = window.location;
                 var course = decodeURI(url.pathname.split('/')[2]);
-                if (course && course != "addcourse" && course != "addcourse#") {
-                    let cours = getState().listCoursesReducer.courses.find((c) => (c.name == course));
-                    if (cours)
-                        dispatch(actions.initialCourse(cours))
+                var lesson = decodeURI(url.pathname.split('/')[3]);
+                if (course && course != "addcourse" && course != "addCourse#") {
+                    let cours = courses.find((c) => (c.name == course));
+                    if (cours) {
+                        dispatch(actions.initialCourse(cours));
+                        dispatch(actions.setLessonProp([cours._id, "course_id"]))
+                        if (lesson && lesson != "addlesson" && lesson != "addLesson#") {
+                            let lessn = cours.lessons.find((l) => (l.name == lesson));
+                            if (lessn)
+                                dispatch(actions.initialLesson(lessn))
+                        }
+                    }
 
                 }
             },
@@ -189,7 +197,8 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     dispatch(actions.addLesson(data.data))
                     console.log("lesson " + data.data._id);
                     swal("Lesson added successfully", "", "success");
-                    history.replace('/' + user.userName + '/' + data.course_id);
+                    let cours = getState().listCoursesReducer.courses.find((c) => (c._id == data.data.course_id));
+                    history.push('/' + user.userName + '/' + cours.name);
                     // window.location.reload();
                     // window.location.href = url + user.userName+'/' +data.course_id;
 
@@ -218,7 +227,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     dispatch(action.updateLesson(data.data));
                     console.log("lesson " + data.data._id);
                     swal("Lesson saved successfully", "", "success");
-                    history.replace('/' + user.userName + '/' + data.course_id);
+                    history.push('/' + user.userName + '/' + data.course_id);
                     // window.location.reload();
                     // window.location.href = url + user.userName+'/' +data.course_id;
                 },

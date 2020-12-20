@@ -57,7 +57,6 @@ export default connect(
   useEffect(() => {
     let course = ExCourse;
     if (params.course) {
-      console.log(params.course);
       course = props.courses.find((c) => (c = params.course));
       // props.initialCourse(course);
     }
