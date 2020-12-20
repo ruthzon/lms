@@ -70,6 +70,8 @@ export default connect(
           {course.show.price && (
             <>
               <Card.Title className="price">
+                  Price: 
+       
                 <input
                   value={course.price}
                   onChange={(e) => setPrice(e.target.value)}

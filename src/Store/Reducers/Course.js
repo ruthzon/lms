@@ -20,7 +20,7 @@ const initialState = {
       name: 'Name of the lecturer',
       img: './img_from_xd/Rectangle 22.png'
     },
-    price: 'price',
+    price: '',
     prev_price: 'prev price',
     prev_price_time: '11 hours',
     date_created: '',

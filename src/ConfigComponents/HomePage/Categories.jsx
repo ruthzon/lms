@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCategoriesImage: (name) => dispatch(actions.setCategoriesImage(name)),
   deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+  setChoiceFavorite: (name)=> dispatch(actions.setChoiceFavorite(name)),
 });
 export default connect(
   mapStateToProps,
@@ -37,7 +38,18 @@ export default connect(
           <Form inline>
             <button id="see-all">See all Categories</button>
           </Form>
-          <h3>Choice favourite course from top category</h3>
+          <h3>
+          <textarea
+            value={props.school.ChoiceFavourite.header}
+            onChange={(e) => props.setChoiceFavorite([e.target.value, 'header'])}
+            style={{ color: props.school.colors.ChoiceFavourite }}
+
+          />
+            {/* <textarea
+              value={props.school.ChoiceFavourite.header}
+              onChange={(e) => props.setChoiceFavorite(e.target.value)}
+            /> */}
+          </h3>
         </div>
         <CardDeck className="none"></CardDeck>
         {/* Because the first card deck always align to right. */}

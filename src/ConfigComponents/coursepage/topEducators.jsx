@@ -45,7 +45,7 @@ class TopEducators extends Component {
         style={{backgroundColor: this.props.course.colors.top_educators}}
       >
         <div className="title">
-          <button>View all</button>
+          {/* <button>View all</button> */}
           <h3>Top Education offers and deals are listed here</h3>
         </div>
         <Carousel

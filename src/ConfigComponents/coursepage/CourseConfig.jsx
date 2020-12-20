@@ -162,7 +162,7 @@ export default connect(
     <>
       <div className="config">
         <button onClick={() => addLesson()}>
-          Add Lesson <FaPlus />
+          Add Lesson <FaPlus data-toggle="tooltip" data-placement="top" title="Add lesson"/>
         </button>
         <br />
         <br />

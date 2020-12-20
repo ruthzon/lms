@@ -19,9 +19,6 @@ import {
   // Categories as ctgs,
   Courses as crs,
 
-  // Students as tst,
-  // Partners as prt,
-  // Learnings as lrn,
 } from '../../Store/data.js';
 import Belive from './belive';
 import TopEducators from './topEducators';
@@ -40,7 +37,7 @@ export default connect(
 
 )(function CoursePage(props) {
 
-  console.log(props.course)
+  // console.log(props.course)
   // let params = useParams();
   // let course = crs.find((d) => (d = props.course));
 
@@ -49,8 +46,8 @@ export default connect(
     <Router className="coursePage">
       <Navigation />
       <div className="coursepage">
-        {/* <BuyCourse data={props.course} /> */}
-        <BuyCourse  />
+        <BuyCourse data={props.course} />
+        {/* <BuyCourse  /> */}
 
         <Header data={props.course} />
         {/* <Description data={props.course} /> */}

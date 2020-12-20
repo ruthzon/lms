@@ -46,7 +46,7 @@ export default connect(
   let prev = Object.assign({}, props.course);
   return (
     <>
-      <div
+      <div data-toggle="tooltip" data-placement="top" title="color"
         onClick={() => props.setSectionConfig({name: 'course_header'})}
         className="hover-config header"
         style={{backgroundColor: props.course.colors.header}}
@@ -103,7 +103,7 @@ export default connect(
                   <Col xs="3">
                     <FaRegClock />
                     Duration{' '}
-                    <input
+                    <input 
                       type="number"
                       className="weeks-i"
                       onChange={(e) => props.setWeeks(e.target.value)}

@@ -29,10 +29,11 @@ class Belive extends Component {
     } = this.props;
     return (
       <>
-        <div
+        <div 
           onClick={() => setSectionConfig({name: 'course_belive'})}
-          className="belive beliveconf hover-config"
+          className=" belive beliveconf hover-config "
           style={{backgroundColor: course.colors.belive}}
+          
         >
           <Container>
             <Row>
@@ -42,6 +43,7 @@ class Belive extends Component {
                     <textarea
                       value={course.belive.text}
                       onChange={(e) => setBeliveText(e.target.value)}
+                      className="Ibelive"
                     />
                   </i>
                   <br />

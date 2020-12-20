@@ -28,7 +28,7 @@ export default connect(
 )(function Header(props) {
   return (
     <>
-      <header
+      <header 
         onClick={() => props.setSectionConfig({name: 'header'})}
         style={{backgroundColor: props.school.colors.header}}
         className="hover-config"
@@ -51,7 +51,7 @@ export default connect(
                 />
               </h6>
               {props.school.show.searchbar && (
-                <InputGroup className="mb-2 search-bar">
+                <InputGroup className="mb-2 search-bar" >
                   <FormControl
                     placeholder="Search your favourite course"
                     aria-label="Search your favourite course"
@@ -60,9 +60,8 @@ export default connect(
                   <InputGroup.Append>
                     <InputGroup.Text
                       id="basic-addon2"
-                      style={{backgroundColor: props.school.colors.searchbar}}
-                    >
-                      <FaSearch color="white" />
+                      style={{backgroundColor: props.school.colors.searchbar}} >
+                      <FaSearch color="white" data-toggle="tooltip" data-placement="top" title="Search"/>
                     </InputGroup.Text>
                   </InputGroup.Append>
                 </InputGroup>

@@ -61,6 +61,9 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFromFooter: (name) => dispatch(actions.deleteFromFooter(name)),
   setGetChoice: (name) => dispatch(actions.setGetChoice(name)),
   setWorldSelection: (name) => dispatch(actions.setWorldSelection(name)),
+  setChoiceFavorite: (name) => dispatch(actions.setChoiceFavorite(name)),
+
+  // 
 });
 
 export default withRouter(
@@ -117,6 +120,8 @@ export default withRouter(
               color={props.setColorSchoolByPart}
               show={props.showSchoolByPart}
               data={props}
+              function={props.setChoiceFavorite}
+
             />
           );
         case 'getChoice':
@@ -186,7 +191,7 @@ export default withRouter(
     return (
       <>
         <div className="config">
-          <button onClick={() => addCourse()}>
+          <button onClick={() => addCourse()} data-toggle="tooltip" data-placement="top" title="Aadd coursre">
             Add Course <FaPlus />
           </button>
           <br />

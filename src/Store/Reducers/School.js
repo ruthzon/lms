@@ -54,12 +54,17 @@ const initialState = {
     getChoice:{
       header:"Get choice of your course",
       algorithm:"views",
-      items:6
+      items:6,
+      color:"#0000"
     },
     worldSelection:{
       header:"The world’s largest selection of courses",
       algorithm:"stars",
       items:6
+    },
+    ChoiceFavourite:{
+      header: "Choice favourite course from top category",
+      algorithm:"views"
     },
     // footer: {
     //   "Company": ["About", "Careers", "Press", "Blog", "Affiliates",],
@@ -91,7 +96,8 @@ const initialState = {
       footer: '#282834',
       getChoice: '#EFEFF6',//!!!!!!!
       worldSelection: '#FEF0EF',//!!!!!!!
-      searchbar: '#f56962'
+      searchbar: '#f56962',
+      ChoiceFavourite: "#00000029"
 
     },
     footer: [
@@ -214,6 +220,10 @@ const myschool = {
   },
   setGetChoice(state, action) {
     state.school.getChoice[action.payload[1]] = action.payload[0];
+  },
+  setChoiceFavorite(state, action) {
+    debugger;
+    state.school.ChoiceFavourite[action.payload[1]] = action.payload[0];
   },
   setWorldSelection(state, action) {
     state.school.worldSelection[action.payload[1]] = action.payload[0];
