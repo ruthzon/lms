@@ -70,7 +70,7 @@ function Video(props) {
       'video/mp4',
       'video/mpg',
       'audio/mp3',
-      
+
     ];
     if (validTypes.indexOf(file.type) === -1) {
       return false;
@@ -155,7 +155,6 @@ function Video(props) {
       //     });
     }
     uploadModalRef.current.style.display = 'none';
-
   };
   useEffect(() => {
     let filteredArray = selectedFiles.reduce((file, current) => {

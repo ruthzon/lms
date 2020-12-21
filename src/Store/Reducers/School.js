@@ -62,10 +62,10 @@ const initialState = {
       algorithm: "stars",
       items: 6
     },
-    ChoiceFavourite:{
-      header: "Choice favourite course from top category",
-      algorithm:"views"
-    },
+    // ChoiceFavourite:{
+    //   header: "Choice favourite course from top category",
+    //   algorithm:"views"
+    // },
     // footer: {
     //   "Company": ["About", "Careers", "Press", "Blog", "Affiliates",],
     //   "Community": [ "Go Premium", "Team Plans", "Refer a Friend", "Gift Cards", "Scholarships",],

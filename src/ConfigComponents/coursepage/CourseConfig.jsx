@@ -32,6 +32,7 @@ function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
     styles: state.stylesReducer.styles,
+    user:state.userReducer.user,
   };
 }
 
@@ -143,7 +144,7 @@ export default connect(
       case 'course_rev_inst':
         return <ConfigInstructorReviews data={props} />;
       case 'buy_course':
-        return <ConfigBuyCourse data={props} />;
+        return <ConfigBuyCourse data={props}  />;
       case 'buy_course_share':
         return <ConfigBuyCourseShare data={props} />;
       case 'buy_course_info':

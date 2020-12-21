@@ -62,7 +62,7 @@ const initialState = {
       stars: true,
       views: true,
       prev_price: true,
-      price: true,
+      price: false,
       prev_price_time: true,
       // language: true,
       // use: true,

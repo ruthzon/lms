@@ -104,18 +104,11 @@ function WorldSelectionCourse(props) {
         className="content"
         breakPoints={breakPoints}
         ref={(ref) => (carousel = ref)}
+        itemPadding={[0, 10]}
+
       >
         <CourseCards school={props.school} courses={props.courses} />
-        {/* <Carousel.Item>
-          <CardDeck>
-            <ListCourses courses={props.courses} i={0} />
-          </CardDeck>
-        </Carousel.Item>
-        <Carousel.Item>
-          <CardDeck>
-            <ListCourses courses={props.courses} i={3} />
-          </CardDeck>
-        </Carousel.Item> */}
+        
       </Carousel>
       {/* <Form inline className="carousel">
             <button className="carousel-left">
