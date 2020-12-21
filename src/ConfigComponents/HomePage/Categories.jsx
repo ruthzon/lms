@@ -40,9 +40,9 @@ export default connect(
           </Form>
           <h3>
           <textarea
-            value={props.school.ChoiceFavourite.header}
-            onChange={(e) => props.setChoiceFavorite([e.target.value, 'header'])}
-            style={{ color: props.school.colors.ChoiceFavourite }}
+            value={props.school.categories.header}
+            onChange={(e) => props.setCategories([e.target.value, 'header'])}
+            style={{ color: props.school.colors.choiceFavorite }}
 
           />
             {/* <textarea

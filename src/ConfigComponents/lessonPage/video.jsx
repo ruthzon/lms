@@ -63,12 +63,14 @@ function Video(props) {
   };
   const validateFile = (file) => {
     const validTypes = [
-      'image/jpeg',
-      'image/png',
-      'image/gif',
-      'image/x-icon',
+      // 'image/jpeg',
+      // 'image/png',
+      // 'image/gif',
+      // 'image/x-icon',
       'video/mp4',
       'video/mpg',
+      'audio/mp3',
+      
     ];
     if (validTypes.indexOf(file.type) === -1) {
       return false;

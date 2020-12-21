@@ -178,10 +178,12 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     }
     if (action.type === 'ADD_LESSON_TO_SERVER') {
         let lesson = Object.assign({}, action.payload);
+        let cours = getState().courseReducer.course;
+        let course_id=lesson.course_id!=0?lesson.course_id:cours._id;
         if (lesson._id == 0) {
             delete lesson._id;
             $.ajax({
-                url: 'https://lms.leader.codes/api/' + uid + '/' + lesson.course_id + '/addLesson',
+                url: 'https://lms.leader.codes/api/' + uid + '/' + course_id + '/addLesson',
                 headers: {
                     Authorization: jwt,
                 },
@@ -197,7 +199,6 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     dispatch(actions.addLesson(data.data))
                     console.log("lesson " + data.data._id);
                     swal("Lesson added successfully", "", "success");
-                    let cours = getState().listCoursesReducer.courses.find((c) => (c._id == data.data.course_id));
                     history.push('/' + user.userName + '/' + cours.name);
                     // window.location.reload();
                     // window.location.href = url + user.userName+'/' +data.course_id;
@@ -224,10 +225,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     // history.replace('/' + matchPath.params.name);
                     // window.location.reload();
                     dispatch(actions.initialLesson(data.data));
-                    dispatch(action.updateLesson(data.data));
+                    dispatch(actions.updateLesson(data.data));
                     console.log("lesson " + data.data._id);
                     swal("Lesson saved successfully", "", "success");
-                    history.push('/' + user.userName + '/' + data.course_id);
+                    history.push('/' + user.userName + '/' + cours.name);
                     // window.location.reload();
                     // window.location.href = url + user.userName+'/' +data.course_id;
                 },
