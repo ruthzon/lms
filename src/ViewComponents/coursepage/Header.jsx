@@ -9,34 +9,42 @@ import {
 } from 'react-icons/all';
 import { UserContext } from '../../login/userProvider';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function Header(props) {
+
+function mapStateToProps(state) {
+  return {
+    course: state.currentCourseReducer.currentCourse
+
+  };
+}
+export default connect(
+  mapStateToProps,
+
+)(function Header(props) {
   // const user = useContext(UserContext);
-  // console.log(user)
-
+  console.log(props)
   return (
     <>
       <div className="header">
         <div className="content">
-          {/* {user !== null && props.data.user_id === user.uid && ( */}
-            <p className="text-own">
-              your own course - you may edit it
+          {/* <p className="text-own">
+            your own course - you may edit it
               <Link to={'/editcourse/' + props.data.id}> here</Link>
-            </p>
-          {/* )} */}
-          <h1>{props.data.name}</h1>
+          </p> */}
+          <h1>{props.name}</h1>
           <br />
           <div className={props.view ? 'header-view' : ''}>
             <h3>
               {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
-              {props.data.subtitle}
+              {props.subtitle}
             </h3>
             <Container>
               <Row>
                 <Col xs="3">
                   <FaRegStar color="#F3B23A" />
-                  {props.data.stars}
+                  {props.stars}
                 </Col>
                 <Col xs="3">
                   <FaRegEye color="#DB4500" />
@@ -49,7 +57,7 @@ function Header(props) {
                 </Col>
                 <Col xs="3">
                   <FaRegPlayCircle color="#3E9365" />
-                  {props.data.lesion + ' '} Lessons
+                  {props.lesion + ' '} Lessons
                 </Col>
               </Row>
             </Container>
@@ -59,5 +67,4 @@ function Header(props) {
     </>
   );
 }
-
-export default Header;
+)

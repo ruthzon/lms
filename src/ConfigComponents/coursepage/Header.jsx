@@ -1,16 +1,16 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import '../../ViewComponents/coursepage/course.css';
-import {Row, Col, Container} from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import {
   FaRegStar,
   FaRegEye,
   FaRegPlayCircle,
   FaRegClock,
 } from 'react-icons/all';
-import {UserContext} from '../../login/userProvider';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {actions} from '../../Store/actions';
+import { UserContext } from '../../login/userProvider';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
 // import {Input} from 'semantic-ui-react';
 import '../configurator.css';
 
@@ -28,6 +28,8 @@ import '../configurator.css';
 function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
+    currentCourse: state.currentCourseReducer.currentCourse,
+
   };
 }
 
@@ -47,9 +49,9 @@ export default connect(
   return (
     <>
       <div data-toggle="tooltip" data-placement="top" title="color"
-        onClick={() => props.setSectionConfig({name: 'course_header'})}
+        onClick={() => props.setSectionConfig({ name: 'course_header' })}
         className="hover-config header"
-        style={{backgroundColor: props.course.colors.header}}
+        style={{ backgroundColor: props.course.colors.header }}
       >
         <div className="content">
           {/* {user !== null && course.user_id === user.uid && (
@@ -61,7 +63,7 @@ export default connect(
           <h1>
             <textarea
               value={props.course.name}
-              style={{color: props.course.colors.name}}
+              style={{ color: props.course.colors.name }}
               onChange={(e) => props.setName(e.target.value)}
               type="text"
             />
@@ -73,7 +75,7 @@ export default connect(
               {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
               <textarea
-                style={{color: props.course.colors.subtitle}}
+                style={{ color: props.course.colors.subtitle }}
                 value={props.course.subtitle}
                 onChange={(e) => props.setSubtitle(e.target.value)}
                 type="text"
@@ -103,7 +105,7 @@ export default connect(
                   <Col xs="3">
                     <FaRegClock />
                     Duration{' '}
-                    <input 
+                    <input
                       type="number"
                       className="weeks-i"
                       onChange={(e) => props.setWeeks(e.target.value)}

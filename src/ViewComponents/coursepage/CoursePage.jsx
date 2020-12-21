@@ -39,17 +39,15 @@ export default connect(
 
   // console.log(props.course)
   // let params = useParams();
-  // let course = crs.find((d) => (d = props.course));
 
-  // const data=JSON.parse(params.data.toString())
   return (
     <Router className="coursePage">
       <Navigation />
       <div className="coursepage">
-        <BuyCourse data={props.course} />
-        {/* <BuyCourse  /> */}
+        {/* <BuyCourse data={props.course} /> */}
+        <BuyCourse  />
 
-        <Header data={props.course} />
+        <Header/>
         {/* <Description data={props.course} /> */}
         <MoreCourses />
         <Belive />

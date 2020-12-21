@@ -191,7 +191,7 @@ export default withRouter(
     return (
       <>
         <div className="config">
-          <button onClick={() => addCourse()} data-toggle="tooltip" data-placement="top" title="Aadd coursre">
+          <button onClick={() => addCourse()} data-toggle="tooltip" data-placement="top" title="Add coursre">
             Add Course <FaPlus />
           </button>
           <br />

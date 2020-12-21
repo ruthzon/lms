@@ -22,17 +22,11 @@ const initialState = {
 
 const mycurrentCourse = {
  
-     setCurrentCourseName(state, action) {
-        state.currentCourse.name = action.payload;
+     setCurrentCourse(state, action) {
+        state.currentCourse = action.payload;
         debugger;
       },
-      // CurrentCourse
-      setCurrentCourseSubtitle(state, action) {
-        state.currentCourse.subtitle = action.payload;
-      },
-      setCurrentCourseImage(state, action) {
-        state.course.image = action.payload;
-      },
+    
       // setStars(state, action) {
       //   state.currentCourse.stars = action.payload;
       // },

@@ -18,27 +18,23 @@ const mapStateToProps = (state) => {
     return {
         studentProfile: state.studentProfilReducer.studentProfile,
         courses: state.listCoursesReducer.courses,
-        courseStudent: state.CourseStudentReducer.currentCourse,
-        // course: state.currentCourseReducer.currentCourse
+        courseStudent: state.CourseStudentReducer.courseStudent,
     };
 }
 const mapDispatchToProps = (dispatch) => ({
-    
-    setCurrentCourseName: (name) => dispatch(actions.setCurrentCourseName(name)),
-    setCurrentCourseSubtitle: (subtitle) => dispatch(actions.setCurrentCourseSubtitle(subtitle)),
-    setCurrentCourseImage: (image) => dispatch(actions.setCurrentCourseImage(image)),
-    
-  });
+
+    setCurrentCourse: (name) => dispatch(actions.setCurrentCourse(name))
+});
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(
     function CourseCard(props) {
-       
+
         // alert(props.course.name)
         $(document).ready(function () {
-     
+
             var x = 100
             var y = 4
             var z = x / y
@@ -55,20 +51,14 @@ export default connect(
                 }
             }
         });
-  
 
         var url = window.location;
         var school = url.pathname.split('/')[2];
         const navigate = () => {
-            // mapDispatchToProps();
-            // browserHistory.replace('/courses/:'+JSON.stringify( data));
+            alert(props.course.name);
+            props.setCurrentCourse(props.course)
             history.push(`/view/kjhg/${props.course.name}`);
-            window.location.reload();
-            console.log( props.course.name);
-            props.setCurrentCourseName({name: props.course.name})
-            props.setCurrentCourseSubtitle({subtitle:props.course.subtitle})
-            props.setCurrentCourseImage({image:props.course.image})
-            
+
         };
         return (
             // <Link to="/courses">
@@ -76,14 +66,12 @@ export default connect(
                 className="course-card"
                 // onClick={routeChange}
                 // onClick={ window.location.href='/courses/:'+this}
-                onClick={navigate} 
+                onClick={navigate}
 
             // onPress={() => navigation.navigate('Details')}
             // href="./coursepage/CoursePage.jsx"
             >
-                {/* {user!==null && props.course.user_id === user.uid && (
-        <Card.Text className="text-own">your own course</Card.Text>
-      )} */}
+
                 <Card.Img
                     variant="top"
                     className="card-img"

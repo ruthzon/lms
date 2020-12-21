@@ -5,11 +5,13 @@ import { connect } from 'react-redux'
 import { actions } from '../Store/actions'
 import { handleImage } from '../ConfigComponents/handleImage'
 import './studentProfile.css'
+import fontPicker from '../ConfigComponents/fontPicker'
 import Navigation from './coursepage/navbar'
 import Belive from './coursepage/belive'
 import TopEducators from './coursepage/topEducators'
 import Footer from './Footer'
 import CourseCardWithProgress from './CourseCardWithProgress';
+
 import { Courses } from '../Store/data'
 import { render } from "@testing-library/react";
 import CourseCard from "./CourseCard";
@@ -74,6 +76,7 @@ export default connect(
 
     return (
         <div>
+            <fontPicker/>
             <Navigation></Navigation>
             <div className="container-fluid">
                 <div className="row align-items-center" style={{ backgroundColor: props.studentProfile.colors.aboutStudent }}>

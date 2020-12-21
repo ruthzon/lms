@@ -1,6 +1,8 @@
-import React from 'react';
+// import React from 'react';
 import { FaCopy, FaPlus, FaTrash } from 'react-icons/fa';
 import { handleDelete, handleImage, handleImageById } from '../handleImage';
+import FontPicker from "font-picker-react";
+import React, { useState } from "react";
 
 export function ConfigHeader(props) {
   return (
@@ -153,8 +155,11 @@ export function ConfigCategory(props) {
 
 export function ConfigCategories(props) {
   let { data, id } = props;
+  const YOUR_API_KEY = 'AIzaSyCzgSJ33qliZxON6yFXjEpUudk2QsNTkBg';
+	const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
+  debugger;
   return (
-    
+
     <>
       <h5>
         Categories
@@ -196,13 +201,22 @@ export function ConfigCategories(props) {
             value={props.school.colors.ChoiceFavourite}
             onChange={(e) => props.color([e.target.value, 'ChoiceFavourite'])}
           />
-           <input
-           type="text"
-          value={data.school.ChoiceFavourite.header}
-          onChange={(e) =>
-            data.setChoiceFavorite([e.target.value, 'header'])
-          }
-        />
+          <input
+            type="text"
+            value={data.school.ChoiceFavourite.header}
+            onChange={(e) =>
+              data.setChoiceFavorite([e.target.value, 'header'])
+            }
+          />
+          <FontPicker
+            apiKey="YOUR_API_KEY"
+            activeFontFamily={activeFontFamily}
+            onChange={(nextFont) =>
+                activeFontFamily= nextFont.family
+            }
+          />
+          <p className="apply-font">The font will be applied to this text.</p>
+
         </div>
 
 
