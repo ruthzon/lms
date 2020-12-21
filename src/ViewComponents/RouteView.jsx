@@ -21,6 +21,7 @@ import {actions} from '../Store/actions';
 import StudentProfilePage from '../ViewComponents/studentProfilePage';
 import CoursePage from './coursepage/CoursePage';
 import LessonPage from './lessonPage/LessonPage';
+import SearchCourse from './SearchPage/ShearchCourse';
 // import studentProfilePage from '../ViewComponents/studentProfilePage';
 // import Stage from './Frame/stage';
 // import Configurator from './Frame/configurator';
@@ -53,6 +54,10 @@ export default connect(
         <Route path={`${match.path}/profile`}>
           {/* <CoursePage /> */}
           <StudentProfilePage />
+        </Route>
+        <Route path={`${match.path}/search`}>
+          {/* <CoursePage /> */}
+          <SearchCourse />
         </Route>
         <Route path={`${match.path}/:course/:lesson`}>
           <LessonPage />
