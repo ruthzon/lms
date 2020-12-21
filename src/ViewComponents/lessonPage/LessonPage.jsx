@@ -9,7 +9,7 @@ import Description from '../../ViewComponents/coursepage/description/description
 // import BuyCourse from '../coursepage/BuyCourse';
 import MoreCourses from '../../ViewComponents/coursepage/moreCourses';
 import Belive from '../coursepage/belive';
-import Video from './video';
+import Video from './videoCopy';
 import TopEducators from '../../ViewComponents/coursepage/topEducators';
 import { connect } from 'react-redux';
 

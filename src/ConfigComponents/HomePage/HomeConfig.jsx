@@ -1,10 +1,10 @@
-import React, {Component, useState} from 'react';
-import {Button, Row} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {useParams, useRouteMatch, withRouter} from 'react-router-dom';
-import {actions} from '../../Store/actions';
+import React, { Component, useState } from 'react';
+import { Button, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { useParams, useRouteMatch, withRouter } from 'react-router-dom';
+import { actions } from '../../Store/actions';
 import '../configurator.css';
-import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/all';
+import { FaAngleDown, FaAngleRight, FaPlus } from 'react-icons/all';
 import $ from 'jquery';
 import {
   ConfigCategories,
@@ -21,6 +21,8 @@ import {
   ConfigPartnerX,
   ConfigFooterCol,
   ConfigFooter,
+  SchoolButtons,
+  SchoolFontButtons
 } from './HomeConfigSections';
 // const browserHistory = createBrowserHistory();
 
@@ -72,8 +74,8 @@ export default withRouter(
     mapDispatchToProps
   )(function HomeConfig(props) {
     let match = useRouteMatch();
-    let {name} = useParams();
-    let {history} = props;
+    let { name } = useParams();
+    let { history } = props;
     const addCourse = () => {
       props.initialEmptyCourse();
       history.push('/' + name + '/addCourse');
@@ -183,7 +185,9 @@ export default withRouter(
           return <ConfigFooter data={props} />;
         case 'footer-col':
           return <ConfigFooterCol col={id} data={props} />;
-
+        case 'school_buttons':
+          return <SchoolButtons school={props.school} color={props.setColorSchoolByPart} />
+      
         default:
           return 'Click any object on the page to change its settings';
       }

@@ -1,14 +1,23 @@
 import React from 'react';
-import {Dropdown} from 'react-bootstrap';
-import {FaCopy, FaPlus, FaTrash} from 'react-icons/fa';
+import { Dropdown } from 'react-bootstrap';
+import { FaCopy, FaPlus, FaTrash } from 'react-icons/fa';
 import {
   handleDelete,
   handleIconById,
   handleImage,
   handleImageById,
 } from '../handleImage';
+import FontPicker from "font-picker";
 
+// const YOUR_API_KEY = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCuFNlrwKUMRXcw0ZPXMPnch6Vk4g8KeSY';
+// const fontPicker = new FontPicker(
+//   YOUR_API_KEY, // Google API key
+//   "Open Sans", // Default font
+//   { limit: 30 }, // Additional options
+// );
 export function ConfigHeader(props) {
+
+
   let data = props.data;
   return (
     <>
@@ -29,6 +38,15 @@ export function ConfigHeader(props) {
           onChange={(e) => data.setName(e.target.value)}
           value={data.course.name}
         />
+        <input
+          width={2}
+          placeholder="Change font to"
+          type="text"
+          value={data.course.titleFont}
+          onChange={(e) => data.setTitleFont(e.target.value)}
+        />
+        <div id="font-picker"></div>
+
       </div>
       <div>
         subtitle
@@ -87,14 +105,14 @@ export function ConfigHeader(props) {
 }
 
 export function ConfigOverview(props) {
-  let {data} = props;
+  let { data } = props;
   return (
     <>
       <h5>
         Overview
         <FaPlus data-toggle="tooltip" data-placement="top" title="Add overview"
           onClick={(e) =>
-            data.addNewForOverview({header: 'title', text: 'text'})
+            data.addNewForOverview({ header: 'title', text: 'text' })
           }
         />
       </h5>
@@ -187,7 +205,7 @@ export function ConfigCurriculumX(props) {
   return null;
 }
 
-
+//here
 export function ConfigInstructorReviews(props) {
   let data = props.data;
   return (
@@ -222,7 +240,7 @@ export function ConfigInstructorReviews(props) {
 
 
 export function ConfigBuyCourse(props) {
-  let {data} = props;
+  let { data } = props;
   return (
     <>
       <h5>Course card </h5>
@@ -298,7 +316,7 @@ export function ConfigBuyCourse(props) {
 }
 
 export function ConfigBuyCourseShare(props) {
-  let {data} = props;
+  let { data } = props;
   return (
     <>
       <h5>
@@ -427,7 +445,7 @@ export function ConfigBuyCourseShare(props) {
   );
 }
 export function ConfigBuyCourseInfo(props) {
-  let {data} = props;
+  let { data } = props;
   return (
     <>
       <h5>
@@ -519,7 +537,7 @@ export function ConfigMoreCourses(props) {
         <textarea
           value={data.course.more_courses.header}
           onChange={(e) =>
-            data.setMoreCourses({key: 'header', value: e.target.value})
+            data.setMoreCourses({ key: 'header', value: e.target.value })
           }
         />
       </div>
@@ -529,7 +547,7 @@ export function ConfigMoreCourses(props) {
           type="number"
           value={data.course.more_courses.items}
           onChange={(e) =>
-            data.setMoreCourses({key: 'items', value: e.target.value})
+            data.setMoreCourses({ key: 'items', value: e.target.value })
           }
         />
       </div>
@@ -543,7 +561,7 @@ export function ConfigMoreCourses(props) {
               type="radio"
               checked={data.course.more_courses.algorithm === 'category'}
               onChange={(e) =>
-                data.setMoreCourses({key: 'algorithm', value: 'category'})
+                data.setMoreCourses({ key: 'algorithm', value: 'category' })
               }
             />
           </div>
@@ -553,13 +571,13 @@ export function ConfigMoreCourses(props) {
               type="radio"
               checked={data.course.more_courses.algorithm === 'auther'}
               onChange={(e) =>
-                data.setMoreCourses({key: 'algorithm', value: 'auther'})
+                data.setMoreCourses({ key: 'algorithm', value: 'auther' })
               }
             />
           </div>
         </div>
       </radioGroup>
-      
+      < CourseButtons ></CourseButtons>
       {/* <Dropdown>
         <Dropdown.Toggle variant="light" id="dropdown-basic">
           Algorithm
@@ -695,7 +713,8 @@ export function ConfigTopEducators(props) {
 }
 
 export function ConfigTopEducatorsX(props) {
-  let {data, id} = props;
+  let { data, id } = props;
+
   return (
     <>
       <h5>
@@ -763,4 +782,39 @@ export function ConfigTopEducatorsX(props) {
       </div>
     </>
   );
+}
+
+export function CourseButtons(props) {
+  debugger;
+  return (
+    <>
+      <h5>Buttons</h5>
+      <br />
+      <div>
+        Background color of all the buttons
+        <input
+          type="color"
+          value={props.course.colors.button}
+          onChange={(e) => props.color([e.target.value, 'button'])}
+        />
+      </div>
+      <div>
+        font color of all the buttons
+        <input
+          type="color"
+          value={props.course.colors.button}
+          onChange={(e) => props.color([e.target.value, 'fontButton'])}
+        />
+      </div>
+
+
+      {/* <input type="text"
+        width={2}
+        InputProps={{ className: classes.multilineColor }}
+        onChange={(e) => this.props.changeFont(e.target.value)}
+        placeholder="To"
+        value={this.props.homeStoreDesign.titleFont.titleCategory}
+        className={classes.fieldTextStyle} /> */}
+    </>
+  )
 }

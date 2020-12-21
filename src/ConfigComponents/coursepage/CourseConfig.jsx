@@ -1,10 +1,10 @@
-import React, {Component, useState} from 'react';
-import {Button, Row} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {useParams, useRouteMatch} from 'react-router-dom';
-import {actions} from '../../Store/actions';
+import React, { Component, useState } from 'react';
+import { Button, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { useParams, useRouteMatch } from 'react-router-dom';
+import { actions } from '../../Store/actions';
 import '../configurator.css';
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from 'history';
 import $ from 'jquery';
 import swal from 'sweetalert';
 import {FaAngleDown, FaAngleRight, FaPlus, FaTrash} from 'react-icons/fa';
@@ -23,6 +23,7 @@ import {
   ConfigTopEducators,
   ConfigTopEducatorsX,
   ConfigInstructorReviews,
+  CourseButtons
 } from './CourseConfigSections';
 import { handleDelete } from '../handleImage';
 const browserHistory = createBrowserHistory();
@@ -92,6 +93,8 @@ const mapDispatchToProps = (dispatch) => ({
   setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
   showReviews: (name) => dispatch(actions.showReviews(name)),
   showInstructor: (name) => dispatch(actions.showInstructor(name)),
+  setColorCourseByPart: (name) => dispatch(actions.setColorCourseByPart(name)),
+  setTitleFont: (name) => dispatch(actions.setTitleFont(name)),
 });
 
 export default connect(
@@ -99,7 +102,7 @@ export default connect(
   mapDispatchToProps
 )(function CourseConfig(props) {
   let match = useRouteMatch();
-  let {name, course} = useParams();
+  let { name, course } = useParams();
   const addLesson = () => {
     if (!props.course._id || props.course.id == '0') {
       swal(
@@ -155,7 +158,10 @@ export default connect(
         return <ConfigTopEducators data={props} />;
       case 'course_top_educators_x':
         return <ConfigTopEducatorsX data={props} id={id} />;
-
+      case 'course_buttons':
+        return <CourseButtons course={props.course} color={props.setColorCourseByPart} />
+        // case 'change_font':
+        //   return <CourseButtons course={props.course} color={props.setTitleFont} />
       default:
         return 'Click any object on the page to change its settings';
     }

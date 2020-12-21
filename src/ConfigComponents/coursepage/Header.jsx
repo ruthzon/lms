@@ -1,16 +1,16 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import '../../ViewComponents/coursepage/course.css';
-import {Row, Col, Container} from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import {
   FaRegStar,
   FaRegEye,
   FaRegPlayCircle,
   FaRegClock,
 } from 'react-icons/all';
-import {UserContext} from '../../login/userProvider';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {actions} from '../../Store/actions';
+import { UserContext } from '../../login/userProvider';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
 // import {Input} from 'semantic-ui-react';
 import '../configurator.css';
 
@@ -36,7 +36,11 @@ const mapDispatchToProps = (dispatch) => ({
   setSubtitle: (sub) => dispatch(actions.setSubtitle(sub)),
   setWeeks: (sub) => dispatch(actions.setWeeks(sub)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+  changeFont: (name) => dispatch(actions.setTitleFont(name))
+
 });
+
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -49,7 +53,7 @@ export default connect(
       <div data-toggle="tooltip" data-placement="top" title="color"
         onClick={() => props.setSectionConfig({name: 'course_header'})}
         className="hover-config header"
-        style={{backgroundColor: props.course.colors.header}}
+        style={{ backgroundColor: props.course.colors.header }}
       >
         <div className="content">
           {/* {user !== null && course.user_id === user.uid && (
@@ -61,11 +65,10 @@ export default connect(
           <h1>
             <textarea
               value={props.course.name}
-              style={{color: props.course.colors.name}}
+              style={{ color: props.course.colors.name, fontFamily: props.course.titleFont }}
               onChange={(e) => props.setName(e.target.value)}
               type="text"
             />
-            {/* {props.course.name} */}
           </h1>
           <br />
           <div className={props.view ? 'header-view' : ''}>
@@ -73,7 +76,7 @@ export default connect(
               {/* Learn graphic design today with Photoshop, Illustrator, Adobe
                   XD, InDesign & more in this Adobe CC Masterclass! */}
               <textarea
-                style={{color: props.course.colors.subtitle}}
+                style={{ color: props.course.colors.subtitle, fontFamily: props.course.titleFont }}
                 value={props.course.subtitle}
                 onChange={(e) => props.setSubtitle(e.target.value)}
                 type="text"

@@ -1,11 +1,11 @@
-import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {Card, CardDeck, Dropdown, Form} from 'react-bootstrap';
+import { Card, CardDeck, Dropdown, Form } from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
-import {connect} from 'react-redux';
-import {actions} from '../../Store/actions';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
 import Carousel from 'react-elastic-carousel';
 import '../HomePage/carousel.css';
 import CourseCard from '../CourseCard';
@@ -67,9 +67,9 @@ function WorldSelectionCourse(props) {
   let carousel = null;
   return (
     <section
-      onClick={() => props.setSectionConfig({name: 'worldSelection'})}
+      onClick={() => props.setSectionConfig({ name: 'worldSelection' })}
       id="world"
-      style={{backgroundColor: props.school.colors.worldSelection}}
+      style={{ backgroundColor: props.school.colors.worldSelection }}
       className="hover-config"
     >
       <div className="title">
@@ -84,7 +84,12 @@ function WorldSelectionCourse(props) {
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <button>View all</button>
+          <button style={{ backgroundColor: props.school.colors.button ,borderColor: props.school.colors.fontButton  }}
+            onClick={(e) => {
+              props.setSectionConfig({ name: 'school_buttons' });
+            }}>
+            <p style={{ color: props.school.colors.fontButton }}> View all</p>
+          </button>
         </Form>
         <h3>
           <textarea

@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaCopy, FaPlus, FaTrash } from 'react-icons/fa';
 import { handleDelete, handleImage, handleImageById } from '../handleImage';
+// import './fonts.css';
+
 
 export function ConfigHeader(props) {
   return (
@@ -69,6 +71,10 @@ export function ConfigHeader(props) {
           onChange={(e) => handleImage(e, props.image)}
           style={{ backgroundImage: props.school.image }}
           files={props.school.image}
+        // onChange={(e) =>
+        //   props.function({prop: 'subtitle', data: e.target.value})
+        // }
+        // value={props.school.image}
         />
       </div>
     </>
@@ -933,3 +939,45 @@ export function ConfigFooterCol(props) {
     </>
   );
 }
+export function SchoolButtons(props) {
+  return (
+    <>
+      <h5>Buttons</h5>
+      <br />
+      <div>
+        Background color of all the buttons
+        <input
+          type="color"
+          value={props.school.colors.buttons}
+          onChange={(e) => props.color([e.target.value, 'button'])}
+        />
+      </div>
+      <div>
+        font color of all the buttons
+        <input
+          type="color"
+          value={props.school.colors.buttons}
+          onChange={(e) => props.color([e.target.value, 'fontButton'])}
+        />
+      </div>
+    </>
+  )
+}
+
+// export function SchoolCourse(props)
+// {
+//   return(
+//     <>
+//     <h5>Buttons</h5>
+//       <br />
+//       <div>
+//         Background color of all the buttons
+//         <input
+//           type="color"
+//           value={props.school.colors.buttons}
+//           onChange={(e) => props.color([e.target.value, 'button'])}
+//         />
+//       </div>
+//     </>
+//   )
+// }

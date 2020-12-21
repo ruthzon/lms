@@ -1,13 +1,13 @@
-import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import CourseCard from '../homepage/Courses'
 import ListCourses from '../ListCourses';
 import React from 'react';
 import {CardDeck, Form, Dropdown, Button} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
-import {connect} from 'react-redux';
-import {Courses} from '../../Store/data';
-import {actions} from '../../Store/actions';
+import { connect } from 'react-redux';
+import { Courses } from '../../Store/data';
+import { actions } from '../../Store/actions';
 import Carousel from 'react-elastic-carousel';
 import '../HomePage/carousel.css';
 import CourseCard from '../CourseCard';
@@ -70,10 +70,11 @@ export default connect(
     <section
       id="world"
       onClick={(e) => {
-        props.setSectionConfig({name: 'course_more_courses'});
+        if (e.target === e.currentTarget)
+        props.setSectionConfig({ name: 'course_more_courses' });
       }}
       className="hover-config"
-      style={{backgroundColor: props.course.colors.more_courses}}
+      style={{ backgroundColor: props.course.colors.more_courses }}
     >
       <div className="title">
         <Form inline>
@@ -87,13 +88,30 @@ export default connect(
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <button>View all</button>
+          <button
+            style={{ backgroundColor: props.course.colors.button, borderColor: props.course.colors.fontButton }}
+            onClick={(e) => {
+              props.setSectionConfig({ name: 'course_buttons' });
+            }}
+          >
+            <p style={{ color: props.course.colors.fontButton }}>View all</p>
+          </button>
+          {/* <Button
+                variant="primary"
+                block
+                style={{ backgroundColor: props.course.colors.button, borderColor: props.course.colors.fontButton }}
+                onClick={(e) => {
+                  props.setSectionConfig({ name: 'course_buttons' });
+                }}
+              >
+                <p style={{ color: props.course.colors.fontButton }}> Buy Now</p>
+              </Button> */}
         </Form>
         <h3>
           <input
             value={course.more_courses.header}
             onChange={(e) =>
-              props.setMoreCourses({key: 'header', value: e.target.value})
+              props.setMoreCourses({ key: 'header', value: e.target.value })
             }
           />
         </h3>
