@@ -30,7 +30,7 @@ export default connect(
   // .find((d) => (d.id = params.id));
   // const data=JSON.parse(params.data.toString())
   return (
-    <div className="coursepage coursepageconf">
+    <div className="coursepageconf">
       <Header />
       {/* <Video /> */}
       {/* {props.lesson.show.description && <Description />} */}

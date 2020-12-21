@@ -3,7 +3,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
 // import CourseCard from '../homepage/Courses'
 import ListCourses from '../ListCourses';
 import React from 'react';
-import { CardDeck, Form, Dropdown } from 'react-bootstrap';
+import {CardDeck, Form, Dropdown, Button} from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import { connect } from 'react-redux';
 import { Courses } from '../../Store/data';
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
   setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
 });
 
-function CarouserlItem(props) {
+function CarouselItem(props) {
   if (!props.courses || !props.courses.length)
     return 'Add courses to see them here';
   const algo = props.course.more_courses.algorithm;
@@ -38,12 +38,7 @@ function CarouserlItem(props) {
   for (let i = 0; i < times; i++) {
     listItems.push(
       <>
-        {/* // <Carousel.Item> */}
-        {/* <CardDeck> */}
         <CourseCard course={courses_algo[i]} />
-        {/* <ListCourses i={i * 3} courses={courses_algo} /> */}
-        {/* // </CardDeck> */}
-        {/* </Carousel.Item>*/}
       </>
     );
   }
@@ -54,31 +49,23 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(function MoreCourses(props) {
-  // let { course, courses } = props;
-  const {
-    course,
-    courses,
-    setCourseInfo,
-    setSectionConfig,
-  } = props;
-  // if (props.courses.length == 0) courses = Courses;
+  let {course, courses} = props;
   let carousel = null;
   const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 1000, itemsToShow: 3 },
+    {width: 1, itemsToShow: 1},
+    {width: 1000, itemsToShow: 2},
+    {width: 1500, itemsToShow: 3},
   ];
-  const prev = (
-    <button onClick="dispatchDiscreteEvent" className="carousel-left">
-      <FaArrowLeft />
-    </button>
-  );
-  const next = (
-    <button className="carousel-right">
-      <FaArrowRight />
-    </button>
-  );
-
+  // const prev = (
+  //   <button onClick={carousel.slidePrev()} className="carousel-left">
+  //     <FaArrowLeft />
+  //   </button>
+  // );
+  // const next = (
+  //   <button onClick={carousel.slideNext()} className="carousel-right">
+  //     <FaArrowRight />
+  //   </button>
+  // );
   return (
     <section
       id="world"
@@ -130,18 +117,48 @@ export default connect(
         </h3>
       </div>
       <Carousel
+      itemPadding={[0, 10]}
         className="content"
         breakPoints={breakPoints}
         ref={(ref) => (carousel = ref)}
       >
-        <CarouserlItem courses={courses} course={course} />
-
-        {/* <Carousel.Item>
-          <CardDeck>
-            <ListCourses i={3} />
-          </CardDeck>
-        </Carousel.Item> */}
+        <CarouselItem courses={courses} course={course} />
       </Carousel>
+      <div className="content mt--42">
+        <Button
+          variant="light"
+          // disabled={
+          //   !carousel.state.firstItem
+          // }
+          onClick={() => {
+            carousel.slidePrev();
+          }}
+          className="carousel-left"
+        >
+          <FaArrowLeft />
+        </Button>
+        <Button
+          // disabled={
+          //   !carousel ||
+          //   !props.course.top_educators.length -
+          //     carousel.state.firstItem -
+          //     carousel.state.pages.length
+          // }
+          variant="light"
+          onClick={() => {
+            if (
+              props.course.more_courses.length -
+                carousel.state.firstItem -
+                carousel.state.pages.length >
+              0
+            )
+              carousel.slideNext();
+          }}
+          className="carousel-right"
+        >
+          <FaArrowRight />
+        </Button>
+      </div>
     </section>
   );
 });

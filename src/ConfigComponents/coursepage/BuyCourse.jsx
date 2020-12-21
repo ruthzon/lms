@@ -41,7 +41,7 @@ export default connect(
   } = props;
   return (
     <div
-      className="buy-course shadow hover-config "
+      className="buy-course shadow hover-config mt-5"
       onClick={(e) => {
         if (e.target === e.currentTarget)
           setSectionConfig({ name: 'buy_course' });
@@ -72,6 +72,8 @@ export default connect(
           {course.show.price && (
             <>
               <Card.Title className="price">
+                  Price: 
+       
                 <input
                   value={course.price}
                   onChange={(e) => setPrice(e.target.value)}

@@ -19,10 +19,12 @@ const browserHistory = createBrowserHistory();
 export default function CourseCard(props) {
   // const user = useContext(UserContext);
   // const user={};
-
+  var url = window.location;
+  var school = url.pathname.split('/')[2];
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
-    browserHistory.replace('/viewcourse/' + props.course.id);
+    // browserHistory.replace('/viewcourse/' + props.course.id);
+    history.replace(`view/${school}/${props.course.name}`);
     window.location.reload();
     console.log(props);
   };

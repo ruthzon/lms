@@ -33,7 +33,7 @@ function mapStateToProps(state) {
 }
 
 function CourseCards(props) {
-  if (!props.courses || props.courses.length)
+  if (!props.courses || !props.courses.length)
     return 'Add courses to see them here';
   const algo = props.school.getChoice.algorithm;
   const courses_algo = props.courses.sort((a, b) => a[algo] - b[algo]);

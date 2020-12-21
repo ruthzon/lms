@@ -9,28 +9,36 @@ import { createBrowserHistory } from 'history';
 import { UserContext } from '../login/userProvider';
 import { Courses } from '../Store/data'
 import $ from 'jquery';
+import history from '../history'
+import { Item } from 'semantic-ui-react';
 
-const history = createHashHistory();
-const browserHistory = createBrowserHistory();
+// const history = createHashHistory();
+// const browserHistory = createBrowserHistory();
 const mapStateToProps = (state) => {
     return {
         studentProfile: state.studentProfilReducer.studentProfile,
         courses: state.listCoursesReducer.courses,
-        courseStudent: state.CourseStudentReducer.courseStudent
+        courseStudent: state.CourseStudentReducer.currentCourse,
+        // course: state.currentCourseReducer.currentCourse
     };
 }
+const mapDispatchToProps = (dispatch) => ({
+    
+    setCurrentCourseName: (name) => dispatch(actions.setCurrentCourseName(name)),
+    setCurrentCourseSubtitle: (subtitle) => dispatch(actions.setCurrentCourseSubtitle(subtitle)),
+    setCurrentCourseImage: (image) => dispatch(actions.setCurrentCourseImage(image)),
+    
+  });
 
 export default connect(
-    mapStateToProps
-    //   mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(
     function CourseCard(props) {
-        // const user = useContext(UserContext);
-        // const user={};
-
+       
+        // alert(props.course.name)
         $(document).ready(function () {
-            // const dProgress = (props.courses.id / props.courseStudent.finishedLessons) * 100.0;
-            // console.log(dProgress)
+     
             var x = 100
             var y = 4
             var z = x / y
@@ -47,14 +55,20 @@ export default connect(
                 }
             }
         });
+  
 
-
-
+        var url = window.location;
+        var school = url.pathname.split('/')[2];
         const navigate = () => {
+            // mapDispatchToProps();
             // browserHistory.replace('/courses/:'+JSON.stringify( data));
-            browserHistory.replace('/viewcourse/' + props.course.id);
+            history.push(`/view/kjhg/${props.course.name}`);
             window.location.reload();
-            console.log(props);
+            console.log( props.course.name);
+            props.setCurrentCourseName({name: props.course.name})
+            props.setCurrentCourseSubtitle({subtitle:props.course.subtitle})
+            props.setCurrentCourseImage({image:props.course.image})
+            
         };
         return (
             // <Link to="/courses">
@@ -62,7 +76,8 @@ export default connect(
                 className="course-card"
                 // onClick={routeChange}
                 // onClick={ window.location.href='/courses/:'+this}
-                onClick={navigate}
+                onClick={navigate} 
+
             // onPress={() => navigation.navigate('Details')}
             // href="./coursepage/CoursePage.jsx"
             >

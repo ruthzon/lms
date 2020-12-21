@@ -159,7 +159,7 @@ export default connect(
             </div>
             <div>
               Auto play
-              <label class="switch">
+              <label class="switch"  data-toggle="tooltip" data-placement="top" title="auto play">
                 <input
                   type="checkbox"
                   onClick={(e) => props.setSettingProp('autoplay')}
@@ -170,7 +170,7 @@ export default connect(
             </div>
             <div>
               Controls
-              <label class="switch">
+              <label class="switch"  data-toggle="tooltip" data-placement="top" title="controls">
                 <input
                   type="checkbox"
                   onClick={(e) => props.setSettingProp('controls')}
@@ -181,7 +181,7 @@ export default connect(
             </div>
             <div>
               loop
-              <label class="switch">
+              <label class="switch"  data-toggle="tooltip" data-placement="top" title="loop">
                 <input
                   type="checkbox"
                   onClick={(e) => props.setSettingProp('loop')}
@@ -192,7 +192,7 @@ export default connect(
             </div>
             <div>
               muted
-              <label class="switch">
+              <label class="switch"  data-toggle="tooltip" data-placement="top" title="silence">
                 <input
                   type="checkbox"
                   onClick={(e) => props.setSettingProp('muted')}

@@ -43,7 +43,6 @@ const mycourses = {
         if (element._id == action.payload._id)
           element = action.payload
       })
-      debugger;
   }
 };
 

@@ -9,7 +9,7 @@ class Belive extends Component {
         <div className="belive content">
           <Container>
             <Row>
-              <Col md="6">
+              <Col md="6" >
                 <p>
                   <i className="IBelive">
                     I believe in lifelong learning and Skillfy is a great place

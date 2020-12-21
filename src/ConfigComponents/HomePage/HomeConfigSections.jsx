@@ -11,7 +11,7 @@ export function ConfigHeader(props) {
       <br />
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={props.school.colors.header}
           onChange={(e) => props.color([e.target.value, 'header'])}
@@ -19,12 +19,12 @@ export function ConfigHeader(props) {
       </div>
       <div>
         Title
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change title color"
           type="color"
           value={props.school.colors.title}
           onChange={(e) => props.color([e.target.value, 'title'])}
         />
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change text color"
           type="text"
           onChange={(e) =>
             props.function({ prop: 'title', data: e.target.value })
@@ -34,7 +34,7 @@ export function ConfigHeader(props) {
       </div>
       <div>
         subtitle
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change subtitle color"
           type="color"
           value={props.school.colors.subtitle}
           onChange={(e) => props.color([e.target.value, 'subtitle'])}
@@ -49,7 +49,7 @@ export function ConfigHeader(props) {
       </div>
       <div>
         Search bar
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change search bar color"
           type="color"
           value={props.school.colors.searchbar}
           onChange={(e) => props.color([e.target.value, 'searchbar'])}
@@ -60,7 +60,7 @@ export function ConfigHeader(props) {
             onClick={(e) => props.show('searchbar')}
             checked={props.school.show.searchbar}
           />
-          <span className="slider round"></span>
+          <span className="slider round" data-toggle="tooltip" data-placement="top" title="Hide/show search bar"></span>
         </label>
       </div>
       <div>
@@ -88,7 +88,7 @@ export function ConfigCategory(props) {
     <>
       <h5>
         Categoty
-        <FaPlus
+        <FaPlus data-toggle="tooltip" data-placement="top" title="Add category"
           onClick={(e) =>
             data.addNewForSection([
               {
@@ -100,12 +100,12 @@ export function ConfigCategory(props) {
             ])
           }
         />
-        <FaTrash
+        <FaTrash data-toggle="tooltip" data-placement="top" title="Garbage"
           onClick={(e) =>
             handleDelete(data.deleteFromSection, [id, 'categories'])
           }
         />
-        <FaCopy
+        <FaCopy data-toggle="tooltip" data-placement="top" title="Copy"
           onClick={(e) =>
             data.addNewForSection([
               {
@@ -117,6 +117,7 @@ export function ConfigCategory(props) {
             ])
           }
         />
+
       </h5>
       <div>
         Name
@@ -128,7 +129,7 @@ export function ConfigCategory(props) {
       </div>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           id={'category-backcolor-' + id}
           type="color"
           className="border-white"
@@ -157,11 +158,13 @@ export function ConfigCategory(props) {
 }
 
 export function ConfigCategories(props) {
+  let { data, id } = props;
   return (
+    
     <>
       <h5>
         Categories
-        <FaPlus
+        <FaPlus data-toggle="tooltip" data-placement="top" title="Add category"
           onClick={(e) =>
             props.data.addNewForSection([
               {
@@ -176,7 +179,7 @@ export function ConfigCategories(props) {
       </h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={props.school.colors.categories}
           onChange={(e) => props.color([e.target.value, 'categories'])}
@@ -184,7 +187,7 @@ export function ConfigCategories(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show categories">
           <input
             type="checkbox"
             onClick={(e) => props.show('categories')}
@@ -192,6 +195,23 @@ export function ConfigCategories(props) {
           />
           <span className="slider round"></span>
         </label>
+        <div>
+          Text
+        <input data-toggle="tooltip" data-placement="top" title="Change text color"
+            type="color"
+            value={props.school.colors.ChoiceFavourite}
+            onChange={(e) => props.color([e.target.value, 'ChoiceFavourite'])}
+          />
+           <input
+           type="text"
+          value={data.school.ChoiceFavourite.header}
+          onChange={(e) =>
+            data.setChoiceFavorite([e.target.value, 'header'])
+          }
+        />
+        </div>
+
+
       </div>
     </>
   );
@@ -203,7 +223,7 @@ export function ConfigGetChoice(props) {
     <>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={props.school.colors.getChoice}
           onChange={(e) => props.color([e.target.value, 'getChoice'])}
@@ -211,7 +231,7 @@ export function ConfigGetChoice(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => props.show('getChoice')}
@@ -285,7 +305,7 @@ export function ConfigLearning(props) {
     <>
       <h5>
         Learning platform
-        <FaPlus
+        <FaPlus data-toggle="tooltip" data-placement="top" title="Add learning platform"
           onClick={(e) =>
             props.data.addNewForLearning({
               id: '00.',
@@ -297,7 +317,7 @@ export function ConfigLearning(props) {
       </h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background"
           type="color"
           value={props.school.colors.learning}
           onChange={(e) => props.color([e.target.value, 'learning'])}
@@ -305,7 +325,7 @@ export function ConfigLearning(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => props.show('learning')}
@@ -340,7 +360,7 @@ export function ConfigLearningX(props) {
   return (
     <>
       <h5>
-        <FaPlus
+        <FaPlus data-toggle="tooltip" data-placement="top" title="Add information"
           onClick={(e) =>
             data.addNewForLearning({
               id: '00.',
@@ -349,12 +369,12 @@ export function ConfigLearningX(props) {
             })
           }
         />
-        <FaTrash
+        <FaTrash data-toggle="tooltip" data-placement="top" title="Garbage"
           onClick={(e) =>
             handleDelete(data.deleteFromLearning, [id, 'learning'])
           }
         />
-        <FaCopy
+        <FaCopy data-toggle="tooltip" data-placement="top" title="Copy"
           onClick={(e) =>
             data.addNewForLearning({
               id: thisLearn.id,
@@ -404,7 +424,7 @@ export function ConfigWorldSelection(props) {
       <h5>World Selection</h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background"
           type="color"
           value={props.school.colors.worldSelection}
           onChange={(e) => props.color([e.target.value, 'worldSelection'])}
@@ -412,7 +432,7 @@ export function ConfigWorldSelection(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => props.show('worldSelection')}
@@ -488,7 +508,7 @@ export function ConfigCTA(props) {
       <h5>Get started</h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background"
           type="color"
           value={props.school.colors.CTA}
           onChange={(e) => props.color([e.target.value, 'CTA'])}
@@ -496,7 +516,7 @@ export function ConfigCTA(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => props.show('CTA')}
@@ -546,7 +566,7 @@ export function ConfigTestimoinal(props) {
       </h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background"
           type="color"
           value={data.school.colors.testimoinal}
           onChange={(e) =>
@@ -655,7 +675,7 @@ export function ConfigPartner(props) {
       </h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background"
           type="color"
           value={data.school.colors.partners}
           onChange={(e) =>
@@ -758,7 +778,7 @@ export function ConfigFooter(props) {
       <h5>Footer</h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background"
           type="color"
           value={data.school.colors.footer}
           onChange={(e) =>
@@ -768,13 +788,13 @@ export function ConfigFooter(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch" >
           <input
             type="checkbox"
             onClick={(e) => data.showSchoolByPart('footer')}
             checked={data.school.show.footer}
           />
-          <span className="slider round"></span>
+          <span className="slider round" ></span>
         </label>
       </div>
       <div>

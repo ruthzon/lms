@@ -25,7 +25,7 @@ export function ConfigHeader(props) {
       <br />
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={data.course.colors.header}
           onChange={(e) => data.setColorHeader(e.target.value)}
@@ -58,8 +58,8 @@ export function ConfigHeader(props) {
       </div>
       <div>
         Stars
-        <label class="switch">
-          <input
+        <label class="switch" data-toggle="tooltip" data-placement="top" title="Hide/show stars">
+          <input 
             type="checkbox"
             onClick={data.showStars}
             checked={data.course.show.stars}
@@ -69,7 +69,7 @@ export function ConfigHeader(props) {
       </div>
       <div>
         Students
-        <label class="switch">
+        <label class="switch" data-toggle="tooltip" data-placement="top" title="Hide/show students">
           <input
             type="checkbox"
             onClick={data.showStudents}
@@ -80,7 +80,7 @@ export function ConfigHeader(props) {
       </div>
       <div>
         Weeks
-        <label class="switch">
+        <label class="switch" data-toggle="tooltip" data-placement="top" title="Hide/show weeks">
           <input
             type="checkbox"
             onClick={data.showWeeks}
@@ -91,7 +91,7 @@ export function ConfigHeader(props) {
       </div>
       <div>
         Lessons
-        <label class="switch">
+        <label class="switch" data-toggle="tooltip" data-placement="top" title="Hide/show lessons">
           <input
             type="checkbox"
             onClick={data.showLessons}
@@ -110,7 +110,7 @@ export function ConfigOverview(props) {
     <>
       <h5>
         Overview
-        <FaPlus
+        <FaPlus data-toggle="tooltip" data-placement="top" title="Add overview"
           onClick={(e) =>
             data.addNewForOverview({ header: 'title', text: 'text' })
           }
@@ -122,12 +122,12 @@ export function ConfigOverview(props) {
           <>
             <div>
               {key + 1}{' '}
-              <FaTrash
+              <FaTrash data-toggle="tooltip" data-placement="top" title="Garbage"
                 onClick={(e) => {
                   handleDelete(data.deleteFromOverview, key);
                 }}
               />
-              <FaCopy
+              <FaCopy data-toggle="tooltip" data-placement="top" title="Copy"
                 onClick={(e) => {
                   data.addNewForOverview({
                     header: value.header,
@@ -213,7 +213,7 @@ export function ConfigInstructorReviews(props) {
       <h5>Reviews</h5>
       <div>
         Show reviews section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show reviews">
           <input
             type="checkbox"
             onClick={(e) => data.showReviews()}
@@ -225,7 +225,7 @@ export function ConfigInstructorReviews(props) {
       <h5>Instructor</h5>
       <div>
         Show instructor section
-        <label className="switch">
+        <label className="switch" data-toggle="tooltip" data-placement="top" title="Hide/show instructor">
           <input
             type="checkbox"
             onClick={(e) => data.showInstructor()}
@@ -247,7 +247,7 @@ export function ConfigBuyCourse(props) {
 
       <div>
         Price
-        <label class="switch">
+        <label class="switch" data-toggle="tooltip" data-placement="top" title="Hide/show price">
           <input
             type="checkbox"
             onClick={data.showPrice}
@@ -266,7 +266,7 @@ export function ConfigBuyCourse(props) {
       {data.course.show.price && (
         <div>
           Previos price
-          <label class="switch">
+          <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show previos price">
             <input
               type="checkbox"
               onClick={data.showPrevPrice}
@@ -286,8 +286,8 @@ export function ConfigBuyCourse(props) {
       {data.course.show.prev_price && data.course.show.price && (
         <div>
           Time to previos price
-          <label class="switch">
-            <input
+          <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show time to previos price">
+            <input 
               type="checkbox"
               onClick={data.showPrevPriceTime}
               checked={data.course.show.prev_price_time}
@@ -329,7 +329,7 @@ export function ConfigBuyCourseShare(props) {
       </h5>
       <div>
         Instegram
-        <label class="switch">
+        <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show instegram">
           <input
             type="checkbox"
             onClick={data.showInstegram}
@@ -348,7 +348,7 @@ export function ConfigBuyCourseShare(props) {
       </div>
       <div>
         Facebook
-        <label class="switch">
+        <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show time to previos fasebook">
           <input
             type="checkbox"
             onClick={data.showFacebook}
@@ -367,7 +367,7 @@ export function ConfigBuyCourseShare(props) {
       </div>
       <div>
         Whatsapp
-        <label class="switch">
+        <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show whatsapp">
           <input
             type="checkbox"
             onClick={data.showWhatsapp}
@@ -386,7 +386,7 @@ export function ConfigBuyCourseShare(props) {
       </div>
       <div>
         Twitter
-        <label class="switch">
+        <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show twitter">
           <input
             type="checkbox"
             onClick={data.showTwitter}
@@ -405,7 +405,7 @@ export function ConfigBuyCourseShare(props) {
       </div>
       <div>
         Youtube
-        <label class="switch">
+        <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show youtube">
           <input
             type="checkbox"
             onClick={data.showYoutube}
@@ -424,7 +424,7 @@ export function ConfigBuyCourseShare(props) {
       </div>
       <div>
         Reddit
-        <label class="switch">
+        <label class="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show reddit">
           <input
             type="checkbox"
             onClick={data.showReddit}
@@ -450,7 +450,7 @@ export function ConfigBuyCourseInfo(props) {
     <>
       <h5>
         Course information
-        <FaPlus
+        <FaPlus  data-toggle="tooltip" data-placement="top" title="Add course information"
           onClick={(e) =>
             data.addNewForInfo({
               name: 'Write info here',
@@ -464,12 +464,12 @@ export function ConfigBuyCourseInfo(props) {
           <>
             <span>
               {key + 1}
-              <FaTrash
+              <FaTrash data-toggle="tooltip" data-placement="top" title="Garbage"
                 onClick={(e) => {
                   handleDelete(data.deleteFromInfo, key);
                 }}
               />
-              <FaCopy
+              <FaCopy data-toggle="tooltip" data-placement="top" title="Copy"
                 onClick={(e) => {
                   data.addNewForInfo({
                     name: value.name,
@@ -515,7 +515,7 @@ export function ConfigMoreCourses(props) {
       <h5>More courses</h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={data.course.colors.more_courses}
           onChange={(e) => data.setColorMoreCourses(e.target.value)}
@@ -523,7 +523,7 @@ export function ConfigMoreCourses(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => data.showMoreCourses()}
@@ -604,7 +604,7 @@ export function ConfigBelive(props) {
       <h5>A qoute</h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={data.course.colors.belive}
           onChange={(e) => data.setColorBelive(e.target.value)}
@@ -612,7 +612,7 @@ export function ConfigBelive(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => data.showBelive()}
@@ -657,7 +657,7 @@ export function ConfigFooter(props) {
 
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => data.showCourseFooter()}
@@ -676,7 +676,7 @@ export function ConfigTopEducators(props) {
     <>
       <h5>
         Top educations
-        <FaPlus
+        <FaPlus  data-toggle="tooltip" data-placement="top" title="Add"
           onClick={(e) =>
             data.addNewForTop({
               bg: './img_from_xd/path 65-1.svg',
@@ -691,7 +691,7 @@ export function ConfigTopEducators(props) {
       </h5>
       <div>
         Background color
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={data.course.colors.top_educators}
           onChange={(e) => data.setColorTopEducators(e.target.value)}
@@ -699,7 +699,7 @@ export function ConfigTopEducators(props) {
       </div>
       <div>
         Show this section
-        <label className="switch">
+        <label className="switch"  data-toggle="tooltip" data-placement="top" title="Hide/show this section">
           <input
             type="checkbox"
             onClick={(e) => data.showTopEducarors()}
@@ -719,7 +719,7 @@ export function ConfigTopEducatorsX(props) {
     <>
       <h5>
         Top educations
-        <FaPlus
+        <FaPlus  data-toggle="tooltip" data-placement="top" title="Add"
           onClick={(e) =>
             data.addNewForTop({
               bg: './img_from_xd/path 65-1.svg',
@@ -764,7 +764,7 @@ export function ConfigTopEducatorsX(props) {
       </div>
       <div>
         Background color discount
-        <input
+        <input data-toggle="tooltip" data-placement="top" title="Change background color"
           type="color"
           value={data.course.top_educators[id].color}
           onChange={(e) =>

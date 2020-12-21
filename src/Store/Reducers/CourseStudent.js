@@ -9,10 +9,10 @@ import studentProfile from './studentProfile';
 const initialState = {
     CourseStudent: {
         CourseStudentList: [{
-            id:studentProfile.sid,
+            id: studentProfile.sid,
             courseId: Course.courseId,
             finishedLessons: '0',
-            stars:'0',
+            stars: '0',
         }
         ]
     }

@@ -3,7 +3,7 @@ import '../../ViewComponents/coursepage/course.css';
 import ReactPlayer from 'react-player';
 import YouTube from 'react-youtube';
 import {connect} from 'react-redux';
-import {Player} from 'video-react';
+// import {Player} from 'video-react';
 
 const gapi = window.gapi;
 function mapStateToProps(state) {
