@@ -7,7 +7,7 @@ import '../configurator.css';
 import {createBrowserHistory} from 'history';
 import $ from 'jquery';
 import swal from 'sweetalert';
-import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/fa';
+import {FaAngleDown, FaAngleRight, FaPlus, FaTrash} from 'react-icons/fa';
 import history from '../../history';
 import {
   ConfigBuyCourse,
@@ -24,6 +24,7 @@ import {
   ConfigTopEducatorsX,
   ConfigInstructorReviews,
 } from './CourseConfigSections';
+import { handleDelete } from '../handleImage';
 const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
@@ -35,6 +36,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   addCourseToServer: (data) => dispatch(actions.addCourseToServer(data)),
+  deleteCourseFromServer: (data) => dispatch(actions.deleteCourseFromServer(data)),
   setName: (data) => dispatch(actions.setName(data)),
   setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
   setImage: (data) => dispatch(actions.setImage(data)),
@@ -161,6 +163,9 @@ export default connect(
   return (
     <>
       <div className="config">
+        <button onClick={() => handleDelete(props.deleteCourseFromServer,props.course)}>
+          Delete course <FaTrash data-toggle="tooltip" data-placement="top" title="Delete this course"/>
+        </button>
         <button onClick={() => addLesson()}>
           Add Lesson <FaPlus data-toggle="tooltip" data-placement="top" title="Add lesson"/>
         </button>

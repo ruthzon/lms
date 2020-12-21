@@ -62,7 +62,7 @@ function WorldSelectionCourse(props) {
   );
   const breakPoints = [
     {width: 1, itemsToShow: 1},
-    {width: 1000, itemsToShow: 3},
+    {width: 1500, itemsToShow: 3},
   ];
   let carousel = null;
   return (
