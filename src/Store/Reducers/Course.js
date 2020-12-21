@@ -100,7 +100,10 @@ const initialState = {
       buy_course: '#F56962',
       more_courses: '#EFEFF6',
       belive: '#FEF0EF',
-      top_educators: '#EFEFF6'
+      top_educators: '#EFEFF6',
+      button: '#f56962',
+      fontButton: '#fffff'
+
     },
     top_educators: [
       {
@@ -134,7 +137,9 @@ const initialState = {
       { _id: 2, name: "Everything You Need to Know Business", time: "10 weeks" },
       { _id: 3, name: "Everything You Need to Know Business", time: "10 weeks" },
     ]
-  }
+  },
+  titleFont:''
+
 };
 
 const mycourse = {
@@ -307,10 +312,14 @@ const mycourse = {
   setColorTopEducators(state, action) {
     state.course.colors.top_educators = action.payload;
   },
+  setColorCourseByPart(state, action) {
+    state.course.colors[action.payload[1]] = action.payload[0];
+  },
   // Showwwwww
   showStars(state) {
     state.course.show.stars = !state.course.show.stars;
   },
+
   showViews(state) {
     state.course.show.views = !state.course.show.views;
   },
@@ -374,6 +383,10 @@ const mycourse = {
   },
   showCourseFooter(state) {
     state.course.show.more.footer = !state.course.show.more.footer;
+  },
+
+  setTitleFont(state, action) {
+    state.course.titleFont = action.payload;
   },
 };
 

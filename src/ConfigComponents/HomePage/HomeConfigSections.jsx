@@ -1,6 +1,8 @@
 import React from 'react';
-import {FaCopy, FaPlus, FaTrash} from 'react-icons/fa';
-import {handleDelete, handleImage, handleImageById} from '../handleImage';
+import { FaCopy, FaPlus, FaTrash } from 'react-icons/fa';
+import { handleDelete, handleImage, handleImageById } from '../handleImage';
+// import './fonts.css';
+
 
 export function ConfigHeader(props) {
   return (
@@ -25,7 +27,7 @@ export function ConfigHeader(props) {
         <input
           type="text"
           onChange={(e) =>
-            props.function({prop: 'title', data: e.target.value})
+            props.function({ prop: 'title', data: e.target.value })
           }
           value={props.school.title}
         />
@@ -40,7 +42,7 @@ export function ConfigHeader(props) {
         <input
           type="text"
           onChange={(e) =>
-            props.function({prop: 'subtitle', data: e.target.value})
+            props.function({ prop: 'subtitle', data: e.target.value })
           }
           value={props.school.subtitle}
         />
@@ -67,12 +69,12 @@ export function ConfigHeader(props) {
           type="file"
           accept=".jpg, .jpeg, .png"
           onChange={(e) => handleImage(e, props.image)}
-          style={{backgroundImage: props.school.image}}
+          style={{ backgroundImage: props.school.image }}
           files={props.school.image}
-          // onChange={(e) =>
-          //   props.function({prop: 'subtitle', data: e.target.value})
-          // }
-          // value={props.school.image}
+        // onChange={(e) =>
+        //   props.function({prop: 'subtitle', data: e.target.value})
+        // }
+        // value={props.school.image}
         />
       </div>
     </>
@@ -80,7 +82,7 @@ export function ConfigHeader(props) {
 }
 
 export function ConfigCategory(props) {
-  let {data, id} = props;
+  let { data, id } = props;
   let thisCategory = props.school.categories[id];
   return (
     <>
@@ -142,12 +144,12 @@ export function ConfigCategory(props) {
           type="file"
           accept=".svg"
           onChange={(e) => handleImageById(e, props.image, props.id)}
-          style={{backgroundImage: data.school.image}}
+          style={{ backgroundImage: data.school.image }}
           files={data.school.image}
-          // onChange={(e) =>
-          //   props.function({prop: 'subtitle', data: e.target.value})
-          // }
-          // value={props.school.image}
+        // onChange={(e) =>
+        //   props.function({prop: 'subtitle', data: e.target.value})
+        // }
+        // value={props.school.image}
         />
       </div>
     </>
@@ -232,7 +234,7 @@ export function ConfigGetChoice(props) {
         <input
           type="number"
           value={data.school.getChoice.items}
-            onChange={(e) => data.setGetChoice([e.target.value, 'items'])}
+          onChange={(e) => data.setGetChoice([e.target.value, 'items'])}
 
         />
       </div>
@@ -333,7 +335,7 @@ export function ConfigLearning(props) {
 }
 
 export function ConfigLearningX(props) {
-  let {data, id} = props;
+  let { data, id } = props;
   let thisLearn = props.school.learning.info[id];
   return (
     <>
@@ -396,7 +398,7 @@ export function ConfigLearningX(props) {
   );
 }
 export function ConfigWorldSelection(props) {
-  let {data}=props;
+  let { data } = props;
   return (
     <>
       <h5>World Selection</h5>
@@ -433,7 +435,7 @@ export function ConfigWorldSelection(props) {
         <input
           type="number"
           value={data.school.worldSelection.items}
-            onChange={(e) => data.setWorldSelection([e.target.value, 'items'])}
+          onChange={(e) => data.setWorldSelection([e.target.value, 'items'])}
 
         />
       </div>
@@ -568,7 +570,7 @@ export function ConfigTestimoinal(props) {
 }
 
 export function ConfigTestimoinalX(props) {
-  let {data, id} = props;
+  let { data, id } = props;
   let thisTest = data.school.testimoinal[id];
   return (
     <>
@@ -677,7 +679,7 @@ export function ConfigPartner(props) {
 }
 
 export function ConfigPartnerX(props) {
-  let {data, id} = props;
+  let { data, id } = props;
   let thisPartner = data.school.partners[id];
   return (
     <>
@@ -712,7 +714,7 @@ export function ConfigPartnerX(props) {
   );
 }
 function HelpShare(props) {
-  let {name, buttons, func} = props;
+  let { name, buttons, func } = props;
   let show = buttons.show[name];
   let value = buttons.share[name];
   return (
@@ -829,7 +831,7 @@ export function ConfigFooter(props) {
   );
 }
 export function ConfigFooterCol(props) {
-  let {data, col} = props;
+  let { data, col } = props;
   let thisCol = data.school.footer[col];
   return (
     <>
@@ -837,7 +839,7 @@ export function ConfigFooterCol(props) {
         Footer
         <FaPlus
           onClick={(e) =>
-            data.addNewForFooter({col: col, array: 'new', links: 'link to...'})
+            data.addNewForFooter({ col: col, array: 'new', links: 'link to...' })
           }
         />
         <input
@@ -867,7 +869,7 @@ export function ConfigFooterCol(props) {
               {key + 1}
               <FaTrash
                 onClick={(e) => {
-                  handleDelete(data.deleteFromFooter, {col: col, id: key});
+                  handleDelete(data.deleteFromFooter, { col: col, id: key });
                 }}
               />
               <FaCopy
@@ -917,3 +919,45 @@ export function ConfigFooterCol(props) {
     </>
   );
 }
+export function SchoolButtons(props) {
+  return (
+    <>
+      <h5>Buttons</h5>
+      <br />
+      <div>
+        Background color of all the buttons
+        <input
+          type="color"
+          value={props.school.colors.buttons}
+          onChange={(e) => props.color([e.target.value, 'button'])}
+        />
+      </div>
+      <div>
+        font color of all the buttons
+        <input
+          type="color"
+          value={props.school.colors.buttons}
+          onChange={(e) => props.color([e.target.value, 'fontButton'])}
+        />
+      </div>
+    </>
+  )
+}
+
+// export function SchoolCourse(props)
+// {
+//   return(
+//     <>
+//     <h5>Buttons</h5>
+//       <br />
+//       <div>
+//         Background color of all the buttons
+//         <input
+//           type="color"
+//           value={props.school.colors.buttons}
+//           onChange={(e) => props.color([e.target.value, 'button'])}
+//         />
+//       </div>
+//     </>
+//   )
+// }

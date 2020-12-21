@@ -8,7 +8,7 @@ const initialState = {
   school: {
     // _id: '5fbb9c2c068ea32d1852f9fb',
     _id: '0',
-    lmsUser_id:'0',
+    lmsUser_id: '0',
     name: "School's name",
     title: 'Learn new skills online with top educators',
     subtitle: 'Choose from over 100,000 online video courses with new additions published every month.',
@@ -51,15 +51,15 @@ const initialState = {
       "./img_from_xd/Image 13.png",
       "./img_from_xd/Image 14.png",
     ],
-    getChoice:{
-      header:"Get choice of your course",
-      algorithm:"views",
-      items:6
+    getChoice: {
+      header: "Get choice of your course",
+      algorithm: "views",
+      items: 6
     },
-    worldSelection:{
-      header:"The world’s largest selection of courses",
-      algorithm:"stars",
-      items:6
+    worldSelection: {
+      header: "The world’s largest selection of courses",
+      algorithm: "stars",
+      items: 6
     },
     // footer: {
     //   "Company": ["About", "Careers", "Press", "Blog", "Affiliates",],
@@ -91,7 +91,9 @@ const initialState = {
       footer: '#282834',
       getChoice: '#EFEFF6',//!!!!!!!
       worldSelection: '#FEF0EF',//!!!!!!!
-      searchbar: '#f56962'
+      searchbar: '#f56962',
+      button: '#f56962',
+      fontButton: '#fffff'
 
     },
     footer: [

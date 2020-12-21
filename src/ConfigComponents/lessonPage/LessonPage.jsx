@@ -9,7 +9,7 @@ import Description from '../../ViewComponents/coursepage/description/description
 // import BuyCourse from '../coursepage/BuyCourse';
 import MoreCourses from '../../ViewComponents/coursepage/moreCourses';
 import Belive from '../coursepage/belive';
-import Video from './video';
+// import Video from './video';
 import TopEducators from '../../ViewComponents/coursepage/topEducators';
 import '../configurator.css';
 import { connect } from 'react-redux';
@@ -32,7 +32,7 @@ export default connect(
   return (
     <div className="coursepage coursepageconf">
       <Header />
-      <Video />
+      {/* <Video /> */}
       {/* {props.lesson.show.description && <Description />} */}
       {/* {props.lesson.show.more_courses && <MoreCourses />} */}
       {/* {props.lesson.show.belive && <Belive />} */}

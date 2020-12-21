@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCategoriesImage: (name) => dispatch(actions.setCategoriesImage(name)),
   deleteFromSection: (name) => dispatch(actions.deleteFromSection(name)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+
 });
 export default connect(
   mapStateToProps,
@@ -27,6 +28,7 @@ export default connect(
     <>
       <div
         style={{ backgroundColor: props.school.colors.categories }}
+
         onClick={(e) => {
           if (e.target === e.currentTarget)
             props.setSectionConfig({ name: 'categories' });
@@ -35,7 +37,16 @@ export default connect(
       >
         <div className="title">
           <Form inline>
-            <button id="see-all">See all Categories</button>
+            <button id="see-all" style={{ backgroundColor: props.school.colors.button ,borderColor: props.school.colors.fontButton}}
+              onClick={(e) => {
+                props.setSectionConfig({ name: 'school_buttons' });
+              }}
+            >
+              <p style={{color: props.school.colors.fontButton }}
+              // onClick={(e) => {
+              //   props.setSectionConfig({ name: 'school_font_buttons' });
+              // }}
+              >See all Categories</p></button>
           </Form>
           <h3>Choice favourite course from top category</h3>
         </div>

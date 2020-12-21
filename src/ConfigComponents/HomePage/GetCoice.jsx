@@ -1,4 +1,4 @@
-import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import {
@@ -13,10 +13,10 @@ import {
 } from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
-import {connect} from 'react-redux';
-import {actions} from '../../Store/actions';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
 import CourseCard from '../CourseCard';
-import {Courses} from '../../Store/data';
+import { Courses } from '../../Store/data';
 const mapDispatchToProps = (dispatch) => ({
   setSchoolName: (name) => dispatch(actions.setSchoolName(name)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
@@ -73,8 +73,8 @@ export default connect(
   return (
     <section
       id="choice"
-      style={{backgroundColor: props.school.colors.getChoice}}
-      onClick={() => props.setSectionConfig({name: 'getChoice'})}
+      style={{ backgroundColor: props.school.colors.getChoice }}
+      onClick={(e) => { if (e.target === e.currentTarget) props.setSectionConfig({ name: 'getChoice' }) }}
       className="hover-config"
     >
       <div className="title">
@@ -89,7 +89,12 @@ export default connect(
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <button>View all</button>
+          <button style={{ backgroundColor: props.school.colors.button ,borderColor: props.school.colors.fontButton}}
+            onClick={(e) => {
+              props.setSectionConfig({ name: 'school_buttons' });
+            }}>
+            <p style={{ color: props.school.colors.fontButton }}>View all</p>
+          </button>
         </Form>
         <h3>
           <textarea
