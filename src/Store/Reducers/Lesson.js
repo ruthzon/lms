@@ -10,6 +10,7 @@ const initialState = {
     course_id: '0',
     lesson_url: "https://www.youtube.com/watch?v=aS-4U5GgdjM-U",
     time: "10 hours",
+    size:"1099",
     // show: {
     //   stars: true,
     //   views: true,
@@ -41,7 +42,6 @@ const mylesson = {
   setLessonProp(state, action) {
     state.lesson[action.payload[1]] = action.payload[0];
   },
-
   showLessonProp(state, action) {
     state.lesson.show[action.payload] = !state.lesson.show[action.payload];
   },

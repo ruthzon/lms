@@ -1,83 +1,44 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import '../../ViewComponents/coursepage/course.css';
-import {Row, Col, Container} from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import {
   FaRegStar,
   FaRegEye,
   FaRegPlayCircle,
   FaRegClock,
 } from 'react-icons/all';
-import {UserContext} from '../../login/userProvider';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {actions} from '../../Store/actions';
+import { UserContext } from '../../login/userProvider';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
 // import {Input} from 'semantic-ui-react';
-
-// const mapDispatchToProps = (dispatch) => ({
-//   setName: (data) => dispatch(actions.setName(data)),
-//   setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
-// });
-
-// function mapStateToProps(state) {
-//   return {
-//     course: state.courseReducer.course,
-//   };
-// }
+// import '../configurator.css';
 
 function mapStateToProps(state) {
   return {
     lesson: state.lessonReducer.lesson,
-    course:state.courseReducer.course
+    course: state.courseReducer.course
   };
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  setLessonProp: (name) => dispatch(actions.setLessonProp(name)),
-  showLessonProp: (sub) => dispatch(actions.showLessonProp(sub)),
-});
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(function Header(props) {
-  // const user = useContext(UserContext);
-  // const {course, setName, setSubtitle} = props;
-  // let prev = Object.assign({}, props.course);
+
   return (
     <>
       <div
         className="header"
-        style={{backgroundColor: props.course.colors.header}}
+        style={{ backgroundColor: props.course.colors.header }}
       >
         <div className="content">
-          {/* {user !== null && lesson.user_id === user.uid && (
-            <p className="text-own">
-              your own course - you may edit it
-              <a href={'/editcourse/' + lesson.id}> here</a>
-            </p>
-          )} */}
           <h1>
-            <textarea
-              value={props.lesson.name}
-              style={{color: props.course.colors.name}}
-              onChange={(e) => props.setLessonProp([e.target.value,"name"])}
-              type="text"
-            />
-            {/* {props.lesson.name} */}
+            <p>{props.lesson.name}</p>
           </h1>
           <br />
           <div>
             <h3>
-              {/* Learn graphic design today with Photoshop, Illustrator, Adobe
-                  XD, InDesign & more in this Adobe CC Masterclass! */}
-              <textarea
-                style={{color: props.course.colors.subtitle}}
-                value={props.lesson.subtitle}
-                onChange={(e) => props.setLessonProp([e.target.value,"subtitle"])}
-                type="text"
-              />
-              {/* {lesson.subtitle} */}
+              <p>{props.lesson.subtitle}</p>
             </h3>
-         
           </div>
         </div>
       </div>

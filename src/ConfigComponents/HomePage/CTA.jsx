@@ -57,7 +57,12 @@ class CTA extends Component {
               />
             </em>
           </h4>
-          <button>Get Started</button>
+          <button style={{ backgroundColor: this.props.school.colors.button ,borderColor: this.props.school.colors.fontButton }}
+            onClick={(e) => {
+              this.props.setSectionConfig({ name: 'school_buttons' });
+            }}>
+         <p style={{color: this.props.school.colors.fontButton }}>Get Start</p> 
+          </button>
         </section>
       </div>
     );

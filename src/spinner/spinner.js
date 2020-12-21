@@ -11,7 +11,7 @@ export default connect(
             return (
                 // <a>just to check</a>
                 <div className="load_page">
-                    <span class="loader">Load&nbsp;ng</span> </div>
+                    <span className="loader">Load&nbsp;ng</span> </div>
             );
         }
     })

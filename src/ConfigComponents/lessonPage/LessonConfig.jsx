@@ -6,7 +6,8 @@ import '../configurator.css';
 import {createBrowserHistory} from 'history';
 import $ from 'jquery';
 import {actions} from '../../Store/actions';
-import {FaAngleDown, FaAngleRight} from 'react-icons/fa';
+import {FaAngleDown, FaAngleRight, FaTrash} from 'react-icons/fa';
+import { handleDelete } from '../handleImage';
 
 const browserHistory = createBrowserHistory();
 
@@ -21,6 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
   setLessonProp: (name) => dispatch(actions.setLessonProp(name)),
   showLessonProp: (sub) => dispatch(actions.showLessonProp(sub)),
   setSettingProp: (sub) => dispatch(actions.setSettingProp(sub)),
+  deleteLessonFromServer: (sub) => dispatch(actions.deleteLessonFromServer(sub)),
 });
 
 export default connect(
@@ -41,9 +43,8 @@ export default connect(
   };
   return (
     <>
- 
-        <div className="config">
-          {/* <button onClick={() => handleChoose(1)}>
+      <div className="config">
+        {/* <button onClick={() => handleChoose(1)}>
             Course Header {choose === 1 ? <FaAngleDown /> : <FaAngleRight />}
           </button>
           <div className={choose === 1 ? 'display' : 'cover'}>
@@ -147,68 +148,102 @@ export default connect(
           <button onClick={() => handleChoose(3)}>
             Video settings{choose === 3 ? <FaAngleDown /> : <FaAngleRight />}
           </button> */}
+        <div>
+          <button
+            onClick={() =>
+              handleDelete(props.deleteLessonFromServer, props.lesson)
+            }
+          >
+            Delete lesson
+            <FaTrash
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Delete this lesson"
+            />
+          </button>
           <div>
-            <div>
-              Lesson url
-              <input
-                type="text"
-                placeholder="url"
-                onChange={(e) => props.setLessonProp([e.target.value,"lesson_url"])}
-                value={props.lesson.lesson_url}
-              />
-            </div>
-            <div>
-              Auto play
-              <label class="switch"  data-toggle="tooltip" data-placement="top" title="auto play">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.setSettingProp('autoplay')}
-                  checked={props.lesson.settings.autoplay}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div>
-              Controls
-              <label class="switch"  data-toggle="tooltip" data-placement="top" title="controls">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.setSettingProp('controls')}
-                  checked={props.lesson.settings.controls}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div>
-              loop
-              <label class="switch"  data-toggle="tooltip" data-placement="top" title="loop">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.setSettingProp('loop')}
-                  checked={props.lesson.settings.loop}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div>
-              muted
-              <label class="switch"  data-toggle="tooltip" data-placement="top" title="silence">
-                <input
-                  type="checkbox"
-                  onClick={(e) => props.setSettingProp('muted')}
-                  checked={props.lesson.settings.muted}
-                />
-                <span class="slider round"></span>
-              </label>
-            </div>
+            Lesson url
+            <input
+              type="text"
+              placeholder="url"
+              onChange={(e) =>
+                props.setLessonProp([e.target.value, 'lesson_url'])
+              }
+              value={props.lesson.lesson_url}
+            />
           </div>
-
-          <div id="bottom_configurtor">
-            <Button variant="primary" onClick={handleSave}>
-              Save lesson
-            </Button>
+          <div>
+            Auto play
+            <label
+              class="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="auto play"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.setSettingProp('autoplay')}
+                checked={props.lesson.settings.autoplay}
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            Controls
+            <label
+              class="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="controls"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.setSettingProp('controls')}
+                checked={props.lesson.settings.controls}
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            loop
+            <label
+              class="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="loop"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.setSettingProp('loop')}
+                checked={props.lesson.settings.loop}
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div>
+            muted
+            <label
+              class="switch"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="silence"
+            >
+              <input
+                type="checkbox"
+                onClick={(e) => props.setSettingProp('muted')}
+                checked={props.lesson.settings.muted}
+              />
+              <span class="slider round"></span>
+            </label>
           </div>
         </div>
+
+        <div id="bottom_configurtor">
+          <Button variant="primary" onClick={handleSave}>
+            Save lesson
+          </Button>
+        </div>
+      </div>
     </>
   );
 });

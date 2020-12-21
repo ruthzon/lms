@@ -38,7 +38,11 @@ const mapDispatchToProps = (dispatch) => ({
   setSubtitle: (sub) => dispatch(actions.setSubtitle(sub)),
   setWeeks: (sub) => dispatch(actions.setWeeks(sub)),
   setSectionConfig: (name) => dispatch(actions.setSectionConfig(name)),
+  changeFont: (name) => dispatch(actions.setTitleFont(name))
+
 });
+
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -67,7 +71,6 @@ export default connect(
               onChange={(e) => props.setName(e.target.value)}
               type="text"
             />
-            {/* {props.course.name} */}
           </h1>
           <br />
           <div className={props.view ? 'header-view' : ''}>

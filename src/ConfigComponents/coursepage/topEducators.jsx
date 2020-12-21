@@ -1,13 +1,13 @@
-import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import {CourseCard, FirstRowCourse, SecondRowCourse} from './homepage/Courses';
-import React, {Component} from 'react';
-import {Button, Card, CardDeck, Image} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Button, Card, CardDeck, Image } from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import '../../ViewComponents/coursepage/course.css';
-import {connect} from 'react-redux';
-import {handleImageById} from '../handleImage';
-import {actions} from '../../Store/actions';
+import { connect } from 'react-redux';
+import { handleImageById } from '../handleImage';
+import { actions } from '../../Store/actions';
 import Carousel from 'react-elastic-carousel';
 import '../HomePage/carousel.css';
 // impore './'
@@ -28,9 +28,9 @@ class TopEducators extends Component {
   constructor() {
     super();
     this.breakPoints = [
-      {width: 1, itemsToShow: 1},
-      {width: 350, itemsToShow: 2},
-      {width: 700, itemsToShow: 3},
+      { width: 1, itemsToShow: 1 },
+      { width: 350, itemsToShow: 2 },
+      { width: 700, itemsToShow: 3 },
     ];
   }
   render() {
@@ -38,14 +38,21 @@ class TopEducators extends Component {
       <section
         onClick={(e) => {
           if (e.target === e.currentTarget)
-            this.props.setSectionConfig({name: 'course_top_educators'});
+            this.props.setSectionConfig({ name: 'course_top_educators' });
         }}
         className="hover-config"
         id="top"
-        style={{backgroundColor: this.props.course.colors.top_educators}}
+        style={{ backgroundColor: this.props.course.colors.top_educators }}
       >
         <div className="title">
-          {/* <button>View all</button> */}
+          <button
+            style={{ backgroundColor: this.props.course.colors.button, borderColor: this.props.course.colors.fontButton }}
+            onClick={(e) => {
+              this. props.setSectionConfig({ name: 'course_buttons' });
+            }}
+          >
+            <p style={{ color: this.props.course.colors.fontButton }}>View all</p>
+          </button>
           <h3>Top Education offers and deals are listed here</h3>
         </div>
         <Carousel
@@ -53,7 +60,7 @@ class TopEducators extends Component {
           itemPadding={[0, 20]}
           className="content"
           ref={(ref) => (this.carousel = ref)}
-          renderPagination={({pages, activePage, onClick}) => {
+          renderPagination={({ pages, activePage, onClick }) => {
             return (
               <span direction="row" className="paging-scroll">
                 {pages.map((page) => {
@@ -129,7 +136,7 @@ class TopEducators extends Component {
                       />
                     </Card.Title>
                     <div
-                      style={{backgroundColor: item.color}}
+                      style={{ backgroundColor: item.color }}
                       className="discount"
                     >
                       Total Discount <br />

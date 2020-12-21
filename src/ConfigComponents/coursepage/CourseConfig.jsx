@@ -1,13 +1,13 @@
-import React, {Component, useState} from 'react';
-import {Button, Row} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {useParams, useRouteMatch} from 'react-router-dom';
-import {actions} from '../../Store/actions';
+import React, { Component, useState } from 'react';
+import { Button, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { useParams, useRouteMatch } from 'react-router-dom';
+import { actions } from '../../Store/actions';
 import '../configurator.css';
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from 'history';
 import $ from 'jquery';
 import swal from 'sweetalert';
-import {FaAngleDown, FaAngleRight, FaPlus} from 'react-icons/fa';
+import {FaAngleDown, FaAngleRight, FaPlus, FaTrash} from 'react-icons/fa';
 import history from '../../history';
 import {
   ConfigBuyCourse,
@@ -23,18 +23,22 @@ import {
   ConfigTopEducators,
   ConfigTopEducatorsX,
   ConfigInstructorReviews,
+  CourseButtons
 } from './CourseConfigSections';
+import { handleDelete } from '../handleImage';
 const browserHistory = createBrowserHistory();
 
 function mapStateToProps(state) {
   return {
     course: state.courseReducer.course,
     styles: state.stylesReducer.styles,
+    user:state.userReducer.user,
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
   addCourseToServer: (data) => dispatch(actions.addCourseToServer(data)),
+  deleteCourseFromServer: (data) => dispatch(actions.deleteCourseFromServer(data)),
   setName: (data) => dispatch(actions.setName(data)),
   setSubtitle: (data) => dispatch(actions.setSubtitle(data)),
   setImage: (data) => dispatch(actions.setImage(data)),
@@ -90,6 +94,8 @@ const mapDispatchToProps = (dispatch) => ({
   setMoreCourses: (name) => dispatch(actions.setMoreCourses(name)),
   showReviews: (name) => dispatch(actions.showReviews(name)),
   showInstructor: (name) => dispatch(actions.showInstructor(name)),
+  setColorCourseByPart: (name) => dispatch(actions.setColorCourseByPart(name)),
+  setTitleFont: (name) => dispatch(actions.setTitleFont(name)),
 });
 
 export default connect(
@@ -97,7 +103,7 @@ export default connect(
   mapDispatchToProps
 )(function CourseConfig(props) {
   let match = useRouteMatch();
-  let {name, course} = useParams();
+  let { name, course } = useParams();
   const addLesson = () => {
     if (!props.course._id || props.course.id == '0') {
       swal(
@@ -138,7 +144,7 @@ export default connect(
       case 'course_rev_inst':
         return <ConfigInstructorReviews data={props} />;
       case 'buy_course':
-        return <ConfigBuyCourse data={props} />;
+        return <ConfigBuyCourse data={props}  />;
       case 'buy_course_share':
         return <ConfigBuyCourseShare data={props} />;
       case 'buy_course_info':
@@ -153,7 +159,10 @@ export default connect(
         return <ConfigTopEducators data={props} />;
       case 'course_top_educators_x':
         return <ConfigTopEducatorsX data={props} id={id} />;
-
+      case 'course_buttons':
+        return <CourseButtons course={props.course} color={props.setColorCourseByPart} />
+        // case 'change_font':
+        //   return <CourseButtons course={props.course} color={props.setTitleFont} />
       default:
         return 'Click any object on the page to change its settings';
     }
@@ -161,6 +170,9 @@ export default connect(
   return (
     <>
       <div className="config">
+        <button onClick={() => handleDelete(props.deleteCourseFromServer,props.course)}>
+          Delete course <FaTrash data-toggle="tooltip" data-placement="top" title="Delete this course"/>
+        </button>
         <button onClick={() => addLesson()}>
           Add Lesson <FaPlus data-toggle="tooltip" data-placement="top" title="Add lesson"/>
         </button>

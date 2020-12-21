@@ -1,11 +1,11 @@
-import {FaArrowLeft, FaArrowRight} from 'react-icons/all';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/all';
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {Card, CardDeck, Dropdown, Form} from 'react-bootstrap';
+import { Card, CardDeck, Dropdown, Form } from 'react-bootstrap';
 import '../../ViewComponents/homepage/App.css';
 import ListCourses from '../ListCourses';
-import {connect} from 'react-redux';
-import {actions} from '../../Store/actions';
+import { connect } from 'react-redux';
+import { actions } from '../../Store/actions';
 import Carousel from 'react-elastic-carousel';
 import '../HomePage/carousel.css';
 import CourseCard from '../CourseCard';
@@ -62,14 +62,14 @@ function WorldSelectionCourse(props) {
   );
   const breakPoints = [
     {width: 1, itemsToShow: 1},
-    {width: 1000, itemsToShow: 3},
+    {width: 1500, itemsToShow: 3},
   ];
   let carousel = null;
   return (
     <section
-      onClick={() => props.setSectionConfig({name: 'worldSelection'})}
+      onClick={() => props.setSectionConfig({ name: 'worldSelection' })}
       id="world"
-      style={{backgroundColor: props.school.colors.worldSelection}}
+      style={{ backgroundColor: props.school.colors.worldSelection }}
       className="hover-config"
     >
       <div className="title">
@@ -84,7 +84,12 @@ function WorldSelectionCourse(props) {
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <button>View all</button>
+          <button style={{ backgroundColor: props.school.colors.button ,borderColor: props.school.colors.fontButton  }}
+            onClick={(e) => {
+              props.setSectionConfig({ name: 'school_buttons' });
+            }}>
+            <p style={{ color: props.school.colors.fontButton }}> View all</p>
+          </button>
         </Form>
         <h3>
           <textarea
@@ -99,18 +104,11 @@ function WorldSelectionCourse(props) {
         className="content"
         breakPoints={breakPoints}
         ref={(ref) => (carousel = ref)}
+        itemPadding={[0, 10]}
+
       >
         <CourseCards school={props.school} courses={props.courses} />
-        {/* <Carousel.Item>
-          <CardDeck>
-            <ListCourses courses={props.courses} i={0} />
-          </CardDeck>
-        </Carousel.Item>
-        <Carousel.Item>
-          <CardDeck>
-            <ListCourses courses={props.courses} i={3} />
-          </CardDeck>
-        </Carousel.Item> */}
+        
       </Carousel>
       {/* <Form inline className="carousel">
             <button className="carousel-left">

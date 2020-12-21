@@ -71,7 +71,7 @@ export default connect(
           {props.school.footer.map((col, key) => {
             return (
               <Col
-              key="key"
+              key={key}
                 xs="12"
                 sm="6"
                 md="3"

@@ -6,6 +6,7 @@ import { getCookie } from '../../login/wizard'
 import history from '../../history'
 import $ from 'jquery';
 import store from '../Store';
+import { handleDelete } from '../../ConfigComponents/handleImage';
 
 // const history = createBrowserHistory();
 
@@ -101,7 +102,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     // window.location.reload();
                     console.log("course " + data.data._id);
                     swal("Yes,", "Course added successfully", "success");
-                    history.replace('/' + user.userName + '/' + data.data.name);
+                    history.push('/' + user.userName + '/' + data.data.name);
                     // window.location.reload();
                     // window.location.href = url +'/'+ user.userName;
 
@@ -128,6 +129,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     dispatch(actions.initialCourse(data.data))
                     console.log("course " + data.data._id);
                     swal("Course saved successfully", "", "success");
+                    history.push('/' + user.userName);
                     // history.replace('/' + user.userName);
                     // window.location.reload();
                     // window.location.href = url + user.userName;
@@ -141,20 +143,21 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     }
     if (action.type === 'DELETE_COURSE_FROM_SERVER') {
         $.ajax({
-            url: 'https://lms.leader.codes/api/' + uid + '/course',
+            url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload._id + '/deleteCourse',
             headers: {
                 Authorization: jwt,
             },
-            data: action.payload,
+            // data: action.payload,
             method: 'get',
-            dataType: 'json',
+            // dataType: 'json',
             contentType: 'application/json',
             withCradentials: true,
             // data: JSON.stringify(dataToProfilePage),
             success: function (data) {
                 //   history.replace('/' + match.params.name);
                 // window.location.reload();
-                dispatch(actions.removeCourse(data.data))
+                dispatch(actions.removeCourse(data.data));
+                history.push('/' + user.userName);
             },
         });
     }
@@ -178,10 +181,12 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     }
     if (action.type === 'ADD_LESSON_TO_SERVER') {
         let lesson = Object.assign({}, action.payload);
+        let cours = getState().courseReducer.course;
+        let course_id = lesson.course_id != 0 ? lesson.course_id : cours._id;
         if (lesson._id == 0) {
             delete lesson._id;
             $.ajax({
-                url: 'https://lms.leader.codes/api/' + uid + '/' + lesson.course_id + '/addLesson',
+                url: 'https://lms.leader.codes/api/' + uid + '/' + course_id + '/addLesson',
                 headers: {
                     Authorization: jwt,
                 },
@@ -197,7 +202,6 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     dispatch(actions.addLesson(data.data))
                     console.log("lesson " + data.data._id);
                     swal("Lesson added successfully", "", "success");
-                    let cours = getState().listCoursesReducer.courses.find((c) => (c._id == data.data.course_id));
                     history.push('/' + user.userName + '/' + cours.name);
                     // window.location.reload();
                     // window.location.href = url + user.userName+'/' +data.course_id;
@@ -224,10 +228,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     // history.replace('/' + matchPath.params.name);
                     // window.location.reload();
                     dispatch(actions.initialLesson(data.data));
-                    dispatch(action.updateLesson(data.data));
+                    dispatch(actions.updateLesson(data.data));
                     console.log("lesson " + data.data._id);
                     swal("Lesson saved successfully", "", "success");
-                    history.push('/' + user.userName + '/' + data.course_id);
+                    history.push('/' + user.userName + '/' + cours.name);
                     // window.location.reload();
                     // window.location.href = url + user.userName+'/' +data.course_id;
                 },
@@ -238,9 +242,9 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
         }
     }
     if (action.type === 'DELETE_LESSON_FROM_SERVER') {
-        debugger;
+        let cours = getState().courseReducer.course;
         $.ajax({
-            url: 'https://lms.leader.codes/api/' + uid + '/course',
+            url: 'https://lms.leader.codes/api/' + uid +'/'+action.payload._id+ '/deleteLesson',
             headers: {
                 Authorization: jwt,
             },
@@ -254,6 +258,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 //   history.replace('/' + match.params.name);
                 // window.location.reload();
                 dispatch(actions.removeCourse(action.payload))
+                history.push('/' + user.userName + '/' + cours.name);
             },
             error: function () {
                 swal("Oops...", "Something went wrong, please try again later", "error");
