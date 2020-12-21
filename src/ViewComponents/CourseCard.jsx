@@ -8,9 +8,9 @@ import {actions} from '../Store/actions';
 import {createHashHistory} from 'history';
 import {createBrowserHistory} from 'history';
 import {UserContext} from '../login/userProvider';
-
-const history = createHashHistory();
-const browserHistory = createBrowserHistory();
+import history from '../history'
+// const history = createHashHistory();
+// const browserHistory = createBrowserHistory();
 
 // export default connect(
 //   mapStateToProps,
@@ -24,8 +24,8 @@ export default function CourseCard(props) {
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     // browserHistory.replace('/viewcourse/' + props.course.id);
-    history.replace(`view/${school}/${props.course.name}`);
-    window.location.reload();
+    history.push(`view/${school}/${props.course.name}`);
+    // window.location.reload();
     console.log(props);
   };
   return (
