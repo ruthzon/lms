@@ -281,7 +281,7 @@ const mycourse = {
     state.course.lessons = state.course.lessons.concat(action.payload);
   },
   removeLesson(state, action) {
-    state.course.lessons = state.course.lessons.filter((x, ind) => ind != action.payload);
+    state.course.lessons = state.course.lessons.filter((x, ind) => x._id != action.payload._id);
   },
   updateLesson(state, action) {
     state.course.lessons = state.course.lessons.map(

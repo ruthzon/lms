@@ -18,33 +18,18 @@ import { getCookie } from '../login/wizard';
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // );
 
-const reducer = combineReducers({ currentCourseReducer,courseReducer, listCoursesReducer, schoolReducer,studentProfilReducer,stylesReducer, lessonReducer, userReducer,CourseStudentReducer });
+const reducer = combineReducers({ currentCourseReducer, courseReducer, listCoursesReducer, schoolReducer, studentProfilReducer, stylesReducer, lessonReducer, userReducer, CourseStudentReducer });
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(getCourses)));
 var jwt = getCookie('jwt');
 // let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 
 var url = window.location;
-var userName = decodeURI(url.pathname.split('/')[1]);
-// fetch('https://lms.leader.codes/api/' + userName + '/getUid', {
-//     method: 'GET',
-//     headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: jwt,
-//     },
-    // body: JSON.stringify({ userName: userName }),
-// })
-//     .then((res) => { res.json() })
-//     .then((res) => {
-//         if (res && res.data.uid) {
-//             let user = res.data;
-//             store.dispatch(actions.getCoursesFromServer(user.uid))
-//             store.dispatch(actions.getSchoolFromServer(user.uid))
-//             store.dispatch(actions.setUserProps({ "uid": user.uid, "email": user.email, "photoURL": user.photo_URL, "userName": user.username }))
-//         }
-//     });
-// const store = createStore(reducer,applyMiddleware(add$ToCompanyName));
-store.dispatch(actions.getAllForUser(userName))
+var start = decodeURI(url.pathname.split('/')[1]);
+if (start == "view")
+    store.dispatch(actions.getAllForStudent( decodeURI(url.pathname.split('/')[2])))
+else if (start != "login" && start != "register")
+    store.dispatch(actions.getAllForUser(start))
 window.store = store;
 export default store;
 export { reducer };

@@ -14,15 +14,10 @@ import {createBrowserHistory} from 'history';
 // import firebase from '@firebase/app';
 // import 'firebase/auth';
 import $ from 'jquery';
-import {
-  auth,
-  signInWithGoogle,
-  checkPremission,
-  signOut,
-} from './firebase';
+import {auth, signInWithGoogle, checkPremission, signOut} from './firebase';
 import store from '../Store/Store';
-import { actions } from '../Store/actions';
-import { Link, withRouter } from 'react-router-dom';
+import {actions} from '../Store/actions';
+import {Link, withRouter} from 'react-router-dom';
 // var firebase = require('firebase');
 // var app = firebase.initializeApp({ ... });
 
@@ -50,7 +45,6 @@ const validEmailRegex = RegExp(
 const Register = (props) => {
   const {history} = props;
   const [type, setType] = useState('password');
-
 
   // const [passwordShown, setPasswordShown] = useState(false);
 
@@ -83,7 +77,13 @@ const Register = (props) => {
     try {
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       // generateUserDocument(user, {displayName});
-      store.dispatch(actions.setUserProps({"uid":user.uid,"email":user.email,"photoURL":user.photoURL}))
+      store.dispatch(
+        actions.setUserProps({
+          uid: user.uid,
+          email: user.email,
+          photoURL: user.photoURL,
+        })
+      );
       // nav();
     } catch (error) {
       setError('Error Signing up with email and password');
@@ -112,9 +112,9 @@ const Register = (props) => {
   //   firebase.auth().signInWithEmailAndPassword();
   // };
   const handleClick = () =>
-  setType(() => ({
-    type: type === 'text' ? 'password' : 'text',
-  }));
+    setType(() => ({
+      type: type === 'text' ? 'password' : 'text',
+    }));
   useEffect(() => {
     // signOut();
 
@@ -124,30 +124,38 @@ const Register = (props) => {
       .filter((s) => s.includes('jwt'));
 
     auth.onAuthStateChanged(function (user) {
-      {
-        if (user) {
-          console.log('user: ' + user);
-          auth.currentUser
-            .getIdToken(true)
-            .then((firebaseToken) => {
-              $.ajax({
-                url: 'https://lms.leader.codes/register/getAccessToken',
-                method: 'post',
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                  action: 'firebaseloginwithcredentials',
-                  jwt: firebaseToken,
-                }),
-                success: function (data) {
-                  checkPremission(data);
-                },
-              });
-            })
-            .catch(function (error) {
-              alert(error);
+      if (exsistsJwt.length < 1) {
+        auth
+          .signOut()
+          .then(function () {
+            console.log('logged out');
+            document.cookie =
+              'jwt' +
+              '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
+          })
+          .catch(function (error) {});
+      } else if (user) {
+        console.log('user: ' + user);
+        auth.currentUser
+          .getIdToken(true)
+          .then((firebaseToken) => {
+            $.ajax({
+              url: 'https://lms.leader.codes/register/getAccessToken',
+              method: 'post',
+              dataType: 'json',
+              contentType: 'application/json',
+              data: JSON.stringify({
+                action: 'firebaseloginwithcredentials',
+                jwt: firebaseToken,
+              }),
+              success: function (data) {
+                checkPremission(data);
+              },
             });
-        }
+          })
+          .catch(function (error) {
+            alert(error);
+          });
       }
     });
   });
@@ -233,7 +241,7 @@ const Register = (props) => {
                   <hr />
                 </div>
                 <Button
-                  onClick={(e)=>signInWithGoogle(e)}
+                  onClick={(e) => signInWithGoogle(e)}
                   type="submit"
                   variant="light"
                 >
@@ -242,7 +250,10 @@ const Register = (props) => {
                 </Button>
                 <br />
                 have an account?
-                <Link onClick={()=>history.push('/register')}  className="pink">
+                <Link
+                  onClick={() => history.push('/register')}
+                  className="pink"
+                >
                   Sign in
                 </Link>
                 {error !== null && (

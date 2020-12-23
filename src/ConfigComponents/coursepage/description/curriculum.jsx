@@ -22,6 +22,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => ({
   // setLessonsProp: (data) => dispatch(actions.setLessonsProp(data)),
   removeLesson: (i) => dispatch(actions.removeLesson(i)),
+  setLessonProp: (i) => dispatch(actions.setLessonProp(i)),
+  initialLesson: (i) => dispatch(actions.initialLesson(i)),
 });
 class Curriculum extends Component {
   constructor() {
@@ -33,27 +35,28 @@ class Curriculum extends Component {
     // console.log("name"+location.pathname)
     // const name = this.props.match.params.name;
   }
-  navigate = (lesson) => {
+  navigate = (lesson, props) => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     let name = history.location.pathname.split('/')[1];
-    history.push(
-      '/' + name + '/' + this.props.course.name + '/' + lesson
-    );
+    history.push('/' + name + '/' + this.props.course.name + '/' + lesson);
+    let lessn = props.course.lessons.find((l) => l.name == lesson);
+    props.initialLesson(lessn);
+    props.setLessonProp([props.course._id, "course_id"]);
     // window.location.reload();
-    console.log();
+    console.log(lesson);
   };
   render() {
-    console.log(this.props);
+    // console.log(this.props.lesson);
     let course = this.props.course;
     // let arr = ['sm', 'sm', 'sm'];
     return course.lessons.map((value, ind) => (
       <ListGroup horizontal={'sm'} className="my-2 curriculum" key={ind}>
         <ListGroup.Item>
-          <FaTrash
+          {/* <FaTrash
             className="trash-lesson"
             id={'lesson-trash-' + ind}
             onClick={(e) => this.props.removeLesson(ind)}
-          />
+          /> */}
           <Image src="./img_from_xd/player (2).svg"></Image>
         </ListGroup.Item>
         <ListGroup.Item>
@@ -67,7 +70,7 @@ class Curriculum extends Component {
         <ListGroup.Item>
           <Button
             className="btn btn-choose"
-            onClick={(e) => this.navigate(value.name)}
+            onClick={(e) => this.navigate(value.name, this.props)}
           >
             Edit
           </Button>

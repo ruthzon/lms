@@ -20,13 +20,13 @@ import { handleDelete } from '../../ConfigComponents/handleImage';
 
 export const getCourses = ({ dispatch, getState }) => next => action => {
     //courses
-    // let jwt = getCookie('jwt');
-    let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
+    let jwt = getCookie('jwt');
+    // let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 
     const user = getState().userReducer.user;
 
-    let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
-    // const uid = user.uid;
+    // let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+    let uid = user.uid;
 
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
@@ -62,8 +62,10 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                         dispatch(actions.setLessonProp([cours._id, "course_id"]))
                         if (lesson && lesson != "addlesson" && lesson != "addLesson#") {
                             let lessn = cours.lessons.find((l) => (l.name == lesson));
-                            if (lessn)
+                            if (lessn) {
                                 dispatch(actions.initialLesson(lessn))
+                                dispatch(actions.setLessonProp([cours._id, "course_id"]))
+                            }
                         }
                     }
 
@@ -244,7 +246,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_LESSON_FROM_SERVER') {
         let cours = getState().courseReducer.course;
         $.ajax({
-            url: 'https://lms.leader.codes/api/' + uid +'/'+action.payload._id+ '/deleteLesson',
+            url: 'https://lms.leader.codes/api/' + uid + '/' + action.payload._id + '/deleteLesson',
             headers: {
                 Authorization: jwt,
             },
@@ -257,7 +259,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             success: function () {
                 //   history.replace('/' + match.params.name);
                 // window.location.reload();
-                dispatch(actions.removeCourse(action.payload))
+                dispatch(actions.removeLesson(action.payload))
                 history.push('/' + user.userName + '/' + cours.name);
             },
             error: function () {
@@ -354,11 +356,13 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
             contentType: 'application/json',
             withCradentials: true,
             success: function (res) {
-                if (res && res.data.uid) {
+                if (res.data && res.data.uid) {
                     let user = res.data;
                     dispatch(actions.setUserProps({ "uid": user.uid, "email": user.email, "photoURL": user.photo_URL, "userName": user.username }))
-                    dispatch(actions.getCoursesFromServer(user.uid))
-                    dispatch(actions.getSchoolFromServer(user.uid))
+                    if (getState().listCoursesReducer.courses.length > 0)
+                        dispatch(actions.getCoursesFromServer(user.uid))
+                    if (getState().schoolReducer.school._id == 0)
+                        dispatch(actions.getSchoolFromServer(user.uid))
                     dispatch(actions.setProcess(false));
                 }
             },
@@ -387,7 +391,35 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
         //     });
 
     }
+    if (action.type === 'GET_ALL_FOR_STUDENT') {
+        dispatch(actions.setProcess(true));
+        $.ajax({
+            url: 'https://lms.leader.codes/api/' + action.payload + '/getUid',
+            headers: {
+                Authorization: jwt,
+            },
+            method: 'get',
+            contentType: 'application/json',
+            withCradentials: true,
+            success: function (res) {
+                if (res.data && res.data.uid) {
+                    let user = res.data;
+                    if (getState().listCoursesReducer.courses.length > 0)
+                        dispatch(actions.getCoursesFromServer(user.uid))
+                    if (getState().schoolReducer.school._id == 0)
+                        dispatch(actions.getSchoolFromServer(user.uid))
+                    dispatch(actions.setProcess(false));
+                }
+            },
+            error: function (err) {
+                console.log("error get all for user " + err.massage);
+                dispatch(actions.setProcess(false));////////////////
+            }
 
+        });
+
+
+    }
     return next(action);
 }
 

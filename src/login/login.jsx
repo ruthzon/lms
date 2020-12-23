@@ -28,7 +28,7 @@ import {Link, withRouter} from 'react-router-dom';
 
 export default withRouter(function Login(props) {
   const user = useContext(UserContext);
-  const { history} = props;
+  const {history} = props;
   // const state = {
   //   type: 'password',
   // };
@@ -62,10 +62,10 @@ export default withRouter(function Login(props) {
         .catch((error) => {
           setError('Error signing in with password and email!');
           console.error('Error signing in with password and email', error);
-        }).catch((err)=>{
-          if (err.code= "auth/user-not-found")
-          console.log("")
         })
+        .catch((err) => {
+          if ((err.code = 'auth/user-not-found')) console.log('');
+        });
     }
   };
 
@@ -81,7 +81,7 @@ export default withRouter(function Login(props) {
 
   const handleClick = () =>
     setType(() => ({
-      type: type == 'text' ? 'password' : 'text',
+      type: type === 'text' ? 'password' : 'text',
     }));
   useEffect(() => {
     // signOut();
@@ -91,30 +91,38 @@ export default withRouter(function Login(props) {
       let exsistsJwt = document.cookie
         .split(';')
         .filter((s) => s.includes('jwt'));
-      {
-        if (user) {
-          console.log('user: ' + user);
-          auth.currentUser
-            .getIdToken(true)
-            .then((firebaseToken) => {
-              $.ajax({
-                url: 'https://lms.leader.codes/register/getAccessToken',
-                method: 'post',
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                  action: 'firebaseloginwithcredentials',
-                  jwt: firebaseToken,
-                }),
-                success: function (data) {
-                  checkPremission(data);
-                },
-              });
-            })
-            .catch(function (error) {
-              alert(error);
+      if (exsistsJwt.length < 1) {
+        auth
+          .signOut()
+          .then(function () {
+            console.log('logged out');
+            document.cookie =
+              'jwt' +
+              '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
+          })
+          .catch(function (error) {});
+      } else if (user) {
+        console.log('user: ' + user);
+        auth.currentUser
+          .getIdToken(true)
+          .then((firebaseToken) => {
+            $.ajax({
+              url: 'https://lms.leader.codes/register/getAccessToken',
+              method: 'post',
+              dataType: 'json',
+              contentType: 'application/json',
+              data: JSON.stringify({
+                action: 'firebaseloginwithcredentials',
+                jwt: firebaseToken,
+              }),
+              success: function (data) {
+                checkPremission(data);
+              },
             });
-        }
+          })
+          .catch(function (error) {
+            alert(error);
+          });
       }
     });
   });
@@ -184,14 +192,13 @@ export default withRouter(function Login(props) {
                 >
                   Start now!
                 </Button>
-                
                 <br />
                 <div className="text-center">
                   <span className="or">OR</span>
                   <hr />
                 </div>
                 <Button
-                  onClick={(e)=>signInWithGoogle(e)}
+                  onClick={(e) => signInWithGoogle(e)}
                   type="submit"
                   variant="light"
                 >
@@ -200,7 +207,10 @@ export default withRouter(function Login(props) {
                 </Button>
                 <br />
                 don't have an account?
-                <Link onClick={()=>history.push('/register')} className="pink">
+                <Link
+                  onClick={() => history.push('/register')}
+                  className="pink"
+                >
                   Sign up
                 </Link>
                 {error !== null && (
