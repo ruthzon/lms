@@ -1,11 +1,12 @@
 // import '../courseConfig/node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { FaSearch, FaShoppingCart, FaComment } from 'react-icons/all';
+import {FaSearch, FaShoppingCart, FaComment} from 'react-icons/all';
 import React from 'react';
-import '../homepage/App.css'
-import { Button, Navbar, Nav, Form, NavDropdown } from 'react-bootstrap';
+import '../homepage/App.css';
+import {Button, Navbar, Nav, Form, NavDropdown} from 'react-bootstrap';
 
-import { createHashHistory } from 'history';
-import { createBrowserHistory } from 'history';
+import {createHashHistory} from 'history';
+import {createBrowserHistory} from 'history';
+import history from '../../history';
 
 // const history = createHashHistory();
 // const browserHistory = createBrowserHistory();
@@ -77,7 +78,15 @@ function Navigation() {
           <Button
             variant="outline-primary"
             className="register"
-            onClick={() => (window.location.href = '/login')}
+            onClick={() => {
+              debugger;
+              history.push({
+                pathname: '/login',
+                state: {
+                  from: history.location.pathname,
+                },
+              });
+            }}
           >
             Register
           </Button>

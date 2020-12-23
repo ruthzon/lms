@@ -161,7 +161,6 @@ export function ConfigCategories(props) {
   let { data, id } = props;
   const YOUR_API_KEY = 'AIzaSyCzgSJ33qliZxON6yFXjEpUudk2QsNTkBg';
 	const [activeFontFamily, setActiveFontFamily] = useState("Open Sans");
-  debugger;
   return (
 
     <>
@@ -202,12 +201,12 @@ export function ConfigCategories(props) {
           Text
         <input data-toggle="tooltip" data-placement="top" title="Change text color"
             type="color"
-            value={props.school.colors.ChoiceFavourite}
-            onChange={(e) => props.color([e.target.value, 'ChoiceFavourite'])}
+            value={props.school.colors.choiceFavourite}
+            onChange={(e) => props.color([e.target.value, 'choiceFavourite'])}
           />
           <input
             type="text"
-            value={data.school.ChoiceFavourite.header}
+            value={data.school.choiceFavourite.header}
             onChange={(e) =>
               data.setChoiceFavorite([e.target.value, 'header'])
             }
@@ -571,7 +570,7 @@ export function ConfigTestimoinal(props) {
                 image: './img_from_xd/User.png',
                 description: 'What the testimoinal has to say.',
               },
-              'testimoinal',
+              'testimoinals',
             ])
           }
         />
@@ -603,7 +602,7 @@ export function ConfigTestimoinal(props) {
 
 export function ConfigTestimoinalX(props) {
   let { data, id } = props;
-  let thisTest = data.school.testimoinal[id];
+  let thisTest = data.school.testimoinals[id];
   return (
     <>
       <h5>
@@ -615,13 +614,13 @@ export function ConfigTestimoinalX(props) {
                 image: './img_from_xd/User.png',
                 description: 'What the testimoinal has to say.',
               },
-              'testimoinal',
+              'testimoinals',
             ])
           }
         />
         <FaTrash
           onClick={(e) => {
-            handleDelete(data.deleteFromSection, [id, 'testimoinal']);
+            handleDelete(data.deleteFromSection, [id, 'testimoinals']);
             data.setSectionConfig({
               name: id == 0 ? 'testimoinal' : 'testimoinal-x',
               id: id == 0 ? 1 : id - 1,
@@ -636,7 +635,7 @@ export function ConfigTestimoinalX(props) {
                 image: thisTest.image,
                 description: thisTest.description,
               },
-              'testimoinal',
+              'testimoinals',
             ])
           }
         />
@@ -645,7 +644,7 @@ export function ConfigTestimoinalX(props) {
         Name
         <input
           type="text"
-          value={data.school.testimoinal[id].name}
+          value={data.school.testimoinals[id].name}
           onChange={(e) => {
             data.setTestimoinal([e.target.value, 'name', id]);
           }}
@@ -655,7 +654,7 @@ export function ConfigTestimoinalX(props) {
         Description
         <textarea
           type="text"
-          value={data.school.testimoinal[id].description}
+          value={data.school.testimoinals[id].description}
           onChange={(e) => {
             data.setTestimoinal([e.target.value, 'description', id]);
           }}

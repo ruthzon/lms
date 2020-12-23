@@ -97,7 +97,7 @@ export default connect(
           </button>
         </Form>
         <h3>
-          <textarea
+          <input
             value={props.school.getChoice.header}
             onChange={(e) => props.setGetChoice([e.target.value, 'header'])}
           />

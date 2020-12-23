@@ -8,7 +8,7 @@ const initialState = {
   school: {
     // _id: '5fbb9c2c068ea32d1852f9fb',
     _id: '0',
-    lmsUser_id: '0',
+    uid: '0',
     name: "School's name",
     title: 'Learn new skills online with top educators',
     subtitle: 'Choose from over 100,000 online video courses with new additions published every month.',
@@ -62,10 +62,10 @@ const initialState = {
       algorithm: "stars",
       items: 6
     },
-    // ChoiceFavourite:{
-    //   header: "Choice favourite course from top category",
-    //   algorithm:"views"
-    // },
+    choiceFavourite:{
+      header: "Choice favourite course from top category",
+      algorithm:"views"
+    },
     // footer: {
     //   "Company": ["About", "Careers", "Press", "Blog", "Affiliates",],
     //   "Community": [ "Go Premium", "Team Plans", "Refer a Friend", "Gift Cards", "Scholarships",],
@@ -99,7 +99,7 @@ const initialState = {
       searchbar: '#f56962',
       button: '#f56962',
       fontButton: '#fffff',
-      ChoiceFavourite: "#00000029"
+      choiceFavourite: "#00000029"
 
     },
     footer: [
@@ -224,8 +224,7 @@ const myschool = {
     state.school.getChoice[action.payload[1]] = action.payload[0];
   },
   setChoiceFavorite(state, action) {
-    debugger;
-    state.school.ChoiceFavourite[action.payload[1]] = action.payload[0];
+    state.school.choiceFavourite[action.payload[1]] = action.payload[0];
   },
   setWorldSelection(state, action) {
     state.school.worldSelection[action.payload[1]] = action.payload[0];

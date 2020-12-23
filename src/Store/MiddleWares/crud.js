@@ -7,6 +7,7 @@ import history from '../../history'
 import $ from 'jquery';
 import store from '../Store';
 import { handleDelete } from '../../ConfigComponents/handleImage';
+import Lesson from '../Reducers/Lesson';
 
 // const history = createBrowserHistory();
 
@@ -20,16 +21,17 @@ import { handleDelete } from '../../ConfigComponents/handleImage';
 
 export const getCourses = ({ dispatch, getState }) => next => action => {
     //courses
-    let jwt = getCookie('jwt');
-    // let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
+    // let jwt = getCookie('jwt');
+    let jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
 
     const user = getState().userReducer.user;
 
-    // let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
-    let uid = user.uid;
+    let uid = "wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
+    // let uid = user.uid;
 
     // const url = "https://lobby.leader.codes/api";
     if (action.type === 'GET_COURSES_FROM_SERVER') {
+        debugger
         if (action.payload)
             uid = action.payload
         $.ajax({
@@ -53,27 +55,75 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                     dispatch(actions.initialCourses(courses))
                 }
                 var url = window.location;
-                var course = decodeURI(url.pathname.split('/')[2]);
-                var lesson = decodeURI(url.pathname.split('/')[3]);
-                if (course && course != "addcourse" && course != "addCourse#") {
-                    let cours = courses.find((c) => (c.name == course));
-                    if (cours) {
-                        dispatch(actions.initialCourse(cours));
-                        dispatch(actions.setLessonProp([cours._id, "course_id"]))
-                        if (lesson && lesson != "addlesson" && lesson != "addLesson#") {
-                            let lessn = cours.lessons.find((l) => (l.name == lesson));
-                            if (lessn) {
-                                dispatch(actions.initialLesson(lessn))
-                                dispatch(actions.setLessonProp([cours._id, "course_id"]))
+                if (decodeURI(url.pathname.split('/')[1]) != "view") {
+                    var course = decodeURI(url.pathname.split('/')[2]);
+                    var lesson = decodeURI(url.pathname.split('/')[3]);
+                    if (course && course != "addcourse" && course != "addCourse#") {
+                        let cours = courses.find((c) => (c.name == course));
+                        if (cours) {
+                            dispatch(actions.initialCourse(cours));
+                            dispatch(actions.setLessonProp([cours._id, "course_id"]))
+                            if (lesson && lesson != "addlesson" && lesson != "addLesson#") {
+                                let lessn = cours.lessons.find((l) => (l.name == lesson));
+                                if (lessn) {
+                                    dispatch(actions.initialLesson(lessn))
+                                    dispatch(actions.setLessonProp([cours._id, "course_id"]))
+                                }
                             }
                         }
                     }
-
+                }
+                else {
+                    var course = decodeURI(url.pathname.split('/')[3]);
+                    var lesson = decodeURI(url.pathname.split('/')[4]);
+                    if (course) {
+                        let cours = courses.find((c) => (c.name == course));
+                        if (cours) {
+                            dispatch(actions.initialCourse(cours));
+                            if (Lesson) {
+                                let lessn = cours.lessons.find((l) => (l.name == lesson));
+                                if (lessn) {
+                                    dispatch(actions.initialLesson(lessn))
+                                    dispatch(actions.setLessonProp([cours._id, "course_id"]))
+                                }
+                            }
+                        }
+                    }
                 }
             },
         });
     }
-
+    if (action.type === 'GET_COURSES_FROM_SERVER_2') {
+        debugger
+        $.ajax({
+            url: 'https://lms.leader.codes/api/' + action.payload + '/coursesNoAuth',
+            method: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            withCradentials: true,
+            // data: JSON.stringify(dataToProfilePage),
+            success: function (data) {
+                let courses = []
+                if (data && data.length) {
+                    for (let course in data) {
+                        courses.push(data[course])
+                    }
+                    dispatch(actions.initialCourses(courses))
+                }
+                var url = window.location;
+                if (decodeURI(url.pathname.split('/')[1]) == "view") {
+                    var course = decodeURI(url.pathname.split('/')[3]);
+                    if (course) {
+                        let cours = courses.find((c) => (c.name == course));
+                        if (cours) {
+                            dispatch(actions.initialCourse(cours));
+                            dispatch(actions.initialEmptyLesson())
+                        }
+                    }
+                }
+            },
+        });
+    }
     if (action.type === 'ADD_COURSE_TO_SERVER') {
         let course = Object.assign({}, action.payload);
         delete course["lessons"];
@@ -359,7 +409,7 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
                 if (res.data && res.data.uid) {
                     let user = res.data;
                     dispatch(actions.setUserProps({ "uid": user.uid, "email": user.email, "photoURL": user.photo_URL, "userName": user.username }))
-                    if (getState().listCoursesReducer.courses.length > 0)
+                    if (getState().listCoursesReducer.courses.length == 0)
                         dispatch(actions.getCoursesFromServer(user.uid))
                     if (getState().schoolReducer.school._id == 0)
                         dispatch(actions.getSchoolFromServer(user.uid))
@@ -394,21 +444,20 @@ export const getCourses = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_FOR_STUDENT') {
         dispatch(actions.setProcess(true));
         $.ajax({
-            url: 'https://lms.leader.codes/api/' + action.payload + '/getUid',
-            headers: {
-                Authorization: jwt,
-            },
+            url: 'https://lms.leader.codes/api/' + action.payload + '/schoolNoAuth',
             method: 'get',
             contentType: 'application/json',
             withCradentials: true,
             success: function (res) {
-                if (res.data && res.data.uid) {
-                    let user = res.data;
-                    if (getState().listCoursesReducer.courses.length > 0)
-                        dispatch(actions.getCoursesFromServer(user.uid))
-                    if (getState().schoolReducer.school._id == 0)
-                        dispatch(actions.getSchoolFromServer(user.uid))
+                if (res) {
+                    dispatch(actions.initialSchool(res));
+                    if (getState().listCoursesReducer.courses.length == 0)
+                        if (user._id)
+                            dispatch(actions.getCoursesFromServer2(action.payload))
+                        else
+                            dispatch(actions.getCoursesFromServer(res.uid))
                     dispatch(actions.setProcess(false));
+
                 }
             },
             error: function (err) {

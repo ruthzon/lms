@@ -163,7 +163,17 @@ export function checkPremission(data) {
                     // store.dispatch(actions.getCoursesFromServer(uid))
                     // store.dispatch(actions.getSchoolFromServer(uid))
                     store.dispatch(actions.getAllForUser(userName))
-                    history.push('/' + userName);
+                    debugger
+                    if (history.state.state.from) {
+                        history.push({
+                            pathname: '/' + history.state.state.from,
+                            state: {
+                                from: "",
+                            },
+                        });
+                    }
+                    else
+                        history.push('/' + userName);
                 }
             }
         }

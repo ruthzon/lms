@@ -21,6 +21,7 @@ import {
 import {UserContext} from './userProvider';
 import $ from 'jquery';
 import {Link, withRouter} from 'react-router-dom';
+import history from '../history'
 
 // const history = createHashHistory();
 // const browserHistory = createBrowserHistory();
@@ -28,7 +29,7 @@ import {Link, withRouter} from 'react-router-dom';
 
 export default withRouter(function Login(props) {
   const user = useContext(UserContext);
-  const {history} = props;
+  // const {history} = props;
   // const state = {
   //   type: 'password',
   // };
@@ -91,17 +92,18 @@ export default withRouter(function Login(props) {
       let exsistsJwt = document.cookie
         .split(';')
         .filter((s) => s.includes('jwt'));
-      if (exsistsJwt.length < 1) {
-        auth
-          .signOut()
-          .then(function () {
-            console.log('logged out');
-            document.cookie =
-              'jwt' +
-              '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
-          })
-          .catch(function (error) {});
-      } else if (user) {
+      // if (exsistsJwt.length < 1) {
+      //   auth
+      //     .signOut()
+      //     .then(function () {
+      //       console.log('logged out');
+      //       document.cookie =
+      //         'jwt' +
+      //         '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;domain=.leader.codes';
+      //     })
+      //     .catch(function (error) {});
+      // } else
+       if (user) {
         console.log('user: ' + user);
         auth.currentUser
           .getIdToken(true)

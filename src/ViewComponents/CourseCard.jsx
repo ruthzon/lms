@@ -24,7 +24,7 @@ export default function CourseCard(props) {
   const navigate = () => {
     // browserHistory.replace('/courses/:'+JSON.stringify( data));
     // browserHistory.replace('/viewcourse/' + props.course.id);
-    history.push(`view/${school}/${props.course.name}`);
+    history.push(`/view/${school}/${props.course.name}`);
     // window.location.reload();
     console.log(props);
   };
@@ -59,7 +59,7 @@ export default function CourseCard(props) {
             </Col>
             <Col xs="4" className="align-right">
               <FaRegPlayCircle color="#3E9365" />
-              {props.course.lesion + ' '} Lessons
+              {props.course.lesson + ' '} Lessons
             </Col>
           </Row>
         </Container>
@@ -74,10 +74,10 @@ export default function CourseCard(props) {
         <Container>
           <Row>
             <Col xs="2" className="align-left profile">
-              <img src={props.course.auther_image} alt="card"></img>
+              <img src={props.course.teacher.image} alt="card"></img>
             </Col>
             <Col xs="4" className="align-left profile">
-              {props.course.auther}
+              {props.course.teacher.name}
             </Col>
             <Col xs="6" className="align-right price">
               <span>{props.course.prev_price} </span>

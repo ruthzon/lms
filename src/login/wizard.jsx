@@ -24,10 +24,10 @@ export const getCookie = (c_name) => {
   return '';
 };
 
-const usernameCheck = (setUserProps,getAllForUser) => {
+const usernameCheck = (setUserProps, getAllForUser) => {
   const jwt = getCookie('jwt');
   // let jwt =
-    // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
+  // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJ3ZGtwNUQyaFJPYzRYSmJCY3FkdzlDOUM3T3gyIiwiZW1haWwiOiJydXRoem9uQGxlYWRlci5jb2RlcyIsImlwIjoiMTk1LjYwLjIzNS4xNDEiLCJpYXQiOjE2MDU3ODA2MDh9.StX-QtG8q4z2JvJ4VFMZQn2PYkb0vqo00Vbmn0GNlFU';
   // let myUid="wdkp5D2hROc4XJbBcqdw9C9C7Ox2"
 
   const value = document.querySelector('input#usernameInput').value;
@@ -75,7 +75,7 @@ const usernameCheck = (setUserProps,getAllForUser) => {
     .then((res) => {
       if (!res.availability) {
         swal(
-          'Oops...',
+          '...',
           'The username is already taken. Please choose another username.',
           'error'
         );
@@ -83,7 +83,18 @@ const usernameCheck = (setUserProps,getAllForUser) => {
         swal('succsess', 'Username available and created!', 'succsess');
         setUserProps({userName: value});
         getAllForUser(value);
-        history.push('/' + value );
+        if (history.state.state.from) {
+          history.push({
+            pathname: '/' + history.state.state.from,
+            state: {
+              from: '',
+            },
+          });
+        } else history.push('/' + value);
+
+        // history.push(history.state.state.from)
+
+        // history.push('/' + value);
       }
     });
 };
@@ -91,7 +102,6 @@ const usernameCheck = (setUserProps,getAllForUser) => {
 const mapDispatchToProps = (dispatch) => ({
   setUserProps: (data) => dispatch(actions.setUserProps(data)),
   getAllForUser: (data) => dispatch(actions.getAllForUser(data)),
-
 });
 
 function mapStateToProps(state) {
@@ -157,7 +167,12 @@ class Wizard extends Component {
                   id="signupBtn"
                   className="btn btn_light auth__btn"
                   style={{userSelect: 'none', cursor: 'pointer'}}
-                  onClick={() => usernameCheck(this.props.setUserProps, this.props.getAllForUser)}
+                  onClick={() =>
+                    usernameCheck(
+                      this.props.setUserProps,
+                      this.props.getAllForUser
+                    )
+                  }
                 >
                   Continue
                 </a>
