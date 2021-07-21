@@ -36,7 +36,7 @@
     "react-hooks-lib": "^0.3.0",
     "react-icons": "^3.11.0",
     "react-multi-carousel": "^2.5.5",
-    "react-native": "^0.63.3",
+    "react-native": "^0.64.1",
     "react-native-cli": "^2.0.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-navigation": "^4.4.3",
